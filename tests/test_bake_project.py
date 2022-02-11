@@ -1,12 +1,9 @@
-import datetime
-import importlib
 import os
 import shlex
 import subprocess
 import sys
 from contextlib import contextmanager
 
-import pytest
 import yaml
 import datetime
 import pytest
@@ -94,6 +91,13 @@ def test_bake_and_run_tests(cookies):
         assert result.project.isdir()
         run_inside_dir("python setup.py test", str(result.project)) == 0
         print("test_bake_and_run_tests path", str(result.project))
+
+
+def test_bake_and_run_pre_commit(cookies):
+    with bake_in_temp_dir(cookies) as result:
+        assert result.project.isdir()
+        run_inside_dir("pre-commit run --all-file", str(result.project)) == 0
+        print("test_bake_and_run_pre_commit path", str(result.project))
 
 
 def test_bake_withspecialchars_and_run_tests(cookies):
