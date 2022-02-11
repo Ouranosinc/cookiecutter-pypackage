@@ -32,5 +32,5 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install tox
         run: pip install tox
-      - name: Run linting suite
+      - name: Run bake test suite
         run: tox -e ${{ matrix.tox-env }}
