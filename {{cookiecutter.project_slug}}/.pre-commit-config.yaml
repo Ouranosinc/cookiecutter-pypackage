@@ -15,19 +15,10 @@ repos:
       - id: check-yaml
         args: ['--allow-multiple-documents']
       - id: debug-statements
-  - repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.1.12
-    hooks:
-      - id: remove-tabs
   - repo: https://github.com/pre-commit/pygrep-hooks
     rev: v1.9.0
     hooks:
-      - id: rst-backticks
       - id: rst-inline-touching-normal
-  - repo: https://github.com/Lucas-C/pre-commit-hooks-markup
-    rev: v1.0.1
-    hooks:
-      - id: rst-linter
   - repo: https://github.com/pycqa/flake8
     rev: 4.0.1
     hooks:
@@ -37,19 +28,14 @@ repos:
     rev: 22.1.0
     hooks:
       - id: black
-        args: ["--target-version", "py37"]
+        args: ['--target-version', 'py37']
+        exclude: ^docs/
   - repo: https://github.com/timothycrosley/isort
     rev: 5.10.1
     hooks:
       - id: isort
         args: ['--profile', 'black', '--filter-files']
-  - repo: https://github.com/nbQA-dev/nbQA
-    rev: 1.2.3
-    hooks:
-      - id: nbqa-black
-      - id: nbqa-isort
-      - id: nbqa-pyupgrade
-        args: [--py37-plus]
+        exclude: ^docs/
   - repo: https://github.com/pycqa/pydocstyle
     rev: 6.1.1
     hooks:
@@ -60,10 +46,6 @@ repos:
     hooks:
       - id: yamllint
         args: ['--config-file', '.yamllint.yaml']
-  - repo: https://github.com/asottile/setup-cfg-fmt
-    rev: v1.20.0
-    hooks:
-      - id: setup-cfg-fmt
   - repo: https://github.com/mgedmin/check-manifest
     rev: "0.47"
     hooks:

@@ -96,7 +96,10 @@ def test_bake_and_run_tests(cookies):
 def test_bake_and_run_pre_commit(cookies):
     with bake_in_temp_dir(cookies) as result:
         assert result.project.isdir()
-        run_inside_dir("pre-commit run --all-file", str(result.project)) == 0
+        run_inside_dir("git init", str(result.project)) == 0
+        run_inside_dir("git add *", str(result.project)) == 0
+        run_inside_dir("pre-commit install", str(result.project)) == 0
+        run_inside_dir("pre-commit run --all-files", str(result.project)) == 0
         print("test_bake_and_run_pre_commit path", str(result.project))
 
 
