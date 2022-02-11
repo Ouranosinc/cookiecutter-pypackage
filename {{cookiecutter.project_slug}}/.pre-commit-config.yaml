@@ -28,7 +28,6 @@ repos:
     rev: 22.1.0
     hooks:
       - id: black
-        args: ['--target-version', 'py37']
         exclude: ^docs/
   - repo: https://github.com/timothycrosley/isort
     rev: 5.10.1
