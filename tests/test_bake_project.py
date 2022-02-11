@@ -120,26 +120,6 @@ def test_bake_with_apostrophe_and_run_tests(cookies):
         run_inside_dir("python setup.py test", str(result.project)) == 0
 
 
-# def test_bake_and_run_travis_pypi_setup(cookies):
-#     # given:
-#     with bake_in_temp_dir(cookies) as result:
-#         project_path = str(result.project)
-#
-#         # when:
-#         travis_setup_cmd = ('python travis_pypi_setup.py'
-#                             ' --repo audreyr/cookiecutter-pypackage'
-#                             ' --password invalidpass')
-#         run_inside_dir(travis_setup_cmd, project_path)
-#         # then:
-#         result_travis_config = yaml.load(
-#             result.project.join(".travis.yml").open()
-#         )
-#         min_size_of_encrypted_password = 50
-#         assert len(
-#             result_travis_config["deploy"]["password"]["secure"]
-#         ) > min_size_of_encrypted_password
-
-
 def test_bake_without_travis_pypi_setup(cookies):
     with bake_in_temp_dir(
         cookies, extra_context={"use_pypi_deployment_with_travis": "n"}
