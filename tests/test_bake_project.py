@@ -93,7 +93,7 @@ def test_bake_and_run_tests(cookies):
         print("test_bake_and_run_tests path", str(result.project))
 
 
-@pytest.mark.skip_if(hasattr(sys, "pypy_version_info"), reason="Black does not work on PyPy.")
+@pytest.mark.requires_precommit
 def test_bake_and_run_pre_commit(cookies):
     with bake_in_temp_dir(cookies) as result:
         assert result.project.isdir()
@@ -104,7 +104,7 @@ def test_bake_and_run_pre_commit(cookies):
         print("test_bake_and_run_pre_commit path", str(result.project))
 
 
-def test_bake_withspecialchars_and_run_tests(cookies):
+def test_bake_with_special_chars_and_run_tests(cookies):
     """Ensure that a `full_name` with double quotes does not break setup.py"""
     with bake_in_temp_dir(
         cookies, extra_context={"full_name": 'name "quote" name'}
