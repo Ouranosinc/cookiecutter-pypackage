@@ -93,7 +93,7 @@ def test_bake_and_run_tests(cookies):
         print("test_bake_and_run_tests path", str(result.project))
 
 
-@pytest.mark.skip_if(sys.implementation.name == "pypy", reason="Black does not work on PyPy.")
+@pytest.mark.skip_if("pypy" in sys.implementation.name.lower(), reason="Black does not work on PyPy.")
 def test_bake_and_run_pre_commit(cookies):
     with bake_in_temp_dir(cookies) as result:
         assert result.project.isdir()
