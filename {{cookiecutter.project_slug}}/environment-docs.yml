@@ -8,7 +8,7 @@ dependencies:
   - sphinx_rtd_theme
   - sphinx-autoapi
   - sphinxcontrib-napoleon
-{% if cookiecutter.command_line_interface|lower == 'click' -%}
+{%- if cookiecutter.command_line_interface|lower == 'click' -%}
   - click
   - sphinx-click
-{% endif %}
+{%- endif %}
