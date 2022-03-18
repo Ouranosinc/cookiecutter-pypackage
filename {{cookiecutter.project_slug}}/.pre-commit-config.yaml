@@ -11,6 +11,7 @@ repos:
     rev: v4.1.0
     hooks:
       - id: trailing-whitespace
+        exclude: setup.cfg
       - id: end-of-file-fixer
       - id: check-yaml
         args: ['--allow-multiple-documents']
@@ -23,6 +24,7 @@ repos:
     rev: 4.0.1
     hooks:
       - id: flake8
+        additional_dependencies: [ 'flake8-rst-docstrings' ]
         args: ['--config=setup.cfg']
   - repo: https://github.com/ambv/black
     rev: 22.1.0
