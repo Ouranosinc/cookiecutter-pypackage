@@ -30,7 +30,7 @@ You can either clone the public repository:
 
 .. code-block:: console
 
-    $ git clone git://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
+    $ git clone git@github.com:{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
 
 Or download the `tarball`_:
 
