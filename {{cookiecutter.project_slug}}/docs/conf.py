@@ -33,6 +33,14 @@ import {{ cookiecutter.project_slug }}
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = ['sphinx.ext.autodoc', 'sphinx.ext.viewcode']
 
+# To ensure that underlined fields (e.g. `_field`) are shown in the docs.
+autodoc_default_options = {
+    "members": True,
+    "undoc-members": True,
+    "private-members": False,
+    "special-members": False,
+}
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
