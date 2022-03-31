@@ -23,6 +23,10 @@ jobs:
           - tox-env: pypy3
             python-version: pypy3
     steps:
+      - name: Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
       - uses: actions/checkout@v2
       # Python3.10-dev headers not available in Ubuntu-20.04 Bionic
       - name: Set up Python3.10 (deadsnakes version)
