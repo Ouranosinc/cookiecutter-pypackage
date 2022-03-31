@@ -73,7 +73,7 @@ development. Please note this documentation assumes you already have
 
 ::
 
-3. Assuming you have virtualenv installed (If you have Python 3.6 this should
+3. Assuming you have virtualenv installed (If you have Python 3.6+ this should
    already be there), you can create a new environment for your local
    development by typing:
 
