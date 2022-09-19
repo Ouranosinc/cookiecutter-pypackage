@@ -7,6 +7,8 @@ dependencies:
   - pandoc
   - sphinx_rtd_theme
   - sphinx-autoapi
+  - sphinx-codeautolink
+  - sphinx-copybutton
   - sphinxcontrib-napoleon
 {%- if cookiecutter.command_line_interface|lower == 'click' -%}
   - click

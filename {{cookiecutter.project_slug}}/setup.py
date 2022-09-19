@@ -10,7 +10,7 @@ with open("README.rst") as readme_file:
 with open("HISTORY.rst") as history_file:
     history = history_file.read()
 
-requirements = [{%- if cookiecutter.command_line_interface|lower == 'click' %}"Click>=7.0"{%- endif -%}]
+requirements = [{%- if cookiecutter.command_line_interface|lower == 'click' %}"Click>=8.0"{%- endif -%}]
 
 test_requirements = [{%- if cookiecutter.use_pytest == 'y' %}"pytest>=3"{%- endif -%}]
 
@@ -33,7 +33,7 @@ dev_requirements = [
 setup(
     author="{{ cookiecutter.full_name.replace('\"', '\\\"') }}",
     author_email="{{ cookiecutter.email }}",
-    python_requires=">=3.7",
+    python_requires=">=3.8",
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
         "Intended Audience :: Developers",
@@ -42,7 +42,6 @@ setup(
 {%- endif %}
         "Natural Language :: English",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
