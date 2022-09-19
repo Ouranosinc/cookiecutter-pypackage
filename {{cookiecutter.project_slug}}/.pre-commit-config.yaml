@@ -6,7 +6,7 @@ repos:
     rev: v2.31.1
     hooks:
     -   id: pyupgrade
-        args: [--py37-plus]
+        args: [--py38-plus]
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.1.0
     hooks:
@@ -26,22 +26,28 @@ repos:
       - id: flake8
         additional_dependencies: [ 'flake8-rst-docstrings' ]
         args: ['--config=setup.cfg']
-  - repo: https://github.com/ambv/black
-    rev: 22.3.0
+  - repo: https://github.com/psf/black
+    rev: 22.8.0
     hooks:
       - id: black
         exclude: ^docs/
-  - repo: https://github.com/timothycrosley/isort
+        args: [ '--target-version=py38' ]
+  - repo: https://github.com/PyCQA/isort
     rev: 5.10.1
     hooks:
       - id: isort
-        args: ['--profile', 'black', '--filter-files']
+        args: ['--settings-file=setup.cfg']
         exclude: ^docs/
-  - repo: https://github.com/pycqa/pydocstyle
+  - repo: https://github.com/PyCQA/pydocstyle
     rev: 6.1.1
     hooks:
       - id: pydocstyle
-        args: ['--convention=numpy', '--match="(?!test_).*\.py"']
+        args: [ '--config=setup.cfg' ]
+  - repo: https://github.com/keewis/blackdoc
+    rev: v0.3.6
+    hooks:
+      - id: blackdoc
+        additional_dependencies: [ 'black==22.8.0' ]
   - repo: https://github.com/adrienverge/yamllint.git
     rev: v1.26.3
     hooks:

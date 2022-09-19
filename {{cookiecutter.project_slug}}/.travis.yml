@@ -64,7 +64,7 @@ script: tox
 
 {% if cookiecutter.use_pypi_deployment_with_travis == 'y' -%}
 # Assuming you have installed the travis-ci CLI tool, after you
-# create the Github repo and add it to Travis, run the
+# create the GitHub repo and add it to Travis, run the
 # following command to finish PyPI deployment setup:
 # $ travis encrypt --add deploy.password
 deploy:
