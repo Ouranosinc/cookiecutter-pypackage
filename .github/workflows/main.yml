@@ -23,7 +23,7 @@ jobs:
           - tox-env: py311
             python-version: "3.11"
           - tox-env: pypy3
-            python-version: pypy3
+            python-version: "pypy3.9"
     steps:
       - name: Cancel previous runs
         uses: styfle/cancel-workflow-action@0.11.0
