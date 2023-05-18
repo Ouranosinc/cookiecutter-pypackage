@@ -36,6 +36,14 @@ clean-build: ## remove build artifacts
 	find . -name '*.egg-info' -exec rm -fr {} +
 	find . -name '*.egg' -exec rm -f {} +
 
+{%- if cookiecutter.make_docs == 'y' %}
+
+clean-docs: ## remove docs artifacts
+	rm -f docs/apidoc/ravenpy*.rst
+	rm -f docs/apidoc/modules.rst
+	$(MAKE) -C docs clean
+
+{% endif -%}
 clean-pyc: ## remove Python file artifacts
 	find . -name '*.pyc' -exec rm -f {} +
 	find . -name '*.pyo' -exec rm -f {} +
@@ -52,10 +60,11 @@ lint/flake8: ## check style with flake8
 	flake8 {{ cookiecutter.project_slug }} tests
 
 {%- if cookiecutter.use_black == 'y' %}
+
 lint/black: ## check style with black
 	black --check {{ cookiecutter.project_slug }} tests
-{%- endif %}
 
+{%- endif -%}
 lint: lint/flake8{%- if cookiecutter.use_black == 'y' %} lint/black{%- endif %} ## check style
 
 test: ## run tests quickly with the default Python
@@ -79,24 +88,29 @@ coverage: ## check code coverage quickly with the default Python
 	$(BROWSER) htmlcov/index.html
 
 {%- if cookiecutter.make_docs == 'y' %}
-docs: ## generate Sphinx HTML documentation, including API docs
-	rm -f docs/{{ cookiecutter.project_slug }}.rst
-	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ {{ cookiecutter.project_slug }}
-	$(MAKE) -C docs clean
+
+autodoc: clean-docs ## create sphinx-apidoc files:
+	sphinx-apidoc -o docs/apidoc --private --module-first ravenpy
+
+linkcheck: autodoc ## run checks over all external links found throughout the documentation
+	$(MAKE) -C docs linkcheck
+
+docs: autodoc ## generate Sphinx HTML documentation, including API docs
 	$(MAKE) -C docs html
+ifndef READTHEDOCS
 	$(BROWSER) docs/_build/html/index.html
+endif
 
 servedocs: docs ## compile the docs watching for changes
 	watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
-{%- endif %}
 
+{% endif -%}
 release: dist ## package and upload a release
 	twine upload dist/*
 
 dist: clean ## builds source and wheel package
-	python setup.py sdist
-	python setup.py bdist_wheel
+	python -m build --sdist
+	python -m build --wheel
 	ls -l dist
 
 install: clean ## install the package to the active Python's site-packages
