@@ -88,7 +88,6 @@ coverage: ## check code coverage quickly with the default Python
 	$(BROWSER) htmlcov/index.html
 
 {%- if cookiecutter.make_docs == 'y' %}
-
 autodoc: clean-docs ## create sphinx-apidoc files:
 	sphinx-apidoc -o docs/apidoc --private --module-first ravenpy
 
@@ -103,8 +102,8 @@ endif
 
 servedocs: docs ## compile the docs watching for changes
 	watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
+{%- endif -%}
 
-{% endif -%}
 release: dist ## package and upload a release
 	twine upload dist/*
 

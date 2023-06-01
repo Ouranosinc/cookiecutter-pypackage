@@ -3,6 +3,7 @@ import shlex
 import subprocess
 import sys
 from contextlib import contextmanager
+from pathlib import Path
 
 import yaml
 import datetime
@@ -35,7 +36,7 @@ def bake_in_temp_dir(cookies, *args, **kwargs):
     :param cookies: pytest_cookies.Cookies,
         cookie to be baked and its temporal files will be removed
     """
-    result = cookies.bake(*args, **kwargs)
+    result = cookies.bake(*args, template=Path(__file__).parents[1].as_posix(), **kwargs)
     try:
         yield result
     finally:
