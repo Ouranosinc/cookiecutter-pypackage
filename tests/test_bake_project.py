@@ -5,7 +5,6 @@ import sys
 from contextlib import contextmanager
 from pathlib import Path
 
-import yaml
 import datetime
 import pytest
 from cookiecutter.utils import rmtree
@@ -223,7 +222,7 @@ def test_not_using_pytest(cookies):
 
 def test_bake_with_no_console_script(cookies):
     context = {"command_line_interface": "No command-line interface"}
-    result = cookies.bake(extra_context=context)
+    result = cookies.bake(extra_context=context, template=Path(__file__).parents[1].as_posix())
     project_path, project_slug, project_dir = project_info(result)
     found_project_files = os.listdir(project_dir)
     assert "cli.py" not in found_project_files
@@ -233,10 +232,10 @@ def test_bake_with_no_console_script(cookies):
         assert "entry_points" not in setup_file.read()
 
 
-@pytest.mark.parametrize("option", ["click", "argparse"])
+@pytest.mark.parametrize("option", ["Click", "Argparse"])
 def test_bake_with_console_options_script_files(cookies, option):
     context = {"command_line_interface": option}
-    result = cookies.bake(extra_context=context)
+    result = cookies.bake(extra_context=context, template=Path(__file__).parents[1].as_posix())
     project_path, project_slug, project_dir = project_info(result)
     found_project_files = os.listdir(project_dir)
     assert "cli.py" in found_project_files
@@ -246,10 +245,10 @@ def test_bake_with_console_options_script_files(cookies, option):
         assert "entry_points" in setup_file.read()
 
 
-@pytest.mark.parametrize("option", ["click", "argparse"])
+@pytest.mark.parametrize("option", ["Click", "Argparse"])
 def test_bake_with_console_options_script_cli(cookies, option):
     context = {"command_line_interface": option}
-    result = cookies.bake(extra_context=context)
+    result = cookies.bake(extra_context=context, template=Path(__file__).parents[1].as_posix())
     project_path, project_slug, project_dir = project_info(result)
     module_path = os.path.join(project_dir, "cli.py")
     module_name = ".".join([project_slug, "cli"])
