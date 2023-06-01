@@ -94,7 +94,7 @@ def test_bake_and_run_tests(cookies):
         print("test_bake_and_run_tests path", str(result.project))
 
 
-@pytest.mark.requires_precommit
+@pytest.mark.precommit
 def test_bake_and_run_pre_commit(cookies):
     with bake_in_temp_dir(cookies) as result:
         assert result.project.isdir()
