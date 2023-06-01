@@ -36,7 +36,8 @@ def bake_in_temp_dir(cookies, *args, **kwargs):
     :param cookies: pytest_cookies.Cookies,
         cookie to be baked and its temporal files will be removed
     """
-    result = cookies.bake(*args, template=Path(__file__).parents[1].as_posix(), **kwargs)
+    kwargs.update(template=Path(__file__).parents[1].as_posix())
+    result = cookies.bake(*args, **kwargs)
     try:
         yield result
     finally:
@@ -119,17 +120,6 @@ def test_bake_with_apostrophe_and_run_tests(cookies):
     with bake_in_temp_dir(cookies, extra_context={"full_name": "O'connor"}) as result:
         assert result.project.isdir()
         run_inside_dir("python setup.py test", str(result.project)) == 0
-
-
-def test_bake_without_travis_pypi_setup(cookies):
-    with bake_in_temp_dir(
-        cookies, extra_context={"use_pypi_deployment_with_travis": "n"}
-    ) as result:
-        result_travis_config = yaml.load(
-            result.project.join(".travis.yml").open(), Loader=yaml.FullLoader
-        )
-        assert "deploy" not in result_travis_config
-        assert "python" == result_travis_config["language"]
 
 
 def test_bake_without_docs(cookies):
