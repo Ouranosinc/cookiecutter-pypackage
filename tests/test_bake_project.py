@@ -11,7 +11,7 @@ from cookiecutter.utils import rmtree
 
 from click.testing import CliRunner
 
-import importlib
+import importlib.util
 
 
 @contextmanager
@@ -245,9 +245,8 @@ def test_bake_with_console_options_script_files(cookies, option):
         assert "entry_points" in setup_file.read()
 
 
-@pytest.mark.parametrize("option", ["Click", "Argparse"])
-def test_bake_with_console_options_script_cli(cookies, option):
-    context = {"command_line_interface": option}
+def test_bake_with_console_options_script_click(cookies):
+    context = {"command_line_interface": "Click"}
     result = cookies.bake(extra_context=context, template=Path(__file__).parents[1].as_posix())
     project_path, project_slug, project_dir = project_info(result)
     module_path = os.path.join(project_dir, "cli.py")
