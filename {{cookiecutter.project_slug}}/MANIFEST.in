@@ -3,7 +3,9 @@ include AUTHORS.rst
 {% endif -%}
 include CONTRIBUTING.rst
 include HISTORY.rst
+{% if cookiecutter.open_source_license != 'Not open source' -%}
 include LICENSE
+{% endif -%}
 include README.rst
 include requirements_dev.txt
 {% if cookiecutter.make_docs ==  'y' -%}
@@ -21,6 +23,9 @@ exclude .editorconfig
 exclude .pre-commit-config.yaml
 exclude .readthedocs.yml
 exclude .yamllint.yaml
+{% if cookiecutter.open_source_license != 'Not open source' -%}
+include .zenodo.json
+{% endif -%}
 exclude Makefile
 exclude environment-docs.yml
 exclude tox.ini
