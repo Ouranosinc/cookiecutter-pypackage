@@ -17,6 +17,26 @@ def remove_folder(folderpath):
     Path(PROJECT_DIRECTORY).joinpath(folderpath).rmdir()
 
 
+def replace_contents(filepath):
+    replacements = {
+        "__PYTHON_VERSION__": 'matrix.python-version',
+        "__GITHUB_TOKEN__": 'secrets.GITHUB_TOKEN',
+        '__TOX_ENV__': 'matrix.tox-env',
+        "__PYPI_API_TOKEN__": "secrets.PYPI_API_TOKEN",
+        "__TESTPYPI_API_TOKEN__": "secrets.TEST_PYPI_API_TOKEN"
+    }
+
+    lines = []
+    with open(filepath) as infile:
+        for line in infile:
+            for src, target in replacements.items():
+                line = line.replace(src, " ".join(["${ {".replace(" ", ""), target, "} }".replace(" ", "")]))
+            lines.append(line)
+    with open(filepath, 'w') as outfile:
+        for line in lines:
+            outfile.write(line)
+
+
 if __name__ == "__main__":
 
     if "{{ cookiecutter.create_author_file }}" != "y":
@@ -33,3 +53,7 @@ if __name__ == "__main__":
 
     if "Not open source" == "{{ cookiecutter.open_source_license }}":
         remove_file("LICENSE")
+        remove_file(".zenodo.json")
+
+    for f in Path(".github/workflows").glob("*.yml"):
+        replace_contents(f)

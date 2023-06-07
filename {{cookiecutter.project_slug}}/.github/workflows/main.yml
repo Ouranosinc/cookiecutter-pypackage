@@ -1,0 +1,82 @@
+name: {{ cookiecutter.project_name }} Testing Suite
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - CHANGES.rst
+      - MANIFEST.in
+      - README.rst
+      - setup.py
+      - setup.cfg
+      - {{ cookiecutter.project_slug }}/__init__.py
+  pull_request:
+
+jobs:
+  black:
+    name: Black (Python__PYTHON_VERSION__)
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version:
+          - "3.8"
+    steps:
+      - name: Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.11.0
+        with:
+          access_token: __GITHUB_TOKEN__
+      - uses: actions/checkout@v3
+      - name: Set up Python__PYTHON_VERSION__
+        uses: actions/setup-python@v4
+        with:
+          python-version: __PYTHON_VERSION__
+      - name: Install tox
+        run: pip install tox
+      - name: Run linting suite
+        run: tox -e black
+
+  test:
+    name: test-__TOX_ENV__ (Python__PYTHON_VERSION__)
+    needs: black
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - tox-env: "py38"
+            python-version: "3.8"
+          - tox-env: "py39"
+            python-version: "3.9"
+          - tox-env: "py310"
+            python-version: "3.10"
+          - tox-env: "py311"
+            python-version: "3.11"
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python__PYTHON_VERSION__
+        uses: actions/setup-python@v4
+        with:
+          python-version: __PYTHON_VERSION__
+      - name: Install tox
+        run: pip install tox
+      - name: Test with tox
+        run: tox -e __TOX_ENV__
+        env:
+          GITHUB_TOKEN: __GITHUB_TOKEN__
+          COVERALLS_FLAG_NAME: run-__TOX_ENV__
+          COVERALLS_PARALLEL: true
+          COVERALLS_SERVICE_NAME: github
+
+  finish:
+    needs:
+      - test
+    runs-on: ubuntu-latest
+    container: python:3-slim
+    steps:
+      - name: Coveralls Finished
+        run: |
+          pip install --upgrade coveralls
+          coveralls --finish
+        env:
+          GITHUB_TOKEN: __GITHUB_TOKEN__
+          COVERALLS_SERVICE_NAME: github
