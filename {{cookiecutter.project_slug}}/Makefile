@@ -39,7 +39,7 @@ clean-build: ## remove build artifacts
 {%- if cookiecutter.make_docs == 'y' %}
 
 clean-docs: ## remove docs artifacts
-	rm -f docs/apidoc/ravenpy*.rst
+	rm -f docs/apidoc/{{ cookiecutter.project_slug }}*.rst
 	rm -f docs/apidoc/modules.rst
 	$(MAKE) -C docs clean
 
@@ -89,7 +89,7 @@ coverage: ## check code coverage quickly with the default Python
 
 {%- if cookiecutter.make_docs == 'y' %}
 autodoc: clean-docs ## create sphinx-apidoc files:
-	sphinx-apidoc -o docs/apidoc --private --module-first ravenpy
+	sphinx-apidoc -o docs/apidoc --private --module-first {{ cookiecutter.project_slug }}
 
 linkcheck: autodoc ## run checks over all external links found throughout the documentation
 	$(MAKE) -C docs linkcheck

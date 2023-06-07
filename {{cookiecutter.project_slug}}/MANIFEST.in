@@ -11,6 +11,9 @@ include requirements_dev.txt
 {% if cookiecutter.make_docs ==  'y' -%}
 include requirements_docs.txt
 {% endif -%}
+{% if cookiecutter.open_source_license != 'Not open source' -%}
+include .zenodo.json
+{% endif -%}
 
 recursive-include tests *
 recursive-exclude * __pycache__
@@ -23,9 +26,6 @@ exclude .editorconfig
 exclude .pre-commit-config.yaml
 exclude .readthedocs.yml
 exclude .yamllint.yaml
-{% if cookiecutter.open_source_license != 'Not open source' -%}
-include .zenodo.json
-{% endif -%}
 exclude Makefile
 exclude environment-docs.yml
 exclude tox.ini
