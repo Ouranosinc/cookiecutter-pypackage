@@ -1,5 +1,7 @@
-Welcome to {{ cookiecutter.project_name }}'s documentation!
-===========================================================
+{% set line = 'Welcome to ' ~ cookiecutter.project_name ~ '\'s documentation!' -%}
+{{ line }}
+{% set underline = '=' * line|length -%}
+{{ underline }}
 
 .. toctree::
    :maxdepth: 2
