@@ -10,11 +10,14 @@ coveralls==3.3.1
 sphinx==7.0.1
 twine==4.0.2
 {% if cookiecutter.command_line_interface|lower == 'click' -%}
-Click==8.1.3{% endif %}
+Click==8.1.3
+{%- endif %}
 {% if cookiecutter.use_pytest == 'y' -%}
 pytest==7.3.1
-pytest-cov==4.0.0{% endif %}
+pytest-cov==4.0.0
+{%- endif %}
 {% if cookiecutter.use_black == 'y' -%}
 black==23.3.0
-isort==5.12.0{% endif %}
+isort==5.12.0
+{%- endif %}
 pre-commit==3.3.2
