@@ -10,7 +10,7 @@ dependencies:
   - sphinx-codeautolink
   - sphinx-copybutton
   - sphinxcontrib-napoleon
-{%- if cookiecutter.command_line_interface|lower == 'click' -%}
+{%- if cookiecutter.command_line_interface|lower == 'click' %}
   - click
   - sphinx-click
 {%- endif %}
