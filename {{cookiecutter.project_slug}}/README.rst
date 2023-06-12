@@ -7,12 +7,18 @@
 .. image:: https://img.shields.io/pypi/v/{{ cookiecutter.project_slug }}.svg
         :target: https://pypi.python.org/pypi/{{ cookiecutter.project_slug }}
 
-.. image:: https://img.shields.io/travis/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}.svg
-        :target: https://travis-ci.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
+.. image:: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/workflows/{{ cookiecutter.project_slug }}/badge.svg
+        :target: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
+        :alt: Build Status
 
 .. image:: https://readthedocs.org/projects/{{ cookiecutter.project_slug | replace("_", "-") }}/badge/?version=latest
         :target: https://{{ cookiecutter.project_slug | replace("_", "-") }}.readthedocs.io/en/latest/?version=latest
         :alt: Documentation Status
+
+.. image:: https://img.shields.io/github/license/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}.svg
+        :target: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/blob/main/LICENSE
+        :alt: License
+
 {%- endif %}
 {% if cookiecutter.add_pyup_badge == 'y' %}
 .. image:: https://pyup.io/repos/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/shield.svg
@@ -37,5 +43,5 @@ Credits
 
 This package was created with Cookiecutter_ and the `Ouranosinc/cookiecutter-pypackage`_ project template.
 
-.. _Cookiecutter: https://github.com/audreyfeldroy/cookiecutter-pypackage
+.. _Cookiecutter: https://github.com/cookiecutter/cookiecutter
 .. _`Ouranosinc/cookiecutter-pypackage`: https://github.com/Ouranosinc/cookiecutter-pypackage

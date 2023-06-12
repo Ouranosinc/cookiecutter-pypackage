@@ -5,10 +5,10 @@
       "name": "{{ cookiecutter.full_name.split()[-1] }}, {{ ' '.join(cookiecutter.full_name.split()[:-1]) }}"
     }
   ],
-  "keywords": [ ],
+  "keywords": [],
   "license": "{{ cookiecutter.open_source_license }}",
   "language": "eng",
-  "communities": [ ],
+  "communities": [],
   "upload_type": "software",
   "access_right": "open"
 }

@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths-ignore:
-      - CHANGES.rst
+      - HISTORY.rst
       - MANIFEST.in
       - README.rst
       - setup.py
