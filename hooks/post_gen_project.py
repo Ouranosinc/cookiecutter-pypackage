@@ -23,7 +23,7 @@ def replace_contents(filepath):
         "__GITHUB_TOKEN__": 'secrets.GITHUB_TOKEN',
         '__TOX_ENV__': 'matrix.tox-env',
         "__PYPI_API_TOKEN__": "secrets.PYPI_API_TOKEN",
-        "__TESTPYPI_API_TOKEN__": "secrets.TEST_PYPI_API_TOKEN"
+        "__TEST_PYPI_API_TOKEN__": "secrets.TEST_PYPI_API_TOKEN"
     }
 
     lines = []
