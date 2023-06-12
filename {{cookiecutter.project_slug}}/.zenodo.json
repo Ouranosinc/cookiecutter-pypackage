@@ -3,7 +3,8 @@
     'BSD license': 'BSD-3-Clause',
     'ISC license': 'ISC',
     'Apache Software License 2.0': 'Apache-2.0',
-    'GNU General Public License v3': 'GPL-3.0-or-later'
+    'GNU General Public License v3': 'GPL-3.0-or-later',
+    'Not open source': 'N/A'
 } -%}
 {
   "title": "{{ cookiecutter.project_name }}",
