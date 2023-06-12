@@ -23,11 +23,11 @@ dev_requirements = [
 ]
 
 {%- set license_classifiers = {
-    'MIT': 'License :: OSI Approved :: MIT License',
-    'BSD-3-Clause': 'License :: OSI Approved :: BSD License',
-    'ISC': 'License :: OSI Approved :: ISC License (ISCL)',
-    'Apache-2.0': 'License :: OSI Approved :: Apache Software License',
-    'GPL-3.0-or-later': 'License :: OSI Approved :: GNU General Public License v3 (GPLv3)'
+    'MIT  license': 'License :: OSI Approved :: MIT License',
+    'BSD  license': 'License :: OSI Approved :: BSD License',
+    'ISC  license': 'License :: OSI Approved :: ISC License (ISCL)',
+    'Apache Software License 2.0': 'License :: OSI Approved :: Apache Software License',
+    'GNU General Public License v3': 'License :: OSI Approved :: GNU General Public License v3 (GPLv3)'
 } %}
 
 setup(

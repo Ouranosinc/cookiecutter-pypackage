@@ -156,11 +156,11 @@ def test_make_help(cookies):
 
 def test_bake_selecting_license(cookies):
     license_strings = {
-        "MIT": "MIT",
-        "BSD-3-Clause": "Redistributions of source code must retain the above copyright notice, this",
-        "ISC": "ISC License",
-        "Apache-2.0": "Licensed under the Apache License, Version 2.0",
-        "GPL-3.0-or-later": "GNU GENERAL PUBLIC LICENSE",
+        "MIT License": "MIT",
+        "BSD License": "Redistributions of source code must retain the above copyright notice, this",
+        "ISC License": "ISC License",
+        "Apache Software License 2.0": "Licensed under the Apache License, Version 2.0",
+        "GNU General Public License v3": "GNU GENERAL PUBLIC LICENSE",
     }
     for license, target_string in license_strings.items():
         with bake_in_temp_dir(
