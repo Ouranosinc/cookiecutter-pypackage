@@ -2,12 +2,12 @@
 
 """Tests for `{{ cookiecutter.project_slug }}` package."""
 
-{% if cookiecutter.use_pytest == 'y' -%}
-import pytest
-{% else %}
+{% if cookiecutter.use_pytest == 'n' -%}
 import unittest
+{% else %}
+import pytest
 {%- endif %}
-{% if cookiecutter.command_line_interface|lower == 'click' %}
+{%- if cookiecutter.command_line_interface|lower == 'click' %}
 from click.testing import CliRunner
 {%- endif %}
 
