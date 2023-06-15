@@ -2,6 +2,8 @@
 
 """Tests for `{{ cookiecutter.project_slug }}` package."""
 
+import pathlib
+import pkgutil
 {% if cookiecutter.use_pytest == 'n' -%}
 import unittest
 {% else %}
@@ -70,3 +72,16 @@ class Test{{ cookiecutter.project_slug|title }}(unittest.TestCase):
         assert "--help  Show this message and exit." in help_result.output
 {%- endif %}
 {%- endif %}
+
+
+def test_package_metadata():
+    """Test the package metadata."""
+    project = pkgutil.get_loader("{{ cookiecutter.project_slug }}").get_filename()
+
+    metadata = pathlib.Path(project).resolve().parent.joinpath("__init__.py")
+
+    with open(metadata) as f:
+        contents = f.read()
+        assert """{{ cookiecutter.full_name }}""" in contents
+        assert '__email__ = "{{ cookiecutter.email }}"' in contents
+        assert '__version__ = "{{ cookiecutter.version }}"' in contents
