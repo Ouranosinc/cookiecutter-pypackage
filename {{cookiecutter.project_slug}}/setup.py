@@ -7,9 +7,6 @@ from setuptools import find_packages, setup
 with open("README.rst") as readme_file:
     readme = readme_file.read()
 
-with open("HISTORY.rst") as history_file:
-    history = history_file.read()
-
 requirements = [{%- if cookiecutter.command_line_interface|lower == 'click' %}"Click>=8.0"{%- endif -%}]
 
 test_requirements = [{%- if cookiecutter.use_pytest == 'y' %}"pytest>=3"{%- endif -%}]
@@ -59,7 +56,7 @@ setup(
 {%- if cookiecutter.open_source_license in license_classifiers %}
     license="{{ cookiecutter.open_source_license }}",
 {%- endif %}
-    long_description=readme + "\n\n" + history,
+    long_description=readme,
     long_description_content_type="text/x-rst",
     include_package_data=True,
     keywords="{{ cookiecutter.project_slug }}",
