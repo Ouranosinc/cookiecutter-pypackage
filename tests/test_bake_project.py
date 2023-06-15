@@ -90,18 +90,26 @@ def test_bake_with_defaults(cookies):
 def test_bake_and_run_unittests(cookies):
     with bake_in_temp_dir(cookies, extra_context={"use_pytest": "n"}) as result:
         assert result.project.isdir()
-        run_inside_dir("python setup.py test", str(result.project)) == 0
-        print("test_bake_and_run_tests path", str(result.project))
+        assert run_inside_dir("python setup.py test", str(result.project)) == 0
+        print("test_bake_and_run_unittests path", str(result.project))
+
+
+def test_bake_and_build_package(cookies):
+    with bake_in_temp_dir(cookies) as result:
+        assert result.project.isdir()
+        assert run_inside_dir("python -m build --sdist --wheel", str(result.project)) == 0
+        assert run_inside_dir("twine check dist/*", str(result.project)) == 0
+        print("test_bake_and_build_package path", str(result.project))
 
 
 @pytest.mark.precommit
 def test_bake_and_run_pre_commit(cookies):
     with bake_in_temp_dir(cookies) as result:
         assert result.project.isdir()
-        run_inside_dir("git init", str(result.project)) == 0
-        run_inside_dir("git add *", str(result.project)) == 0
-        run_inside_dir("pre-commit install", str(result.project)) == 0
-        run_inside_dir("pre-commit run --all-files", str(result.project)) == 0
+        assert run_inside_dir("git init", str(result.project)) == 0
+        assert run_inside_dir("git add *", str(result.project)) == 0
+        assert run_inside_dir("pre-commit install", str(result.project)) == 0
+        assert run_inside_dir("pre-commit run --all-files", str(result.project)) == 0
         print("test_bake_and_run_pre_commit path", str(result.project))
 
 
@@ -111,7 +119,7 @@ def test_bake_with_special_chars_and_run_tests(cookies):
         cookies, extra_context={"full_name": 'name "quote" name', "use_pytest": "n"}
     ) as result:
         assert result.project.isdir()
-        run_inside_dir("python setup.py test", str(result.project)) == 0
+        assert run_inside_dir("python setup.py test", str(result.project)) == 0
 
 
 def test_bake_with_apostrophe_and_run_tests(cookies):
@@ -162,12 +170,12 @@ def test_bake_selecting_license(cookies):
         "Apache Software License 2.0": "Licensed under the Apache License, Version 2.0",
         "GNU General Public License v3": "GNU GENERAL PUBLIC LICENSE",
     }
-    for license, target_string in license_strings.items():
+    for license_code, target_string in license_strings.items():
         with bake_in_temp_dir(
-            cookies, extra_context={"open_source_license": license}
+            cookies, extra_context={"open_source_license": license_code}
         ) as result:
             assert target_string in result.project.join("LICENSE").read()
-            assert license in result.project.join("setup.py").read()
+            assert license_code in result.project.join("setup.py").read()
 
 
 def test_bake_not_open_source(cookies):

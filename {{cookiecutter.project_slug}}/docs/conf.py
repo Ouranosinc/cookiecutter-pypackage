@@ -34,6 +34,7 @@ import {{ cookiecutter.project_slug }}
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosectionlabel',
+    'sphinx.ext.extlinks',
     'sphinx.ext.viewcode'
     'sphinx.ext.todo',
     'sphinx_codeautolink',
