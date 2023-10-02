@@ -26,7 +26,7 @@ jobs:
         uses: styfle/cancel-workflow-action@0.11.0
         with:
           access_token: __GITHUB_TOKEN__
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python__PYTHON_VERSION__
         uses: actions/setup-python@v4
         with:
@@ -52,7 +52,7 @@ jobs:
           - tox-env: "py311"
             python-version: "3.11"
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python__PYTHON_VERSION__
         uses: actions/setup-python@v4
         with:
