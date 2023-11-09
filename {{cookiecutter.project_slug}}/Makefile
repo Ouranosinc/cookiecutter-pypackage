@@ -69,9 +69,9 @@ lint: lint/flake8{%- if cookiecutter.use_black == 'y' %} lint/black{%- endif %} 
 
 test: ## run tests quickly with the default Python
 {%- if cookiecutter.use_pytest == 'y' %}
-	pytest
+	python -m pytest
 {%- else %}
-	python setup.py test
+	coverage run
 {%- endif %}
 
 test-all: ## run tests on every Python version with tox
@@ -81,7 +81,7 @@ coverage: ## check code coverage quickly with the default Python
 {%- if cookiecutter.use_pytest == 'y' %}
 	coverage run --source {{ cookiecutter.project_slug }} -m pytest
 {%- else %}
-	coverage run --source {{ cookiecutter.project_slug }} setup.py test
+	coverage run --source {{ cookiecutter.project_slug }} -m unittest discover -s tests/
 {%- endif %}
 	coverage report -m
 	coverage html
@@ -102,15 +102,14 @@ endif
 
 servedocs: docs ## compile the docs watching for changes
 	watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
-{%- endif -%}
+{%- endif %}
 
 release: dist ## package and upload a release
-	twine upload dist/*
+	python -m flit publish dist/*
 
 dist: clean ## builds source and wheel package
-	python -m build --sdist
-	python -m build --wheel
+	python -m flit build
 	ls -l dist
 
 install: clean ## install the package to the active Python's site-packages
-	python setup.py install
+	python -m pip install
