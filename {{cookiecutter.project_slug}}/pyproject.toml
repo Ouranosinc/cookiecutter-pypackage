@@ -81,7 +81,7 @@ docs = [
   "ipykernel",
   "jupyter_client",
 ]
-{% if cookiecutter.command_line_interface|lower == 'click' -%}
+{% if cookiecutter.command_line_interface != 'No command-line interface' -%}
 
 [project.scripts]
 {{ cookiecutter.project_slug }} = "{{ cookiecutter.project_slug }}.cli:cli"

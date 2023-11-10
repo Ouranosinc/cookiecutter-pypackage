@@ -1,6 +1,7 @@
 alabaster
 build
 cookiecutter
+coverage
 flit
 pre-commit
 pytest-cookies

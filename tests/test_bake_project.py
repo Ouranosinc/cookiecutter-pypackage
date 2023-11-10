@@ -158,7 +158,7 @@ def test_bake_without_author_file(cookies):
         # Assert there are no spaces in the toc tree
         docs_index_path = result.project.join("docs/index.rst")
         with open(str(docs_index_path)) as index_file:
-            assert "contributing\n   history" in index_file.read()
+            assert "contributing\n   changes" in index_file.read()
 
         # Check that
         pyproject_path = result.project.join("pyproject.toml")
@@ -176,18 +176,18 @@ def test_make_help(cookies):
 
 def test_bake_selecting_license(cookies):
     license_strings = {
-        "MIT license": "MIT",
-        "BSD license": "Redistributions of source code must retain the above copyright notice, this",
-        "ISC license": "ISC License",
-        "Apache Software License 2.0": "Licensed under the Apache License, Version 2.0",
-        "GNU General Public License v3": "GNU GENERAL PUBLIC LICENSE",
+        "MIT license": ("MIT", "License :: OSI Approved :: MIT License"),
+        "BSD license": ("Redistributions of source code must retain the above copyright notice, this", "License :: OSI Approved :: BSD License"),
+        "ISC license": ("ISC License", "License :: OSI Approved :: ISC License"),
+        "Apache Software License 2.0": ("Licensed under the Apache License, Version 2.0", "License :: OSI Approved :: Apache Software License"),
+        "GNU General Public License v3": ("GNU GENERAL PUBLIC LICENSE", "License :: OSI Approved :: GNU General Public License v3 (GPLv3)"),
     }
-    for license_code, target_string in license_strings.items():
+    for license_code, target_strings in license_strings.items():
         with bake_in_temp_dir(
             cookies, extra_context={"open_source_license": license_code}
         ) as result:
-            assert target_string in result.project.join("LICENSE").read()
-            assert license_code in result.project.join("pyproject.toml").read()
+            assert target_strings[0] in result.project.join("LICENSE").read()
+            assert target_strings[1] in result.project.join("pyproject.toml").read()
 
 
 def test_bake_not_open_source(cookies):
@@ -246,9 +246,9 @@ def test_bake_with_no_console_script(cookies):
     found_project_files = os.listdir(project_dir)
     assert "cli.py" not in found_project_files
 
-    setup_path = os.path.join(project_path, "setup.py")
-    with open(setup_path, "r") as setup_file:
-        assert "entry_points" not in setup_file.read()
+    pyproject_path = os.path.join(project_path, "pyproject.toml")
+    with open(pyproject_path, "r") as setup_file:
+        assert "[project.scripts]" not in setup_file.read()
 
 
 @pytest.mark.parametrize("option", ["Click", "Argparse"])
@@ -259,8 +259,8 @@ def test_bake_with_console_options_script_files(cookies, option):
     found_project_files = os.listdir(project_dir)
     assert "cli.py" in found_project_files
 
-    setup_path = os.path.join(project_path, "pyproject.toml")
-    with open(setup_path, "r") as setup_file:
+    pyproject_path = os.path.join(project_path, "pyproject.toml")
+    with open(pyproject_path, "r") as setup_file:
         assert "[project.scripts]" in setup_file.read()
 
 
