@@ -81,7 +81,7 @@ def test_bake_with_defaults(cookies):
         assert result.exception is None
 
         found_toplevel_files = [f.basename for f in result.project.listdir()]
-        assert "setup.py" in found_toplevel_files
+        assert "pyproject.toml" in found_toplevel_files
         assert "python_boilerplate" in found_toplevel_files
         assert "tox.ini" in found_toplevel_files
         assert "tests" in found_toplevel_files
@@ -90,14 +90,14 @@ def test_bake_with_defaults(cookies):
 def test_bake_and_run_unittests(cookies):
     with bake_in_temp_dir(cookies, extra_context={"use_pytest": "n"}) as result:
         assert result.project.isdir()
-        assert run_inside_dir("python setup.py test", str(result.project)) == 0
+        assert run_inside_dir("python -m coverage", str(result.project)) == 0
         print("test_bake_and_run_unittests path", str(result.project))
 
 
 def test_bake_and_build_package(cookies):
     with bake_in_temp_dir(cookies) as result:
         assert result.project.isdir()
-        assert run_inside_dir("python -m build --sdist --wheel", str(result.project)) == 0
+        assert run_inside_dir("python -m flit build", str(result.project)) == 0
         assert run_inside_dir("twine check dist/*", str(result.project)) == 0
         print("test_bake_and_build_package path", str(result.project))
 

@@ -48,6 +48,7 @@ dev = [
   "watchdog>=3.0.0",
   "flake8>=6.1.0",
   "flake8-rst-docstrings>=0.3.0",
+  "flit",
   "tox>=4.5.1",
   "coverage>=7.2.5",
   "coveralls>=3.3.1",
@@ -85,7 +86,7 @@ docs = [
 {{ cookiecutter.project_slug }} = "{{ cookiecutter.project_slug }}.cli:cli"
 
 [project.urls]
-"Source" = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}",
+"Source" = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}"
 "Issue tracker" = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/issues"
 # "Homepage" = "https://{{ cookiecutter.project_slug }}.readthedocs.io/"
 # "Changelog" = "https://{{ cookiecutter.project_slug }}.readthedocs.io/en/stable/history.html"
@@ -111,20 +112,20 @@ command_line = "-m unittest discover -s tests/"
 
 [tool.flit.sdist]
 include = [
-{%- if cookiecutter.open_source_license in license_classifiers %}
+  {% if cookiecutter.open_source_license in license_classifiers -%}
   ".zenodo.json",
-{% endif -%}
-{%- if cookiecutter.create_author_file == 'y' %}
+  {%- endif -%}
+  {% if cookiecutter.create_author_file == 'y' -%}
   "AUTHORS.rst",
-{% endif -%}
+  {% endif -%}
   "CHANGES.rst",
   "CONTRIBUTING.rst",
-{%- if cookiecutter.open_source_license in license_classifiers %}
+  {%- if cookiecutter.open_source_license in license_classifiers %}
   "LICENSE",
-{% endif -%}
+  {% endif -%}
   "Makefile",
   "README.rst",
-{%- if cookiecutter.make_docs == 'y' %}
+  {%- if cookiecutter.make_docs == 'y' %}
   "docs/**/*.rst",
   "docs/**/*.jpg",
   "docs/**/*.png",
@@ -132,7 +133,7 @@ include = [
   "docs/Makefile",
   "docs/conf.py",
   "docs/make.bat",
-{% endif -%}
+  {% endif -%}
   "setup.cfg",
   "tests/*.py",
   "tox.ini",
