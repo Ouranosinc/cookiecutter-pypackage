@@ -12,9 +12,9 @@
    usage
    modules
    contributing
-   {% if cookiecutter.create_author_file == 'y' -%}
+{%- if cookiecutter.create_author_file == 'y' %}
    authors
-   {%- endif %}
+{%- endif %}
    changes
 
 Indices and tables

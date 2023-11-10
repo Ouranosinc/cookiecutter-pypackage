@@ -110,7 +110,7 @@ target-version = [
 relative_files = true
 include = ["{{ cookiecutter.project_slug }}/*"]
 omit = ["tests/*.py"]
-{%- if cookiecutter.use_pytest == 'n' -%}
+{%- if cookiecutter.use_pytest == 'n' %}
 command_line = "-m unittest discover -s tests/"
 {%- endif %}
 
