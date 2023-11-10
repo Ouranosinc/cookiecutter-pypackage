@@ -40,7 +40,7 @@ def bake_in_temp_dir(cookies, *args, **kwargs):
     try:
         yield result
     finally:
-        rmtree(str(result.project))
+        rmtree(str(result.project_path))
 
 
 def run_inside_dir(command, dirpath):
@@ -68,7 +68,7 @@ def test_year_compute_in_license_file(cookies):
 
 def project_info(result):
     """Get toplevel dir, project_slug, and project dir from baked cookies"""
-    project_path = str(result.project)
+    project_path = str(result.project_path)
     project_slug = os.path.split(project_path)[-1]
     project_dir = os.path.join(project_path, project_slug)
     return project_path, project_slug, project_dir
@@ -109,7 +109,7 @@ def test_bake_and_run_pre_commit(cookies):
         assert run_inside_dir("git init", str(result.project)) == 0
         assert run_inside_dir("git add *", str(result.project)) == 0
         assert run_inside_dir("pre-commit install", str(result.project)) == 0
-        assert run_inside_dir("pre-commit run --all-files", str(result.project)) == 0
+        assert run_inside_dir("pre-commit run --all-files --show-diff-on-failure", str(result.project)) == 0
         print("test_bake_and_run_pre_commit path", str(result.project))
 
 

@@ -33,7 +33,7 @@ classifiers = [
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.11"
 ]
 dynamic = ["description", "version"]
 dependencies = [
@@ -64,7 +64,7 @@ dev = [
   "black>=23.10.1",
   "isort>=5.12.0",
   {%- endif %}
-  "pre-commit>=3.3.2",
+  "pre-commit>=3.3.2"
 ]
 docs = [
   # Documentation and examples
@@ -79,14 +79,14 @@ docs = [
   "pandoc",
   "ipython",
   "ipykernel",
-  "jupyter_client",
+  "jupyter_client"
 ]
-{% if cookiecutter.command_line_interface != 'No command-line interface' -%}
+{%- if cookiecutter.command_line_interface != 'No command-line interface' %}
 
 [project.scripts]
 {{ cookiecutter.project_slug }} = "{{ cookiecutter.project_slug }}.cli:cli"
-
 {%- endif %}
+
 [project.urls]
 "Source" = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}"
 "Issue tracker" = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/issues"
@@ -118,7 +118,7 @@ command_line = "-m unittest discover -s tests/"
 include = [
   {% if cookiecutter.open_source_license in license_classifiers -%}
   ".zenodo.json",
-  {%- endif -%}
+  {%- endif %}
   {% if cookiecutter.create_author_file == 'y' -%}
   "AUTHORS.rst",
   {% endif -%}
@@ -141,7 +141,7 @@ include = [
   "setup.cfg",
   "tests/*.py",
   "tox.ini",
-  "{{ cookiecutter.project_slug }}/**/*.py",
+  "{{ cookiecutter.project_slug }}/**/*.py"
 ]
 exclude = [
   "**/*.py[co]",
@@ -155,15 +155,15 @@ exclude = [
   "docs/_*",
   "docs/modules.rst",
   "docs/{{ cookiecutter.project_slug }}*.rst",
-  "environment-docs.yml",
+  "environment-docs.yml"
 ]
-{% if cookiecutter.use_black == 'y' -%}
+{%- if cookiecutter.use_black == 'y' %}
 
 [tool.isort]
 profile = "black"
 py_version = 38
-
 {%- endif %}
+
 [tool.mypy]
 python_version = 3.8
 show_error_codes = true
@@ -178,7 +178,7 @@ ignore_missing_imports = true
 [tool.pytest.ini_options]
 addopts = [
   "--verbose",
-  "--color=yes",
+  "--color=yes"
 ]
 filterwarnings = ["ignore::UserWarning"]
 testpaths = "tests"
@@ -193,19 +193,19 @@ exclude = [
   ".git",
   "build",
   "docs",
-  "tests",
+  "tests"
 ]
 ignore = [
   "D205",
   "D400",
-  "D401",
+  "D401"
 ]
 select = [
   "C9",
   "D",
   "E",
   "F",
-  "W",
+  "W"
 ]
 
 [tool.ruff.flake8-bandit]
