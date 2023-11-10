@@ -119,21 +119,33 @@ def test_bake_with_special_chars_and_run_tests(cookies):
         cookies, extra_context={"full_name": 'name "quote" name', "use_pytest": "n"}
     ) as result:
         assert result.project.isdir()
-        assert run_inside_dir("python setup.py test", str(result.project)) == 0
+        assert run_inside_dir("python -m coverage", str(result.project)) == 0
 
 
 def test_bake_with_apostrophe_and_run_tests(cookies):
     """Ensure that a `full_name` with apostrophes does not break setup.py"""
     with bake_in_temp_dir(cookies, extra_context={"full_name": "O'connor", "use_pytest": "n"}) as result:
         assert result.project.isdir()
-        run_inside_dir("python setup.py test", str(result.project)) == 0
+        run_inside_dir("python -m coverage", str(result.project)) == 0
 
 
 def test_bake_without_docs(cookies):
     with bake_in_temp_dir(cookies, extra_context={"make_docs": "n"}) as result:
         found_toplevel_files = [f.basename for f in result.project.listdir()]
-        assert "requirements_docs.txt" not in found_toplevel_files
         assert not os.path.exists(result.project.join("docs"))
+        docs_files = {
+            "docs/**/*.rst",
+            "docs/**/*.jpg",
+            "docs/**/*.png",
+            "docs/**/*.gif",
+            "docs/Makefile",
+            "docs/conf.py",
+            "docs/make.bat"
+            }
+        pyproject_path = result.project.join("pyproject.toml")
+        with open(str(pyproject_path)) as pyproject_file:
+            for file in docs_files:
+                assert file not in pyproject_file.read()
 
 
 def test_bake_without_author_file(cookies):
@@ -149,9 +161,9 @@ def test_bake_without_author_file(cookies):
             assert "contributing\n   history" in index_file.read()
 
         # Check that
-        manifest_path = result.project.join("MANIFEST.in")
-        with open(str(manifest_path)) as manifest_file:
-            assert "AUTHORS.rst" not in manifest_file.read()
+        pyproject_path = result.project.join("pyproject.toml")
+        with open(str(pyproject_path)) as pyproject_file:
+            assert "AUTHORS.rst" not in pyproject_file.read()
 
 
 def test_make_help(cookies):
@@ -175,7 +187,7 @@ def test_bake_selecting_license(cookies):
             cookies, extra_context={"open_source_license": license_code}
         ) as result:
             assert target_string in result.project.join("LICENSE").read()
-            assert license_code in result.project.join("setup.py").read()
+            assert license_code in result.project.join("pyproject.toml").read()
 
 
 def test_bake_not_open_source(cookies):
@@ -183,7 +195,7 @@ def test_bake_not_open_source(cookies):
         cookies, extra_context={"open_source_license": "Not open source"}
     ) as result:
         found_toplevel_files = [f.basename for f in result.project.listdir()]
-        assert "setup.py" in found_toplevel_files
+        assert "pyproject.toml" in found_toplevel_files
         assert "LICENSE" not in found_toplevel_files
         assert "License" not in result.project.join("README.rst").read()
 
@@ -247,9 +259,9 @@ def test_bake_with_console_options_script_files(cookies, option):
     found_project_files = os.listdir(project_dir)
     assert "cli.py" in found_project_files
 
-    setup_path = os.path.join(project_path, "setup.py")
+    setup_path = os.path.join(project_path, "pyproject.toml")
     with open(setup_path, "r") as setup_file:
-        assert "entry_points" in setup_file.read()
+        assert "[project.scripts]" in setup_file.read()
 
 
 def test_bake_with_console_options_script_click(cookies):
@@ -280,7 +292,9 @@ def test_black(cookies, use_black, expected):
         extra_context={'use_black': use_black}
     ) as result:
         assert result.project.isdir()
-        requirements_path = result.project.join('requirements_dev.txt')
-        assert ("black" in requirements_path.read()) is expected
+        requirements_path = result.project.join('pyproject.toml')
+        assert ("black>=" in requirements_path.read()) is expected
+        assert ("isort>=" in requirements_path.read()) is expected
+        assert ("[tool.black]" in requirements_path.read()) is expected
         makefile_path = result.project.join('Makefile')
         assert ("black --check" in makefile_path.read()) is expected

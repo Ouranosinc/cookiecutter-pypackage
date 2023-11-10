@@ -6,9 +6,8 @@ on:
       - main
     paths-ignore:
       - HISTORY.rst
-      - MANIFEST.in
       - README.rst
-      - setup.py
+      - pyproject.toml
       - setup.cfg
       - {{ cookiecutter.project_slug }}/__init__.py
   pull_request:

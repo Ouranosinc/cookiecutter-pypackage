@@ -81,10 +81,12 @@ docs = [
   "ipykernel",
   "jupyter_client",
 ]
+{% if cookiecutter.command_line_interface|lower == 'click' -%}
 
 [project.scripts]
 {{ cookiecutter.project_slug }} = "{{ cookiecutter.project_slug }}.cli:cli"
 
+{%- endif %}
 [project.urls]
 "Source" = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}"
 "Issue tracker" = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/issues"
@@ -93,6 +95,7 @@ docs = [
 # "About Ouranos" = "https://www.ouranos.ca/en/"
 
 [tool]
+{% if cookiecutter.use_black == 'y' -%}
 
 [tool.black]
 target-version = [
@@ -102,6 +105,7 @@ target-version = [
   "py311"
 ]
 
+{%- endif %}}
 [tool.coverage.run]
 relative_files = true
 include = ["{{ cookiecutter.project_slug }}/*"]
@@ -153,11 +157,13 @@ exclude = [
   "docs/{{ cookiecutter.project_slug }}*.rst",
   "environment-docs.yml",
 ]
+{% if cookiecutter.use_black == 'y' -%}
 
 [tool.isort]
 profile = "black"
 py_version = 38
 
+{%- endif %}
 [tool.mypy]
 python_version = 3.8
 show_error_codes = true
