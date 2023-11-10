@@ -43,10 +43,6 @@ if __name__ == "__main__":
         remove_file("AUTHORS.rst")
         remove_file("docs/authors.rst")
 
-    if "{{ cookiecutter.make_docs }}" != "y":
-        remove_file("requirements_docs.txt")
-        remove_folder("docs")
-
     if "no" in "{{ cookiecutter.command_line_interface|lower }}":
         cli_file = Path("{{ cookiecutter.project_slug }}").joinpath("cli.py")
         remove_file(cli_file)

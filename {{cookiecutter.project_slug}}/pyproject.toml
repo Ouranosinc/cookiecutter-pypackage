@@ -44,7 +44,7 @@ dependencies = [
 dev = [
   # Dev tools and testing
   "pip>=23.1.2",
-  "bump2version>=1.0.1"
+  "bump2version>=1.0.1",
   "watchdog>=3.0.0",
   "flake8>=6.1.0",
   "flake8-rst-docstrings>=0.3.0",
@@ -111,7 +111,7 @@ command_line = "-m unittest discover -s tests/"
 
 [tool.flit.sdist]
 include = [
-{-% if cookiecutter.open_source_license in license_classifiers %}
+{%- if cookiecutter.open_source_license in license_classifiers %}
   ".zenodo.json",
 {% endif -%}
 {%- if cookiecutter.create_author_file == 'y' %}
