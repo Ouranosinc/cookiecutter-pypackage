@@ -88,14 +88,14 @@ docs = [
 {%- endif %}
 
 [project.urls]
-"Source" = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}"
-"Issue tracker" = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/issues"
 # "Homepage" = "https://{{ cookiecutter.project_slug }}.readthedocs.io/"
 # "Changelog" = "https://{{ cookiecutter.project_slug }}.readthedocs.io/en/stable/history.html"
 # "About Ouranos" = "https://www.ouranos.ca/en/"
+"Source" = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}"
+"Issue tracker" = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/issues"
 
 [tool]
-{% if cookiecutter.use_black == 'y' -%}
+{%- if cookiecutter.use_black == 'y' %}
 
 [tool.black]
 target-version = [

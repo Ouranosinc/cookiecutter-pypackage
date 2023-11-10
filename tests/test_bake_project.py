@@ -61,9 +61,9 @@ def check_output_inside_dir(command, dirpath):
 
 def test_year_compute_in_license_file(cookies):
     with bake_in_temp_dir(cookies) as result:
-        license_file_path = result.project.join("LICENSE")
+        license_file_path = result.project_path.joinpath("LICENSE")
         now = datetime.datetime.now()
-        assert str(now.year) in license_file_path.read()
+        assert str(now.year) in license_file_path.read_text()
 
 
 def project_info(result):
@@ -76,11 +76,11 @@ def project_info(result):
 
 def test_bake_with_defaults(cookies):
     with bake_in_temp_dir(cookies) as result:
-        assert result.project.isdir()
+        assert result.project_path.is_dir()
         assert result.exit_code == 0
         assert result.exception is None
 
-        found_toplevel_files = [f.basename for f in result.project.listdir()]
+        found_toplevel_files = [f.name for f in result.project_path.iterdir()]
         assert "pyproject.toml" in found_toplevel_files
         assert "python_boilerplate" in found_toplevel_files
         assert "tox.ini" in found_toplevel_files
@@ -89,28 +89,28 @@ def test_bake_with_defaults(cookies):
 
 def test_bake_and_run_unittests(cookies):
     with bake_in_temp_dir(cookies, extra_context={"use_pytest": "n"}) as result:
-        assert result.project.isdir()
-        assert run_inside_dir("python -m coverage", str(result.project)) == 0
-        print("test_bake_and_run_unittests path", str(result.project))
+        assert result.project_path.is_dir()
+        assert run_inside_dir("python -m coverage", str(result.project_path)) == 0
+        print("test_bake_and_run_unittests path", str(result.project_path))
 
 
 def test_bake_and_build_package(cookies):
     with bake_in_temp_dir(cookies) as result:
-        assert result.project.isdir()
-        assert run_inside_dir("python -m flit build", str(result.project)) == 0
-        assert run_inside_dir("twine check dist/*", str(result.project)) == 0
-        print("test_bake_and_build_package path", str(result.project))
+        assert result.project_path.is_dir()
+        assert run_inside_dir("python -m flit build", str(result.project_path)) == 0
+        assert run_inside_dir("twine check dist/*", str(result.project_path)) == 0
+        print("test_bake_and_build_package path", str(result.project_path))
 
 
 @pytest.mark.precommit
 def test_bake_and_run_pre_commit(cookies):
     with bake_in_temp_dir(cookies) as result:
-        assert result.project.isdir()
-        assert run_inside_dir("git init", str(result.project)) == 0
-        assert run_inside_dir("git add *", str(result.project)) == 0
-        assert run_inside_dir("pre-commit install", str(result.project)) == 0
-        assert run_inside_dir("pre-commit run --all-files --show-diff-on-failure", str(result.project)) == 0
-        print("test_bake_and_run_pre_commit path", str(result.project))
+        assert result.project_path.is_dir()
+        assert run_inside_dir("git init", str(result.project_path)) == 0
+        assert run_inside_dir("git add *", str(result.project_path)) == 0
+        assert run_inside_dir("pre-commit install", str(result.project_path)) == 0
+        assert run_inside_dir("pre-commit run --all-files --show-diff-on-failure", str(result.project_path)) == 0
+        print("test_bake_and_run_pre_commit path", str(result.project_path))
 
 
 def test_bake_with_special_chars_and_run_tests(cookies):
@@ -118,21 +118,21 @@ def test_bake_with_special_chars_and_run_tests(cookies):
     with bake_in_temp_dir(
         cookies, extra_context={"full_name": 'name "quote" name', "use_pytest": "n"}
     ) as result:
-        assert result.project.isdir()
-        assert run_inside_dir("python -m coverage", str(result.project)) == 0
+        assert result.project_path.is_dir()
+        assert run_inside_dir("python -m coverage", str(result.project_path)) == 0
 
 
 def test_bake_with_apostrophe_and_run_tests(cookies):
     """Ensure that a `full_name` with apostrophes does not break setup.py"""
     with bake_in_temp_dir(cookies, extra_context={"full_name": "O'connor", "use_pytest": "n"}) as result:
-        assert result.project.isdir()
-        run_inside_dir("python -m coverage", str(result.project)) == 0
+        assert result.project_path.is_dir()
+        run_inside_dir("python -m coverage", str(result.project_path)) == 0
 
 
 def test_bake_without_docs(cookies):
     with bake_in_temp_dir(cookies, extra_context={"make_docs": "n"}) as result:
-        found_toplevel_files = [f.basename for f in result.project.listdir()]
-        assert not os.path.exists(result.project.join("docs"))
+        found_toplevel_files = [f.name for f in result.project_path.iterdir()]
+        assert "docs" not in found_toplevel_files
         docs_files = {
             "docs/**/*.rst",
             "docs/**/*.jpg",
@@ -142,7 +142,7 @@ def test_bake_without_docs(cookies):
             "docs/conf.py",
             "docs/make.bat"
             }
-        pyproject_path = result.project.join("pyproject.toml")
+        pyproject_path = result.project_path.joinpath("pyproject.toml")
         with open(str(pyproject_path)) as pyproject_file:
             for file in docs_files:
                 assert file not in pyproject_file.read()
@@ -150,18 +150,18 @@ def test_bake_without_docs(cookies):
 
 def test_bake_without_author_file(cookies):
     with bake_in_temp_dir(cookies, extra_context={"create_author_file": "n"}) as result:
-        found_toplevel_files = [f.basename for f in result.project.listdir()]
+        found_toplevel_files = [f.name for f in result.project_path.iterdir()]
         assert "AUTHORS.rst" not in found_toplevel_files
-        doc_files = [f.basename for f in result.project.join("docs").listdir()]
+        doc_files = [f.name for f in result.project_path.joinpath("docs").iterdir()]
         assert "authors.rst" not in doc_files
 
         # Assert there are no spaces in the toc tree
-        docs_index_path = result.project.join("docs/index.rst")
+        docs_index_path = result.project_path.joinpath("docs/index.rst")
         with open(str(docs_index_path)) as index_file:
             assert "contributing\n   changes" in index_file.read()
 
         # Check that
-        pyproject_path = result.project.join("pyproject.toml")
+        pyproject_path = result.project_path.joinpath("pyproject.toml")
         with open(str(pyproject_path)) as pyproject_file:
             assert "AUTHORS.rst" not in pyproject_file.read()
 
@@ -170,7 +170,7 @@ def test_make_help(cookies):
     with bake_in_temp_dir(cookies) as result:
         # The supplied Makefile does not support win32
         if sys.platform != "win32":
-            output = check_output_inside_dir("make help", str(result.project))
+            output = check_output_inside_dir("make help", str(result.project_path))
             assert b"check code coverage quickly with the default Python" in output
 
 
@@ -186,37 +186,37 @@ def test_bake_selecting_license(cookies):
         with bake_in_temp_dir(
             cookies, extra_context={"open_source_license": license_code}
         ) as result:
-            assert target_strings[0] in result.project.join("LICENSE").read()
-            assert target_strings[1] in result.project.join("pyproject.toml").read()
+            assert target_strings[0] in result.project_path.joinpath("LICENSE").read_text()
+            assert target_strings[1] in result.project_path.joinpath("pyproject.toml").read_text()
 
 
 def test_bake_not_open_source(cookies):
     with bake_in_temp_dir(
         cookies, extra_context={"open_source_license": "Not open source"}
     ) as result:
-        found_toplevel_files = [f.basename for f in result.project.listdir()]
+        found_toplevel_files = [f.name for f in result.project_path.iterdir()]
         assert "pyproject.toml" in found_toplevel_files
         assert "LICENSE" not in found_toplevel_files
-        assert "License" not in result.project.join("README.rst").read()
+        assert "License" not in result.project_path.joinpath("README.rst").read_text()
 
 
 def test_using_pytest(cookies):
     with bake_in_temp_dir(cookies, extra_context={"use_pytest": "y"}) as result:
-        assert result.project.isdir()
-        test_file_path = result.project.join("tests/test_python_boilerplate.py")
-        lines = test_file_path.readlines()
-        assert "import pytest" in "".join(lines)
+        assert result.project_path.is_dir()
+        test_file_path = result.project_path.joinpath("tests/test_python_boilerplate.py")
+        text = test_file_path.read_text()
+        assert "import pytest" in text
         # Test the new pytest target
-        run_inside_dir("pytest", str(result.project)) == 0
+        run_inside_dir("pytest", str(result.project_path)) == 0
 
 
 def test_not_using_pytest(cookies):
-    with bake_in_temp_dir(cookies,extra_context={"use_pytest": "n"}) as result:
-        assert result.project.isdir()
-        test_file_path = result.project.join("tests/test_python_boilerplate.py")
-        lines = test_file_path.readlines()
-        assert "import unittest" in "".join(lines)
-        assert "import pytest" not in "".join(lines)
+    with bake_in_temp_dir(cookies, extra_context={"use_pytest": "n"}) as result:
+        assert result.project_path.is_dir()
+        test_file_path = result.project_path.joinpath("tests/test_python_boilerplate.py")
+        text = test_file_path.read_text()
+        assert "import unittest" in text
+        assert "import pytest" not in text
 
 
 # def test_project_with_hyphen_in_module_name(cookies):
@@ -291,10 +291,10 @@ def test_black(cookies, use_black, expected):
         cookies,
         extra_context={'use_black': use_black}
     ) as result:
-        assert result.project.isdir()
-        requirements_path = result.project.join('pyproject.toml')
-        assert ("black>=" in requirements_path.read()) is expected
-        assert ("isort>=" in requirements_path.read()) is expected
-        assert ("[tool.black]" in requirements_path.read()) is expected
-        makefile_path = result.project.join('Makefile')
-        assert ("black --check" in makefile_path.read()) is expected
+        assert result.project_path.is_dir()
+        requirements_path = result.project_path.joinpath('pyproject.toml')
+        assert ("black>=" in requirements_path.read_text()) is expected
+        assert ("isort>=" in requirements_path.read_text()) is expected
+        assert ("[tool.black]" in requirements_path.read_text()) is expected
+        makefile_path = result.project_path.joinpath('Makefile')
+        assert ("black --check" in makefile_path.read_text()) is expected
