@@ -1,7 +1,7 @@
 name: {{ cookiecutter.project_slug }}
 channels:
-- conda-forge
-- defaults
+  - conda-forge
+  - defaults
 dependencies:
   - sphinx
   - pandoc

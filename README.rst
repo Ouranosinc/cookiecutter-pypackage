@@ -23,9 +23,10 @@ Cookiecutter_ template for a Python package.
 Features
 --------
 
-* Testing setup with ``unittest`` and ``python setup.py test`` or ``pytest``
-* `pyproject.toml`_ with flit_ for PEP 517/621-compliant packaging.
-* `GitHub Actions`_: Ready for GitHub Actions Continuous Integration testing
+* Testing setup with ``unittest`` with ``coverage run`` or ``pytest``
+* `pyproject.toml`_ with flit_ backend for PEP 517/621-compliant packaging.
+* `GitHub Actions`_: Ready for GitHub Actions Continuous Integration testing.
+* `Conda`_ environment file: Optionally use ``conda env create -f environment-dev.yml`` to create a new environment with the correct Python version.
 * Tox_ testing: Setup to easily test for Python 3.8, 3.9, 3.10, 3.11, 3.12, and PyPy3.
 * Sphinx_ docs: Documentation ready for generation with, for example, `Read the Docs`_
 * pre-commit_ hook: Run your tests and linting (e.g. Flake8, Black) before you commit your code!
@@ -120,6 +121,7 @@ I also accept pull requests on this, if they're small, atomic, and if they make 
 
 
 .. _Black: https://black.readthedocs.io/en/stable/
+.. _Conda: https://docs.conda.io/en/latest/
 .. _Cookiecutter: https://github.com/cookiecutter/cookiecutter
 .. _GitHub Actions: https://docs.github.com/en/actions
 .. _Mkdocs: https://pypi.org/project/mkdocs/

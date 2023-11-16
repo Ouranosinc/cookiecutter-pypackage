@@ -1,3 +1,5 @@
+import datetime
+import importlib.util
 import os
 import shlex
 import subprocess
@@ -5,13 +7,9 @@ import sys
 from contextlib import contextmanager
 from pathlib import Path
 
-import datetime
 import pytest
-from cookiecutter.utils import rmtree
-
 from click.testing import CliRunner
-
-import importlib.util
+from cookiecutter.utils import rmtree
 
 
 @contextmanager
@@ -81,10 +79,11 @@ def test_bake_with_defaults(cookies):
         assert result.exception is None
 
         found_toplevel_files = [f.name for f in result.project_path.iterdir()]
+        assert "environment-dev.yml" in found_toplevel_files
         assert "pyproject.toml" in found_toplevel_files
         assert "python_boilerplate" in found_toplevel_files
-        assert "tox.ini" in found_toplevel_files
         assert "tests" in found_toplevel_files
+        assert "tox.ini" in found_toplevel_files
 
 
 def test_bake_and_run_unittests(cookies):
@@ -109,12 +108,18 @@ def test_bake_and_run_pre_commit(cookies):
         assert run_inside_dir("git init", str(result.project_path)) == 0
         assert run_inside_dir("git add *", str(result.project_path)) == 0
         assert run_inside_dir("pre-commit install", str(result.project_path)) == 0
-        assert run_inside_dir("pre-commit run --all-files --show-diff-on-failure", str(result.project_path)) == 0
+        assert (
+            run_inside_dir(
+                "pre-commit run --all-files --show-diff-on-failure",
+                str(result.project_path),
+            )
+            == 0
+        )
         print("test_bake_and_run_pre_commit path", str(result.project_path))
 
 
 def test_bake_with_special_chars_and_run_tests(cookies):
-    """Ensure that a `full_name` with double quotes does not break setup.py"""
+    """Ensure that a `full_name` with double quotes does not break pyproject.toml."""
     with bake_in_temp_dir(
         cookies, extra_context={"full_name": 'name "quote" name', "use_pytest": "n"}
     ) as result:
@@ -123,8 +128,10 @@ def test_bake_with_special_chars_and_run_tests(cookies):
 
 
 def test_bake_with_apostrophe_and_run_tests(cookies):
-    """Ensure that a `full_name` with apostrophes does not break setup.py"""
-    with bake_in_temp_dir(cookies, extra_context={"full_name": "O'connor", "use_pytest": "n"}) as result:
+    """Ensure that a `full_name` with apostrophes does not break pyproject.toml."""
+    with bake_in_temp_dir(
+        cookies, extra_context={"full_name": "O'connor", "use_pytest": "n"}
+    ) as result:
         assert result.project_path.is_dir()
         run_inside_dir("python -m coverage", str(result.project_path)) == 0
 
@@ -140,8 +147,8 @@ def test_bake_without_docs(cookies):
             "docs/**/*.gif",
             "docs/Makefile",
             "docs/conf.py",
-            "docs/make.bat"
-            }
+            "docs/make.bat",
+        }
         pyproject_path = result.project_path.joinpath("pyproject.toml")
         with open(str(pyproject_path)) as pyproject_file:
             for file in docs_files:
@@ -177,17 +184,31 @@ def test_make_help(cookies):
 def test_bake_selecting_license(cookies):
     license_strings = {
         "MIT license": ("MIT", "License :: OSI Approved :: MIT License"),
-        "BSD license": ("Redistributions of source code must retain the above copyright notice, this", "License :: OSI Approved :: BSD License"),
+        "BSD license": (
+            "Redistributions of source code must retain the above copyright notice, this",
+            "License :: OSI Approved :: BSD License",
+        ),
         "ISC license": ("ISC License", "License :: OSI Approved :: ISC License"),
-        "Apache Software License 2.0": ("Licensed under the Apache License, Version 2.0", "License :: OSI Approved :: Apache Software License"),
-        "GNU General Public License v3": ("GNU GENERAL PUBLIC LICENSE", "License :: OSI Approved :: GNU General Public License v3 (GPLv3)"),
+        "Apache Software License 2.0": (
+            "Licensed under the Apache License, Version 2.0",
+            "License :: OSI Approved :: Apache Software License",
+        ),
+        "GNU General Public License v3": (
+            "GNU GENERAL PUBLIC LICENSE",
+            "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+        ),
     }
     for license_code, target_strings in license_strings.items():
         with bake_in_temp_dir(
             cookies, extra_context={"open_source_license": license_code}
         ) as result:
-            assert target_strings[0] in result.project_path.joinpath("LICENSE").read_text()
-            assert target_strings[1] in result.project_path.joinpath("pyproject.toml").read_text()
+            assert (
+                target_strings[0] in result.project_path.joinpath("LICENSE").read_text()
+            )
+            assert (
+                target_strings[1]
+                in result.project_path.joinpath("pyproject.toml").read_text()
+            )
 
 
 def test_bake_not_open_source(cookies):
@@ -203,7 +224,9 @@ def test_bake_not_open_source(cookies):
 def test_using_pytest(cookies):
     with bake_in_temp_dir(cookies, extra_context={"use_pytest": "y"}) as result:
         assert result.project_path.is_dir()
-        test_file_path = result.project_path.joinpath("tests/test_python_boilerplate.py")
+        test_file_path = result.project_path.joinpath(
+            "tests/test_python_boilerplate.py"
+        )
         text = test_file_path.read_text()
         assert "import pytest" in text
         # Test the new pytest target
@@ -213,7 +236,9 @@ def test_using_pytest(cookies):
 def test_not_using_pytest(cookies):
     with bake_in_temp_dir(cookies, extra_context={"use_pytest": "n"}) as result:
         assert result.project_path.is_dir()
-        test_file_path = result.project_path.joinpath("tests/test_python_boilerplate.py")
+        test_file_path = result.project_path.joinpath(
+            "tests/test_python_boilerplate.py"
+        )
         text = test_file_path.read_text()
         assert "import unittest" in text
         assert "import pytest" not in text
@@ -241,7 +266,9 @@ def test_not_using_pytest(cookies):
 
 def test_bake_with_no_console_script(cookies):
     context = {"command_line_interface": "No command-line interface"}
-    result = cookies.bake(extra_context=context, template=Path(__file__).parents[1].as_posix())
+    result = cookies.bake(
+        extra_context=context, template=Path(__file__).parents[1].as_posix()
+    )
     project_path, project_slug, project_dir = project_info(result)
     found_project_files = os.listdir(project_dir)
     assert "cli.py" not in found_project_files
@@ -254,7 +281,9 @@ def test_bake_with_no_console_script(cookies):
 @pytest.mark.parametrize("option", ["Click", "Argparse"])
 def test_bake_with_console_options_script_files(cookies, option):
     context = {"command_line_interface": option}
-    result = cookies.bake(extra_context=context, template=Path(__file__).parents[1].as_posix())
+    result = cookies.bake(
+        extra_context=context, template=Path(__file__).parents[1].as_posix()
+    )
     project_path, project_slug, project_dir = project_info(result)
     found_project_files = os.listdir(project_dir)
     assert "cli.py" in found_project_files
@@ -266,7 +295,9 @@ def test_bake_with_console_options_script_files(cookies, option):
 
 def test_bake_with_console_options_script_click(cookies):
     context = {"command_line_interface": "Click"}
-    result = cookies.bake(extra_context=context, template=Path(__file__).parents[1].as_posix())
+    result = cookies.bake(
+        extra_context=context, template=Path(__file__).parents[1].as_posix()
+    )
     project_path, project_slug, project_dir = project_info(result)
     module_path = os.path.join(project_dir, "cli.py")
     module_name = ".".join([project_slug, "cli"])
@@ -287,14 +318,11 @@ def test_bake_with_console_options_script_click(cookies):
 
 @pytest.mark.parametrize("use_black,expected", [("y", True), ("n", False)])
 def test_black(cookies, use_black, expected):
-    with bake_in_temp_dir(
-        cookies,
-        extra_context={'use_black': use_black}
-    ) as result:
+    with bake_in_temp_dir(cookies, extra_context={"use_black": use_black}) as result:
         assert result.project_path.is_dir()
-        requirements_path = result.project_path.joinpath('pyproject.toml')
+        requirements_path = result.project_path.joinpath("pyproject.toml")
         assert ("black>=" in requirements_path.read_text()) is expected
         assert ("isort>=" in requirements_path.read_text()) is expected
         assert ("[tool.black]" in requirements_path.read_text()) is expected
-        makefile_path = result.project_path.joinpath('Makefile')
+        makefile_path = result.project_path.joinpath("Makefile")
         assert ("black --check" in makefile_path.read_text()) is expected

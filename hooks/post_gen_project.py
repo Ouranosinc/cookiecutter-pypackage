@@ -47,6 +47,9 @@ if __name__ == "__main__":
         remove_file(".readthedocs.yml")
         remove_folder("docs")
 
+    if "{{ cookiecutter.use_conda }}" != "y":
+        remove_file("environment-dev.yml")
+
     if "no" in "{{ cookiecutter.command_line_interface|lower }}":
         cli_file = Path("{{ cookiecutter.project_slug }}").joinpath("cli.py")
         remove_file(cli_file)

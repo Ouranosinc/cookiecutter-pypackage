@@ -31,9 +31,11 @@ jobs:
         with:
           python-version: __PYTHON_VERSION__
       - name: Install tox
-        run: pip install tox
+        run: |
+          python -m pip install tox
       - name: Run linting suite
-        run: tox -e black
+        run: |
+          python -m tox -e black
 
   test:
     name: test-__TOX_ENV__ (Python__PYTHON_VERSION__)
@@ -57,9 +59,11 @@ jobs:
         with:
           python-version: __PYTHON_VERSION__
       - name: Install tox
-        run: pip install tox
+        run: |
+          python -m pip install tox
       - name: Test with tox
-        run: tox -e __TOX_ENV__
+        run: |
+          python -m tox -e __TOX_ENV__
         env:
           GITHUB_TOKEN: __GITHUB_TOKEN__
           COVERALLS_FLAG_NAME: run-__TOX_ENV__
@@ -74,8 +78,8 @@ jobs:
     steps:
       - name: Coveralls Finished
         run: |
-          pip install --upgrade coveralls
-          coveralls --finish
+          python -m pip install --upgrade coveralls
+          python -m coveralls --finish
         env:
           GITHUB_TOKEN: __GITHUB_TOKEN__
           COVERALLS_SERVICE_NAME: github

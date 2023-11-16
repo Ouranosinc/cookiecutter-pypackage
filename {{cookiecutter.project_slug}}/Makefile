@@ -57,14 +57,16 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr .pytest_cache
 
 lint/flake8: ## check style with flake8
-	flake8 {{ cookiecutter.project_slug }} tests
+	ruff {{ cookiecutter.project_slug }} tests
+	flake8 --config=setup.cfg {{ cookiecutter.project_slug }} tests
 
-{%- if cookiecutter.use_black == 'y' %}
-
+{% if cookiecutter.use_black == 'y' -%}
 lint/black: ## check style with black
 	black --check {{ cookiecutter.project_slug }} tests
+	blackdoc --check {{ cookiecutter.project_slug }} docs
+	isort --check {{ cookiecutter.project_slug }} tests
 
-{%- endif %}
+{% endif -%}
 lint: lint/flake8{%- if cookiecutter.use_black == 'y' %} lint/black{%- endif %} ## check style
 
 test: ## run tests quickly with the default Python
@@ -102,14 +104,17 @@ endif
 
 servedocs: docs ## compile the docs watching for changes
 	watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
-{%- endif %}
 
-release: dist ## package and upload a release
-	python -m flit publish dist/*
-
+{% endif -%}
 dist: clean ## builds source and wheel package
 	python -m flit build
 	ls -l dist
 
+release: dist ## package and upload a release
+	python -m flit publish dist/*
+
 install: clean ## install the package to the active Python's site-packages
-	python -m pip install
+	python -m flit install .
+
+dev: clean ## install the package to the active Python's site-packages
+	python -m flit install --symlink .
