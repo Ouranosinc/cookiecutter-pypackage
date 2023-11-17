@@ -1,0 +1,236 @@
+{%- set license_classifiers = {
+    'MIT license': 'License :: OSI Approved :: MIT License',
+    'BSD license': 'License :: OSI Approved :: BSD License',
+    'ISC license': 'License :: OSI Approved :: ISC License (ISCL)',
+    'Apache Software License 2.0': 'License :: OSI Approved :: Apache Software License',
+    'GNU General Public License v3': 'License :: OSI Approved :: GNU General Public License v3 (GPLv3)'
+} -%}
+[build-system]
+requires = ["flit_core >=3.8,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "{{ cookiecutter.project_slug }}"
+authors = [
+  {name = "{{ cookiecutter.full_name.replace('\"', '\\\"') }}", email = "{{ cookiecutter.email }}"}
+]
+maintainers = []
+readme = {file = "README.rst", content-type = "text/x-rst"}
+requires-python = ">=3.8.0"
+keywords = ["{{ cookiecutter.project_slug }}"]
+{%- if cookiecutter.open_source_license in license_classifiers %}
+license = {file = "LICENSE"}
+{%- endif %}
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Intended Audience :: Developers",
+{%- if cookiecutter.open_source_license in license_classifiers %}
+  "{{ license_classifiers[cookiecutter.open_source_license] }}",
+{%- endif %}
+  "Natural Language :: English",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: Implementation :: CPython"
+]
+dynamic = ["description", "version"]
+dependencies = [
+  {% if cookiecutter.command_line_interface|lower == 'click' %}"click>=8.1.7"{%- endif %}
+]
+
+[project.optional-dependencies]
+dev = [
+  # Dev tools and testing
+  "pip>=23.1.2",
+  "bump2version>=1.0.1",
+  "watchdog>=3.0.0",
+  "flake8>=6.1.0",
+  "flake8-rst-docstrings>=0.3.0",
+  "flit",
+  "tox>=4.5.1",
+  "coverage>=7.2.5",
+  "coveralls>=3.3.1",
+  {% if cookiecutter.command_line_interface|lower == 'click' -%}
+  "click>=8.1.7",
+  {%- endif %}
+  {% if cookiecutter.use_pytest == 'y' -%}
+  "pytest>=7.3.1",
+  "pytest-cov>=4.0.0",
+  {%- endif %}
+  {% if cookiecutter.use_black == 'y' -%}
+  "black>=23.10.1",
+  "blackdoc>=0.3.9",
+  "isort>=5.12.0",
+  {%- endif %}
+  "pre-commit>=3.3.2"
+]
+docs = [
+  # Documentation and examples
+  "sphinx>=7.0",
+  {% if cookiecutter.command_line_interface|lower == 'click' -%}
+  "sphinx-click",
+  {%- endif %}
+  "sphinx-codeautolink",
+  "sphinx-copybutton",
+  "sphinx-rtd-theme>=1.0",
+  "nbsphinx",
+  "pandoc",
+  "ipython",
+  "ipykernel",
+  "jupyter_client"
+]
+{%- if cookiecutter.command_line_interface != 'No command-line interface' %}
+
+[project.scripts]
+{{ cookiecutter.project_slug }} = "{{ cookiecutter.project_slug }}.cli:cli"
+{%- endif %}
+
+[project.urls]
+# "Homepage" = "https://{{ cookiecutter.project_slug }}.readthedocs.io/"
+# "Changelog" = "https://{{ cookiecutter.project_slug }}.readthedocs.io/en/stable/history.html"
+# "About Ouranos" = "https://www.ouranos.ca/en/"
+"Source" = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}"
+"Issue tracker" = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/issues"
+
+[tool]
+{%- if cookiecutter.use_black == 'y' %}
+
+[tool.black]
+target-version = [
+  "py38",
+  "py39",
+  "py310",
+  "py311"
+]
+{%- endif %}
+
+[tool.coverage.run]
+relative_files = true
+include = ["{{ cookiecutter.project_slug }}/*"]
+omit = ["tests/*.py"]
+{%- if cookiecutter.use_pytest == 'n' %}
+command_line = "-m unittest discover -s tests/"
+{%- endif %}
+
+[tool.flit.sdist]
+include = [
+  {% if cookiecutter.open_source_license in license_classifiers -%}
+  ".zenodo.json",
+  {%- endif %}
+  {% if cookiecutter.create_author_file == 'y' -%}
+  "AUTHORS.rst",
+  {% endif -%}
+  "CHANGES.rst",
+  "CONTRIBUTING.rst",
+  {%- if cookiecutter.open_source_license in license_classifiers %}
+  "LICENSE",
+  {% endif -%}
+  "Makefile",
+  "README.rst",
+  {%- if cookiecutter.make_docs == 'y' %}
+  "docs/**/*.rst",
+  "docs/**/*.jpg",
+  "docs/**/*.png",
+  "docs/**/*.gif",
+  "docs/Makefile",
+  "docs/conf.py",
+  "docs/make.bat",
+  {% endif -%}
+  "setup.cfg",
+  "tests/*.py",
+  "tox.ini",
+  "{{ cookiecutter.project_slug }}/**/*.py"
+]
+exclude = [
+  "**/*.py[co]",
+  "**/__pycache__",
+  ".coveralls.yml",
+  ".gitignore",
+  ".editorconfig",
+  ".pre-commit-config.yaml",
+  ".yamllint.yaml",
+  "Makefile",
+  "docs/_*",
+  "docs/modules.rst",
+  "docs/{{ cookiecutter.project_slug }}*.rst",
+  "environment-docs.yml"
+]
+{%- if cookiecutter.use_black == 'y' %}
+
+[tool.isort]
+profile = "black"
+py_version = 38
+{%- endif %}
+
+[tool.mypy]
+python_version = 3.8
+show_error_codes = true
+warn_return_any = true
+warn_unused_configs = true
+
+[[tool.mypy.overrides]]
+module = []
+ignore_missing_imports = true
+
+{% if cookiecutter.use_pytest == 'y' -%}
+[tool.pytest.ini_options]
+addopts = [
+  "--verbose",
+  "--color=yes"
+]
+filterwarnings = ["ignore::UserWarning"]
+testpaths = "tests"
+{%- endif %}
+
+[tool.ruff]
+src = [""]
+line-length = 150
+target-version = "py38"
+exclude = [
+  ".eggs",
+  ".git",
+  "build",
+  "docs",
+  "tests"
+]
+ignore = [
+  "D205",
+  "D400",
+  "D401"
+]
+select = [
+  "C9",
+  "D",
+  "E",
+  "F",
+  "W"
+]
+
+[tool.ruff.flake8-bandit]
+check-typed-exception = true
+
+[tool.ruff.format]
+line-ending = "auto"
+
+[tool.ruff.isort]
+known-first-party = ["{{ cookiecutter.project_slug }}"]
+case-sensitive = true
+detect-same-package = false
+lines-after-imports = 1
+no-lines-before = ["future", "standard-library"]
+
+[tool.ruff.mccabe]
+max-complexity = 15
+
+[tool.ruff.per-file-ignores]
+"{{ cookiecutter.project_slug }}/**/__init__.py" = ["F401", "F403"]
+
+[tool.ruff.pycodestyle]
+max-doc-length = 180
+
+[tool.ruff.pydocstyle]
+convention = "numpy"

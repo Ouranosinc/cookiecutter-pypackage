@@ -57,21 +57,23 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr .pytest_cache
 
 lint/flake8: ## check style with flake8
-	flake8 {{ cookiecutter.project_slug }} tests
+	ruff {{ cookiecutter.project_slug }} tests
+	flake8 --config=setup.cfg {{ cookiecutter.project_slug }} tests
 
-{%- if cookiecutter.use_black == 'y' %}
-
+{% if cookiecutter.use_black == 'y' -%}
 lint/black: ## check style with black
 	black --check {{ cookiecutter.project_slug }} tests
+	blackdoc --check {{ cookiecutter.project_slug }} docs
+	isort --check {{ cookiecutter.project_slug }} tests
 
-{%- endif %}
+{% endif -%}
 lint: lint/flake8{%- if cookiecutter.use_black == 'y' %} lint/black{%- endif %} ## check style
 
 test: ## run tests quickly with the default Python
 {%- if cookiecutter.use_pytest == 'y' %}
-	pytest
+	python -m pytest
 {%- else %}
-	python setup.py test
+	coverage run
 {%- endif %}
 
 test-all: ## run tests on every Python version with tox
@@ -81,7 +83,7 @@ coverage: ## check code coverage quickly with the default Python
 {%- if cookiecutter.use_pytest == 'y' %}
 	coverage run --source {{ cookiecutter.project_slug }} -m pytest
 {%- else %}
-	coverage run --source {{ cookiecutter.project_slug }} setup.py test
+	coverage run --source {{ cookiecutter.project_slug }} -m unittest discover -s tests/
 {%- endif %}
 	coverage report -m
 	coverage html
@@ -102,15 +104,17 @@ endif
 
 servedocs: docs ## compile the docs watching for changes
 	watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
-{%- endif -%}
 
-release: dist ## package and upload a release
-	twine upload dist/*
-
+{% endif -%}
 dist: clean ## builds source and wheel package
-	python -m build --sdist
-	python -m build --wheel
+	python -m flit build
 	ls -l dist
 
+release: dist ## package and upload a release
+	python -m flit publish dist/*
+
 install: clean ## install the package to the active Python's site-packages
-	python setup.py install
+	python -m flit install .
+
+dev: clean ## install the package to the active Python's site-packages
+	python -m flit install --symlink .

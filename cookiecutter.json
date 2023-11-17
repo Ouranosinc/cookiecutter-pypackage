@@ -9,6 +9,7 @@
   "version": "0.1.0",
   "use_pytest": "y",
   "use_black": "y",
+  "use_conda": "y",
   "add_pyup_badge": "n",
   "make_docs": "y",
   "command_line_interface": ["Click", "Argparse", "No command-line interface"],

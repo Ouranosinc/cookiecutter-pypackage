@@ -4,13 +4,11 @@ PyPI Release Checklist
 Before Your First Release
 -------------------------
 
-#. Register the package on PyPI:
+Ensure that the name you have chosen has not already been registered on PyPI. This can be performed by checking the PyPI Index (https://pypi.python.org/) or by using the following command:
 
     .. code-block:: bash
 
-        python setup.py register
-
-#. Visit PyPI to make sure it registered.
+        pip search <package name>
 
 For Every Release
 -------------------
@@ -34,7 +32,7 @@ For Every Release
 
     .. code-block:: bash
 
-        python setup.py develop
+        python -m flit install --symlink .
 
 #. Run the tests:
 
@@ -62,8 +60,9 @@ For Every Release
 
         .. code-block:: bash
 
-            pip install readme_renderer
-            python setup.py check -r -s
+            pip install build readme_renderer twine
+            python -m build --sdist --wheel
+            python -m twine check dist/*
 
 #. Edit the release on GitHub (e.g. https://github.com/audreyr/cookiecutter/releases). Paste the release notes into the release's release page, and come up with a title for the release.
 
