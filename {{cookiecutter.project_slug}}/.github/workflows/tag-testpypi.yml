@@ -3,14 +3,34 @@ name: Publish Python 🐍 distributions 📦 to TestPyPI
 on:
   push:
     tags:
-      - '*'
+      - 'v*.*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
 jobs:
-  build-n-publish-testpypi:
+
+  release:
+    name: Create Release from tag
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        env:
+          # This token is provided by Actions, you do not need to create your own token
+          GITHUB_TOKEN: __GITHUB_TOKEN__
+        with:
+          tag_name: __GITHUB_REF__
+          name: Release __GITHUB_REF__
+          draft: true
+          prerelease: false
+
+  deploy-testpypi:
     name: Build and publish Python 🐍 distributions 📦 to TestPyPI
     runs-on: ubuntu-latest
-    environment:
-      name: Staging
+    environment: staging
+    permissions:
+      # IMPORTANT: this permission is mandatory for trusted publishing
+      id-token: write
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python3
@@ -26,7 +46,5 @@ jobs:
       - name: Publish distribution 📦 to Test PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          user: __token__
-          password: __TEST_PYPI_API_TOKEN__
           repository_url: https://test.pypi.org/legacy/
           skip_existing: true

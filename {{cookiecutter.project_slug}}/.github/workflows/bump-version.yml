@@ -1,0 +1,66 @@
+name: "Bump Patch Version"
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - .cruft.json
+      - .editorconfig
+      - .github/**.yml
+      - .gitignore
+      - .pre-commit-config.yaml
+      - .yamllint.yaml
+      {%- if cookiecutter.open_source_license != 'Not open source' %}
+      - .zenodo.json
+      {%- endif %}
+      {%- if cookiecutter.create_author_file == 'y' %}
+      - AUTHORS.rst
+      {%- endif %}
+      - CONTRIBUTING.rst
+      - CHANGES.rst
+      - Makefile
+      {%- if cookiecutter.make_docs == 'y' %}
+      - .readthedocs.yml
+      - docs/*.py
+      - docs/*.rst
+      - environment-docs.yml
+      {%- endif %}
+      {%- if cookiecutter.use_conda == 'y' %}
+      - environment-dev.yml
+      {%- endif %}
+      - setup.cfg
+      - pyproject.toml
+      - tests/**.py
+      - tox.ini
+      - {{ cookiecutter.project_slug }}/__init__.py
+  workflow_dispatch:
+
+jobs:
+  bump_patch_version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+      - name: Config Commit Bot
+        run: |
+          git config --local user.email "bumpversion[bot]@ouranos.ca"
+          git config --local user.name "bumpversion[bot]"
+      - name: Current Version
+        run: echo "current_version=$(grep -E '__version__'  {{ cookiecutter.project_slug }}/__init__.py | cut -d ' ' -f3)"
+      - name: Bump Patch Version
+        run: |
+          pip install bump2version
+          echo "Bumping version"
+          bump2version patch
+          echo "new_version=$(grep -E '__version__'  {{ cookiecutter.project_slug }}/__init__.py | cut -d ' ' -f3)"
+      - name: Push Changes
+        uses: ad-m/github-push-action@master
+        with:
+          force: false
+          github_token: __WORKFLOW_TOKEN__
+          branch: __GITHUB_REF__

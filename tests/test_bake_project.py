@@ -133,13 +133,15 @@ def test_bake_with_apostrophe_and_run_tests(cookies):
         cookies, extra_context={"full_name": "O'connor", "use_pytest": "n"}
     ) as result:
         assert result.project_path.is_dir()
-        run_inside_dir("python -m coverage", str(result.project_path)) == 0
+        assert run_inside_dir("python -m coverage", str(result.project_path)) == 0
 
 
 def test_bake_without_docs(cookies):
     with bake_in_temp_dir(cookies, extra_context={"make_docs": "n"}) as result:
         found_toplevel_files = [f.name for f in result.project_path.iterdir()]
         assert "docs" not in found_toplevel_files
+        assert ".readthedocs.yml" not in found_toplevel_files
+        assert "environment-docs.yml" not in found_toplevel_files
         docs_files = {
             "docs/**/*.rst",
             "docs/**/*.jpg",
@@ -230,7 +232,7 @@ def test_using_pytest(cookies):
         text = test_file_path.read_text()
         assert "import pytest" in text
         # Test the new pytest target
-        run_inside_dir("pytest", str(result.project_path)) == 0
+        assert run_inside_dir("pytest", str(result.project_path)) == 0
 
 
 def test_not_using_pytest(cookies):

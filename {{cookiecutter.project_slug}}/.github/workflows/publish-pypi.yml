@@ -9,8 +9,10 @@ jobs:
   build-n-publish-pypi:
     name: Build and publish Python 🐍 distributions 📦 to PyPI
     runs-on: ubuntu-latest
-    environment:
-      name: Production
+    environment: production
+    permissions:
+      # IMPORTANT: this permission is mandatory for trusted publishing
+      id-token: write
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python3
@@ -25,6 +27,3 @@ jobs:
           python -m flit build
       - name: Publish distribution 📦 to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          user: __token__
-          password: __PYPI_API_TOKEN__

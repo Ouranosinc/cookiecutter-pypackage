@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths-ignore:
-      - HISTORY.rst
+      - CHANGES.rst
       - README.rst
       - pyproject.toml
       - setup.cfg
@@ -13,13 +13,13 @@ on:
   pull_request:
 
 jobs:
-  black:
-    name: Black (Python__PYTHON_VERSION__)
+  lint:
+    name: Lint (Python__PYTHON_VERSION__)
     runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version:
-          - "3.8"
+          - "3.x"
     steps:
       - name: Cancel previous runs
         uses: styfle/cancel-workflow-action@0.11.0
@@ -35,11 +35,11 @@ jobs:
           python -m pip install tox
       - name: Run linting suite
         run: |
-          python -m tox -e black
+          python -m tox -e lint
 
-  test:
+  test-pypi:
     name: test-__TOX_ENV__ (Python__PYTHON_VERSION__)
-    needs: black
+    needs: lint
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -70,9 +70,12 @@ jobs:
           COVERALLS_PARALLEL: true
           COVERALLS_SERVICE_NAME: github
 
+
+
+
   finish:
     needs:
-      - test
+      - test-pypi
     runs-on: ubuntu-latest
     container: python:3-slim
     steps:
