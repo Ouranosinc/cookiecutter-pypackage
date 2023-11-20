@@ -97,8 +97,7 @@ jobs:
           echo "micromamba $(micromamba --version)"
       - name: Compile catalogs and install xscen
         run: |
-          make translate
-          python -m pip install --no-deps --editable .
+          python -m pip install --no-deps .
       - name: Check versions
         run: |
           conda list
@@ -111,7 +110,7 @@ jobs:
           python -m coveralls
         env:
           GITHUB_TOKEN: __GITHUB_TOKEN__
-          COVERALLS_FLAG_NAME: run-Python__PYTHON_VERSION_-conda
+          COVERALLS_FLAG_NAME: run-Python__PYTHON_VERSION__-conda
           COVERALLS_PARALLEL: true
           COVERALLS_SERVICE_NAME: github
 {%- endif %}
