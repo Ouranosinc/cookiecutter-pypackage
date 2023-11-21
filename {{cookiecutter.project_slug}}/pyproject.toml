@@ -54,14 +54,14 @@ dev = [
   "tox>=4.5.1",
   "coverage>=6.2.2,<7.0.0",
   "coveralls>=3.3.1",
-  {% if cookiecutter.command_line_interface|lower == 'click' -%}
+  {%- if cookiecutter.command_line_interface|lower == 'click' %}
   "click>=8.1.7",
   {%- endif %}
-  {% if cookiecutter.use_pytest == 'y' -%}
+  {%- if cookiecutter.use_pytest == 'y' %}
   "pytest>=7.3.1",
   "pytest-cov>=4.0.0",
   {%- endif %}
-  {% if cookiecutter.use_black == 'y' -%}
+  {%- if cookiecutter.use_black == 'y' %}
   "black>=23.10.1",
   "blackdoc>=0.3.9",
   "isort>=5.12.0",
@@ -71,7 +71,7 @@ dev = [
 docs = [
   # Documentation and examples
   "sphinx",
-  {% if cookiecutter.command_line_interface|lower == 'click' -%}
+  {%- if cookiecutter.command_line_interface|lower == 'click' %}
   "sphinx-click",
   {%- endif %}
   "sphinx-codeautolink",
@@ -118,28 +118,28 @@ command_line = "-m unittest discover -s tests/"
 
 [tool.flit.sdist]
 include = [
-  {% if cookiecutter.open_source_license in license_classifiers -%}
+  {%- if cookiecutter.open_source_license in license_classifiers %}
   ".zenodo.json",
   {%- endif %}
-  {% if cookiecutter.create_author_file == 'y' -%}
+  {%- if cookiecutter.create_author_file == 'y' %}
   "AUTHORS.rst",
   {% endif -%}
   "CHANGES.rst",
   "CONTRIBUTING.rst",
   {%- if cookiecutter.open_source_license in license_classifiers %}
   "LICENSE",
-  {% endif -%}
+  {%- endif %}
   "Makefile",
   "README.rst",
   {%- if cookiecutter.make_docs == 'y' %}
-  "docs/**/*.rst",
+  "docs/**/*.gif",
   "docs/**/*.jpg",
   "docs/**/*.png",
-  "docs/**/*.gif",
+  "docs/**/*.rst",
   "docs/Makefile",
   "docs/conf.py",
   "docs/make.bat",
-  {% endif -%}
+  {%- endif %}
   "setup.cfg",
   "tests/*.py",
   "tox.ini",
@@ -149,15 +149,21 @@ exclude = [
   "**/*.py[co]",
   "**/__pycache__",
   ".coveralls.yml",
-  ".gitignore",
   ".editorconfig",
+  ".gitignore",
   ".pre-commit-config.yaml",
+  {%- if cookiecutter.make_docs == 'y' %}
+  ".readthedocs.yml",
+  {% endif -%}
   ".yamllint.yaml",
   "Makefile",
+  {%- if cookiecutter.make_docs == 'y' %}
   "docs/_*",
   "docs/modules.rst",
   "docs/{{ cookiecutter.project_slug }}*.rst",
-  "environment-docs.yml"
+  "environment-docs.yml",
+  {% endif -%}
+  "environment-dev.yml"
 ]
 {%- if cookiecutter.use_black == 'y' %}
 

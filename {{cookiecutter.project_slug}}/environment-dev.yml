@@ -1,4 +1,4 @@
-name:
+name: {{ cookiecutter.project_slug }}
 channels:
   - conda-forge
 dependencies:
@@ -13,14 +13,14 @@ dependencies:
   - tox >=4.5.1
   - coverage >=6.2.0,<7.0.0
   - coveralls >=3.3.1
-  {% if cookiecutter.command_line_interface|lower == 'click' -%}
+  {%- if cookiecutter.command_line_interface|lower == 'click' %}
   - click >=8.1.7
   {%- endif %}
-  {% if cookiecutter.use_pytest == 'y' -%}
+  {%- if cookiecutter.use_pytest == 'y' %}
   - pytest >=7.3.1
   - pytest-cov>=4.0.0
   {%- endif %}
-  {% if cookiecutter.use_black == 'y' -%}
+  {%- if cookiecutter.use_black == 'y' %}
   - black >=23.11.0
   - blackdoc >=0.3.9
   - isort >=5.12.0
