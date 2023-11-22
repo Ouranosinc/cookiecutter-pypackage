@@ -58,7 +58,7 @@ clean-test: ## remove test and coverage artifacts
 
 lint/flake8: ## check style with flake8
 	ruff {{ cookiecutter.project_slug }} tests
-	flake8 --config=setup.cfg {{ cookiecutter.project_slug }} tests
+	flake8 --config=.flake8 {{ cookiecutter.project_slug }} tests
 
 {% if cookiecutter.use_black == 'y' -%}
 lint/black: ## check style with black
