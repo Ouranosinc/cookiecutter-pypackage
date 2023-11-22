@@ -46,7 +46,7 @@ dependencies = [
 dev = [
   # Dev tools and testing
   "pip>=23.1.2",
-  "bump2version>=1.0.1",
+  "bump-my-version>=0.12.0",
   "watchdog>=3.0.0",
   "flake8>=6.1.0",
   "flake8-rst-docstrings>=0.3.0",
@@ -108,6 +108,32 @@ target-version = [
 ]
 {%- endif %}
 
+[tool.bumpversion]
+current_version = "{{ cookiecutter.version }}"
+commit = true
+tag = true
+tag_name = "{new_version}"
+allow_dirty = false
+serialize = ["{major}.{minor}.{patch}"]
+parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)"
+
+[[tool.bumpversion.files]]
+filename = "{{ cookiecutter.project_slug }}/__init__.py"
+search = "__version__ = \"{current_version}\""
+replace = "__version__ = \"{new_version}\""
+
+[[tool.bumpversion.files]]
+filename = "tests/test_{{ cookiecutter.project_slug }}.py"
+search = "__version__ = \"{current_version}\""
+replace = "__version__ = \"{new_version}\""
+{%- if cookiecutter.generated_with_cruft == 'y' %}
+
+[[tool.bumpversion.files]]
+filename = ".cruft.json"
+search = "\"version\": \"{current_version}\""
+replace = "\"version\": \"{new_version}\""
+{%- endif %}
+
 [tool.coverage.run]
 relative_files = true
 include = ["{{ cookiecutter.project_slug }}/*"]
@@ -150,6 +176,7 @@ exclude = [
   "**/__pycache__",
   ".coveralls.yml",
   ".editorconfig",
+  ".flake8",
   ".gitignore",
   ".pre-commit-config.yaml",
   {%- if cookiecutter.make_docs == 'y' %}
