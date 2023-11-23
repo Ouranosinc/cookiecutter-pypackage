@@ -65,7 +65,7 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_slug }}`` fo
 
     $ mamba env create -f environment-dev.yml
     $ conda activate {{ cookiecutter.project_slug }}
-    $ flit install --symlink .
+    $ flit install --symlink
   {%- else -%}
 
   Using ``virtualenv`` (``virtualenvwrapper``), you can create a new development environment with::
@@ -73,7 +73,7 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_slug }}`` fo
     $ python -m pip install flit virtualenvwrapper
     $ mkvirtualenv {{ cookiecutter.project_slug }}
     $ cd {{ cookiecutter.project_slug }}/
-    $ flit install --symlink .
+    $ flit install --symlink
   {%- endif %}
 
 #. To ensure a consistent style, please install the pre-commit hooks to your repo::
