@@ -157,7 +157,9 @@ include = [
   {%- endif %}
   "Makefile",
   "README.rst",
-  "environment-dev.yml"
+  {%- if cookiecutter.use_conda == 'y' %}
+  "environment-dev.yml",
+  {%- endif %}
   {%- if cookiecutter.make_docs == 'y' %}
   "environment-docs.yml",
   "docs/_static/_images/*.gif",
@@ -183,12 +185,13 @@ exclude = [
   {%- if cookiecutter.make_docs == 'y' %}
   ".readthedocs.yml",
   {% endif -%}
-  ".yamllint.yaml",
-  {%- if cookiecutter.make_docs == 'y' %}
+  ".yamllint.yaml"
+  {%- if cookiecutter.make_docs == 'y' -%}
+  ,
   "docs/_*",
   "docs/modules.rst",
-  "docs/{{ cookiecutter.project_slug }}*.rst",
-  {% endif -%}
+  "docs/{{ cookiecutter.project_slug }}*.rst"
+  {%- endif %}
 ]
 {%- if cookiecutter.use_black == 'y' %}
 
