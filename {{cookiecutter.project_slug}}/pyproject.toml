@@ -157,23 +157,24 @@ include = [
   {%- endif %}
   "Makefile",
   "README.rst",
+  "environment-dev.yml"
   {%- if cookiecutter.make_docs == 'y' %}
-  "docs/**/*.gif",
-  "docs/**/*.jpg",
-  "docs/**/*.png",
-  "docs/**/*.rst",
+  "environment-docs.yml",
+  "docs/_static/_images/*.gif",
+  "docs/_static/_images/*.jpg",
+  "docs/_static/_images/*.png",
+  "docs/_static/_images/*.rst",
   "docs/Makefile",
   "docs/conf.py",
   "docs/make.bat",
   {%- endif %}
-  "setup.cfg",
   "tests/*.py",
   "tox.ini",
-  "{{ cookiecutter.project_slug }}/**/*.py"
+  "{{ cookiecutter.project_slug }}"
 ]
 exclude = [
-  "**/*.py[co]",
-  "**/__pycache__",
+  "*.py[co]",
+  "__pycache__",
   ".coveralls.yml",
   ".editorconfig",
   ".flake8",
@@ -183,14 +184,11 @@ exclude = [
   ".readthedocs.yml",
   {% endif -%}
   ".yamllint.yaml",
-  "Makefile",
   {%- if cookiecutter.make_docs == 'y' %}
   "docs/_*",
   "docs/modules.rst",
   "docs/{{ cookiecutter.project_slug }}*.rst",
-  "environment-docs.yml",
   {% endif -%}
-  "environment-dev.yml"
 ]
 {%- if cookiecutter.use_black == 'y' %}
 
