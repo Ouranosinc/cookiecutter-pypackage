@@ -112,7 +112,7 @@ target-version = [
 [tool.bumpversion]
 current_version = "{{ cookiecutter.version }}"
 commit = true
-tag = true
+tag = false
 tag_name = "{new_version}"
 allow_dirty = false
 serialize = ["{major}.{minor}.{patch}"]

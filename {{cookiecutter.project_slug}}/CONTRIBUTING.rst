@@ -184,30 +184,36 @@ To get ``black``, ``isort ``blackdoc``, ``ruff``, and ``flake8`` (with plugins `
 Versioning/Tagging
 ------------------
 
-A reminder for the maintainers on how to deploy. This section is only relevant for maintainers when they are producing a new point release for the package.
+A reminder for the **maintainers** on how to deploy. This section is only relevant when producing a new point release for the package.
+
+.. warning::
+
+    It is important to be aware that any changes to files found within the ``{{ cookiecutter.project_slug }}`` folder (with the exception of ``{{ cookiecutter.project_slug }}/__init__.py``) will trigger the ``bump-version.yml`` workflow. Be careful not to commit changes to files in this folder when preparing a new release.
 
 #. Create a new branch from `main` (e.g. `release-0.2.0`).
 #. Update the `CHANGES.rst` file to change the `Unreleased` section to the current date.
-#. Create a pull request from your branch to `main`.
-#. Once the pull request is merged, create a new release on GitHub. On the main branch, run:
+#. Bump the version in your branch to the next version (e.g. `v0.1.0 -> v0.2.0`)::
 
     .. code-block:: shell
 
         $ bump-my-version bump minor # In most cases, we will be releasing a minor version
         $ git push
+
+#. Create a pull request from your branch to `main`.
+#. Once the pull request is merged, create a new release on GitHub. On the main branch, run:
+
+    .. code-block:: shell
+
+        $ git tag v0.2.0
         $ git push --tags
 
-    This will trigger the CI to build the package and upload it to TestPyPI. In order to upload to PyPI, this can be done by publishing a new version on GitHub. This will then trigger the workflow to build and upload the package to PyPI.
+   This will trigger a GitHub workflow to build the package and upload it to TestPyPI. At the same time, the GitHub workflow will create a draft release on GitHub. Assuming that the workflow passes, the final release can then be published on GitHub by finalizing the draft release.
 
-#. Once the release is published, it will go into a `staging` mode on Github Actions. Once the tests pass, admins can approve the release (an e-mail will be sent) and it will be published on PyPI.
-
-.. note::
-
-    The ``bump-version.yml`` GitHub workflow will automatically bump the patch version when pull requests are pushed to the ``main`` branch on GitHub. It is not necessary to manually bump the version in your branch when merging (non-release) pull requests.
+#. Once the release is published, the `publish-pypi.yml` workflow will go into an `awaiting approval` mode on Github Actions. Only authorized users may approve this workflow (notifications will be sent) to trigger the upload to PyPI.
 
 .. warning::
 
-    It is important to be aware that any changes to files found within the ``{{ cookiecutter.project_slug }}`` folder (with the exception of ``{{ cookiecutter.project_slug }}/__init__.py``) will trigger the ``bump-version.yml`` workflow. Be careful not to commit changes to files in this folder when preparing a new release.
+    Uploads to PyPI can **never** be overwritten. If you make a mistake, you will need to bump the version and re-release the package. If the package uploaded to PyPI is broken, you should modify the GitHub release to mark the package as broken, as well as yank the package (mark the version  "broken") on PyPI.
 
 Packaging
 ---------
