@@ -32,7 +32,7 @@ For Every Release
 
     .. code-block:: bash
 
-        python -m flit install --symlink .
+        flit install --symlink
 
 #. Run the tests:
 

@@ -17,7 +17,8 @@ To use the console script in development:
 
 .. code-block:: bash
 
-    python -m flit install --symlink projectdir
+    cd projectdir
+    flit install --symlink
 
 'projectdir' should be the top level project directory with the `pyproject.toml` file
 
@@ -38,7 +39,8 @@ will not necessarily create an editable install. This is a known issue with `fli
 
 .. code-block:: bash
 
-    python -m flit install --symlink projectdir
+    cd projectdir
+    flit install --symlink
 
 More Details
 ------------
