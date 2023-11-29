@@ -95,23 +95,25 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_slug }}`` fo
     $ flit install --symlink
   {%- endif %}
 
-#. To ensure a consistent style, please install the ``pre-commit`` hooks to your repo::
+  This installs ``{{ cookiecutter.project_slug }}`` in an "editable" state, meaning that changes to the code are immediately seen by the environment.
+
+#. To ensure a consistent coding style, install the ``pre-commit`` hooks to your local clone::
 
     $ pre-commit install
 
-   On commit, ``pre-commit`` will check that{% if cookiecutter.use_black == 'y' %} ``black``, ``blackdoc``, ``isort``,{% endif %} ``flake8``, and ``ruff`` checks are passing, perform automatic fixes if possible, and warn of violations that require intervention. If your commit fails the checks initially, simply fix the errors and re-commit.
+  On commit, ``pre-commit`` will check that{% if cookiecutter.use_black == 'y' %} ``black``, ``blackdoc``, ``isort``,{% endif %} ``flake8``, and ``ruff`` checks are passing, perform automatic fixes if possible, and warn of violations that require intervention. If your commit fails the checks initially, simply fix the errors and re-commit.
 
-   You can also run the hooks manually with::
+  You can also run the hooks manually with::
 
     $ pre-commit run -a
 
-   If you want to skip the ``pre-commit`` hooks temporarily, you can pass the ``--no-verify`` flag to `$ git commit`.
+  If you want to skip the ``pre-commit`` hooks temporarily, you can pass the ``--no-verify`` flag to `$ git commit`.
 
 #. Create a branch for local development::
 
     $ git checkout -b name-of-your-bugfix-or-feature
 
-   Now you can make your changes locally.
+  Now you can make your changes locally.
 
 #. When you're done making changes, we **strongly** suggest running the tests in your environment or with the help of ``tox``::
 
@@ -125,11 +127,11 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_slug }}`` fo
     $ git commit -m "Your detailed description of your changes."
     $ git push origin name-of-your-bugfix-or-feature
 
-   If ``pre-commit`` hooks fail, try re-committing your changes (or, if need be, you can skip them with `$ git commit --no-verify`).
+  If ``pre-commit`` hooks fail, try re-committing your changes (or, if need be, you can skip them with `$ git commit --no-verify`).
 
 #. Submit a `Pull Request <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request>`_ through the GitHub website.
 
-#. Upon pushing your changes to GitHub, the documentation will automatically be updated to reflect the changes in your pull request. However, If you are actively making changes that affect the documentation, you can compile and test them beforehand locally with::
+#. When pushing your changes to your branch on GitHub, the documentation will automatically be tested to reflect the changes in your Pull Request. This build process can take several minutes at times. If you are actively making changes that affect the documentation and wish to save time, you can compile and test your changes beforehand locally with::
 
     # To generate the html and open it in your browser
     $ make docs
@@ -139,14 +141,22 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_slug }}`` fo
     # To simply test that the docs pass build checks
     $ tox -e docs
 
+#. Once your Pull Request has been accepted and merged to the ``main`` branch, several automated workflows will be triggered:
+
+    - The ``bump-version.yml`` workflow will automatically bump the patch version when pull requests are pushed to the ``main`` branch on GitHub. **It is not necessary to manually bump the version in your branch when merging (non-release) pull requests.**
+    - `ReadTheDocs` will automatically build the documentation and publish it to the `latest` branch of `{{ cookiecutter.project_slug }}` documentation website.
+    - If your branch is not a fork (ie: you are a maintainer), your branch will be automatically deleted.
+
+  You will have contributed your first changes to ``{{ cookiecutter.project_slug }}``!
+
 Pull Request Guidelines
 -----------------------
 
 Before you submit a pull request, check that it meets these guidelines:
 
-#. The pull request should include tests.
+#. The pull request should include tests and should aim to provide `code coverage <https://en.wikipedia.org/wiki/Code_coverage>`_ all new lines of code. You can use the ``--cov-report html --cov {{ cookiecutter.project_slug }}`` flags during the call to ``pytest`` to generate an HTML report and analyse the current test coverage.
 
-#. If the pull request adds functionality, the docs should be updated. Put your new functionality into a function with a docstring, and add the feature to the list in ``README.rst``.
+#. If the pull request adds functionality, the docs should also be updated. Put your new functionality into a function with a docstring, and add the feature to the list in ``README.rst``.
 
 #. The pull request should work for Python 3.8, 3.9, 3.10, and 3.11. Check that the tests pass for all supported Python versions.
 
@@ -273,4 +283,3 @@ This will then place two files in `{{ cookiecutter.project_slug }}/dist/` ("{{ c
 We can now leave our docker container (`$ exit`) and continue with uploading the files to PyPI::
 
     $ twine upload dist/*
-
