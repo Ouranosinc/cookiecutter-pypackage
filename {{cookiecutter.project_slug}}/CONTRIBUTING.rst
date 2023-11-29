@@ -52,6 +52,25 @@ If you are proposing a feature:
 Get Started!
 ------------
 
+.. note::
+
+    If you are new to using GitHub and `git`, please read `this guide <https://guides.github.com/activities/hello-world/>`_ first.
+
+{%- if cookiecutter.use_conda == 'y' %}
+
+.. warning::
+
+    Anaconda Python users: Due to the complexity of some packages, the default dependency solver can take a long time to resolve the environment. Consider running the following commands in order to speed up the process::
+
+        $ conda install -n base conda-libmamba-solver
+        $ conda config --set solver libmamba
+
+    For more information, please see the following link: https://www.anaconda.com/blog/a-faster-conda-for-a-growing-community
+
+    Alternatively, you can use the `mamba <https://mamba.readthedocs.io/en/latest/index.html>`_ package manager, which is a drop-in replacement for ``conda``. If you are already using `mamba`, replace the following commands with ``mamba`` instead of ``conda``.
+
+{%- endif %}
+
 Ready to contribute? Here's how to set up ``{{ cookiecutter.project_slug }}`` for local development.
 
 #. Fork the ``{{ cookiecutter.project_slug }}`` repo on GitHub.
@@ -61,9 +80,9 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_slug }}`` fo
 
 #. Install your local copy into a development environment. {% if cookiecutter.use_conda == 'y' -%}
 
-  Using ``mamba``, you can create a new development environment with::
+  You can create a new Anaconda development environment with::
 
-    $ mamba env create -f environment-dev.yml
+    $ conda env create -f environment-dev.yml
     $ conda activate {{ cookiecutter.project_slug }}
     $ flit install --symlink .
   {%- else -%}
@@ -76,14 +95,17 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_slug }}`` fo
     $ flit install --symlink .
   {%- endif %}
 
-#. To ensure a consistent style, please install the pre-commit hooks to your repo::
+#. To ensure a consistent style, please install the ``pre-commit`` hooks to your repo::
 
     $ pre-commit install
 
-   Special style and formatting checks will be run when you commit your changes. You
-   can always run the hooks on their own with:
+   On commit, ``pre-commit`` will check that{% if cookiecutter.use_black == 'y' %} ``black``, ``blackdoc``, ``isort``,{% endif %} ``flake8``, and ``ruff`` checks are passing, perform automatic fixes if possible, and warn of violations that require intervention. If your commit fails the checks initially, simply fix the errors and re-commit.
+
+   You can also run the hooks manually with::
 
     $ pre-commit run -a
+
+   If you want to skip the ``pre-commit`` hooks temporarily, you can pass the ``--no-verify`` flag to `$ git commit`.
 
 #. Create a branch for local development::
 
@@ -91,17 +113,11 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_slug }}`` fo
 
    Now you can make your changes locally.
 
-#. When you're done making changes, check that your changes pass ``black``, ``blackdoc``, ``flake8``, ``isort``, ``ruff``, and the tests, including testing other Python versions with tox::
+#. When you're done making changes, we **strongly** suggest running the tests in your environment or with the help of ``tox``::
 
-    $ black --check {{ cookiecutter.project_slug }} tests
-    $ isort --check {{ cookiecutter.project_slug }} tests
-    $ ruff {{ cookiecutter.project_slug }} tests
-    $ flake8 {{ cookiecutter.project_slug }} tests
-    $ blackdoc --check {{ cookiecutter.project_slug }} docs
     $ python -m pytest
+    # Or, to run multiple build tests
     $ tox
-
-   To get ``black``, ``blackdoc``, ``flake8``, ``isort``, ``ruff``, and tox, just pip install them into your virtualenv.
 
 #. Commit your changes and push your branch to GitHub::
 
@@ -109,14 +125,19 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_slug }}`` fo
     $ git commit -m "Your detailed description of your changes."
     $ git push origin name-of-your-bugfix-or-feature
 
-#. If you are editing the docs, compile and open them with::
+   If ``pre-commit`` hooks fail, try re-committing your changes (or, if need be, you can skip them with `$ git commit --no-verify`).
 
+#. Submit a `Pull Request <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request>`_ through the GitHub website.
+
+#. Upon pushing your changes to GitHub, the documentation will automatically be updated to reflect the changes in your pull request. However, If you are actively making changes that affect the documentation, you can compile and test them beforehand locally with::
+
+    # To generate the html and open it in your browser
     $ make docs
-    # or to simply generate the html
-    $ cd docs/
-    $ make html
-
-#. Submit a pull request through the GitHub website.
+    # To uniquely generate the html
+    $ make autodoc
+    $ make -C docs html
+    # To simply test that the docs pass build checks
+    $ tox -e docs
 
 Pull Request Guidelines
 -----------------------
@@ -139,6 +160,16 @@ To run a subset of tests::
 {%- else -%}
     $ python -m unittest tests.test_{{ cookiecutter.project_slug }}
 {%- endif %}
+
+To run specific code style checks::
+
+    $ black --check {{ cookiecutter.project_slug }} tests
+    $ isort --check {{ cookiecutter.project_slug }} tests
+    $ blackdoc --check {{ cookiecutter.project_slug }} docs
+    $ ruff {{ cookiecutter.project_slug }} tests
+    $ flake8 {{ cookiecutter.project_slug }} tests
+
+To get ``black``, ``isort ``blackdoc``, ``ruff``, and ``flake8`` (with plugins ``flake8-alphabetize`` and ``flake8-rst-docstrings``) simply `$ pip install` them into your environment.
 
 Versioning/Tagging
 ------------------
@@ -242,3 +273,4 @@ This will then place two files in `{{ cookiecutter.project_slug }}/dist/` ("{{ c
 We can now leave our docker container (`$ exit`) and continue with uploading the files to PyPI::
 
     $ twine upload dist/*
+
