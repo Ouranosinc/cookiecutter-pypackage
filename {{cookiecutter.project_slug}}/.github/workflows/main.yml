@@ -95,7 +95,7 @@ jobs:
         run: |
           mamba --version
           echo "micromamba $(micromamba --version)"
-      - name: Compile catalogs and install {{ cookiecutter.project_slug }}
+      - name: Install {{ cookiecutter.project_name }}
         run: |
           python -m pip install --no-deps .
       - name: Check versions

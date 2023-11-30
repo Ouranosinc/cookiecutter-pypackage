@@ -179,7 +179,7 @@ To run specific code style checks::
     $ ruff {{ cookiecutter.project_slug }} tests
     $ flake8 {{ cookiecutter.project_slug }} tests
 
-To get ``black``, ``isort ``blackdoc``, ``ruff``, and ``flake8`` (with plugins ``flake8-alphabetize`` and ``flake8-rst-docstrings``) simply `$ pip install` them into your environment.
+To get ``black``, ``isort ``blackdoc``, ``ruff``, and ``flake8`` (with plugins ``flake8-alphabetize`` and ``flake8-rst-docstrings``) simply install them with `pip` {% if cookiecutter.use_conda == 'y' %}(or `conda`) {% endif %}into your environment.
 
 Versioning/Tagging
 ------------------
