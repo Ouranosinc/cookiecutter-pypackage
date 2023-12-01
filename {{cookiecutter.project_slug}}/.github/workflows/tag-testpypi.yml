@@ -20,8 +20,8 @@ jobs:
           # This token is provided by Actions, you do not need to create your own token
           GITHUB_TOKEN: __GITHUB_TOKEN__
         with:
-          tag_name: __GITHUB_REF__
-          name: Release __GITHUB_REF__
+          tag_name: __GITHUB_REF_NAME__
+          name: Release __GITHUB_REF_NAME__
           draft: true
           prerelease: false
 
