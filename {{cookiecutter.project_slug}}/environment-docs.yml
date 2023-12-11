@@ -9,6 +9,9 @@ dependencies:
   - sphinx-autoapi
   - sphinx-codeautolink
   - sphinx-copybutton
+{%- if cookiecutter.add_translations == 'y' %}
+  - sphinx-intl
+{%- endif %}
   - sphinxcontrib-napoleon
 {%- if cookiecutter.command_line_interface|lower == 'click' %}
   - click

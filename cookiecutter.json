@@ -12,6 +12,7 @@
   "use_conda": "y",
   "add_pyup_badge": "n",
   "make_docs": "y",
+  "add_translations": "y",
   "command_line_interface": ["Click", "Argparse", "No command-line interface"],
   "create_author_file": "y",
   "open_source_license": [

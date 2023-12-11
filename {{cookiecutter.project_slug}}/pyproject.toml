@@ -69,6 +69,7 @@ dev = [
   {%- endif %}
   "pre-commit>=3.3.2"
 ]
+{%- if cookiecutter.make_docs == 'y' %}
 docs = [
   # Documentation and examples
   "sphinx",
@@ -77,6 +78,9 @@ docs = [
   {%- endif %}
   "sphinx-codeautolink",
   "sphinx-copybutton",
+  {%- if cookiecutter.add_translations == 'y' %}
+  "sphinx-intl",
+  {%- endif %}
   "sphinx-rtd-theme>=1.0",
   "nbsphinx",
   "pandoc",
@@ -84,6 +88,7 @@ docs = [
   "ipykernel",
   "jupyter_client"
 ]
+{%- endif %}
 {%- if cookiecutter.command_line_interface != 'No command-line interface' %}
 
 [project.scripts]

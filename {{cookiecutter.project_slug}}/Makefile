@@ -24,6 +24,10 @@ export PRINT_HELP_PYSCRIPT
 
 BROWSER := python -c "$$BROWSER_PYSCRIPT"
 
+{%- if cookiecutter.make_docs == 'y' and cookiecutter.add_translations == 'y' %}
+LOCALES := docs/locales
+{%- endif %}
+
 help:
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
@@ -90,6 +94,12 @@ coverage: ## check code coverage quickly with the default Python
 	$(BROWSER) htmlcov/index.html
 
 {%- if cookiecutter.make_docs == 'y' %}
+{%- if cookiecutter.add_translations == 'y' %}
+initialize-translations: clean-docs ## initialize translations, ignoring autodoc-generated files
+	${MAKE} -C docs gettext
+	sphinx-intl update -p docs/_build/gettext -d docs/locales -l fr
+{%- endif %}
+
 autodoc: clean-docs ## create sphinx-apidoc files:
 	sphinx-apidoc -o docs/apidoc --private --module-first {{ cookiecutter.project_slug }}
 
@@ -97,10 +107,23 @@ linkcheck: autodoc ## run checks over all external links found throughout the do
 	$(MAKE) -C docs linkcheck
 
 docs: autodoc ## generate Sphinx HTML documentation, including API docs
+{%- if cookiecutter.add_translations == 'y' %}
+	$(MAKE) -C docs html BUILDDIR="_build/html/en"
+ifneq ("$(wildcard $(LOCALES))","")
+	${MAKE} -C docs gettext
+	$(MAKE) -C docs html BUILDDIR="_build/html/fr" SPHINXOPTS="-D language='fr'"
+endif
+ifndef READTHEDOCS
+	$(BROWSER) docs/_build/html/en/html/index.html
+endif
+{%- else %}
 	$(MAKE) -C docs html
 ifndef READTHEDOCS
 	$(BROWSER) docs/_build/html/index.html
 endif
+{%- endif %}
+
+{%- if cookiecutter.make_docs == 'y' %}
 
 servedocs: docs ## compile the docs watching for changes
 	watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
