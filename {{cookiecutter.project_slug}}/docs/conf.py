@@ -92,6 +92,7 @@ release = {{ cookiecutter.project_slug }}.__version__
 language = "en"
 
 {%- if cookiecutter.add_translations == 'y' %}
+
 # Sphinx-intl configuration
 locale_dirs = ['locales/']
 gettext_compact = False  # optional

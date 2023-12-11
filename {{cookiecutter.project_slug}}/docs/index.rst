@@ -10,12 +10,17 @@
    readme
    installation
    usage
-   modules
    contributing
 {%- if cookiecutter.create_author_file == 'y' %}
    authors
 {%- endif %}
    changes
+
+.. toctree::
+   :maxdepth: 1
+   :caption: All Modules
+
+   apidoc/modules
 
 Indices and tables
 ==================

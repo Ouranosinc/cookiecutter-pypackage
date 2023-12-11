@@ -123,8 +123,6 @@ ifndef READTHEDOCS
 endif
 {%- endif %}
 
-{%- if cookiecutter.make_docs == 'y' %}
-
 servedocs: docs ## compile the docs watching for changes
 	watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
 
