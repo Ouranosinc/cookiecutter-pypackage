@@ -30,7 +30,8 @@ Features
 * Tox_ testing: Setup to easily test for Python 3.8, 3.9, 3.10, 3.11, 3.12, and PyPy3.
 * Sphinx_ docs: Documentation ready for generation with, for example, `Read the Docs`_
 * pre-commit_ hook: Run your tests and linting (e.g. Flake8, Black) before you commit your code!
-* bump2version_: Pre-configured version bumping with a single command
+* bump-my-version_: Pre-configured version bumping with a single command
+* `sphinx-intl`_ for French internationalization (i18n) and localization (l10n) of Sphinx docs (optional)
 * Auto-release to PyPI_ when you push a new tag to main (optional)
 * Command line interface using Click (optional)
 
@@ -49,11 +50,11 @@ Quickstart
 Install the latest Cookiecutter if you haven't installed it yet (this requires
 Cookiecutter 1.4.0 or higher)::
 
-    pip install -U cookiecutter
+    $ pip install -U cookiecutter
 
 Generate a Python package project::
 
-    cookiecutter https://github.com/Ouranosinc/cookiecutter-pypackage.git
+    $ cookiecutter https://github.com/Ouranosinc/cookiecutter-pypackage.git
 
 Then:
 
@@ -136,7 +137,9 @@ I also accept pull requests on this, if they're small, atomic, and if they make 
 .. _`pyproject.toml`: https://www.python.org/dev/peps/pep-0518/
 .. _`pyup.io`: https://pyup.io/
 .. _bump2version: https://github.com/c4urself/bump2version
+.. _bump-my-version: https://github.com/callowayproject/bump-my-version
 .. _flit: https://flit.pypa.io/en/stable/
+.. _sphinx-intl: https://sphinx-intl.readthedocs.io/en/master/
 
 .. _GitHub comparison view: https://github.com/tony/cookiecutter-pypackage-pythonic/compare/audreyr:master...master
 .. _`Nekroze/cookiecutter-pypackage`: https://github.com/Nekroze/cookiecutter-pypackage
