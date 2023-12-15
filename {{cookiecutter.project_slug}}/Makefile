@@ -45,6 +45,9 @@ clean-build: ## remove build artifacts
 clean-docs: ## remove docs artifacts
 	rm -f docs/apidoc/{{ cookiecutter.project_slug }}*.rst
 	rm -f docs/apidoc/modules.rst
+	{%- if cookiecutter.add_translations == 'y' %}
+	rm -fr docs/locales/fr/LC_MESSAGES/*.mo
+	{%- endif %}
 	$(MAKE) -C docs clean
 
 {% endif -%}
