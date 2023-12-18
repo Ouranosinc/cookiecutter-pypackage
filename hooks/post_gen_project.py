@@ -4,6 +4,10 @@ from pathlib import Path
 PROJECT_DIRECTORY = Path().cwd().absolute()
 
 
+def create_folder(folder_path):
+    Path(PROJECT_DIRECTORY).joinpath(folder_path).mkdir(parents=True, exist_ok=True)
+
+
 def remove_file(filepath):
     Path(PROJECT_DIRECTORY).joinpath(filepath).unlink()
 
@@ -50,6 +54,10 @@ if __name__ == "__main__":
         remove_file(".readthedocs.yml")
         remove_file("environment-docs.yml")
         remove_folder("docs")
+    else:
+        create_folder("docs/apidoc")
+        if "{{ cookiecutter.add_translations }}" == "y":
+            create_folder("docs/locales")
 
     if "{{ cookiecutter.use_conda }}" != "y":
         remove_file("environment-dev.yml")

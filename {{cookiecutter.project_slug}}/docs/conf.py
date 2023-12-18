@@ -91,6 +91,13 @@ release = {{ cookiecutter.project_slug }}.__version__
 # Usually you set "language" from the command line for these cases.
 language = "en"
 
+{%- if cookiecutter.add_translations == 'y' %}
+
+# Sphinx-intl configuration
+locale_dirs = ['locales/']
+gettext_compact = False  # optional
+{%- endif %}
+
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path

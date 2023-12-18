@@ -179,7 +179,7 @@ To run specific code style checks::
     $ ruff {{ cookiecutter.project_slug }} tests
     $ flake8 {{ cookiecutter.project_slug }} tests
 
-To get ``black``, ``isort ``blackdoc``, ``ruff``, and ``flake8`` (with plugins ``flake8-alphabetize`` and ``flake8-rst-docstrings``) simply install them with `pip` {% if cookiecutter.use_conda == 'y' %}(or `conda`) {% endif %}into your environment.
+To get ``black``, ``isort``, ``blackdoc``, ``ruff``, and ``flake8`` (with plugins ``flake8-alphabetize`` and ``flake8-rst-docstrings``) simply install them with `pip` {% if cookiecutter.use_conda == 'y' %}(or `conda`) {% endif %}into your environment.
 
 Versioning/Tagging
 ------------------
@@ -194,18 +194,14 @@ A reminder for the **maintainers** on how to deploy. This section is only releva
 #. Update the `CHANGES.rst` file to change the `Unreleased` section to the current date.
 #. Bump the version in your branch to the next version (e.g. `v0.1.0 -> v0.2.0`)::
 
-    .. code-block:: shell
-
-        $ bump-my-version bump minor # In most cases, we will be releasing a minor version
-        $ git push
+    $ bump-my-version bump minor # In most cases, we will be releasing a minor version
+    $ git push
 
 #. Create a pull request from your branch to `main`.
-#. Once the pull request is merged, create a new release on GitHub. On the main branch, run:
+#. Once the pull request is merged, create a new release on GitHub. On the main branch, run::
 
-    .. code-block:: shell
-
-        $ git tag v0.2.0
-        $ git push --tags
+    $ git tag v0.2.0
+    $ git push --tags
 
    This will trigger a GitHub workflow to build the package and upload it to TestPyPI. At the same time, the GitHub workflow will create a draft release on GitHub. Assuming that the workflow passes, the final release can then be published on GitHub by finalizing the draft release.
 
