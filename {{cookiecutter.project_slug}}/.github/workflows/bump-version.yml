@@ -1,6 +1,7 @@
-# This workflow requires a personal access token named `BUMPVERSION_TOKEN` with the following privileges:
-# - repo
-# - workflow
+# This workflow requires a personal access token named `BUMP_VERSION_TOKEN` with the following privileges:
+# - Contents: Read and Write
+# - Metadata: Read-Only
+# - Pull Requests: Read and Write
 
 name: "Bump Patch Version"
 
@@ -39,9 +40,15 @@ on:
       - {{ cookiecutter.project_slug }}/__init__.py
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   bump_patch_version:
     runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -65,5 +72,5 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           force: false
-          github_token: __BUMPVERSION_TOKEN__
+          github_token: __BUMP_VERSION_TOKEN__
           branch: __GITHUB_REF__

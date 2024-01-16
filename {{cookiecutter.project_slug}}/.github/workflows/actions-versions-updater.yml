@@ -1,6 +1,8 @@
-# This workflow requires a personal access token repository secret named `BUMPVERSION_TOKEN` with the following privileges:
-# - repo
-# - workflow
+# This workflow requires a personal access token repository secret named `ACTIONS_VERSION_UPDATER_TOKEN` with the following privileges:
+# - Contents: Read and Write
+# - Metadata: Read-Only
+# - Pull Requests: Read and Write
+# - Workflows: Read and Write
 
 name: GitHub Actions Version Updater
 
@@ -10,19 +12,28 @@ on:
     - cron:  '0 0 1 * *'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   build:
+    name: Update GitHub Action Versions
     runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4.1.1
         with:
           # This requires a personal access token with the privileges to push directly to `main`
-          token: __BUMPVERSION_TOKEN__
+          token: __ACTIONS_VERSIONS_UPDATER_TOKEN__
           persist-credentials: true
       - name: Run GitHub Actions Version Updater
         uses: saadmk11/github-actions-version-updater@v0.8.1
         with:
-          token: __BUMPVERSION_TOKEN__
-          committer_email: 'bumpversion[bot]@ouranos.ca'
+          token: __ACTIONS_VERSIONS_UPDATER_TOKEN__
+          committer_email: 'update-github-actions[bot]@ouranos.ca'
           committer_username: 'update-github-actions[bot]'
           pull_request_title: '[bot] Update GitHub Action Versions'
+          update_version_with: "release-commit-sha"
