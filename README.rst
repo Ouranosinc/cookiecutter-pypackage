@@ -2,17 +2,9 @@
 Cookiecutter PyPackage
 ======================
 
-.. image:: https://pyup.io/repos/github/audreyfeldroy/cookiecutter-pypackage/shield.svg
-    :target: https://pyup.io/repos/github/audreyfeldroy/cookiecutter-pypackage/
-    :alt: Updates
-
 .. image:: https://github.com/Ouranosinc/cookiecutter-pypackage/actions/workflows/main.yml/badge.svg
     :target: https://github.com/Ouranosinc/cookiecutter-pypackage/actions/workflows/main.yml
     :alt: Build Status
-
-.. image:: https://readthedocs.org/projects/cookiecutter-pypackage/badge/?version=latest
-    :target: https://cookiecutter-pypackage.readthedocs.io/en/latest/?badge=latest
-    :alt: Documentation Status
 
 Cookiecutter_ template for a Python package.
 
@@ -30,7 +22,7 @@ Features
 * Tox_ testing: Setup to easily test for Python 3.8, 3.9, 3.10, 3.11, 3.12, and PyPy3.
 * Sphinx_ docs: Documentation ready for generation with, for example, `Read the Docs`_
 * pre-commit_ hook: Run your tests and linting (e.g. Flake8, Black) before you commit your code!
-* bump-my-version_: Pre-configured version bumping with a single command
+* bump-my-version_: Pre-configured `SemVer-2.0-compliant`_ version bumping with a single command,
 * `sphinx-intl`_ for French internationalization (i18n) and localization (l10n) of Sphinx docs (optional)
 * Auto-release to PyPI_ when you push a new tag to main (optional)
 * Command line interface using Click (optional)
@@ -38,11 +30,15 @@ Features
 Build Status
 -------------
 
-Linux:
+Upstream (audreyfeldroy/cookiecutter-pypackage):
 
-.. image:: https://github.com/Ouranosinc/cookiecutter-pypackage/actions/workflows/main.yml/badge.svg
-    :target: https://github.com/Ouranosinc/cookiecutter-pypackage/actions/workflows/main.yml
-    :alt: Linux build status on GitHub Actions
+.. image:: https://pyup.io/repos/github/audreyfeldroy/cookiecutter-pypackage/shield.svg
+    :target: https://pyup.io/repos/github/audreyfeldroy/cookiecutter-pypackage/
+    :alt: Updates
+
+.. image:: https://readthedocs.org/projects/cookiecutter-pypackage/badge/?version=latest
+    :target: https://cookiecutter-pypackage.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
 
 Quickstart
 ----------
@@ -133,6 +129,7 @@ I also accept pull requests on this, if they're small, atomic, and if they make 
 .. _PyPI: https://pypi.python.org/pypi
 .. _Read the Docs: https://readthedocs.io/
 .. _Sphinx: http://sphinx-doc.org/
+.. _SemVer-2.0-compliant: https://semver.org/spec/v2.0.0.html
 .. _Tox: http://testrun.org/tox/
 .. _`pyproject.toml`: https://www.python.org/dev/peps/pep-0518/
 .. _`pyup.io`: https://pyup.io/

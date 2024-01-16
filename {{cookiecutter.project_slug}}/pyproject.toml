@@ -117,11 +117,15 @@ target-version = [
 [tool.bumpversion]
 current_version = "{{ cookiecutter.version }}"
 commit = true
+commit_args = "--no-verify"
 tag = false
 tag_name = "v{new_version}"
 allow_dirty = false
-serialize = ["{major}.{minor}.{patch}"]
-parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)"
+parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(\\-(?P<release>[a-z]+)(\\.(?P<build>\\d+)))?"
+serialize = [
+  "{major}.{minor}.{patch}-{release}.{build}",
+  "{major}.{minor}.{patch}"
+]
 
 [[tool.bumpversion.files]]
 filename = "{{ cookiecutter.project_slug }}/__init__.py"
@@ -139,6 +143,16 @@ filename = ".cruft.json"
 search = "\"version\": \"{current_version}\""
 replace = "\"version\": \"{new_version}\""
 {%- endif %}
+
+[tool.bumpversion.parts.build]
+independent = false
+
+[tool.bumpversion.parts.release]
+optional_value = "release"
+values = [
+  "dev",
+  "release"
+]
 
 [tool.coverage.run]
 relative_files = true
