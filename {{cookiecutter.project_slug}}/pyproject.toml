@@ -35,6 +35,7 @@ classifiers = [
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: Implementation :: CPython"
 ]
 dynamic = ["description", "version"]
@@ -46,12 +47,12 @@ dependencies = [
 dev = [
   # Dev tools and testing
   "pip>=23.1.2",
-  "bump-my-version>=0.12.0",
+  "bump-my-version>=0.17.0",
   "watchdog>=3.0.0",
   "flake8>=6.1.0",
   "flake8-alphabetize>=0.0.21",
   "flake8-rst-docstrings>=0.3.0",
-  "flit",
+  "flit>=3.9.0",
   "tox>=4.5.1",
   "coverage>=6.2.2,<7.0.0",
   "coveralls>=3.3.1",
@@ -63,9 +64,9 @@ dev = [
   "pytest-cov>=4.0.0",
   {%- endif %}
   {%- if cookiecutter.use_black == 'y' %}
-  "black>=23.10.1",
+  "black>=23.12.1",
   "blackdoc>=0.3.9",
-  "isort>=5.12.0",
+  "isort>=5.13.2",
   {%- endif %}
   "pre-commit>=3.3.2"
 ]
@@ -110,7 +111,8 @@ target-version = [
   "py38",
   "py39",
   "py310",
-  "py311"
+  "py311",
+  "py312"
 ]
 {%- endif %}
 
