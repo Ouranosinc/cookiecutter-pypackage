@@ -135,6 +135,7 @@ def test_bake_with_apostrophe_and_run_tests(cookies):
         assert result.project_path.is_dir()
         assert run_inside_dir("python -m coverage", str(result.project_path)) == 0
 
+
 def test_bake_without_translations(cookies):
     with bake_in_temp_dir(cookies, extra_context={"add_translations": "n"}) as result:
         found_toplevel_files = [f.name for f in result.project_path.iterdir()]
@@ -145,6 +146,7 @@ def test_bake_without_translations(cookies):
         pyproject_path = result.project_path.joinpath("pyproject.toml")
         with open(str(pyproject_path)) as pyproject_file:
             assert "sphinx-intl" not in pyproject_file.read()
+
 
 def test_bake_without_docs(cookies):
     with bake_in_temp_dir(cookies, extra_context={"make_docs": "n"}) as result:
@@ -333,8 +335,8 @@ def test_black(cookies, use_black, expected):
     with bake_in_temp_dir(cookies, extra_context={"use_black": use_black}) as result:
         assert result.project_path.is_dir()
         requirements_path = result.project_path.joinpath("pyproject.toml")
-        assert ("black" in requirements_path.read_text()) is expected
-        assert ("isort" in requirements_path.read_text()) is expected
+        assert ("black==" in requirements_path.read_text()) is expected
+        assert ("isort==" in requirements_path.read_text()) is expected
         assert ("[tool.black]" in requirements_path.read_text()) is expected
         makefile_path = result.project_path.joinpath("Makefile")
         assert ("black --check" in makefile_path.read_text()) is expected
