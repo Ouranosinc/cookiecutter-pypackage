@@ -13,6 +13,16 @@ on:
       - {{ cookiecutter.project_slug }}/__init__.py
   pull_request:
 
+concurrency:
+{%- raw %}
+  # For a given workflow, if we push to the same branch, cancel all previous builds on that branch except on master.
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+{%- endraw %}
+
+permissions:
+  contents: read
+
 jobs:
   lint:
     name: Lint (Python__PYTHON_VERSION__)
@@ -22,10 +32,6 @@ jobs:
         python-version:
           - "3.x"
     steps:
-      - name: Cancel previous runs
-        uses: styfle/cancel-workflow-action@0.11.0
-        with:
-          access_token: __GITHUB_TOKEN__
       - uses: actions/checkout@v4
       - name: Set up Python__PYTHON_VERSION__
         uses: actions/setup-python@v4
@@ -53,6 +59,8 @@ jobs:
             python-version: "3.10"
           - tox-env: "py311"
             python-version: "3.11"
+          - tox-env: "py312"
+            python-version: "3.12"
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python__PYTHON_VERSION__
@@ -83,6 +91,10 @@ jobs:
       run:
         shell: bash -l {0}
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@eb238b55efaa70779f274895e782ed17c84f2895 # v2.6.1
+        with:
+          egress-policy: audit
       - uses: actions/checkout@v4
       - name: Setup Conda (Micromamba) with Python__PYTHON_VERSION__
         uses: mamba-org/setup-micromamba@v1

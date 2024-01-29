@@ -1,8 +1,8 @@
 """Console script for {{cookiecutter.project_slug}}."""
 
-{%- if cookiecutter.command_line_interface|lower == 'argparse' %}
+{% if cookiecutter.command_line_interface|lower == 'argparse' -%}
 import argparse
-{%- endif %}
+{%- endif -%}
 import sys
 {%- if cookiecutter.command_line_interface|lower == 'click' %}
 
