@@ -69,14 +69,21 @@ jobs:
         run: |
           git config --local user.email "bumpversion[bot]@ouranos.ca"
           git config --local user.name "bumpversion[bot]"
-      - name: Current Version
-        run: echo "current_version=$(grep -E '__version__'  {{ cookiecutter.project_slug }}/__init__.py | cut -d ' ' -f3)"
-      - name: Bump Patch Version
+      - name: Install bump-my-version
         run: |
-          pip install bump-my-version
-          echo "Bumping version"
-          bump-my-version bump --tag patch
-          echo "new_version=$(grep -E '__version__'  {{ cookiecutter.project_slug }}/__init__.py | cut -d ' ' -f3)"
+          python -m pip install "bump-my-version>=0.17.1"
+      - name: Current Version
+        run: |
+          bump-my-version show current_version
+      - name: Conditional Bump Version
+        run: |
+          if [[ __ENV_CURRENT_VERSION__ =~ -dev(\.\d+)? ]]; then
+            echo "Development version (ends in 'dev(\.\d+)?'), bumping 'build' version"
+            bump-my-version show new_version --increment build
+          else
+            echo "Version is stable, bumping 'patch' version"
+            bump-my-version show new_version --increment patch
+          fi
       - name: Push Changes
         uses: ad-m/github-push-action@master
         with:
