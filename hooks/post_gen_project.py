@@ -24,6 +24,7 @@ def remove_folder(folder_path):
 def replace_contents(filepath):
     replacements = {
         "__BUMP_VERSION_TOKEN__": "secrets.BUMP_VERSION_TOKEN",
+        "__ENV_CURRENT_VERSION__": "env.CURRENT_VERSION",
         "__GITHUB_REF__": "github.ref",
         "__GITHUB_REF_NAME__": "github.ref_name",
         "__GITHUB_TOKEN__": "secrets.GITHUB_TOKEN",

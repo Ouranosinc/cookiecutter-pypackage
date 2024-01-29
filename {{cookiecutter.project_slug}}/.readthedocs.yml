@@ -16,7 +16,7 @@ build:
     python: "mambaforge-22.9"
   jobs:
     pre_build:
-      - sphinx-apidoc -o docs/apidoc --private --module-first ${{ cookiecutter.project_slug }}
+      - sphinx-apidoc -o docs/apidoc --private --module-first {{ cookiecutter.project_slug }}
       {%- if cookiecutter.add_translations == 'y' %}
       - sphinx-build -M gettext docs docs/_build
       {%- endif %}
