@@ -21,10 +21,12 @@
       "name": "{{ cookiecutter.full_name.split()[-1] }}, {{ ' '.join(cookiecutter.full_name.split()[:-1]) }}"
     }
   ],
-  "keywords": ["{{ cookiecutter.project_slug }}"],
+  "keywords": [
+    "{{ cookiecutter.project_slug }}"
+  ],
   "license": "{{ license_spdx_codes[cookiecutter.open_source_license] }}",
   "language": "eng",
   "communities": [],
   "upload_type": "software",
-  "access_right": "{{ license_rights[cookiecutter.open_source_license] }}",
+  "access_right": "{{ license_rights[cookiecutter.open_source_license] }}"
 }
