@@ -248,7 +248,7 @@ testpaths = "tests"
 {%- endif %}
 
 [tool.ruff]
-src = [""]
+src = ["{{ cookiecutter.project_slug }}"]
 line-length = 150
 target-version = "py38"
 exclude = [
@@ -257,6 +257,11 @@ exclude = [
   "build",
   "docs"
 ]
+
+[tool.ruff.format]
+line-ending = "auto"
+
+[tool.ruff.lint]
 ignore = [
   "D205",
   "D400",
@@ -270,27 +275,24 @@ select = [
   "W"
 ]
 
-[tool.ruff.flake8-bandit]
+[tool.ruff.lint.flake8-bandit]
 check-typed-exception = true
 
-[tool.ruff.format]
-line-ending = "auto"
-
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 known-first-party = ["{{ cookiecutter.project_slug }}"]
 case-sensitive = true
 detect-same-package = false
 lines-after-imports = 1
 no-lines-before = ["future", "standard-library"]
 
-[tool.ruff.mccabe]
+[tool.ruff.lint.mccabe]
 max-complexity = 15
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "{{ cookiecutter.project_slug }}/**/__init__.py" = ["F401", "F403"]
 
-[tool.ruff.pycodestyle]
+[tool.ruff.lint.pycodestyle]
 max-doc-length = 180
 
-[tool.ruff.pydocstyle]
+[tool.ruff.lint.pydocstyle]
 convention = "numpy"
