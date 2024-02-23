@@ -165,7 +165,6 @@ See `PyPI Help`_ for more information about submitting a package.
 
 Here's a release checklist you can use: https://github.com/audreyfeldroy/cookiecutter-pypackage/blob/master/docs/pypi_release_checklist.rst
 
-.. _`PyPI`: https://pypi.python.org/pypi
 .. _`PyPI Help`: https://pypi.org/help/#publishing
 
 

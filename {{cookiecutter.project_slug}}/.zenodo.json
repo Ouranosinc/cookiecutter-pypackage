@@ -6,6 +6,14 @@
     'GNU General Public License v3': 'GPL-3.0-or-later',
     'Not open source': 'N/A'
 } -%}
+{%- set license_rights = {
+    'MIT license': 'open',
+    'BSD license': 'open',
+    'ISC license': 'open',
+    'Apache Software License 2.0': 'open',
+    'GNU General Public License v3': 'open',
+    'Not open source': 'closed'
+} -%}
 {
   "title": "{{ cookiecutter.project_name }}",
   "creators": [
@@ -13,10 +21,12 @@
       "name": "{{ cookiecutter.full_name.split()[-1] }}, {{ ' '.join(cookiecutter.full_name.split()[:-1]) }}"
     }
   ],
-  "keywords": [],
+  "keywords": [
+    "{{ cookiecutter.project_slug }}"
+  ],
   "license": "{{ license_spdx_codes[cookiecutter.open_source_license] }}",
   "language": "eng",
   "communities": [],
   "upload_type": "software",
-  "access_right": "open"
+  "access_right": "{{ license_rights[cookiecutter.open_source_license] }}"
 }
