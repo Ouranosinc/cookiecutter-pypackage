@@ -12,7 +12,7 @@ updates:
     open-pull-requests-limit: 5
 
   - package-ecosystem: github-actions
-    directory: "/{{ "{{cookiecutter.project_slug}}" }}/.github/workflows/"
+    directory: "/{{ COOKIECUTTER_PROJECT_SLUG }}/.github/workflows/"
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 10
