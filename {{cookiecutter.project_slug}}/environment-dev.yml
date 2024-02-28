@@ -5,7 +5,7 @@ dependencies:
   - python >=3.9,<3.12
   # Dev tools and testing
   - pip >=23.1.2
-  - bump-my-version >=0.17.1
+  - bump-my-version >=0.18.3
   - watchdog >=3.0.0
   - flake8 >=6.1.0
   - flake8-rst-docstrings >=0.3.0
@@ -18,7 +18,7 @@ dependencies:
   {%- endif %}
   {%- if cookiecutter.use_pytest == 'y' %}
   - pytest >=7.3.1
-  - pytest-cov>=4.0.0
+  - pytest-cov >=4.0.0
   {%- endif %}
   {%- if cookiecutter.use_black == 'y' %}
   - black ==24.1.1

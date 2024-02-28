@@ -40,36 +40,36 @@ classifiers = [
 ]
 dynamic = ["description", "version"]
 dependencies = [
-  {% if cookiecutter.command_line_interface|lower == 'click' %}"click>=8.1.7"{%- endif %}
+  {% if cookiecutter.command_line_interface|lower == 'click' %}"click >=8.1.7"{%- endif %}
 ]
 
 [project.optional-dependencies]
 dev = [
   # Dev tools and testing
-  "pip>=23.1.2",
-  "bump-my-version>=0.17.1",
-  "watchdog>=3.0.0",
-  "flake8>=6.1.0",
-  "flake8-alphabetize>=0.0.21",
-  "flake8-rst-docstrings>=0.3.0",
-  "flit>=3.9.0",
-  "tox>=4.5.1",
-  "coverage>=6.2.2,<7.0.0",
-  "coveralls>=3.3.1",
+  "pip >=23.1.2",
+  "bump-my-version >=0.18.3",
+  "watchdog >=3.0.0",
+  "flake8 >=6.1.0",
+  "flake8-alphabetize >=0.0.21",
+  "flake8-rst-docstrings >=0.3.0",
+  "flit >=3.9.0",
+  "tox >=4.5.1",
+  "coverage >=6.2.2,<7.0.0",
+  "coveralls >=3.3.1",
   {%- if cookiecutter.command_line_interface|lower == 'click' %}
-  "click>=8.1.7",
+  "click >=8.1.7",
   {%- endif %}
   {%- if cookiecutter.use_pytest == 'y' %}
-  "pytest>=7.3.1",
-  "pytest-cov>=4.0.0",
+  "pytest >=7.3.1",
+  "pytest-cov >=4.0.0",
   {%- endif %}
   {%- if cookiecutter.use_black == 'y' %}
-  "black==24.1.1",
-  "blackdoc==0.3.9",
-  "isort==5.13.2",
+  "black ==24.2.0",
+  "blackdoc ==0.3.9",
+  "isort ==5.13.2",
   {%- endif %}
-  "ruff>=0.2.0",
-  "pre-commit>=3.3.2"
+  "ruff >=0.2.0",
+  "pre-commit >=3.3.2"
 ]
 {%- if cookiecutter.make_docs == 'y' %}
 docs = [
@@ -83,7 +83,7 @@ docs = [
   {%- if cookiecutter.add_translations == 'y' %}
   "sphinx-intl",
   {%- endif %}
-  "sphinx-rtd-theme>=1.0",
+  "sphinx-rtd-theme >=1.0",
   "nbsphinx",
   "pandoc",
   "ipython",
