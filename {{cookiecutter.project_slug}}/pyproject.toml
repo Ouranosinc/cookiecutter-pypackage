@@ -90,6 +90,9 @@ docs = [
   "ipykernel",
   "jupyter_client"
 ]
+all = ["xncml[dev]", "xncml[docs]"]
+{%- else %}
+all = ["xncml[dev]"]
 {%- endif %}
 {%- if cookiecutter.command_line_interface != 'No command-line interface' %}
 
@@ -146,6 +149,32 @@ filename = ".cruft.json"
 search = "\"version\": \"{current_version}\""
 replace = "\"version\": \"{new_version}\""
 {%- endif %}
+
+
+[[tool.bumpversion.files]]
+filename = "CHANGES.rst"
+search = """\
+`Unreleased <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}>`_ (latest)
+====================={% for _ in cookiecutter.github_username %}={% endfor -%}{% for _ in cookiecutter.project_slug %}={% endfor -%}
+
+"""
+replace = """\
+`Unreleased <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}>`_ (latest)
+====================={% for _ in cookiecutter.github_username %}={% endfor -%}{% for _ in cookiecutter.project_slug %}={% endfor -%}
+
+Changes:
+--------
+- No change.
+
+Fixes:
+------
+- No change.
+
+.. _changes_{new_version}:
+
+`{new_version} <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/tree/{new_version}>`_ ({now:%%Y-%%m-%%d})
+==================={% for _ in cookiecutter.github_username %}={% endfor -%}{% for _ in cookiecutter.project_slug %}={% endfor -%}
+"""
 
 [tool.bumpversion.parts.build]
 independent = false
