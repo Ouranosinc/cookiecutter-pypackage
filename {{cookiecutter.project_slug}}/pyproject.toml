@@ -158,14 +158,12 @@ search = """\
 {%- for _ in range((cookiecutter.github_username | length) + (cookiecutter.project_slug | length)) %}={% endfor -%}
 =============
 
-
 """
 replace = """\
 `Unreleased <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}>`_ (latest)
 ================================
 {%- for _ in range((cookiecutter.github_username | length) + (cookiecutter.project_slug | length)) %}={% endfor -%}
 =============
-
 
 Changes:
 --------
@@ -177,10 +175,10 @@ Fixes:
 
 .. _changes_{new_version}:
 
-`{new_version} <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/tree/{new_version}>`_ ({now:%%Y-%%m-%%d})
+`{new_version} <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/tree/{new_version}>`_
 ===========================
 {%- for _ in range((cookiecutter.github_username | length) + (cookiecutter.project_slug | length)) %}={% endfor -%}
-============================
+=======
 
 """
 
