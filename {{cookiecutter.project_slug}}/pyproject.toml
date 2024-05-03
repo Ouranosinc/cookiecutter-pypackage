@@ -90,9 +90,9 @@ docs = [
   "ipykernel",
   "jupyter_client"
 ]
-all = ["xncml[dev]", "xncml[docs]"]
+all = ["{{ cookiecutter.project_slug }}[dev]", "{{ cookiecutter.project_slug }}[docs]"]
 {%- else %}
-all = ["xncml[dev]"]
+all = ["{{ cookiecutter.project_slug }}[dev]"]
 {%- endif %}
 {%- if cookiecutter.command_line_interface != 'No command-line interface' %}
 
