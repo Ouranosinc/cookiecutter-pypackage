@@ -1,4 +1,4 @@
-BAKE_OPTIONS=--no-input
+BAKE_OPTIONS ?= --no-input
 
 help:
 	@echo "bake 	generate project using defaults"
