@@ -14,6 +14,9 @@ name = "{{ cookiecutter.project_slug }}"
 authors = [
   {name = "{{ cookiecutter.full_name.replace('\"', '\\\"') }}", email = "{{ cookiecutter.email }}"}
 ]
+maintainers = [
+  {name = "{{ cookiecutter.full_name.replace('\"', '\\\"') }}", email = "{{ cookiecutter.email }}"}
+]
 maintainers = []
 readme = {file = "README.rst", content-type = "text/x-rst"}
 requires-python = ">=3.8.0"
@@ -40,7 +43,8 @@ classifiers = [
 ]
 dynamic = ["description", "version"]
 dependencies = [
-  {% if cookiecutter.command_line_interface|lower == 'click' %}"click >=8.1.7"{%- endif %}
+  {% if cookiecutter.command_line_interface|lower == 'click' %}"click >=8.1.7"
+  {% elif cookiecutter.command_line_interface|lower == 'typer' %}"typer >=0.12.3"{%- endif %}
 ]
 
 [project.optional-dependencies]
@@ -54,11 +58,9 @@ dev = [
   "flake8-rst-docstrings >=0.3.0",
   "flit >=3.9.0",
   "tox >=4.5.1",
-  "coverage >=6.2.2,<7.0.0",
+  "coverage >=7.0.0",
   "coveralls >=3.3.1",
-  {%- if cookiecutter.command_line_interface|lower == 'click' %}
-  "click >=8.1.7",
-  {%- endif %}
+  "mypy"
   {%- if cookiecutter.use_pytest == 'y' %}
   "pytest >=7.3.1",
   "pytest-cov >=4.0.0",
@@ -68,7 +70,7 @@ dev = [
   "blackdoc ==0.3.9",
   "isort ==5.13.2",
   {%- endif %}
-  "ruff >=0.2.0",
+  "ruff >=0.3.0",
   "pre-commit >=3.3.2"
 ]
 {%- if cookiecutter.make_docs == 'y' %}
@@ -91,8 +93,8 @@ docs = [
   "jupyter_client"
 ]
 {%- endif %}
-{%- if cookiecutter.command_line_interface != 'No command-line interface' %}
 
+{%- if cookiecutter.command_line_interface != 'No command-line interface' %}
 [project.scripts]
 {{ cookiecutter.project_slug }} = "{{ cookiecutter.project_slug }}.cli:cli"
 {%- endif %}
@@ -101,8 +103,14 @@ docs = [
 # "Homepage" = "https://{{ cookiecutter.project_slug }}.readthedocs.io/"
 # "Changelog" = "https://{{ cookiecutter.project_slug }}.readthedocs.io/en/stable/history.html"
 # "About Ouranos" = "https://www.ouranos.ca/en/"
-"Source" = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}"
-"Issue tracker" = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/issues"
+"Issue tracker" = "https://github.com/{{ cookiecutter.__gh_slug }}/issues"
+"changelog" = "https://github.com/{{ cookiecutter.__gh_slug }}/blob/main/changelog.rst"
+"homepage" = "https://github.com/{{ cookiecutter.__gh_slug }}"
+
+{% if cookiecutter.command_line_interface == 'Yes' %}
+[project.scripts]
+{{cookiecutter.slug}} = "{{cookiecutter.slug}}.cli:app"
+{% endif %}
 
 [tool]
 {%- if cookiecutter.use_black == 'y' %}
@@ -228,13 +236,22 @@ py_version = 38
 {%- endif %}
 
 [tool.mypy]
-python_version = 3.8
+files = "."
+python_version = 3.9
 show_error_codes = true
+strict = true
+warn_no_return = true
 warn_return_any = true
+warn_unreachable = true
 warn_unused_configs = true
 
 [[tool.mypy.overrides]]
-module = []
+module = [
+  # Don't require test functions to include types
+  "tests.*"
+]
+allow_untyped_defs = true
+disable_error_code = "attr-defined"
 ignore_missing_imports = true
 
 {% if cookiecutter.use_pytest == 'y' -%}
