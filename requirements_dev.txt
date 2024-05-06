@@ -7,4 +7,5 @@ pre-commit>=3.7.0
 pytest-cookies>=0.7.0
 pytest>=8.2.0
 tox>=4.15.0
+twine>=5.0.0
 watchdog>=4.0.0
