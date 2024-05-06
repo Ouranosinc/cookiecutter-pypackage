@@ -3,7 +3,7 @@
 """Tests for `{{ cookiecutter.project_slug }}` package."""
 
 import pathlib
-import pkgutil
+from importlib.util import find_spec
 {% if cookiecutter.use_pytest == 'n' -%}
 import unittest
 {% else %}
@@ -12,7 +12,6 @@ import pytest
 {%- if cookiecutter.command_line_interface|lower == 'click' %}
 from click.testing import CliRunner
 {%- endif %}
-
 {% if cookiecutter.command_line_interface|lower == 'click' %}import {{ cookiecutter.project_slug }}.cli as cli{%- endif %}
 from {{ cookiecutter.project_slug }} import {{ cookiecutter.project_slug }}  # noqa: F401
 {%- if cookiecutter.use_pytest == 'y' %}
@@ -76,9 +75,15 @@ class Test{{ cookiecutter.project_slug|title }}(unittest.TestCase):
 
 def test_package_metadata():
     """Test the package metadata."""
-    project = pkgutil.get_loader("{{ cookiecutter.project_slug }}").get_filename()
+    project = find_spec("{{ cookiecutter.project_slug }}").submodule_search_locations[0]
 
-    metadata = pathlib.Path(project).resolve().parent.joinpath("__init__.py")
+    metadata = (
+        pathlib.Path(project)
+        .resolve()
+        .joinpath("src")
+        .joinpath("{{ cookiecutter.project_slug }}")
+        .joinpath("__init__.py")
+    )
 
     with open(metadata) as f:
         contents = f.read()

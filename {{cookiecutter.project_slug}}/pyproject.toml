@@ -17,7 +17,6 @@ authors = [
 maintainers = [
   {name = "{{ cookiecutter.full_name.replace('\"', '\\\"') }}", email = "{{ cookiecutter.email }}"}
 ]
-maintainers = []
 readme = {file = "README.rst", content-type = "text/x-rst"}
 requires-python = ">=3.8.0"
 keywords = ["{{ cookiecutter.project_slug }}"]
@@ -60,7 +59,7 @@ dev = [
   "tox >=4.5.1",
   "coverage >=7.0.0",
   "coveralls >=3.3.1",
-  "mypy"
+  "mypy",
   {%- if cookiecutter.use_pytest == 'y' %}
   "pytest >=7.3.1",
   "pytest-cov >=4.0.0",
@@ -93,10 +92,10 @@ docs = [
   "jupyter_client"
 ]
 {%- endif %}
+{%- if cookiecutter.command_line_interface != "No command-line interface" %}
 
-{%- if cookiecutter.command_line_interface != 'No command-line interface' %}
 [project.scripts]
-{{ cookiecutter.project_slug }} = "{{ cookiecutter.project_slug }}.cli:cli"
+{{cookiecutter.project_slug}} = "{{cookiecutter.project_slug}}.cli:app"
 {%- endif %}
 
 [project.urls]
@@ -106,11 +105,6 @@ docs = [
 "Issue tracker" = "https://github.com/{{ cookiecutter.__gh_slug }}/issues"
 "changelog" = "https://github.com/{{ cookiecutter.__gh_slug }}/blob/main/changelog.rst"
 "homepage" = "https://github.com/{{ cookiecutter.__gh_slug }}"
-
-{% if cookiecutter.command_line_interface == 'Yes' %}
-[project.scripts]
-{{cookiecutter.slug}} = "{{cookiecutter.slug}}.cli:app"
-{% endif %}
 
 [tool]
 {%- if cookiecutter.use_black == 'y' %}
@@ -306,7 +300,8 @@ no-lines-before = ["future", "standard-library"]
 max-complexity = 15
 
 [tool.ruff.lint.per-file-ignores]
-"{{ cookiecutter.project_slug }}/**/__init__.py" = ["F401", "F403"]
+"docs/**" = ["E402"]
+"src/{{ cookiecutter.project_slug }}/**/__init__.py" = ["F401", "F403"]
 
 [tool.ruff.lint.pycodestyle]
 max-doc-length = 180
