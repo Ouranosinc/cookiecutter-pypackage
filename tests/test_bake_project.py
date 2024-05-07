@@ -242,6 +242,11 @@ def test_bake_not_open_source(cookies):
         assert "License" not in result.project_path.joinpath("README.rst").read_text()
 
 
+def _running_tox():
+    return os.getenv("TOX", False)
+
+
+@pytest.mark.skipif("not _running_tox()", reason="Not running on tox")
 def test_using_pytest(cookies):
     with bake_in_temp_dir(cookies, extra_context={"use_pytest": "y"}) as result:
         assert result.project_path.is_dir()
