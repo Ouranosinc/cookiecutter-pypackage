@@ -13,7 +13,7 @@ import pytest
 from click.testing import CliRunner
 {%- endif %}
 {% if cookiecutter.command_line_interface|lower == 'click' %}import {{ cookiecutter.project_slug }}.cli as cli{%- endif %}
-from {{ cookiecutter.project_slug }} import {{ cookiecutter.project_slug }}  # noqa: F401
+import {{ cookiecutter.project_slug }}  # noqa: F401
 {%- if cookiecutter.use_pytest == 'y' %}
 
 
