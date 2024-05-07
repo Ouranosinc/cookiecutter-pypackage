@@ -251,6 +251,7 @@ def test_using_pytest(cookies):
         text = test_file_path.read_text()
         assert "import pytest" in text
         # Test the new pytest target
+        assert run_inside_dir("pip install .", str(result.project_path)) == 0
         assert run_inside_dir("pytest", str(result.project_path)) == 0
 
 
