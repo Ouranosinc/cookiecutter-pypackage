@@ -77,13 +77,7 @@ def test_package_metadata():
     """Test the package metadata."""
     project = find_spec("{{ cookiecutter.project_slug }}").submodule_search_locations[0]
 
-    metadata = (
-        pathlib.Path(project)
-        .resolve()
-        .joinpath("src")
-        .joinpath("{{ cookiecutter.project_slug }}")
-        .joinpath("__init__.py")
-    )
+    metadata = pathlib.Path(project).resolve().joinpath("__init__.py")
 
     with open(metadata) as f:
         contents = f.read()
