@@ -154,31 +154,32 @@ replace = "\"version\": \"{new_version}\""
 filename = "CHANGES.rst"
 search = """\
 `Unreleased <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}>`_ (latest)
-================================
-{%- for _ in range((cookiecutter.github_username | length) + (cookiecutter.project_slug | length)) %}={% endfor -%}
-=============
+--------------------------------
+{%- for _ in range((cookiecutter.github_username | length) + (cookiecutter.project_slug | length)) %}-{% endfor -%}
+-------------
+
 
 """
 replace = """\
 `Unreleased <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}>`_ (latest)
-================================
-{%- for _ in range((cookiecutter.github_username | length) + (cookiecutter.project_slug | length)) %}={% endfor -%}
-=============
+--------------------------------
+{%- for _ in range((cookiecutter.github_username | length) + (cookiecutter.project_slug | length)) %}-{% endfor -%}
+-------------
 
-Changes:
---------
-- No change.
+Changes
+^^^^^^^
+* No change.
 
-Fixes:
-------
-- No change.
+Fixes
+^^^^^
+* No change.
 
 .. _changes_{new_version}:
 
-`{new_version} <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/tree/{new_version}>`_
-===========================
-{%- for _ in range((cookiecutter.github_username | length) + (cookiecutter.project_slug | length)) %}={% endfor -%}
-=======
+`v{new_version} <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/tree/{new_version}>`_
+---------------------------
+{%- for _ in range((cookiecutter.github_username | length) + (cookiecutter.project_slug | length)) %}-{% endfor -%}
+-------
 
 """
 
