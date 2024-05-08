@@ -9,6 +9,7 @@ Cookiecutter_ template for a Python package.
 * GitHub repo (fork): https://github.com/Ouranosinc/cookiecutter-pypackage/
 * Documentation (upstream): https://cookiecutter-pypackage.readthedocs.io/
 * Free software: BSD license
+* Discord: https://discord.gg/PWXJr3upUE
 
 Features
 --------

@@ -92,7 +92,7 @@ Ready to contribute? Here's how to set up `cookiecutter-pypackage` for local dev
 
    .. code-block:: bash
 
-        $ pip install -rrequirements_dev.txt
+        $ pip install -r requirements_dev.txt
         $ pytest ./tests
 
    If you get any errors while installing cryptography package (something like `#include <openssl/aes.h>`). Please update your pip version and try again:

@@ -66,9 +66,12 @@ def test_year_compute_in_license_file(cookies):
 
 def project_info(result):
     """Get toplevel dir, project_slug, and project dir from baked cookies"""
-    project_path = str(result.project_path)
-    project_slug = os.path.split(project_path)[-1]
-    project_dir = os.path.join(project_path, project_slug)
+    assert result.exception is None
+    assert result.project_path.is_dir()
+
+    project_path = result.project_path
+    project_slug = project_path.name
+    project_dir = project_path.joinpath("src").joinpath(project_slug)
     return project_path, project_slug, project_dir
 
 
@@ -79,9 +82,13 @@ def test_bake_with_defaults(cookies):
         assert result.exception is None
 
         found_toplevel_files = [f.name for f in result.project_path.iterdir()]
+        assert "LICENSE" in found_toplevel_files
+        assert "Makefile" in found_toplevel_files
+        assert "README.rst" in found_toplevel_files
         assert "environment-dev.yml" in found_toplevel_files
         assert "pyproject.toml" in found_toplevel_files
-        assert "python_boilerplate" in found_toplevel_files
+        assert "src" in found_toplevel_files
+        assert "python_boilerplate" in next(result.project_path.joinpath("src").iterdir()).name
         assert "tests" in found_toplevel_files
         assert "tox.ini" in found_toplevel_files
 
@@ -235,6 +242,11 @@ def test_bake_not_open_source(cookies):
         assert "License" not in result.project_path.joinpath("README.rst").read_text()
 
 
+def _running_tox():
+    return os.getenv("TOX", False)
+
+
+@pytest.mark.skipif("not _running_tox()", reason="Not running on tox")
 def test_using_pytest(cookies):
     with bake_in_temp_dir(cookies, extra_context={"use_pytest": "y"}) as result:
         assert result.project_path.is_dir()
@@ -244,6 +256,7 @@ def test_using_pytest(cookies):
         text = test_file_path.read_text()
         assert "import pytest" in text
         # Test the new pytest target
+        assert run_inside_dir("pip install --editable .", str(result.project_path)) == 0
         assert run_inside_dir("pytest", str(result.project_path)) == 0
 
 
@@ -292,7 +305,7 @@ def test_bake_with_no_console_script(cookies):
         assert "[project.scripts]" not in setup_file.read()
 
 
-@pytest.mark.parametrize("option", ["Click", "Argparse"])
+@pytest.mark.parametrize("option", ["Click", "Argparse", "Typer"])
 def test_bake_with_console_options_script_files(cookies, option):
     context = {"command_line_interface": option}
     result = cookies.bake(

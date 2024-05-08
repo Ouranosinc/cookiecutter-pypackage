@@ -117,9 +117,12 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_slug }}`` fo
 
 #. When you're done making changes, we **strongly** suggest running the tests in your environment or with the help of ``tox``::
 
-    $ python -m pytest
-    # Or, to run multiple build tests
-    $ tox
+    $ make lint
+    $ make test
+    Or
+    $ make test-all
+    Or
+    $ python -m tox
 
 #. Commit your changes and push your branch to GitHub::
 
@@ -139,7 +142,7 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_slug }}`` fo
     $ make autodoc
     $ make -C docs html
     # To simply test that the docs pass build checks
-    $ tox -e docs
+    $ python -m tox -e docs
 
 #. Once your Pull Request has been accepted and merged to the ``main`` branch, several automated workflows will be triggered:
 
@@ -158,7 +161,7 @@ Before you submit a pull request, check that it meets these guidelines:
 
 #. If the pull request adds functionality, the docs should also be updated. Put your new functionality into a function with a docstring, and add the feature to the list in ``README.rst``.
 
-#. The pull request should work for Python 3.8, 3.9, 3.10, 3.11, and 3.12. Check that the tests pass for all supported Python versions.
+#. The pull request should work for Python 3.8, 3.9, 3.10, 3.11, 3.12 and PyPy. Check that the tests pass for all supported Python versions.
 
 Tips
 ----
@@ -167,7 +170,7 @@ To run a subset of tests::
 
 {% if cookiecutter.use_pytest == 'y' -%}
     $ pytest tests.test_{{ cookiecutter.project_slug }}
-{%- else -%}
+{% else %}
     $ python -m unittest tests.test_{{ cookiecutter.project_slug }}
 {%- endif %}
 
@@ -181,8 +184,8 @@ To run specific code style checks::
 
 To get ``black``, ``isort``, ``blackdoc``, ``ruff``, and ``flake8`` (with plugins ``flake8-alphabetize`` and ``flake8-rst-docstrings``) simply install them with `pip` {% if cookiecutter.use_conda == 'y' %}(or `conda`) {% endif %}into your environment.
 
-Versioning/Tagging
-------------------
+Deployment
+----------
 
 A reminder for the **maintainers** on how to deploy. This section is only relevant when producing a new point release for the package.
 
@@ -285,3 +288,11 @@ This will then place two files in `{{ cookiecutter.project_slug }}/dist/` ("{{ c
 We can now leave our docker container (`$ exit`) and continue with uploading the files to PyPI::
 
     $ twine upload dist/*
+
+Code of Conduct
+---------------
+
+Please note that this project is released with a `Contributor Code of Conduct`_.
+By participating in this project you agree to abide by its terms.
+
+.. _`Contributor Code of Conduct`: CODE_OF_CONDUCT.rst
