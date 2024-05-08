@@ -128,7 +128,7 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_slug }}`` fo
 
     python -m pytest
     # Or, to run multiple build tests
-    tox
+    python -m tox
 
 #. Commit your changes and push your branch to GitHub::
 
@@ -152,7 +152,7 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_slug }}`` fo
     make autodoc
     make -C docs html
     # To simply test that the docs pass build checks
-    tox -e docs
+    python -m tox -e docs
 
 #. Once your Pull Request has been accepted and merged to the ``main`` branch, several automated workflows will be triggered:
 
@@ -190,11 +190,11 @@ To run specific code style checks::
 
    .. code-block:: console
 
-    black --check {{ cookiecutter.project_slug }} tests
-    isort --check {{ cookiecutter.project_slug }} tests
-    blackdoc --check {{ cookiecutter.project_slug }} docs
-    ruff {{ cookiecutter.project_slug }} tests
-    flake8 {{ cookiecutter.project_slug }} tests
+    python -m black --check {{ cookiecutter.project_slug }} tests
+    python -m isort --check {{ cookiecutter.project_slug }} tests
+    python -m blackdoc --check {{ cookiecutter.project_slug }} docs
+    python -m ruff {{ cookiecutter.project_slug }} tests
+    python -m flake8 {{ cookiecutter.project_slug }} tests
 
 To get ``black``, ``isort``, ``blackdoc``, ``ruff``, and ``flake8`` (with plugins ``flake8-alphabetize`` and ``flake8-rst-docstrings``) simply install them with `pip` {% if cookiecutter.use_conda == 'y' %}(or `conda`) {% endif %}into your environment.
 
@@ -319,4 +319,4 @@ We can now leave our docker container (`exit`) and continue with uploading the f
 
    .. code-block:: console
 
-    twine upload dist/*
+    python -m twine upload dist/*
