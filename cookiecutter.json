@@ -13,7 +13,7 @@
   "add_pyup_badge": "n",
   "make_docs": "y",
   "add_translations": "y",
-  "command_line_interface": ["Click", "Argparse", "No command-line interface"],
+  "command_line_interface": ["Typer", "Click", "Argparse", "No command-line interface"],
   "create_author_file": "y",
   "open_source_license": [
       "MIT license",
@@ -24,23 +24,24 @@
       "Not open source"
   ],
   "generated_with_cruft": "y",
-    "__prompts__": {
-        "full_name": "Your full name",
-        "email": "Your email address",
-        "github_username": "Your GitHub username (or organization)",
-        "project_name": "The name of your project",
-        "project_short_description": "A short description of your project",
-        "pypi_username": "Your PyPI username (or organization)",
-        "version": "The version of your project",
-        "use_pytest": "Do you want to use pytest?",
-        "use_black": "Do you want to use Black for code formatting?",
-        "use_conda": "Do you want to add configurations for Anaconda package management?",
-        "add_pyup_badge": "Do you want to add a pyup.io badge? (not recommended)",
-        "make_docs": "Do you want to generate documentation files",
-        "add_translations": "Do you want to add translations?",
-        "command_line_interface": "Which command-line interface do you want to use?",
-        "create_author_file": "Do you want to create an AUTHORS.rst file?",
-        "open_source_license": "Which open-source license do you want to use?",
-        "generated_with_cruft": "Was this project generated with Cruft? (Add a '.cruft.json' file)"
-    }
+  "__gh_slug": "{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}",
+  "__prompts__": {
+      "full_name": "Your full name",
+      "email": "Your email address",
+      "github_username": "Your GitHub username (or organization)",
+      "project_name": "The name of your project",
+      "project_short_description": "A short description of your project",
+      "pypi_username": "Your PyPI username (or organization)",
+      "version": "The version of your project",
+      "use_pytest": "Do you want to use pytest?",
+      "use_black": "Do you want to use Black for code formatting?",
+      "use_conda": "Do you want to add configurations for Anaconda package management?",
+      "add_pyup_badge": "Do you want to add a pyup.io badge? (not recommended)",
+      "make_docs": "Do you want to generate documentation files",
+      "add_translations": "Do you want to add translations?",
+      "command_line_interface": "Which command-line interface do you want to use?",
+      "create_author_file": "Do you want to create an AUTHORS.rst file?",
+      "open_source_license": "Which open-source license do you want to use?",
+      "generated_with_cruft": "Was this project generated with Cruft? (Add a '.cruft.json' file)"
+  }
 }

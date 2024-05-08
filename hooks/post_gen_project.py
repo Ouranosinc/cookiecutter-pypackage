@@ -65,7 +65,7 @@ if __name__ == "__main__":
         remove_file("environment-dev.yml")
 
     if "no" in "{{ cookiecutter.command_line_interface|lower }}":
-        cli_file = Path("{{ cookiecutter.project_slug }}").joinpath("cli.py")
+        cli_file = Path("src/{{ cookiecutter.project_slug }}").joinpath("cli.py")
         remove_file(cli_file)
 
     if "Not open source" == "{{ cookiecutter.open_source_license }}":
