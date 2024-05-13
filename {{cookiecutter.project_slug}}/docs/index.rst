@@ -11,6 +11,7 @@
    installation
    usage
    contributing
+   releasing
 {%- if cookiecutter.create_author_file == 'y' %}
    authors
 {%- endif %}
