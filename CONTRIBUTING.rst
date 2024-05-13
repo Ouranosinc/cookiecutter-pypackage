@@ -58,15 +58,15 @@ Ready to contribute? Here's how to set up `cookiecutter-pypackage` for local dev
 
    .. code-block:: bash
 
-    $ cd path_for_the_repo
-    $ git clone git@github.com:YOUR_NAME/cookiecutter-pypackage.git
+    cd path_for_the_repo
+    git clone git@github.com:YOUR_NAME/cookiecutter-pypackage.git
 
 #. Assuming you have virtualenv installed (If you have Python 3.8+ this should already be there), you can create a new environment for your local development by typing:
 
    .. code-block:: bash
 
-        $ virtualenv cookiecutter-pypackage-env
-        $ source cookiecutter-pypackage-env/bin/activate
+        virtualenv cookiecutter-pypackage-env
+        source cookiecutter-pypackage-env/bin/activate
 
    This should change the shell to look something like:
 
@@ -78,7 +78,7 @@ Ready to contribute? Here's how to set up `cookiecutter-pypackage` for local dev
 
    .. code-block:: bash
 
-        $ git checkout -b name-of-your-bugfix-or-feature
+        git checkout -b name-of-your-bugfix-or-feature
 
    Now you can make your changes locally.
 
@@ -86,27 +86,27 @@ Ready to contribute? Here's how to set up `cookiecutter-pypackage` for local dev
 
    .. code-block:: bash
 
-        $ flake8 ./tests
+        flake8 ./tests
 
 #. The next step would be to run the test cases. `cookiecutter-pypackage` testing uses the `pytest` framework. Before you run `pytest` you should ensure all dependencies are installed:
 
    .. code-block:: bash
 
-        $ pip install -r requirements_dev.txt
-        $ pytest ./tests
+        pip install -r requirements_dev.txt
+        pytest ./tests
 
    If you get any errors while installing cryptography package (something like `#include <openssl/aes.h>`). Please update your pip version and try again:
 
    .. code-block:: bash
 
         # Update pip
-        $ pip install -U pip
+        pip install -U pip
 
 #. Before raising a pull request you should also run tox. This will run the tests across different versions of Python:
 
    .. code-block:: bash
 
-        $ tox
+        tox
 
    If you are missing flake8, pytest and/or tox, just `pip install` them into your virtualenv.
 
@@ -116,9 +116,9 @@ Ready to contribute? Here's how to set up `cookiecutter-pypackage` for local dev
 
    .. code-block:: bash
 
-        $ git add .
-        $ git commit -m "Your detailed description of your changes."
-        $ git push origin name-of-your-bugfix-or-feature
+        git add .
+        git commit -m "Your detailed description of your changes."
+        git push origin name-of-your-bugfix-or-feature
 
 #. Submit a pull request through the GitHub website.
 
@@ -146,27 +146,27 @@ To write and run your new test, follow these steps:
 
    .. code-block:: bash
 
-        $ git stash
-        $ git stash list
+        git stash
+        git stash list
 
 #. Run your test and confirm that your test fails. If your test does not fail, rewrite the test until it fails on the original code:
 
    .. code-block:: bash
 
-        $ pytest ./tests
+        pytest ./tests
 
 #. (Optional) Run the tests with tox to ensure that the code changes work with different Python versions:
 
    .. code-block:: bash
 
-        $ tox
+        tox
 
 #. Proceed work on your bug fix or new feature or restore your changes. To restore your stashed changes and confirm their restoration:
 
    .. code-block:: bash
 
-        $ git stash pop
-        $ git stash list
+        git stash pop
+        git stash list
 
 #. Rerun your test and confirm that your test passes. If it passes, congratulations!
 
