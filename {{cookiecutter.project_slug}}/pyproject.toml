@@ -152,32 +152,6 @@ search = "\"version\": \"{current_version}\""
 replace = "\"version\": \"{new_version}\""
 {%- endif %}
 
-[[tool.bumpversion.files]]
-filename = "CHANGES.rst"
-search = """\
-`Unreleased <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}>`_ (latest)
-{{ '-' * ('`Unreleased <https://github.com/' + cookiecutter.github_username + '/' + cookiecutter.project_slug + '>`_ (latest)')|length }}
-"""
-replace = """\
-`Unreleased <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}>`_ (latest)
-{{ '-' * ('`Unreleased <https://github.com/' + cookiecutter.github_username + '/' + cookiecutter.project_slug + '>`_ (latest)')|length }}
-
-Contributors:
-
-Changes
-^^^^^^^
-* No change.
-
-Fixes
-^^^^^
-* No change.
-
-.. _changes_{new_version}:
-
-`v{new_version} <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/tree/{new_version}>`_
-{{ '-' * ('`v' + cookiecutter.version + ' <https://github.com/' + cookiecutter.github_username + '/' + cookiecutter.project_slug + '/tree/' + cookiecutter.version + '>`_ (latest)')|length }}
-"""
-
 [tool.bumpversion.parts.build]
 independent = false
 
