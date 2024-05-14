@@ -15,7 +15,7 @@
 {%- if cookiecutter.create_author_file == 'y' %}
    authors
 {%- endif %}
-   changes
+   changelog
 
 .. toctree::
    :maxdepth: 1
