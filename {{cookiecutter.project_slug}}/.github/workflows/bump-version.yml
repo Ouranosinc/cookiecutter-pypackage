@@ -22,7 +22,7 @@ on:
       {%- if cookiecutter.create_author_file == 'y' %}
       - AUTHORS.rst
       {%- endif %}
-      - CHANGES.rst
+      - CHANGELOG.rst
       - CONTRIBUTING.rst
       - Makefile
       {%- if cookiecutter.make_docs == 'y' %}

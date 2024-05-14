@@ -6,7 +6,7 @@ on:
       - main
     paths-ignore:
       - .cruft.json
-      - CHANGES.rst
+      - CHANGELOG.rst
       - README.rst
       - pyproject.toml
       - tests/test_{{ cookiecutter.project_slug }}.py
