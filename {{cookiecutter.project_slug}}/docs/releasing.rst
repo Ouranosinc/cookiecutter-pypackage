@@ -12,7 +12,7 @@ A reminder for the **maintainers** on how to deploy. This section is only releva
     It is important to be aware that any changes to files found within the ``{{ cookiecutter.project_slug }}`` folder (with the exception of ``{{ cookiecutter.project_slug }}/__init__.py``) will trigger the ``bump-version.yml`` workflow. Be careful not to commit changes to files in this folder when preparing a new release.
 
 #. Create a new branch from `main` (e.g. `release-0.2.0`).
-#. Update the `CHANGES.rst` file to change the `Unreleased` section to the current date.
+#. Update the `CHANGELOG.rst` file to change the `Unreleased` section to the current date.
 #. Bump the version in your branch to the next version (e.g. `v0.1.0 -> v0.2.0`)::
 
    .. code-block:: console

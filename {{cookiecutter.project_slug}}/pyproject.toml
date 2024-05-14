@@ -106,7 +106,7 @@ all = ["{{ cookiecutter.project_slug }}[dev]"]
 # "Changelog" = "https://{{ cookiecutter.project_slug }}.readthedocs.io/en/stable/history.html"
 # "About Ouranos" = "https://www.ouranos.ca/en/"
 "Issue tracker" = "https://github.com/{{ cookiecutter.__gh_slug }}/issues"
-"changelog" = "https://github.com/{{ cookiecutter.__gh_slug }}/blob/main/changelog.rst"
+"changelog" = "https://github.com/{{ cookiecutter.__gh_slug }}/blob/main/CHANGELOG.rst"
 "homepage" = "https://github.com/{{ cookiecutter.__gh_slug }}"
 
 [tool]
@@ -164,7 +164,7 @@ values = [
 
 [tool.coverage.run]
 relative_files = true
-include = ["{{ cookiecutter.project_slug }}/*"]
+include = ["src/{{ cookiecutter.project_slug }}/*"]
 omit = ["tests/*.py"]
 {%- if cookiecutter.use_pytest == 'n' %}
 command_line = "-m unittest discover -s tests/"
@@ -178,7 +178,7 @@ include = [
   {%- if cookiecutter.create_author_file == 'y' %}
   "AUTHORS.rst",
   {% endif -%}
-  "CHANGES.rst",
+  "CHANGELOG.rst",
   "CONTRIBUTING.rst",
   {%- if cookiecutter.open_source_license in license_classifiers %}
   "LICENSE",

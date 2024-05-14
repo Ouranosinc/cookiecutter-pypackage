@@ -64,14 +64,14 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr .pytest_cache
 
 lint/flake8: ## check style with flake8
-	ruff {{ cookiecutter.project_slug }} tests
-	flake8 --config=.flake8 {{ cookiecutter.project_slug }} tests
+	ruff check src/{{ cookiecutter.project_slug }} tests
+	flake8 --config=.flake8 src/{{ cookiecutter.project_slug }} tests
 
 {% if cookiecutter.use_black == 'y' -%}
 lint/black: ## check style with black
-	black --check {{ cookiecutter.project_slug }} tests
-	blackdoc --check {{ cookiecutter.project_slug }} docs
-	isort --check {{ cookiecutter.project_slug }} tests
+	black --check src/{{ cookiecutter.project_slug }} tests
+	blackdoc --check src/{{ cookiecutter.project_slug }} docs
+	isort --check src/{{ cookiecutter.project_slug }} tests
 
 {% endif -%}
 lint: lint/flake8{%- if cookiecutter.use_black == 'y' %} lint/black{%- endif %} ## check style
@@ -88,9 +88,9 @@ test-all: ## run tests on every Python version with tox
 
 coverage: ## check code coverage quickly with the default Python
 {%- if cookiecutter.use_pytest == 'y' %}
-	coverage run --source {{ cookiecutter.project_slug }} -m pytest
+	coverage run --source src/{{ cookiecutter.project_slug }} -m pytest
 {%- else %}
-	coverage run --source {{ cookiecutter.project_slug }} -m unittest discover -s tests/
+	coverage run --source src/{{ cookiecutter.project_slug }} -m unittest discover -s tests/
 {%- endif %}
 	coverage report -m
 	coverage html
