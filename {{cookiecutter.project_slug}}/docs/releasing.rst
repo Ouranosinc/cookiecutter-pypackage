@@ -119,7 +119,7 @@ Finally, to build the wheel, we run it against the provided Python3.9 binary::
 
     /opt/python/cp39-cp39m/bin/python -m build --sdist --wheel
 
-This will then place two files in `{{ cookiecutter.project_name }}/dist/` ("{{ cookiecutter.project_slug }}-1.2.3-py3-none-any.whl" and "{{ cookiecutter.project_slug }}-1.2.3.tar.gz").
+This will then place two files in `{{ cookiecutter.project_name }}/dist/` ("{{ cookiecutter.project_slug }}-1.2.3-py3-none-any.whl" and "{{ cookiecutter.project_name }}-1.2.3.tar.gz").
 We can now leave our docker container (`exit`) and continue with uploading the files to PyPI::
 
    .. code-block:: console
