@@ -6,7 +6,7 @@
     'GNU General Public License v3': 'License :: OSI Approved :: GNU General Public License v3 (GPLv3)'
 } -%}
 [build-system]
-requires = ["flit_core >=3.8,<4"]
+requires = ["flit_core >=3.9,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
@@ -65,7 +65,7 @@ dev = [
   "pytest-cov >=4.0.0",
   {%- endif %}
   {%- if cookiecutter.use_black == 'y' %}
-  "black ==24.2.0",
+  "black ==24.4.2",
   "blackdoc ==0.3.9",
   "isort ==5.13.2",
   {%- endif %}
