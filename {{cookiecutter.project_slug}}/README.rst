@@ -12,8 +12,8 @@
 +----------------------------+-----------------------------------------------------+
 {%- if is_open_source %}
 | Open Source                | |license| |ossf|                                    |
-{%- endif %}
 +----------------------------+-----------------------------------------------------+
+{%- endif %}
 | Coding Standards           | |black| |ruff| |pre-commit|                         |
 +----------------------------+-----------------------------------------------------+
 | Development Status         | |status| |build| |coveralls|                        |
@@ -21,8 +21,8 @@
 
 {%- endif %}
 {%- if cookiecutter.add_pyup_badge == 'y' %}
-.. image:: https://pyup.io/repos/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/shield.svg
-     :target: https://pyup.io/repos/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/
+.. image:: https://pyup.io/repos/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}/shield.svg
+     :target: https://pyup.io/repos/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}/
      :alt: Updates
 {%- endif %}
 
@@ -52,36 +52,36 @@ This package was created with Cookiecutter_ and the `Ouranosinc/cookiecutter-pyp
         :target: https://github.com/psf/black
         :alt: Python Black
 
-.. |build| image:: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/actions/workflows/main.yml/badge.svg
-        :target: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/actions
+.. |build| image:: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}/actions/workflows/main.yml/badge.svg
+        :target: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}/actions
         :alt: Build Status
 
 .. |coveralls| image:: https://coveralls.io/repos/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/badge.svg
         :target: https://coveralls.io/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
         :alt: Coveralls
 
-.. |docs| image:: https://readthedocs.org/projects/{{ cookiecutter.project_slug | replace("_", "-") }}/badge/?version=latest
-        :target: https://{{ cookiecutter.project_slug | replace("_", "-") }}.readthedocs.io/en/latest/?version=latest
+.. |docs| image:: https://readthedocs.org/projects/{{ cookiecutter.project_name | | replace(" ", "-") }}/badge/?version=latest
+        :target: https://{{ cookiecutter.project_name | replace(" ", "-") }}.readthedocs.io/en/latest/?version=latest
         :alt: Documentation Status
 
 {%- if is_open_source %}
 
-.. |license| image:: https://img.shields.io/github/license/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}.svg
-        :target: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/blob/main/LICENSE
+.. |license| image:: https://img.shields.io/github/license/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}.svg
+        :target: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}/blob/main/LICENSE
         :alt: License
 
-.. |ossf| image:: https://api.securityscorecards.dev/projects/github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/badge
-        :target: https://securityscorecards.dev/viewer/?uri=github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
+.. |ossf| image:: https://api.securityscorecards.dev/projects/github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}/badge
+        :target: https://securityscorecards.dev/viewer/?uri=github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}
         :alt: OpenSSF Scorecard
 
 {%- endif %}
 
-.. |pre-commit| image:: https://results.pre-commit.ci/badge/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/main.svg
-        :target: https://results.pre-commit.ci/latest/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/main
+.. |pre-commit| image:: https://results.pre-commit.ci/badge/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}/main.svg
+        :target: https://results.pre-commit.ci/latest/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}/main
         :alt: pre-commit.ci status
 
-.. |pypi| image:: https://img.shields.io/pypi/v/{{ cookiecutter.project_slug }}.svg
-        :target: https://pypi.python.org/pypi/{{ cookiecutter.project_slug }}
+.. |pypi| image:: https://img.shields.io/pypi/v/{{ cookiecutter.project_name | replace(" ", "-") }}.svg
+        :target: https://pypi.python.org/pypi/{{ cookiecutter.project_name | replace(" ", "-") }}
         :alt: PyPI
 
 .. |ruff| image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json
@@ -92,6 +92,6 @@ This package was created with Cookiecutter_ and the `Ouranosinc/cookiecutter-pyp
         :target: https://www.repostatus.org/#active
         :alt: Project Status: Active – The project has reached a stable, usable state and is being actively developed.
 
-.. |versions| image:: https://img.shields.io/pypi/pyversions/{{ cookiecutter.project_slug }}.svg
-        :target: https://pypi.python.org/pypi/{{ cookiecutter.project_slug }}
+.. |versions| image:: https://img.shields.io/pypi/pyversions/{{ cookiecutter.project_name | replace(" ", "-") }}.svg
+        :target: https://pypi.python.org/pypi/{{ cookiecutter.project_name | replace(" ", "-") }}
         :alt: Supported Python Versions
