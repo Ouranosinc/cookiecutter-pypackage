@@ -60,7 +60,7 @@ This package was created with Cookiecutter_ and the `Ouranosinc/cookiecutter-pyp
         :target: https://coveralls.io/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
         :alt: Coveralls
 
-.. |docs| image:: https://readthedocs.org/projects/{{ cookiecutter.project_name | | replace(" ", "-") }}/badge/?version=latest
+.. |docs| image:: https://readthedocs.org/projects/{{ cookiecutter.project_name | replace(" ", "-") }}/badge/?version=latest
         :target: https://{{ cookiecutter.project_name | replace(" ", "-") }}.readthedocs.io/en/latest/?version=latest
         :alt: Documentation Status
 
