@@ -9,7 +9,7 @@ A reminder for the **maintainers** on how to deploy. This section is only releva
 
 .. warning::
 
-    It is important to be aware that any changes to files found within the ``{{ cookiecutter.project_slug }}`` folder (with the exception of ``{{ cookiecutter.project_slug }}/__init__.py``) will trigger the ``bump-version.yml`` workflow. Be careful not to commit changes to files in this folder when preparing a new release.
+    It is important to be aware that any changes to files found within the ``src/{{ cookiecutter.project_slug }}`` folder (with the exception of ``src/{{ cookiecutter.project_slug }}/__init__.py``) will trigger the ``bump-version.yml`` workflow. Be careful not to commit changes to files in this folder when preparing a new release.
 
 #. Create a new branch from `main` (e.g. `release-0.2.0`).
 #. Update the `CHANGELOG.rst` file to change the `Unreleased` section to the current date.
@@ -18,6 +18,7 @@ A reminder for the **maintainers** on how to deploy. This section is only releva
    .. code-block:: console
 
     bump-my-version bump minor # In most cases, we will be releasing a minor version
+    bump-my-version bump release # This will update the version strings to drop the `dev` suffix
     git push
 
 #. Create a pull request from your branch to `main`.
@@ -60,7 +61,7 @@ From the command line on your Linux distribution, simply run the following from 
     # To upload to PyPI
     make release
 
-The new version based off of the version checked out will now be available via `pip` (`pip install {{ cookiecutter.project_slug }}`).
+The new version based off of the version checked out will now be available via `pip` (`pip install {{ cookiecutter.project_name }}`).
 
 Releasing on conda-forge
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -77,13 +78,13 @@ In order to create a new conda build recipe, to be used when proposing packages 
    .. code-block:: console
 
     python -m pip install grayskull
-    grayskull pypi {{ cookiecutter.project_slug }}
+    grayskull pypi {{ cookiecutter.project_name }}
 
 For more information on ``grayskull``, please see the following link: https://github.com/conda/grayskull
 
 Before updating the main conda-forge recipe, we echo the conda-forge documentation and *strongly* suggest performing the following checks:
  * Ensure that dependencies and dependency versions correspond with those of the tagged version, with open or pinned versions for the `host` requirements.
- * If possible, configure tests within the conda-forge build CI (e.g. `imports: {{ cookiecutter.project_slug }}`, `commands: pytest {{ cookiecutter.project_slug }}`).
+ * If possible, configure tests within the conda-forge build CI (e.g. `imports: {{ cookiecutter.project_slug }}`, `commands: pytest {{ cookiecutter.project_name }}`).
 
 Subsequent releases
 ^^^^^^^^^^^^^^^^^^^
@@ -106,11 +107,11 @@ With `docker` installed and running, begin by pulling the image::
 
     sudo docker pull quay.io/pypa/manylinux_2_24_x86_64
 
-From the {{ cookiecutter.project_slug }} source folder we can enter into the docker container, providing access to the `{{ cookiecutter.project_slug }}` source files by linking them to the running image::
+From the {{ cookiecutter.project_name }} source folder we can enter into the docker container, providing access to the `src/{{ cookiecutter.project_slug }}` source files by linking them to the running image::
 
    .. code-block:: console
 
-    sudo docker run --rm -ti -v $(pwd):/{{ cookiecutter.project_slug }} -w /{{ cookiecutter.project_slug }} quay.io/pypa/manylinux_2_24_x86_64 bash
+    sudo docker run --rm -ti -v $(pwd):/src/{{ cookiecutter.project_slug }} -w /src/{{ cookiecutter.project_slug }} quay.io/pypa/manylinux_2_24_x86_64 bash
 
 Finally, to build the wheel, we run it against the provided Python3.9 binary::
 
@@ -118,7 +119,7 @@ Finally, to build the wheel, we run it against the provided Python3.9 binary::
 
     /opt/python/cp39-cp39m/bin/python -m build --sdist --wheel
 
-This will then place two files in `{{ cookiecutter.project_slug }}/dist/` ("{{ cookiecutter.project_slug }}-1.2.3-py3-none-any.whl" and "{{ cookiecutter.project_slug }}-1.2.3.tar.gz").
+This will then place two files in `{{ cookiecutter.project_name }}/dist/` ("{{ cookiecutter.project_slug }}-1.2.3-py3-none-any.whl" and "{{ cookiecutter.project_slug }}-1.2.3.tar.gz").
 We can now leave our docker container (`exit`) and continue with uploading the files to PyPI::
 
    .. code-block:: console
