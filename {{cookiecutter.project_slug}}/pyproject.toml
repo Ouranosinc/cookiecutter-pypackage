@@ -105,9 +105,9 @@ all = ["{{ cookiecutter.project_name }}[dev]"]
 # "Homepage" = "https://{{ cookiecutter.project_name }}.readthedocs.io/"
 # "Changelog" = "https://{{ cookiecutter.project_name }}.readthedocs.io/en/stable/history.html"
 # "About Ouranos" = "https://ouranos.ca/en/"
-"Issue tracker" = "https://github.com/{{ cookiecutter.github_name }}/{{ cookiecutter.project_name }}/issues"
-"changelog" = "https://github.com/{{ cookiecutter.github_name }}/{{ cookiecutter.project_name }}/blob/main/CHANGELOG.rst"
-"homepage" = "https://github.com/{{ cookiecutter.github_name }}/{{ cookiecutter.project_name }}"
+"Issue tracker" = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}/issues"
+"changelog" = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}/blob/main/CHANGELOG.rst"
+"homepage" = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}"
 
 [tool]
 {%- if cookiecutter.use_black == 'y' %}
