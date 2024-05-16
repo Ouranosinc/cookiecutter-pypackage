@@ -49,7 +49,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
   # Dev tools and testing
-  "pip >=23.1.2",
+  "pip >=23.3.0",
   "bump-my-version >=0.18.3",
   "watchdog >=3.0.0",
   "flake8 >=6.1.0",
@@ -98,16 +98,16 @@ all = ["{{ cookiecutter.project_name | replace(" ", "-") }}[dev]"]
 {%- if cookiecutter.command_line_interface != "No command-line interface" %}
 
 [project.scripts]
-{{cookiecutter.project_slug}} = "{{cookiecutter.project_slug}}.cli:app"
+{{ cookiecutter.project_slug }} = "{{ cookiecutter.project_slug }}.cli:app"
 {%- endif %}
 
 [project.urls]
 # "Homepage" = "https://{{ cookiecutter.project_name }}.readthedocs.io/"
 # "Changelog" = "https://{{ cookiecutter.project_name }}.readthedocs.io/en/stable/history.html"
 # "About Ouranos" = "https://ouranos.ca/en/"
-"Issue tracker" = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}/issues"
-"changelog" = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}/blob/main/CHANGELOG.rst"
-"homepage" = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}"
+"Issue tracker" = "{{ cookiecutter.__gh_slug }}/issues"
+"changelog" = "{{ cookiecutter.__gh_slug }}/blob/main/CHANGELOG.rst"
+"homepage" = "{{ cookiecutter.__gh_slug }}"
 
 [tool]
 {%- if cookiecutter.use_black == 'y' %}

@@ -104,7 +104,7 @@ initialize-translations: clean-docs ## initialize translations, ignoring autodoc
 {%- endif %}
 
 autodoc: clean-docs ## create sphinx-apidoc files:
-	sphinx-apidoc -o docs/apidoc --private --module-first {{ cookiecutter.project_slug }}
+	sphinx-apidoc -o docs/apidoc --private --module-first src/{{ cookiecutter.project_slug }}
 
 linkcheck: autodoc ## run checks over all external links found throughout the documentation
 	$(MAKE) -C docs linkcheck

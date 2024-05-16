@@ -52,12 +52,12 @@ This package was created with Cookiecutter_ and the `Ouranosinc/cookiecutter-pyp
         :target: https://github.com/psf/black
         :alt: Python Black
 
-.. |build| image:: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}/actions/workflows/main.yml/badge.svg
-        :target: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}/actions
+.. |build| image:: {{ cookiecutter.__gh_slug }}/actions/workflows/main.yml/badge.svg
+        :target: {{ cookiecutter.__gh_slug }}/actions
         :alt: Build Status
 
-.. |coveralls| image:: https://coveralls.io/repos/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/badge.svg
-        :target: https://coveralls.io/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}
+.. |coveralls| image:: https://coveralls.io/repos/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}/badge.svg
+        :target: https://coveralls.io/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}
         :alt: Coveralls
 
 .. |docs| image:: https://readthedocs.org/projects/{{ cookiecutter.project_name | replace(" ", "-") }}/badge/?version=latest
@@ -67,7 +67,7 @@ This package was created with Cookiecutter_ and the `Ouranosinc/cookiecutter-pyp
 {%- if is_open_source %}
 
 .. |license| image:: https://img.shields.io/github/license/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}.svg
-        :target: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}/blob/main/LICENSE
+        :target: {{ cookiecutter.__gh_slug }}/blob/main/LICENSE
         :alt: License
 
 .. |ossf| image:: https://api.securityscorecards.dev/projects/github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}/badge

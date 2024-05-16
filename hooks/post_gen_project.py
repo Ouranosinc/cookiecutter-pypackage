@@ -58,6 +58,7 @@ if __name__ == "__main__":
         remove_folder("docs")
     else:
         create_folder("docs/apidoc")
+        create_folder("docs/_static")
         if "{{ cookiecutter.add_translations }}" == "y":
             create_folder("docs/locales")
 

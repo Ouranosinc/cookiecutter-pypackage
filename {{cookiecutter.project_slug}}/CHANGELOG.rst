@@ -20,7 +20,7 @@ Fixes
 `v{{ cookiecutter.version }} <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/tree/{{ cookiecutter.version }}>`_
 {{ '-' * ('`v' + cookiecutter.version + ' <https://github.com/' + cookiecutter.github_username + '/' + cookiecutter.project_slug + '/tree/' + cookiecutter.version + '>`_')|length }}
 
-Contributors: {{ cookiecutter.full_name }} `{{ cookiecutter.github_username }} <https://github.com/{{ cookiecutter.github_username }}>`_
+Contributors: {{ cookiecutter.full_name }} (:user:`{{ cookiecutter.github_username }}`)
 
 Changes
 ^^^^^^^

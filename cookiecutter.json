@@ -24,7 +24,7 @@
       "Not open source"
   ],
   "generated_with_cruft": "y",
-  "__gh_slug": "{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}",
+  "__gh_slug": "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name.replace(' ', '-') }}",
   "__prompts__": {
       "full_name": "Your full name",
       "email": "Your email address",
