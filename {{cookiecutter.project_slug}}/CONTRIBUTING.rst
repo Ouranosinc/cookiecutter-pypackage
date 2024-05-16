@@ -178,23 +178,23 @@ Tips
 
 To run a subset of tests:
 
-   .. code-block:: console
+.. code-block:: console
 
 {% if cookiecutter.use_pytest == 'y' %}
-        pytest tests.test_{{ cookiecutter.project_slug }}
+    pytest tests.test_{{ cookiecutter.project_slug }}
 {% else %}
-        python -m unittest tests.test_{{ cookiecutter.project_slug }}
+    python -m unittest tests.test_{{ cookiecutter.project_slug }}
 {%- endif %}
 
 To run specific code style checks:
 
-    .. code-block:: console
+.. code-block:: console
 
-        python -m black --check {{ cookiecutter.project_slug }} tests
-        python -m isort --check {{ cookiecutter.project_slug }} tests
-        python -m blackdoc --check {{ cookiecutter.project_slug }} docs
-        python -m ruff {{ cookiecutter.project_slug }} tests
-        python -m flake8 {{ cookiecutter.project_slug }} tests
+    python -m black --check {{ cookiecutter.project_slug }} tests
+    python -m isort --check {{ cookiecutter.project_slug }} tests
+    python -m blackdoc --check {{ cookiecutter.project_slug }} docs
+    python -m ruff {{ cookiecutter.project_slug }} tests
+    python -m flake8 {{ cookiecutter.project_slug }} tests
 
 To get ``black``, ``isort``, ``blackdoc``, ``ruff``, and ``flake8`` (with plugins ``flake8-alphabetize`` and ``flake8-rst-docstrings``) simply install them with `pip` {% if cookiecutter.use_conda == 'y' %}(or `conda`) {% endif %}into your environment.
 
