@@ -2,9 +2,9 @@ name: {{ cookiecutter.project_slug }}
 channels:
   - conda-forge
 dependencies:
-  - python >=3.9,<3.12
+  - python >=3.9,<3.13
   # Dev tools and testing
-  - pip >=23.1.2
+  - pip >=23.3.0
   - bump-my-version >=0.18.3
   - watchdog >=3.0.0
   - flake8 >=6.1.0
@@ -15,6 +15,8 @@ dependencies:
   - coveralls >=3.3.1
   {%- if cookiecutter.command_line_interface|lower == 'click' %}
   - click >=8.1.7
+  {%- elif cookiecutter.command_line_interface|lower == 'typer' %}
+  - typer >=0.12.3
   {%- endif %}
   {%- if cookiecutter.use_pytest == 'y' %}
   - pytest >=7.3.1

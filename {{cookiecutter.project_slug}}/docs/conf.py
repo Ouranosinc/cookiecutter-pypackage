@@ -53,8 +53,8 @@ autodoc_default_options = {
 }
 
 extlinks = {
-    "issue": ("https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/issues/%s", "GH/%s"),
-    "pull": ("https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/pull/%s", "PR/%s"),
+    "issue": ("{{ cookiecutter.__gh_slug }}/issues/%s", "GH/%s"),
+    "pull": ("{{ cookiecutter.__gh_slug }}/pull/%s", "PR/%s"),
     "user": ("https://github.com/%s", "@%s"),
 }
 

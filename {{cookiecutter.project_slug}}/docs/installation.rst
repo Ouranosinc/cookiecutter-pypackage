@@ -2,7 +2,6 @@
 Installation
 ============
 
-
 Stable release
 --------------
 
@@ -10,7 +9,7 @@ To install {{ cookiecutter.project_name }}, run this command in your terminal:
 
 .. code-block:: console
 
-    $ python -m pip install {{ cookiecutter.project_name }}
+    $ python -m pip install {{ cookiecutter.project_slug }}
 
 This is the preferred method to install {{ cookiecutter.project_name }}, as it will always install the most recent stable release.
 
@@ -24,26 +23,23 @@ you through the process.
 From sources
 ------------
 
-The sources for {{ cookiecutter.project_name }} can be downloaded from the `Github repo`_.
+The sources for {{ cookiecutter.project_name }} can be downloaded from the `Github repo <{{ cookiecutter.__gh_slug}}>`_.
 
 You can either clone the public repository:
 
 .. code-block:: console
 
-    $ git clone git@github.com:{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}
+    $ git clone git@github.com:{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(' ', '_') }}.git
 
-Or download the `tarball`_:
+Or download the `tarball <{{ cookiecutter.__gh_slug}}/tarball/main>`_:
 
 .. code-block:: console
 
-    $ curl -OJL https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}/tarball/main
+        curl -OJL {{ cookiecutter.__gh_slug}}/tarball/main
 
 Once you have a copy of the source, you can install it with:
 
 .. code-block:: console
 
-    $ python -m pip install .
+    python -m pip install .
 
-
-.. _Github repo: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}
-.. _tarball: https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}/tarball/main
