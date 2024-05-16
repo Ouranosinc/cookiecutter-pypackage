@@ -19,7 +19,7 @@ maintainers = [
 ]
 readme = {file = "README.rst", content-type = "text/x-rst"}
 requires-python = ">=3.8.0"
-keywords = ["{{ cookiecutter.project_slug }}"]
+keywords = ["{{ cookiecutter.project_name }}"]
 {%- if cookiecutter.open_source_license in license_classifiers %}
 license = {file = "LICENSE"}
 {%- endif %}
@@ -91,9 +91,9 @@ docs = [
   "ipykernel",
   "jupyter_client"
 ]
-all = ["{{ cookiecutter.project_slug }}[dev]", "{{ cookiecutter.project_slug }}[docs]"]
+all = ["{{ cookiecutter.project_name | replace(" ", "-") }}[dev]", "{{ cookiecutter.project_name | replace(" ", "-") }}[docs]"]
 {%- else %}
-all = ["{{ cookiecutter.project_slug }}[dev]"]
+all = ["{{ cookiecutter.project_name | replace(" ", "-") }}[dev]"]
 {%- endif %}
 {%- if cookiecutter.command_line_interface != "No command-line interface" %}
 
@@ -102,12 +102,12 @@ all = ["{{ cookiecutter.project_slug }}[dev]"]
 {%- endif %}
 
 [project.urls]
-# "Homepage" = "https://{{ cookiecutter.project_slug }}.readthedocs.io/"
-# "Changelog" = "https://{{ cookiecutter.project_slug }}.readthedocs.io/en/stable/history.html"
-# "About Ouranos" = "https://www.ouranos.ca/en/"
-"Issue tracker" = "https://github.com/{{ cookiecutter.__gh_slug }}/issues"
-"changelog" = "https://github.com/{{ cookiecutter.__gh_slug }}/blob/main/CHANGELOG.rst"
-"homepage" = "https://github.com/{{ cookiecutter.__gh_slug }}"
+# "Homepage" = "https://{{ cookiecutter.project_name }}.readthedocs.io/"
+# "Changelog" = "https://{{ cookiecutter.project_name }}.readthedocs.io/en/stable/history.html"
+# "About Ouranos" = "https://ouranos.ca/en/"
+"Issue tracker" = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}/issues"
+"changelog" = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}/blob/main/CHANGELOG.rst"
+"homepage" = "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name }}"
 
 [tool]
 {%- if cookiecutter.use_black == 'y' %}
@@ -198,9 +198,9 @@ include = [
   "docs/conf.py",
   "docs/make.bat",
   {%- endif %}
+  "src/{{ cookiecutter.project_slug }}",
   "tests/*.py",
-  "tox.ini",
-  "{{ cookiecutter.project_slug }}"
+  "tox.ini"
 ]
 exclude = [
   "*.py[co]",
