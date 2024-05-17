@@ -217,5 +217,5 @@ To get ``black``, ``isort``, ``blackdoc``, ``ruff``, and ``flake8`` (with plugin
 Code of Conduct
 ---------------
 
-Please note that this project is released with a `Contributor Code of Conduct <{{ cookiecutter.__gh_slug}}/blob/main/CODE_OF_CONDUCT.rst>`_.
+Please note that this project is released with a `Contributor Code of Conduct <{{ cookiecutter.__gh_slug}}/blob/main/CODE_OF_CONDUCT.md>`_.
 By participating in this project you agree to abide by its terms.
