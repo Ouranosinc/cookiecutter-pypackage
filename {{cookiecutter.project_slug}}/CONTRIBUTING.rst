@@ -80,7 +80,7 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_name }}`` fo
 
         git clone git@github.com:your_name_here/{{ cookiecutter.project_name | replace(' ', '-') }}.git
 
-#. Install your local copy into a development environment.{% if cookiecutter.use_conda == 'y' -%}
+#. Install your local copy into a development environment. {% if cookiecutter.use_conda == 'y' -%}
 
   You can create a new Anaconda development environment with:
 
