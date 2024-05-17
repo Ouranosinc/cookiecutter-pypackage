@@ -9,9 +9,9 @@ dependencies:
   - watchdog >=3.0.0
   - flake8 >=6.1.0
   - flake8-rst-docstrings >=0.3.0
-  - flit
+  - flit >=3.9.0
   - tox >=4.5.1
-  - coverage >=6.2.0,<7.0.0
+  - coverage >=7.0.0
   - coveralls >=3.3.1
   {%- if cookiecutter.command_line_interface|lower == 'click' %}
   - click >=8.1.7

@@ -42,8 +42,11 @@ classifiers = [
 ]
 dynamic = ["description", "version"]
 dependencies = [
-  {% if cookiecutter.command_line_interface|lower == 'click' %}"click >=8.1.7"
-  {% elif cookiecutter.command_line_interface|lower == 'typer' %}"typer >=0.12.3"{%- endif %}
+  {%- if cookiecutter.command_line_interface|lower == 'click' %}
+  "click >=8.1.7"
+  {% elif cookiecutter.command_line_interface|lower == 'typer' %}
+  "typer >=0.12.3"
+  {%- endif %}
 ]
 
 [project.optional-dependencies]
@@ -75,7 +78,7 @@ dev = [
 {%- if cookiecutter.make_docs == 'y' %}
 docs = [
   # Documentation and examples
-  "sphinx",
+  "sphinx >=7.0.0",
   {%- if cookiecutter.command_line_interface|lower == 'click' %}
   "sphinx-click",
   {%- endif %}
