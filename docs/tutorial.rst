@@ -118,8 +118,6 @@ This will:
 * Encrypt your PyPI password in your Travis config.
 * Activate automated deployment on PyPI when you push a new tag to master branch.
 
-See :ref:`travis-pypi-setup` for more information.
-
 .. _`Travis CI com`: https://travis-ci.com/
 
 

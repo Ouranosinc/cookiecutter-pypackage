@@ -337,7 +337,7 @@ check-typed-exception = true
 known-first-party = ["{{ cookiecutter.project_slug }}"]
 case-sensitive = true
 detect-same-package = false
-lines-after-imports = 1
+lines-after-imports = 2
 no-lines-before = ["future", "standard-library"]
 
 [tool.ruff.lint.mccabe]
