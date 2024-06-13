@@ -49,8 +49,8 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
   # Dev tools and testing
-  "pip >=23.3.0",
-  "bump-my-version >=0.18.3",
+  "pip >=24.0",
+  "bump-my-version >=0.22.0",
   "watchdog >=3.0.0",
   "flake8 >=7.0.0",
   "flake8-rst-docstrings >=0.3.0",
@@ -133,6 +133,33 @@ serialize = [
   "{major}.{minor}.{patch}-{release}.{build}",
   "{major}.{minor}.{patch}"
 ]
+
+[[tool.bumpversion.files]]
+filename = "CHANGELOG.rst"
+include_bumps = ["release"]
+search = """\
+`Unreleased <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}>`_ (latest)
+{{ '-' * ('`Unreleased <https://github.com/' + cookiecutter.github_username + '/' + cookiecutter.project_slug + '>`_ (latest)')|length }}
+"""
+replace = """\
+`Unreleased <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}>`_ (latest)
+{{ '-' * ('`Unreleased <https://github.com/' + cookiecutter.github_username + '/' + cookiecutter.project_slug + '>`_ (latest)')|length }}
+
+Contributors:
+
+Changes
+^^^^^^^
+* No change.
+
+Fixes
+^^^^^
+* No change.
+
+.. _changes_{new_version}:
+
+`v{new_version} <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/tree/{new_version}>`_
+{{ '-' * ('`v' + cookiecutter.version + ' <https://github.com/' + cookiecutter.github_username + '/' + cookiecutter.project_slug + '/tree/' + cookiecutter.version + '>`_')|length }}
+"""
 
 [[tool.bumpversion.files]]
 filename = "src/{{ cookiecutter.project_slug }}/__init__.py"
