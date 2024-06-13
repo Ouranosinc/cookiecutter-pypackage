@@ -101,7 +101,7 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_name }}`` fo
         make dev
   {%- endif %}
 
-  This installs ``{{ cookiecutter.project_slug }}`` in an "editable" state, meaning that changes to the code are immediately seen by the environment. To ensure a consistent coding style, ``make dev`` also installs the ``pre-commit`` hooks to your local clone.
+  This installs ``{{ cookiecutter.project_slug }}`` in an "editable" state, meaning that changes to the code are immediately seen by the environment. To ensure a consistent coding style, `make dev` also installs the ``pre-commit`` hooks to your local clone.
 
   On commit, ``pre-commit`` will check that{% if cookiecutter.use_black == 'y' %} ``black``, ``blackdoc``, ``isort``,{% endif %} ``flake8``, and ``ruff`` checks are passing, perform automatic fixes if possible, and warn of violations that require intervention. If your commit fails the checks initially, simply fix the errors, re-add the files, and re-commit.
 
@@ -111,7 +111,7 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_name }}`` fo
 
         pre-commit run -a
 
-  If you want to skip the ``pre-commit`` hooks temporarily, you can pass the ``--no-verify`` flag to `git commit`.
+  If you want to skip the ``pre-commit`` hooks temporarily, you can pass the `--no-verify` flag to `git commit`.
 
 #. Create a branch for local development:
 
@@ -154,9 +154,9 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_name }}`` fo
         # To simply test that the docs pass build checks
         python -m tox -e docs
 
-#. Once your Pull Request has been accepted and merged to the ``main`` branch, several automated workflows will be triggered:
+#. Once your Pull Request has been accepted and merged to the `main` branch, several automated workflows will be triggered:
 
-    - The ``bump-version.yml`` workflow will automatically bump the patch version when pull requests are pushed to the ``main`` branch on GitHub. **It is not recommended to manually bump the version in your branch when merging (non-release) pull requests (this will cause the version to be bumped twice).**
+    - The ``bump-version.yml`` workflow will automatically bump the patch version when pull requests are pushed to the `main` branch on GitHub. **It is not recommended to manually bump the version in your branch when merging (non-release) pull requests (this will cause the version to be bumped twice).**
     - `ReadTheDocs` will automatically build the documentation and publish it to the `latest` branch of `{{ cookiecutter.project_slug }}` documentation website.
     - If your branch is not a fork (ie: you are a maintainer), your branch will be automatically deleted.
 
@@ -167,7 +167,7 @@ Pull Request Guidelines
 
 Before you submit a pull request, check that it meets these guidelines:
 
-#. The pull request should include tests and should aim to provide `code coverage <https://en.wikipedia.org/wiki/Code_coverage>`_ for all new lines of code. You can use the ``--cov-report html --cov {{ cookiecutter.project_slug }}`` flags during the call to ``pytest`` to generate an HTML report and analyse the current test coverage.
+#. The pull request should include tests and should aim to provide `code coverage <https://en.wikipedia.org/wiki/Code_coverage>`_ for all new lines of code. You can use the `--cov-report html --cov {{ cookiecutter.project_slug }}` flags during the call to ``pytest`` to generate an HTML report and analyse the current test coverage.
 
 #. If the pull request adds functionality, the docs should also be updated. Put your new functionality into a function with a docstring, and add the feature to the list in ``README.rst``.
 
@@ -180,10 +180,26 @@ To run a subset of tests:
 
 .. code-block:: console
 
-{% if cookiecutter.use_pytest == 'y' %}
-    python -m pytest tests.test_{{ cookiecutter.project_slug }}
-{% else %}
+    {% if cookiecutter.use_pytest == 'y' -%}
+    python -m pytest tests/test_{{ cookiecutter.project_slug }}.py
+    {%- else -%}
     python -m unittest tests.test_{{ cookiecutter.project_slug }}
+    {%- endif %}
+
+You can also directly call a specific test class or test function using:
+
+.. code-block:: console
+
+    {% if cookiecutter.use_pytest == 'y' -%}
+    python -m pytest tests/test_{{ cookiecutter.project_slug }}.py::TestClassName::test_function_name
+    {%- else -%}
+    python -m unittest tests.test_{{ cookiecutter.project_slug }}.TestClassName.test_function_name
+    {%- endif %}
+
+For more information on running tests, see the {% if cookiecutter.use_pytest == 'y' -%}
+`pytest documentation <https://docs.pytest.org/en/latest/usage.html>`_.
+{%- else -%}
+`unittest documentation <https://docs.python.org/3/library/unittest.html>`_.
 {%- endif %}
 
 To run specific code style checks:
@@ -193,13 +209,13 @@ To run specific code style checks:
     python -m black --check {{ cookiecutter.project_slug }} tests
     python -m isort --check {{ cookiecutter.project_slug }} tests
     python -m blackdoc --check {{ cookiecutter.project_slug }} docs
-    python -m ruff {{ cookiecutter.project_slug }} tests
+    python -m ruff check {{ cookiecutter.project_slug }} tests
     python -m flake8 {{ cookiecutter.project_slug }} tests
 
-To get ``black``, ``isort``, ``blackdoc``, ``ruff``, and ``flake8`` (with plugins ``flake8-alphabetize`` and ``flake8-rst-docstrings``) simply install them with `pip` {% if cookiecutter.use_conda == 'y' %}(or `conda`) {% endif %}into your environment.
+To get ``black``, ``isort``, ``blackdoc``, ``ruff``, and ``flake8`` (with plugins ``flake8-alphabetize`` and ``flake8-rst-docstrings``) simply install them with ``pip`` {% if cookiecutter.use_conda == 'y' %}(or ``conda``) {% endif %}into your environment.
 
 Code of Conduct
 ---------------
 
-Please note that this project is released with a `Contributor Code of Conduct <{{ cookiecutter.__gh_slug}}/blob/main/CODE_OF_CONDUCT.rst>`_.
+Please note that this project is released with a `Contributor Code of Conduct <{{ cookiecutter.__gh_slug}}/blob/main/CODE_OF_CONDUCT.md>`_.
 By participating in this project you agree to abide by its terms.
