@@ -188,8 +188,6 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_name }}`` fo
         git pull origin main
     See the previous step for more information on resolving conflicts.
 
-#. To prevent unnecessary testing of branches that are not ready for review, the ``{{ cookiecutter.project_name }}`` repository is set up to run tests only when a Pull Request has been "approved" by a maintainer. Similarly, the notebooks within documentation will only be rebuilt when the Pull Request is "approved", or if the Pull Request makes explicit changes to them. As such, additional changes to the Pull Request might be required after the Pull Request is approved to ensure that the tests pass and the documentation can be built.
-
 #. Once your Pull Request has been accepted and merged to the `main` branch, several automated workflows will be triggered:
 
     - The ``bump-version.yml`` workflow will automatically bump the patch version when pull requests are pushed to the `main` branch on GitHub. **It is not recommended to manually bump the version in your branch when merging (non-release) pull requests (this will cause the version to be bumped twice).**
