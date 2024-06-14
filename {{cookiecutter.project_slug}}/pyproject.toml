@@ -52,14 +52,13 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
   # Dev tools and testing
-  "pip >=23.3.0",
-  "bump-my-version >=0.18.3",
+  "pip >=24.0",
+  "bump-my-version >=0.23.0",
   "watchdog >=3.0.0",
-  "flake8 >=6.1.0",
-  "flake8-alphabetize >=0.0.21",
+  "flake8 >=7.0.0",
   "flake8-rst-docstrings >=0.3.0",
   "flit >=3.9.0",
-  "tox >=4.5.1",
+  "tox >=4.15.1",
   "coverage >=7.0.0",
   "coveralls >=3.3.1",
   "mypy",
@@ -72,7 +71,7 @@ dev = [
   "blackdoc ==0.3.9",
   "isort ==5.13.2",
   {%- endif %}
-  "ruff >=0.3.0",
+  "ruff >=0.4.0",
   "pre-commit >=3.3.2"
 ]
 {%- if cookiecutter.make_docs == 'y' %}
@@ -137,6 +136,33 @@ serialize = [
   "{major}.{minor}.{patch}-{release}.{build}",
   "{major}.{minor}.{patch}"
 ]
+
+[[tool.bumpversion.files]]
+filename = "CHANGELOG.rst"
+include_bumps = ["release"]
+search = """\
+`Unreleased <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}>`_ (latest)
+{{ '-' * ('`Unreleased <https://github.com/' + cookiecutter.github_username + '/' + cookiecutter.project_slug + '>`_ (latest)')|length }}
+"""
+replace = """\
+`Unreleased <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}>`_ (latest)
+{{ '-' * ('`Unreleased <https://github.com/' + cookiecutter.github_username + '/' + cookiecutter.project_slug + '>`_ (latest)')|length }}
+
+Contributors:
+
+Changes
+^^^^^^^
+* No change.
+
+Fixes
+^^^^^
+* No change.
+
+.. _changes_{new_version}:
+
+`v{new_version} <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/tree/{new_version}>`_
+{{ '-' * ('`v' + cookiecutter.version + ' <https://github.com/' + cookiecutter.github_username + '/' + cookiecutter.project_slug + '/tree/' + cookiecutter.version + '>`_')|length }}
+"""
 
 [[tool.bumpversion.files]]
 filename = "src/{{ cookiecutter.project_slug }}/__init__.py"
@@ -279,17 +305,29 @@ exclude = [
 line-ending = "auto"
 
 [tool.ruff.lint]
-ignore = [
-  "D205",
-  "D400",
-  "D401"
+extend-select = [
+  "RUF022" # unsorted-dunder-all
 ]
+ignore = [
+  "D205", # blank-line-after-summary
+  "D400", # ends-in-period
+  "D401" # non-imperative-mood
+]
+preview = true
 select = [
-  "C9",
-  "D",
-  "E",
-  "F",
-  "W"
+  "BLE", # blind-except
+  "C90", # mccabe-complexity
+  "COM", # commas
+  "D", # docstrings
+  "E", # pycodestyle errors
+  "FLY002", # static-join-to-fstring
+  "G", # logging-format
+  "PERF", # iterator performance
+  "PTH", # pathlib
+  "RUF010", # explicit-f-string-type-conversion
+  "RUF013", # implicit-optional
+  "S", # bandit
+  "W" # pycodestyle warnings
 ]
 
 [tool.ruff.lint.flake8-bandit]
@@ -299,7 +337,7 @@ check-typed-exception = true
 known-first-party = ["{{ cookiecutter.project_slug }}"]
 case-sensitive = true
 detect-same-package = false
-lines-after-imports = 1
+lines-after-imports = 2
 no-lines-before = ["future", "standard-library"]
 
 [tool.ruff.lint.mccabe]
@@ -308,6 +346,7 @@ max-complexity = 15
 [tool.ruff.lint.per-file-ignores]
 "docs/**" = ["E402"]
 "src/{{ cookiecutter.project_slug }}/**/__init__.py" = ["F401", "F403"]
+"tests/**" = ["S101"]
 
 [tool.ruff.lint.pycodestyle]
 max-doc-length = 180

@@ -88,7 +88,10 @@ def test_bake_with_defaults(cookies):
         assert "environment-dev.yml" in found_toplevel_files
         assert "pyproject.toml" in found_toplevel_files
         assert "src" in found_toplevel_files
-        assert "python_boilerplate" in next(result.project_path.joinpath("src").iterdir()).name
+        assert (
+            "python_boilerplate"
+            in next(result.project_path.joinpath("src").iterdir()).name
+        )
         assert "tests" in found_toplevel_files
         assert "tox.ini" in found_toplevel_files
 
@@ -301,7 +304,7 @@ def test_bake_with_no_console_script(cookies):
     assert "cli.py" not in found_project_files
 
     pyproject_path = os.path.join(project_path, "pyproject.toml")
-    with open(pyproject_path, "r") as setup_file:
+    with open(pyproject_path) as setup_file:
         assert "[project.scripts]" not in setup_file.read()
 
 
@@ -316,7 +319,7 @@ def test_bake_with_console_options_script_files(cookies, option):
     assert "cli.py" in found_project_files
 
     pyproject_path = os.path.join(project_path, "pyproject.toml")
-    with open(pyproject_path, "r") as setup_file:
+    with open(pyproject_path) as setup_file:
         assert "[project.scripts]" in setup_file.read()
 
 

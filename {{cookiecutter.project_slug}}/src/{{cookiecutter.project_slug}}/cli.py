@@ -3,6 +3,7 @@
 import argparse
 import sys
 
+
 def main():
     """Console script for {{cookiecutter.project_slug}}."""
     parser = argparse.ArgumentParser()
@@ -10,8 +11,7 @@ def main():
     args = parser.parse_args()
 
     print("Arguments: " + str(args._))
-    print("Replace this message by putting your code into "
-          "{{cookiecutter.project_slug}}.cli.main")
+    print("Replace this message by putting your code into {{cookiecutter.project_slug}}.cli.main")
     return 0
 
 
@@ -28,7 +28,7 @@ import click
 def main(args=None):
     """Console script for {{cookiecutter.project_slug}}."""
     click.echo(
-        "Replace this message by putting your code into {{cookiecutter.project_slug}}.cli.main"
+        "Replace this message by putting your code into {{cookiecutter.project_slug}}.cli.main",
     )
     click.echo("See click documentation at https://click.palletsprojects.com/")
     return 0
@@ -47,7 +47,7 @@ console = Console()
 def main():
     """Console script for {{cookiecutter.project_slug}}."""
     console.print(
-        "Replace this message by putting your code into {{cookiecutter.project_slug}}.cli.main"
+        "Replace this message by putting your code into {{cookiecutter.project_slug}}.cli.main",
     )
     console.print("See Typer documentation at https://typer.tiangolo.com/")
 

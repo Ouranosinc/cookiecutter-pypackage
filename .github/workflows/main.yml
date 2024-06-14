@@ -25,6 +25,10 @@ jobs:
           - tox-env: pypy310
             python-version: "pypy3.10"
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@17d0e2bd7d51742c71671bd19fa12bdc9d40a3d6 # v2.8.1
+        with:
+          egress-policy: audit
       - name: Cancel previous runs
         uses: styfle/cancel-workflow-action@0.12.1
         with:
