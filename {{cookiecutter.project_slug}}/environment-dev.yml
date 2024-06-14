@@ -5,7 +5,7 @@ dependencies:
   - python >=3.9,<3.13
   # Dev tools and testing
   - pip >=24.0
-  - bump-my-version >=0.22.0
+  - bump-my-version >=0.23.0
   - watchdog >=3.0.0
   - flake8 >=7.0.0
   - flake8-rst-docstrings >=0.3.0
