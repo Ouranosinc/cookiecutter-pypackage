@@ -178,7 +178,7 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_name }}`` fo
     If you have merge conflicts, you might need to replace `git pull` with `git merge` and resolve the conflicts manually.
     Resolving conflicts from the command line can be tricky. If you are not comfortable with this, you can ignore the last command and instead use a GUI like PyCharm or Visual Studio Code to merge the remote changes and resolve the conflicts.
 
-#. Before merging, your Pull Request will need to be based on the `main` branch of the `xhydro` repository. If your branch is not up-to-date with the `main` branch, you can perform similar steps as above to update your branch:
+#. Before merging, your Pull Request will need to be based on the `main` branch of the {{ cookiecutter.project_name }} repository. If your branch is not up-to-date with the `main` branch, you can perform similar steps as above to update your branch:
 
     .. code-block:: console
         git checkout name-of-your-bugfix-or-feature
