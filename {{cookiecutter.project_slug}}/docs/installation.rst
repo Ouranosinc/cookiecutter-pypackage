@@ -76,6 +76,7 @@ The sources for {{ cookiecutter.project_name }} can be downloaded from the `Gith
 #. When new changes are made to the `Github repo`_, if using a clone, you can update your local copy using the following commands from the root of the repository:
 
     .. code-block:: console
+
         git fetch
         git checkout main
         git pull origin main
@@ -83,6 +84,7 @@ The sources for {{ cookiecutter.project_name }} can be downloaded from the `Gith
 
     ..
         .. code-block:: console
+
             git fetch
             git checkout main
             git pull origin main
