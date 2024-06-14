@@ -75,13 +75,13 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_name }}`` fo
 
 #. First, clone the ``xhydro`` repo locally.
 
-    * If you are not an ``{{ cookiecutter.project_name }}`` collaborator, first fork the ``{{ cookiecutter.project_name }}`` repo on GitHub, then clone your fork locally.
+    * If you are not a ``{{ cookiecutter.project_name }}`` collaborator, first fork the ``{{ cookiecutter.project_name }}`` repo on GitHub, then clone your fork locally.
 
         .. code-block:: console
 
             git clone git@github.com:your_name_here/{{ cookiecutter.project_name | replace(' ', '-') }}.git
 
-    * If you are an ``{{ cookiecutter.project_name }}`` collaborator, clone the ``{{ cookiecutter.project_name }}`` repo directly.
+    * If you are a ``{{ cookiecutter.project_name }}`` collaborator, clone the ``{{ cookiecutter.project_name }}`` repo directly.
 
         .. code-block:: console
 
