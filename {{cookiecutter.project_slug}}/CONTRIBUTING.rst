@@ -73,25 +73,32 @@ Get Started!
 
 Ready to contribute? Here's how to set up ``{{ cookiecutter.project_name }}`` for local development.
 
-#. Fork the ``{{ cookiecutter.project_name }}`` repo on GitHub.
-#. Clone your fork locally:
+#. First, clone the ``xhydro`` repo locally.
 
-    .. code-block:: console
+    * If you are not an ``{{ cookiecutter.project_name }}`` collaborator, first fork the ``{{ cookiecutter.project_name }}`` repo on GitHub, then clone your fork locally.
 
-        git clone git@github.com:your_name_here/{{ cookiecutter.project_name | replace(' ', '-') }}.git
+        .. code-block:: console
+
+            git clone git@github.com:your_name_here/{{ cookiecutter.project_name | replace(' ', '-') }}.git
+
+    * If you are an ``{{ cookiecutter.project_name }}`` collaborator, clone the ``{{ cookiecutter.project_name }}`` repo directly.
+
+        .. code-block:: console
+
+            git clone git@github.com:``{{ cookiecutter.github_username }}``/{{ cookiecutter.project_name | replace(' ', '-') }}.git
 
 #. Install your local copy into a development environment. {% if cookiecutter.use_conda == 'y' -%}
 
-  You can create a new Anaconda development environment with:
+    You can create a new Anaconda development environment with:
 
     .. code-block:: console
 
         conda env create -f environment-dev.yml
         conda activate {{ cookiecutter.project_slug }}
         make dev
-  {%- else -%}
+    {%- else -%}
 
-  Using ``virtualenv`` (``virtualenvwrapper``), you can create a new development environment with:
+    Using ``virtualenv`` (``virtualenvwrapper``), you can create a new development environment with:
 
     .. code-block:: console
 
@@ -99,19 +106,26 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_name }}`` fo
         mkvirtualenv {{ cookiecutter.project_slug }}
         cd {{ cookiecutter.project_slug }}/
         make dev
-  {%- endif %}
+    {%- endif %}
 
-  This installs ``{{ cookiecutter.project_slug }}`` in an "editable" state, meaning that changes to the code are immediately seen by the environment. To ensure a consistent coding style, `make dev` also installs the ``pre-commit`` hooks to your local clone.
+    If you are on Windows, replace the ``make dev`` command with the following:
 
-  On commit, ``pre-commit`` will check that{% if cookiecutter.use_black == 'y' %} ``black``, ``blackdoc``, ``isort``,{% endif %} ``flake8``, and ``ruff`` checks are passing, perform automatic fixes if possible, and warn of violations that require intervention. If your commit fails the checks initially, simply fix the errors, re-add the files, and re-commit.
+    .. code-block:: console
 
-  You can also run the hooks manually with:
+        python -m pip install -e .[dev]
+        pre-commit install
+
+    This installs ``{{ cookiecutter.project_slug }}`` in an "editable" state, meaning that changes to the code are immediately seen by the environment. To ensure a consistent coding style, `make dev` also installs the ``pre-commit`` hooks to your local clone.
+
+    On commit, ``pre-commit`` will check that{% if cookiecutter.use_black == 'y' %} ``black``, ``blackdoc``, ``isort``,{% endif %} ``flake8``, and ``ruff`` checks are passing, perform automatic fixes if possible, and warn of violations that require intervention. If your commit fails the checks initially, simply fix the errors, re-add the files, and re-commit.
+
+    You can also run the hooks manually with:
 
     .. code-block:: console
 
         pre-commit run -a
 
-  If you want to skip the ``pre-commit`` hooks temporarily, you can pass the `--no-verify` flag to `git commit`.
+    If you want to skip the ``pre-commit`` hooks temporarily, you can pass the `--no-verify` flag to `git commit`.
 
 #. Create a branch for local development:
 
@@ -119,7 +133,7 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_name }}`` fo
 
         git checkout -b name-of-your-bugfix-or-feature
 
-  Now you can make your changes locally.
+    Now you can make your changes locally.
 
 #. When you're done making changes, we **strongly** suggest running the tests in your environment or with the help of ``tox``:
 
@@ -138,7 +152,7 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_name }}`` fo
         git commit -m "Your detailed description of your changes."
         git push origin name-of-your-bugfix-or-feature
 
-    If ``pre-commit`` hooks fail, try re-committing your changes (or, if need be, you can skip them with `git commit --no-verify`).
+    If ``pre-commit`` hooks fail, try fixing the issues, re-staging the files to be committed, and re-committing your changes (or, if need be, you can skip them with `git commit --no-verify`).
 
 #. Submit a `Pull Request <https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request>`_ through the GitHub website.
 
@@ -154,13 +168,33 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_name }}`` fo
         # To simply test that the docs pass build checks
         python -m tox -e docs
 
+#. If changes to your branch are made on GitHub, you can update your local branch with:
+
+    .. code-block:: console
+        git checkout name-of-your-bugfix-or-feature
+        git fetch
+        git pull origin name-of-your-bugfix-or-feature
+
+    If you have merge conflicts, you might need to replace `git pull` with `git merge` and resolve the conflicts manually.
+    Resolving conflicts from the command line can be tricky. If you are not comfortable with this, you can ignore the last command and instead use a GUI like PyCharm or Visual Studio Code to merge the remote changes and resolve the conflicts.
+
+#. Before merging, your Pull Request will need to be based on the `main` branch of the `xhydro` repository. If your branch is not up-to-date with the `main` branch, you can perform similar steps as above to update your branch:
+
+    .. code-block:: console
+        git checkout name-of-your-bugfix-or-feature
+        git fetch
+        git pull origin main
+    See the previous step for more information on resolving conflicts.
+
+#. To prevent unnecessary testing of branches that are not ready for review, the `xhydro` repository is set up to run tests only when a Pull Request has been "approved" by a maintainer. Similarly, the notebooks within documentation will only be rebuilt when the Pull Request is "approved", or if the Pull Request makes explicit changes to them. As such, additional changes to the Pull Request might be required after the Pull Request is approved to ensure that the tests pass and the documentation can be built.
+
 #. Once your Pull Request has been accepted and merged to the `main` branch, several automated workflows will be triggered:
 
     - The ``bump-version.yml`` workflow will automatically bump the patch version when pull requests are pushed to the `main` branch on GitHub. **It is not recommended to manually bump the version in your branch when merging (non-release) pull requests (this will cause the version to be bumped twice).**
     - `ReadTheDocs` will automatically build the documentation and publish it to the `latest` branch of `{{ cookiecutter.project_slug }}` documentation website.
     - If your branch is not a fork (ie: you are a maintainer), your branch will be automatically deleted.
 
-    You will have contributed your first changes to ``{{ cookiecutter.project_slug }}``!
+    You will have contributed to ``{{ cookiecutter.project_slug }}``!
 
 Pull Request Guidelines
 -----------------------
@@ -169,9 +203,11 @@ Before you submit a pull request, check that it meets these guidelines:
 
 #. The pull request should include tests and should aim to provide `code coverage <https://en.wikipedia.org/wiki/Code_coverage>`_ for all new lines of code. You can use the `--cov-report html --cov {{ cookiecutter.project_slug }}` flags during the call to ``pytest`` to generate an HTML report and analyse the current test coverage.
 
-#. If the pull request adds functionality, the docs should also be updated. Put your new functionality into a function with a docstring, and add the feature to the list in ``README.rst``.
+#. All functions should be documented with `docstrings` following the `numpydoc <https://numpydoc.readthedocs.io/en/latest/format.html>`_ format.
 
-#. The pull request should work for Python 3.8, 3.9, 3.10, 3.11, 3.12 and PyPy. Check that the tests pass for all supported Python versions.
+#. If the pull request adds functionality, either update the documentation or create a new notebook that demonstrates the feature. Library-defining features should also be listed in ``README.rst``.
+
+#. The pull request should work for all currently supported Python versions. Check the `pyproject.toml` or `tox.ini` files for the list of supported versions.
 
 Tips
 ----

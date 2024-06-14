@@ -24,20 +24,21 @@ From sources
 
 The sources for {{ cookiecutter.project_name }} can be downloaded from the `Github repo <{{ cookiecutter.__gh_slug}}>`_.
 
-You can either clone the public repository:
+#. Download the source code from the `Github repo`_ using one of the following methods:
 
-.. code-block:: console
+    * Clone the public repository:
+        .. code-block:: console
 
-    git clone git@github.com:{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(' ', '_') }}.git
+            git clone git@github.com:{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(' ', '_') }}.git
 
-Or download the `tarball <{{ cookiecutter.__gh_slug}}/tarball/main>`_:
+    * Download the `tarball <{{ cookiecutter.__gh_slug}}/tarball/main>`_:
 
-.. code-block:: console
+        .. code-block:: console
 
-    curl -OJL {{ cookiecutter.__gh_slug}}/tarball/main
+            curl -OJL {{ cookiecutter.__gh_slug}}/tarball/main
 
-Once you have a copy of the source, you can install it with:
+#. Once you have a copy of the source, you can install it with:
 
-.. code-block:: console
+    .. code-block:: console
 
-    python -m pip install .
+        python -m pip install .
