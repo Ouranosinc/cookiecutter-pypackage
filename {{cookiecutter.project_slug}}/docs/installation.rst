@@ -27,6 +27,7 @@ The sources for {{ cookiecutter.project_name }} can be downloaded from the `Gith
 #. Download the source code from the `Github repo`_ using one of the following methods:
 
     * Clone the public repository:
+
         .. code-block:: console
 
             git clone git@github.com:{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(' ', '_') }}.git

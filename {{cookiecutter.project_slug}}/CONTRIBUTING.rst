@@ -73,7 +73,7 @@ Get Started!
 
 Ready to contribute? Here's how to set up ``{{ cookiecutter.project_name }}`` for local development.
 
-#. First, clone the ``xhydro`` repo locally.
+#. First, clone the ``{{ cookiecutter.project_name }}`` repo locally.
 
     * If you are not a ``{{ cookiecutter.project_name }}`` collaborator, first fork the ``{{ cookiecutter.project_name }}`` repo on GitHub, then clone your fork locally.
 
@@ -171,6 +171,7 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_name }}`` fo
 #. If changes to your branch are made on GitHub, you can update your local branch with:
 
     .. code-block:: console
+    
         git checkout name-of-your-bugfix-or-feature
         git fetch
         git pull origin name-of-your-bugfix-or-feature
@@ -178,15 +179,16 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_name }}`` fo
     If you have merge conflicts, you might need to replace `git pull` with `git merge` and resolve the conflicts manually.
     Resolving conflicts from the command line can be tricky. If you are not comfortable with this, you can ignore the last command and instead use a GUI like PyCharm or Visual Studio Code to merge the remote changes and resolve the conflicts.
 
-#. Before merging, your Pull Request will need to be based on the `main` branch of the {{ cookiecutter.project_name }} repository. If your branch is not up-to-date with the `main` branch, you can perform similar steps as above to update your branch:
+#. Before merging, your Pull Request will need to be based on the `main` branch of the ``{{ cookiecutter.project_name }}`` repository. If your branch is not up-to-date with the `main` branch, you can perform similar steps as above to update your branch:
 
     .. code-block:: console
+    
         git checkout name-of-your-bugfix-or-feature
         git fetch
         git pull origin main
     See the previous step for more information on resolving conflicts.
 
-#. To prevent unnecessary testing of branches that are not ready for review, the {{ cookiecutter.project_name }} repository is set up to run tests only when a Pull Request has been "approved" by a maintainer. Similarly, the notebooks within documentation will only be rebuilt when the Pull Request is "approved", or if the Pull Request makes explicit changes to them. As such, additional changes to the Pull Request might be required after the Pull Request is approved to ensure that the tests pass and the documentation can be built.
+#. To prevent unnecessary testing of branches that are not ready for review, the ``{{ cookiecutter.project_name }}`` repository is set up to run tests only when a Pull Request has been "approved" by a maintainer. Similarly, the notebooks within documentation will only be rebuilt when the Pull Request is "approved", or if the Pull Request makes explicit changes to them. As such, additional changes to the Pull Request might be required after the Pull Request is approved to ensure that the tests pass and the documentation can be built.
 
 #. Once your Pull Request has been accepted and merged to the `main` branch, several automated workflows will be triggered:
 
