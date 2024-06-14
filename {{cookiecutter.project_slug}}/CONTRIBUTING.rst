@@ -94,7 +94,7 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_name }}`` fo
     .. code-block:: console
 
         conda env create -f environment-dev.yml
-        conda activate {{ cookiecutter.project_slug }}
+        conda activate {{ cookiecutter.project_slug }}-dev
         make dev
     {%- else -%}
 
@@ -171,7 +171,7 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_name }}`` fo
 #. If changes to your branch are made on GitHub, you can update your local branch with:
 
     .. code-block:: console
-    
+
         git checkout name-of-your-bugfix-or-feature
         git fetch
         git pull origin name-of-your-bugfix-or-feature
@@ -182,7 +182,7 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_name }}`` fo
 #. Before merging, your Pull Request will need to be based on the `main` branch of the ``{{ cookiecutter.project_name }}`` repository. If your branch is not up-to-date with the `main` branch, you can perform similar steps as above to update your branch:
 
     .. code-block:: console
-    
+
         git checkout name-of-your-bugfix-or-feature
         git fetch
         git pull origin main
