@@ -44,8 +44,7 @@ If you are proposing a feature:
 
 * Explain in detail how it would work.
 * Keep the scope as narrow as possible, to make it easier to implement.
-* Remember that this is a volunteer-driven project, and that contributions
-  are welcome. :)
+* Remember that this is a volunteer-driven project, and that contributions are welcome. :)
 
 Get Started!
 ------------
@@ -85,7 +84,7 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_name }}`` fo
 
         .. code-block:: console
 
-            git clone git@github.com:``{{ cookiecutter.github_username }}``/{{ cookiecutter.project_name | replace(' ', '-') }}.git
+            git clone git@github.com:{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(' ', '-') }}.git
 
 #. Install your local copy into a development environment. {% if cookiecutter.use_conda == 'y' -%}
 
@@ -248,7 +247,7 @@ To run specific code style checks:
     python -m ruff check {{ cookiecutter.project_slug }} tests
     python -m flake8 {{ cookiecutter.project_slug }} tests
 
-To get ``black``, ``isort``, ``blackdoc``, ``ruff``, and ``flake8`` (with plugins ``flake8-alphabetize`` and ``flake8-rst-docstrings``) simply install them with ``pip`` {% if cookiecutter.use_conda == 'y' %}(or ``conda``) {% endif %}into your environment.
+To get ``black``, ``isort``, ``blackdoc``, ``ruff``, and ``flake8`` (with the ``flake8-rst-docstrings`` plugin) simply install them with ``pip`` {% if cookiecutter.use_conda == 'y' %}(or ``conda``) {% endif %}into your environment.
 
 Code of Conduct
 ---------------

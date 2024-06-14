@@ -3,7 +3,9 @@ Installation
 ============
 
 ..
-    We strongly recommend installing {{ cookiecutter.project_name }}, in an Anaconda Python environment. Futhermore, due to the complexity of some packages, the default dependency solver can take a long time to resolve the environment. If `mamba` is not already your default solver, consider running the following commands in order to speed up the process:
+    We strongly recommend installing {{ cookiecutter.project_name }} in an Anaconda Python environment.
+    Furthermore, due to the complexity of some packages, the default dependency solver can take a long time to resolve the environment.
+    If `mamba` is not already your default solver, consider running the following commands in order to speed up the process:
 
         .. code-block:: console
 
@@ -35,7 +37,7 @@ This is the preferred method to install {{ cookiecutter.project_name }}, as it w
 From sources
 ------------
 
-The sources for {{ cookiecutter.project_name }} can be downloaded from the `Github repo <{{ cookiecutter.__gh_slug}}>`_.
+The sources for {{ cookiecutter.project_name }} can be downloaded from the `Github repo`_.
 
 #. Download the source code from the `Github repo`_ using one of the following methods:
 
@@ -93,3 +95,5 @@ The sources for {{ cookiecutter.project_name }} can be downloaded from the `Gith
             make dev
 
     These commands should work most of the time, but if big changes are made to the repository, you might need to remove the environment and create it again.
+
+.. _Github repo: {{ cookiecutter.__gh_slug}}
