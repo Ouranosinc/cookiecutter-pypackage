@@ -1,4 +1,5 @@
 """{{ cookiecutter.project_short_description }}"""
+
 ###################################################################################
 {% if cookiecutter.open_source_license == 'MIT license' -%}
 # MIT License
