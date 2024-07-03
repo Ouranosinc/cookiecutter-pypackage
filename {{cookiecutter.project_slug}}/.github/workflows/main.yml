@@ -96,7 +96,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.9", "3.10", "3.11"]
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
     defaults:
       run:
         shell: bash -l {0}
@@ -113,11 +113,9 @@ jobs:
           cache-downloads: true
           environment-file: environment-dev.yml
           create-args: >-
-            mamba
             python=__PYTHON_VERSION__
       - name: Conda and Mamba versions
         run: |
-          mamba --version
           echo "micromamba $(micromamba --version)"
       - name: Install {{ cookiecutter.project_name }}
         run: |
@@ -129,7 +127,7 @@ jobs:
       - name: Test with pytest
         run: |
           python -m pytest --cov {{ cookiecutter.project_slug }}
-      - name: Report coverage
+      - name: Report Coverage
         run: |
           python -m coveralls
         env:
