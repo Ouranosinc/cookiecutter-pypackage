@@ -72,7 +72,7 @@ jobs:
         with:
           egress-policy: audit
       - name: Checkout Repository
-        uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4.1.4
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
       - name: Set up Python__PYTHON_VERSION__
         uses: actions/setup-python@82c7e631bb3cdc910f68e0081d67478d79c6982d # v5.1.0
         with:
@@ -96,7 +96,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.9", "3.10", "3.11"]
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
     defaults:
       run:
         shell: bash -l {0}
@@ -106,18 +106,16 @@ jobs:
         with:
           egress-policy: audit
       - name: Checkout Repository
-        uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4.1.4
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
       - name: Setup Conda (Micromamba) with Python__PYTHON_VERSION__
         uses: mamba-org/setup-micromamba@422500192359a097648154e8db4e39bdb6c6eed7 # v1.8.1
         with:
           cache-downloads: true
           environment-file: environment-dev.yml
           create-args: >-
-            mamba
             python=__PYTHON_VERSION__
       - name: Conda and Mamba versions
         run: |
-          mamba --version
           echo "micromamba $(micromamba --version)"
       - name: Install {{ cookiecutter.project_name }}
         run: |
@@ -129,7 +127,7 @@ jobs:
       - name: Test with pytest
         run: |
           python -m pytest --cov {{ cookiecutter.project_slug }}
-      - name: Report coverage
+      - name: Report Coverage
         run: |
           python -m coveralls
         env:

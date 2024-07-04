@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 """Tests for `{{ cookiecutter.project_slug }}` package."""
+
 import pathlib
 from importlib.util import find_spec
 {% if cookiecutter.use_pytest == 'n' -%}
