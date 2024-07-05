@@ -192,12 +192,12 @@ values = [
 ]
 
 [tool.coverage.run]
-relative_files = true
-include = ["src/{{ cookiecutter.project_slug }}/*"]
-omit = ["tests/*.py"]
 {%- if cookiecutter.use_pytest == 'n' %}
 command_line = "-m unittest discover -s tests/"
 {%- endif %}
+omit = ["tests/*.py"]
+relative_files = true
+source = "{{ cookiecutter.project_slug }}"
 
 [tool.flit.sdist]
 include = [
