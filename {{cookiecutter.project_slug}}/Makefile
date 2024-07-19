@@ -66,6 +66,7 @@ clean-test: ## remove test and coverage artifacts
 lint/flake8: ## check style with flake8
 	python -m ruff check src/{{ cookiecutter.project_slug }} tests
 	python -m flake8 --config=.flake8 src/{{ cookiecutter.project_slug }} tests
+	python -m numpydoc --validate src/{{ cookiecutter.project_slug }}
 
 {% if cookiecutter.use_black == 'y' -%}
 lint/black: ## check style with black
@@ -84,7 +85,7 @@ test: ## run tests quickly with the default Python
 {%- endif %}
 
 test-all: ## run tests on every Python version with tox
-	tox
+	python -m tox
 
 coverage: ## check code coverage quickly with the default Python
 {%- if cookiecutter.use_pytest == 'y' %}
