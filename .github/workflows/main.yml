@@ -35,11 +35,14 @@ jobs:
         with:
           disable-sudo: true
           egress-policy: block
+          # PyPy packages requires access to Rust binaries
           allowed-endpoints: >
             api.github.com:443
             files.pythonhosted.org:443
             github.com:443
+            index.crates.io:443
             pypi.org:443
+            static.crates.io:443
       - name: Checkout Repository
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
       - name: Set up Python${{ matrix.python-version }}
