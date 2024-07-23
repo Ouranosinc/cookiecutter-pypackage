@@ -51,7 +51,7 @@ Get Started!
 
 .. note::
 
-    If you are new to using GitHub and `git`, please read `this guide <https://guides.github.com/activities/hello-world/>`_ first.
+    If you are new to using `GitHub <https://github.com/>`_ and ``git``, please read `this guide <https://guides.github.com/activities/hello-world/>`_ first.
 
 {%- if cookiecutter.use_conda == 'y' %}
 
@@ -185,15 +185,16 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_name }}`` fo
         git checkout name-of-your-bugfix-or-feature
         git fetch
         git pull origin main
+
     See the previous step for more information on resolving conflicts.
 
 #. Once your Pull Request has been accepted and merged to the `main` branch, several automated workflows will be triggered:
 
     - The ``bump-version.yml`` workflow will automatically bump the patch version when pull requests are pushed to the `main` branch on GitHub. **It is not recommended to manually bump the version in your branch when merging (non-release) pull requests (this will cause the version to be bumped twice).**
     - `ReadTheDocs` will automatically build the documentation and publish it to the `latest` branch of `{{ cookiecutter.project_slug }}` documentation website.
-    - If your branch is not a fork (ie: you are a maintainer), your branch will be automatically deleted.
+    - If your branch is not a fork (i.e. you are a maintainer), your branch will be automatically deleted.
 
-    You will have contributed to ``{{ cookiecutter.project_slug }}``!
+You will have contributed to ``{{ cookiecutter.project_slug }}``!
 
 Pull Request Guidelines
 -----------------------
@@ -248,6 +249,17 @@ To run specific code style checks:
     python -m flake8 {{ cookiecutter.project_slug }} tests
 
 To get ``black``, ``isort``, ``blackdoc``, ``ruff``, and ``flake8`` (with the ``flake8-rst-docstrings`` plugin) simply install them with ``pip`` {% if cookiecutter.use_conda == 'y' %}(or ``conda``) {% endif %}into your environment.
+
+Translations
+------------
+
+If you would like to contribute to the French translation of the documentation, you can do so by running the following command:
+
+    .. code-block:: console
+
+        make initialize-translations
+
+This will create or update the French translation files in the `docs/locales/fr/LC_MESSAGES` directory. You can then edit the `.po` files in this directory to provide translations for the documentation.
 
 Code of Conduct
 ---------------
