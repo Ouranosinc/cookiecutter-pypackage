@@ -10,7 +10,7 @@ on:
       - README.rst
       - pyproject.toml
       - tests/test_{{ cookiecutter.project_slug }}.py
-      - {{ cookiecutter.project_slug }}/__init__.py
+      - src/{{ cookiecutter.project_slug }}/__init__.py
   pull_request:
 
 concurrency:

@@ -23,6 +23,10 @@ on:
       - AUTHORS.rst
       {%- endif %}
       - CHANGELOG.rst
+      - CI/**/*.in
+      - CI/**/*.py
+      - CI/**/*.txt
+      - CODE_OF_CONDUCT.md
       - CONTRIBUTING.rst
       - Makefile
       {%- if cookiecutter.make_docs == 'y' %}
@@ -37,7 +41,7 @@ on:
       - pyproject.toml
       - tests/**.py
       - tox.ini
-      - {{ cookiecutter.project_slug }}/__init__.py
+      - src/{{ cookiecutter.project_slug }}/__init__.py
   workflow_dispatch:
 
 permissions:

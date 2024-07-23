@@ -14,18 +14,19 @@
 #      - '.editorconfig'
 #      - '.flake8'
 #      - '.pre-commit-config.yaml'
-{%- if cookiecutter.make_docs != 'y' %}
+{%- if cookiecutter.make_docs == 'y' %}
 #      - '.readthedocs.yml'
 {%- endif %}
 #      - '.yamllint.yml'
 #      - '.github/workflows/*'
-{%- if cookiecutter.make_docs != 'y' %}
+{%- if cookiecutter.make_docs == 'y' %}
 #      - 'docs/Makefile'
 {%- endif %}
 #      - 'tox.ini'
+#      - 'CI/**/*'
 #      - 'Makefile'
 
-{%- if cookiecutter.make_docs != 'y' %}
+{%- if cookiecutter.make_docs == 'y' %}
 # label 'docs' all documentation-related steps and files
 #'docs':
 #  - changed-files:
@@ -36,7 +37,7 @@
 {%- endif %}
 #      - 'docs/**/*'
 #      - 'environment-docs.yml'
-{%- if cookiecutter.create_author_file != 'y' %}
+{%- if cookiecutter.create_author_file == 'y' %}
 #      - 'AUTHORS.rst'
 {%- endif %}
 #      - 'CONTRIBUTING.rst'
