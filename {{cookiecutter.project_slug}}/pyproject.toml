@@ -198,7 +198,7 @@ command_line = "-m unittest discover -s tests/"
 {%- endif %}
 omit = ["tests/*.py"]
 relative_files = true
-source = "{{ cookiecutter.project_slug }}"
+source = ["{{ cookiecutter.project_slug }}"]
 
 [tool.flit.sdist]
 include = [
