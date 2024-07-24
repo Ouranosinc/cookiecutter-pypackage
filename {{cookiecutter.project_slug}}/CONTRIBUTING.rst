@@ -242,13 +242,14 @@ To run specific code style checks:
 
 .. code-block:: console
 
-    python -m black --check {{ cookiecutter.project_slug }} tests
-    python -m isort --check {{ cookiecutter.project_slug }} tests
-    python -m blackdoc --check {{ cookiecutter.project_slug }} docs
-    python -m ruff check {{ cookiecutter.project_slug }} tests
-    python -m flake8 {{ cookiecutter.project_slug }} tests
+    python -m black --check src/{{ cookiecutter.project_slug }} tests
+    python -m isort --check src/{{ cookiecutter.project_slug }} tests
+    python -m blackdoc --check src/{{ cookiecutter.project_slug }} docs
+    python -m ruff check src/{{ cookiecutter.project_slug }} tests
+    python -m flake8 src/{{ cookiecutter.project_slug }} tests
+    validate-docstrings src/{{ cookiecutter.project_slug }}/**.py
 
-To get ``black``, ``isort``, ``blackdoc``, ``ruff``, and ``flake8`` (with the ``flake8-rst-docstrings`` plugin) simply install them with ``pip`` {% if cookiecutter.use_conda == 'y' %}(or ``conda``) {% endif %}into your environment.
+To get ``black``, ``isort``, ``blackdoc``, ``ruff``, ``flake8`` (with the ``flake8-rst-docstrings`` plugin), and ``numpydoc`` (for ``validate-docstrings``), simply install them with ``pip`` {% if cookiecutter.use_conda == 'y' %}(or ``conda``) {% endif %}into your environment.
 
 Translations
 ------------
