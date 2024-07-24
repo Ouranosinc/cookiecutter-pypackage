@@ -106,11 +106,10 @@ all = ["{{ cookiecutter.project_name | replace(" ", "-") }}[dev]"]
 
 [project.urls]
 # "Homepage" = "https://{{ cookiecutter.project_name }}.readthedocs.io/"
-# "Changelog" = "https://{{ cookiecutter.project_name }}.readthedocs.io/en/stable/history.html"
+# "Changelog" = "https://{{ cookiecutter.project_name }}.readthedocs.io/en/stable/changelog.html"
 # "About Ouranos" = "https://ouranos.ca/en/"
 "Issue tracker" = "{{ cookiecutter.__gh_slug }}/issues"
-"changelog" = "{{ cookiecutter.__gh_slug }}/blob/main/CHANGELOG.rst"
-"homepage" = "{{ cookiecutter.__gh_slug }}"
+"Source" = "{{ cookiecutter.__gh_slug }}"
 
 [tool]
 {%- if cookiecutter.use_black == 'y' %}
