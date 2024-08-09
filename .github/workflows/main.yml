@@ -19,6 +19,7 @@ jobs:
         include:
           - tox-env: py38
             python-version: "3.8"
+            posargs: "-m 'not precommit'"
           - tox-env: py39
             python-version: "3.9"
           - tox-env: py310
@@ -54,7 +55,7 @@ jobs:
             python -m pip install --require-hashes -r requirements.txt
       - name: Run bake test suite
         run:
-            python -m tox -e ${{ matrix.tox-env }}
+            python -m tox -e ${{ matrix.tox-env }} -- ${{ matrix.posargs }}
       # - name: Archive package
       #   if: ${{ matrix.tox-env == 'py39' }}
       #   uses: actions/upload-artifact@v4
