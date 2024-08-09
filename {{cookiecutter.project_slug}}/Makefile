@@ -66,7 +66,7 @@ clean-test: ## remove test and coverage artifacts
 lint/flake8: ## check style with flake8
 	python -m ruff check src/{{ cookiecutter.project_slug }} tests
 	python -m flake8 --config=.flake8 src/{{ cookiecutter.project_slug }} tests
-	validate-docstrings src/{{ cookiecutter.project_slug }}/**.py
+	python -m numpydoc lint src/{{ cookiecutter.project_slug }}/**.py
 
 {% if cookiecutter.use_black == 'y' -%}
 lint/black: ## check style with black

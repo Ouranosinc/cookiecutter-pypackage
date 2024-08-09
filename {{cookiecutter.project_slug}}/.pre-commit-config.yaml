@@ -3,7 +3,7 @@ default_language_version:
 
 repos:
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.16.0
+    rev: v3.17.0
     hooks:
       - id: pyupgrade
         args: [ '--py38-plus' ]
@@ -35,7 +35,7 @@ repos:
       - id: rst-inline-touching-normal
   {%- if cookiecutter.use_black == 'y' %}
   - repo: https://github.com/psf/black-pre-commit-mirror
-    rev: 24.4.2
+    rev: 24.8.0
     hooks:
       - id: black
         {% if cookiecutter.make_docs %}exclude: ^docs/{% endif %}
@@ -46,13 +46,13 @@ repos:
         {% if cookiecutter.make_docs %}exclude: ^docs/{% endif %}
   {%- endif %}
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.5.0
+    rev: v0.5.7
     hooks:
       - id: ruff
         args: [ '--fix' ]
       - id: ruff-format
   - repo: https://github.com/pycqa/flake8
-    rev: 7.1.0
+    rev: 7.1.1
     hooks:
       - id: flake8
         additional_dependencies: [ 'flake8-rst-docstrings' ]
@@ -70,12 +70,12 @@ repos:
       - id: yamllint
         args: [ '--config-file=.yamllint.yaml' ]
   - repo: https://github.com/numpy/numpydoc
-    rev: v1.7.0
+    rev: v1.8.0
     hooks:
       - id: numpydoc-validation
         exclude: {% if cookiecutter.make_docs %}^docs/|{% endif %}^tests/
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.28.6
+    rev: 0.29.1
     hooks:
       - id: check-github-workflows
       - id: check-readthedocs
