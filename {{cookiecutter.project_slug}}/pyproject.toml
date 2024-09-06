@@ -193,6 +193,9 @@ values = [
   "release"
 ]
 
+[tool.coverage.paths]
+source = ["src/{{ cookiecutter.project_slug }}/", "*/site-packages/{{ cookiecutter.project_slug }}/"]
+
 [tool.coverage.run]
 {%- if cookiecutter.use_pytest == 'n' %}
 command_line = "-m unittest discover -s tests/"
