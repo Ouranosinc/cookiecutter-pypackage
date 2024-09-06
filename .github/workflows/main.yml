@@ -13,6 +13,7 @@ concurrency:
 
 jobs:
   tests:
+    name: Test with Python${{ matrix.python-version }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -28,6 +29,8 @@ jobs:
             python-version: "3.11"
           - tox-env: py312
             python-version: "3.12"
+          - tox-env: py313
+            python-version: "3.13.0-rc.1"
           - tox-env: pypy39
             python-version: "pypy3.9"
           - tox-env: pypy310
@@ -44,6 +47,7 @@ jobs:
             files.pythonhosted.org:443
             github.com:443
             index.crates.io:443
+            objects.githubusercontent.com:443
             pypi.org:443
             static.crates.io:443
       - name: Checkout Repository
@@ -52,9 +56,15 @@ jobs:
         uses: actions/setup-python@f677139bbe7f9c59b41e40162b753c062f5d49a3 # v5.2.0
         with:
           python-version: ${{ matrix.python-version }}
+          cache: pip
       - name: Install tox
         run: |
-            python -m pip install --require-hashes -r requirements.txt
+          python -m pip install --require-hashes -r requirements.txt
+      - name: Environment Caching
+        uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4.0.2
+        with:
+          path: .tox
+          key: ${{ matrix.tox-env }}-${{ hashFiles('pyproject.toml', 'tox.ini') }}
       - name: Run bake test suite
         run:
             python -m tox -e ${{ matrix.tox-env }} -- ${{ matrix.posargs }}
