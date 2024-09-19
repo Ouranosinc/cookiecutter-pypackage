@@ -1,17 +1,17 @@
 # !/usr/bin/env python
 
-from distutils.core import setup
+from setuptools import setup
 
 
 setup(
-    name="cookiecutter-pypackage",
+    name="cookiecutter-pypackage-ouranos",
     packages=[],
     version="0.1.0",
     description="Cookiecutter template for a Python package",
-    author="Audrey M. Roy Greenfeld",
+    author="Trevor James Smith",
     license="BSD",
-    author_email="audrey@feldroy.com",
-    url="https://github.com/audreyfeldroy/cookiecutter-pypackage",
+    author_email="smith.trevorj@ouranos.ca",
+    url="https://github.com/Ouranosinc/cookiecutter-pypackage",
     keywords=[
         "cookiecutter",
         "template",
@@ -24,8 +24,6 @@ setup(
         "Intended Audience :: Developers",
         "Natural Language :: English",
         "License :: OSI Approved :: BSD License",
-        "Programming Language :: Python",
-        "Programming Language :: Python :: 3 :: Only",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
@@ -37,4 +35,19 @@ setup(
         "Programming Language :: Python :: Implementation :: PyPy",
         "Topic :: Software Development",
     ],
+    extras_require={
+        "dev": [
+            "alabaster>=0.7.13",
+            "build>=1.2.2",
+            "cookiecutter>=2.6.0",
+            "coverage>=7.5.1",
+            "flit>=3.9.0",
+            "pre-commit>=3.5.0",
+            "pytest-cookies>=0.7.0",
+            "pytest>=8.2.0",
+            "tox>=4.18.1",
+            "twine>=5.1.1",
+            "watchdog>=4.0.0",
+        ]
+    },
 )
