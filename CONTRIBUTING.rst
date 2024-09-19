@@ -50,7 +50,8 @@ If you are proposing a new feature:
 Get Started!
 ------------
 
-Ready to contribute? Here's how to set up `cookiecutter-pypackage` for local development. Please note this documentation assumes you already have `virtualenv` and `Git` installed and ready to go.
+Ready to contribute? Here's how to set up `cookiecutter-pypackage` for local development.
+Please note this documentation assumes you already have `virtualenv` and `Git` installed and ready to go.
 
 #. Fork the `cookiecutter-pypackage` repo on GitHub.
 
@@ -82,7 +83,7 @@ Ready to contribute? Here's how to set up `cookiecutter-pypackage` for local dev
 
    Now you can make your changes locally.
 
-#. When you're done making changes, check that your changes pass flake8. Since, this package contains mostly templates the flake should be run for tests directory:
+#. When you're done making changes, check that your changes pass `flake8`. Since, this package contains mostly templates the flake should be run for tests directory:
 
    .. code-block:: bash
 
@@ -100,15 +101,15 @@ Ready to contribute? Here's how to set up `cookiecutter-pypackage` for local dev
    .. code-block:: bash
 
         # Update pip
-        pip install -U pip
+        pip install --upgrade pip
 
-#. Before raising a pull request you should also run tox. This will run the tests across different versions of Python:
+#. Before raising a pull request you should also run `tox`. This will run the tests across different versions of Python:
 
    .. code-block:: bash
 
         tox
 
-   If you are missing flake8, pytest and/or tox, just `pip install` them into your virtualenv.
+   If you are missing `flake8`, `pytest` and/or `tox`, just `pip install` them into your virtualenv.
 
 #. If your contribution is a bug fix or new feature, you may want to add a test to the existing test suite. See section Add a New Test below for details.
 
@@ -131,7 +132,8 @@ Before you submit a pull request, check that it meets these guidelines:
 
 #. If the pull request adds functionality, the docs should be updated. Put your new functionality into a function with a docstring, and add the feature to the list in README.rst.
 
-#. The pull request should work for Python 3.8, 3.9, 3.10, 3.11, and for PyPy. Check https://github.com/Ouranosinc/cookiecutter-pypackage/actions/workflows/main.yml and make sure that the tests pass for all supported Python versions.
+#. The pull request should work for Python 3.8 up to Python 3.13, and for PyPy 3.11 and PyPy 3.12.
+   Check https://github.com/Ouranosinc/cookiecutter-pypackage/actions/workflows/main.yml and make sure that the tests pass for all supported Python versions.
 
 Add a New Test
 --------------

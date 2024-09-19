@@ -9,10 +9,20 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
-    open-pull-requests-limit: 10
+    groups:
+      actions:
+        patterns:
+          - "*"
 
   - package-ecosystem: pip
     directory: "/"
     schedule:
       interval: "monthly"
     open-pull-requests-limit: 5
+    groups:
+      python:
+        patterns:
+          - "setup.py"
+      ci:
+        patterns:
+          - "CI/*"
