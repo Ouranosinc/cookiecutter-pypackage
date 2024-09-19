@@ -1,13 +1,15 @@
 # !/usr/bin/env python
 
 from setuptools import setup
-
+from pathlib import Path
 
 setup(
     name="cookiecutter-pypackage-ouranos",
     packages=[],
     version="0.1.0",
     description="Cookiecutter template for a Python package",
+    long_description=Path(__file__).parent.joinpath("README.rst").read_text(),
+    long_description_content_type="text/x-rst",
     author="Trevor James Smith",
     license="BSD",
     author_email="smith.trevorj@ouranos.ca",
@@ -37,17 +39,20 @@ setup(
     ],
     extras_require={
         "dev": [
-            "alabaster>=0.7.13",
-            "build>=1.2.2",
-            "cookiecutter>=2.6.0",
-            "coverage>=7.5.1",
-            "flit>=3.9.0",
-            "pre-commit>=3.5.0",
-            "pytest-cookies>=0.7.0",
-            "pytest>=8.2.0",
-            "tox>=4.18.1",
-            "twine>=5.1.1",
-            "watchdog>=4.0.0",
-        ]
+            "build >=1.2.2",
+            "cookiecutter >=2.6.0",
+            "coverage >=7.5.1",
+            "flit >=3.9.0",
+            "pre-commit >=3.5.0",
+            "pytest-cookies >=0.7.0",
+            "pytest >=8.2.0",
+            "tox >=4.18.1",
+            "twine >=5.1.1",
+            "watchdog >=4.0.0",
+        ],
+        "docs": [
+            "alabaster >=0.7.13",
+            "sphinx >=7.0.0",
+        ],
     },
 )
