@@ -6,9 +6,9 @@ repos:
     rev: v3.17.0
     hooks:
       - id: pyupgrade
-        args: [ '--py38-plus' ]
+        args: [ '--py39-plus' ]
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v5.0.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
@@ -22,7 +22,7 @@ repos:
       - id: check-yaml
         args: [ '--allow-multiple-documents' ]
   - repo: https://github.com/pappasam/toml-sort
-    rev: v0.23.1
+    rev: v0.24.2
     hooks:
       - id: toml-sort-fix
   - repo: https://github.com/pre-commit/pygrep-hooks
@@ -35,7 +35,7 @@ repos:
       - id: rst-inline-touching-normal
   {%- if cookiecutter.use_black == 'y' %}
   - repo: https://github.com/psf/black-pre-commit-mirror
-    rev: 24.8.0
+    rev: 24.10.0
     hooks:
       - id: black
         {% if cookiecutter.make_docs %}exclude: ^docs/{% endif %}
@@ -46,7 +46,7 @@ repos:
         {% if cookiecutter.make_docs %}exclude: ^docs/{% endif %}
   {%- endif %}
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.5.7
+    rev: v0.8.2
     hooks:
       - id: ruff
         args: [ '--fix' ]
@@ -76,7 +76,7 @@ repos:
       - id: numpydoc-validation
         exclude: {% if cookiecutter.make_docs %}^docs/|{% endif %}^tests/
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.29.1
+    rev: 0.30.0
     hooks:
       - id: check-github-workflows
       - id: check-readthedocs
