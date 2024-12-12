@@ -5,28 +5,31 @@ dependencies:
   - python >=3.9,<3.13
   # Dev tools and testing
   - pip >=24.3.1
-  - bump-my-version >=0.28.0
-  - watchdog >=4.0.0
-  - flake8 >=7.1.1
-  - flake8-rst-docstrings >=0.3.0
-  - flit >=3.9.0,<4.0
-  - tox >=4.23.2
-  - coverage >=7.5.0
-  - coveralls >=4.0.1
-  {%- if cookiecutter.command_line_interface|lower == 'click' %}
-  - click >=8.1.7
-  {%- elif cookiecutter.command_line_interface|lower == 'typer' %}
-  - typer >=0.12.3
-  {%- endif %}
-  {%- if cookiecutter.use_pytest == 'y' %}
-  - pytest >=8.3.2
-  - pytest-cov >=5.0.0
-  {%- endif %}
   {%- if cookiecutter.use_black == 'y' %}
   - black ==24.10.0
   - blackdoc ==0.3.9
+  {%- endif %}
+  - bump-my-version >=0.28.0
+  {%- if cookiecutter.command_line_interface|lower == 'click' %}
+  - click >=8.1.7
+  {%- endif %}
+  - coverage >=7.5.0
+  - coveralls >=4.0.1
+  - flake8 >=7.1.1
+  - flake8-rst-docstrings >=0.3.0
+  - flit >=3.9.0,<4.0
+  {%- if cookiecutter.use_black == 'y' %}
   - isort ==5.13.2
   {%- endif %}
   - numpydoc >=1.8.0
   - pre-commit >=3.5.0
+  {%- if cookiecutter.use_pytest == 'y' %}
+  - pytest >=8.3.2
+  - pytest-cov >=5.0.0
+  {%- endif %}
   - ruff >=0.8.2
+  - tox >=4.23.2
+  {%- if cookiecutter.command_line_interface|lower == 'typer' %}
+  - typer >=0.12.3
+  {%- endif %}
+  - watchdog >=4.0.0
