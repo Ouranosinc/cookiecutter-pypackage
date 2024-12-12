@@ -29,4 +29,4 @@ dependencies:
   {%- endif %}
   - numpydoc >=1.8.0
   - pre-commit >=3.5.0
-  - ruff >=0.7.0
+  - ruff >=0.8.2
