@@ -4,19 +4,23 @@ channels:
   - defaults
 dependencies:
   - python >=3.12,<3.13
-  - sphinx >=7.0.0
+  # Docs
+  {%- if cookiecutter.command_line_interface|lower == 'click' %}
+  - click >=8.1.7
+  {%- endif %}
   - pandoc
-  - sphinx-rtd-theme >=1.0
+  - sphinx >=7.0.0
   - sphinx-autoapi
+  {%- if cookiecutter.command_line_interface|lower == 'click' %}
+  - sphinx-click
+  {%- endif %}
   - sphinx-codeautolink
   - sphinx-copybutton
   {%- if cookiecutter.add_translations == 'y' %}
   - sphinx-intl
   {%- endif %}
   - sphinxcontrib-napoleon
-  {%- if cookiecutter.command_line_interface|lower == 'click' %}
-  - click >=8.1.7
-  - sphinx-click
-  {% elif cookiecutter.command_line_interface|lower == 'typer' %}
+  - sphinx-rtd-theme >=1.0
+  {%- if cookiecutter.command_line_interface|lower == 'typer' %}
   - typer >=0.12.3
-  {%- endif %}
+{% endif -%}
