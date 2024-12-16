@@ -118,7 +118,7 @@ Please note this documentation assumes you already have `virtualenv` and `Git` i
    .. code-block:: bash
 
         git add .
-        git commit -m "Your detailed description of your changes."
+        git commit -s -m "Your detailed description of your changes."
         git push origin name-of-your-bugfix-or-feature
 
 #. Submit a pull request through the GitHub website.
@@ -134,6 +134,14 @@ Before you submit a pull request, check that it meets these guidelines:
 
 #. The pull request should work for Python 3.8 up to Python 3.13, and for PyPy 3.11 and PyPy 3.12.
    Check https://github.com/Ouranosinc/cookiecutter-pypackage/actions/workflows/main.yml and make sure that the tests pass for all supported Python versions.
+
+#. If you haven't already, ensure that you have read and agreed to the `Developer Certificate of Origin (DCO) <https://developercertificate.org/>`_, and that you have signed your commits using:
+
+    .. code-block:: bash
+
+          git commit --signoff/-s
+
+    This will add a `Signed-off-by:` line to your commit message, which indicates that you agree to the DCO.
 
 Add a New Test
 --------------
