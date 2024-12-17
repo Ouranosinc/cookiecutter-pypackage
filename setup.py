@@ -1,7 +1,8 @@
 # !/usr/bin/env python
 
-from setuptools import setup
 from pathlib import Path
+
+from setuptools import setup
 
 setup(
     name="cookiecutter-pypackage-ouranos",
