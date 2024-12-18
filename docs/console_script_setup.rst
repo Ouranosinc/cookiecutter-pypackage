@@ -48,4 +48,3 @@ More Details
 You can read more about `--editable` installations and flit at:
  - https://github.com/pypa/flit/issues/512
  - https://github.com/pypa/flit/issues/522
-
