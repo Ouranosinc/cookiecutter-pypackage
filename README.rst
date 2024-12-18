@@ -14,19 +14,20 @@ Cookiecutter_ template for a Python package.
 Features
 --------
 
-* Testing setup with ``unittest`` with ``coverage run`` or ``pytest``
+* Testing setup with ``unittest`` or ``pytest`` (with support for code coverage via `Coveralls`_).
 * `pyproject.toml`_ with the flit_ backend for PEP 517/621-compliant packaging.
 * `GitHub Actions`_: Ready for GitHub Actions Continuous Integration testing and Deployment.
-* `Conda`_ environment file: Optionally use ``conda env create -f environment-dev.yml`` to create a new environment with the correct Python version.
+* Conda_ environment file: Optionally use ``conda env create -f environment-dev.yml`` to create a new environment with the correct Python version.
 * Tox_ testing: Setup to easily test for Python 3.8, 3.9, 3.10, 3.11, 3.12, 3.13, and PyPy3.
 * Sphinx_ docs: Documentation ready for generation with, for example, `Read the Docs`_
 * pre-commit_ hook: Run your tests and linting (e.g. `black`, `flake8`, `pylint`, etc.) before you commit your code!
 * `pre-commit.ci`_: Automate `pre-commit` checks and corrections in your Pull Requests.
 * bump-my-version_: Pre-configured `SemVer-2.0-compliant`_ version bumping with a single command.
 * dependabot_ for automated dependency updates of both project dependencies and GitHub Actions.
-* `sphinx-intl`_ for French internationalization (i18n) and localization (l10n) of Sphinx docs (optional)
-* Auto-release to TestPyPI_ and PyPI_ when you push a new tag to main (optional)
-* Command line interface using Click (optional)
+* `Developer Certificate of Origin`_ (DCO) enforcement support using `DCO App`_.
+* sphinx-intl_ for French internationalization (i18n) and localization (l10n) of Sphinx docs (optional).
+* Auto-release to TestPyPI_ and PyPI_ when you push a new tag to main (optional).
+* Command line interface using Click (optional).
 
 Build Status
 -------------
@@ -157,6 +158,9 @@ I also accept pull requests on this, if they're small, atomic, and if they make 
 .. _Black: https://black.readthedocs.io/en/stable/
 .. _Conda: https://docs.conda.io/en/latest/
 .. _Cookiecutter: https://github.com/cookiecutter/cookiecutter
+.. _Coveralls: https://coveralls.io/
+.. _DCO App: https://probot.github.io/apps/dco/
+.. _Developer Certificate of Origin: https://developercertificate.org/
 .. _GitHub Actions: https://docs.github.com/en/actions
 .. _Mkdocs: https://pypi.org/project/mkdocs/
 .. _Mypy: https://mypy.readthedocs.io/en/stable/
@@ -179,7 +183,7 @@ I also accept pull requests on this, if they're small, atomic, and if they make 
 .. _sphinx-intl: https://sphinx-intl.readthedocs.io/en/master/
 .. _testpypi: https://test.pypi.org/
 
-.. _GitHub comparison view: https://github.com/tony/cookiecutter-pypackage-pythonic/compare/audreyr:master...master
+.. _GitHub comparison view: https://github.com/tony/cookiecutter-pypackage-pythonic/compare/audreyr:master...main
 .. _Nekroze/cookiecutter-pypackage: https://github.com/Nekroze/cookiecutter-pypackage
 .. _ardydedase/cookiecutter-pypackage: https://github.com/ardydedase/cookiecutter-pypackage
 .. _briggySmalls/cookiecutter-pypackage: https://github.com/briggySmalls/cookiecutter-pypackage
