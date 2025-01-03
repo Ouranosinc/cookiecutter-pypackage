@@ -5,31 +5,30 @@ import pathlib
 from importlib.util import find_spec
 {% if cookiecutter.use_pytest == 'n' -%}
 import unittest
-{% else %}
-import pytest
 {%- endif %}
 {%- if cookiecutter.command_line_interface|lower == 'click' %}
 from click.testing import CliRunner
 {%- endif %}
-{% if cookiecutter.command_line_interface|lower == 'click' %}import {{ cookiecutter.project_slug }}.cli as cli{%- endif %}
+{%- if cookiecutter.command_line_interface|lower == 'click' %}import {{ cookiecutter.project_slug }}.cli as cli{%- endif %}
 from {{ cookiecutter.project_slug }} import {{ cookiecutter.project_slug }}  # noqa: F401
 {%- if cookiecutter.use_pytest == 'y' %}
 
+# import pytest
 
-@pytest.fixture
-def response():
-    """Sample pytest fixture.
+# @pytest.fixture
+# def response():
+#     """Sample pytest fixture.
+#
+#     See more at: https://doc.pytest.org/en/latest/explanation/fixtures.html
+#     """
+#     # import requests
+#     # return requests.get('https://github.com/audreyr/cookiecutter-pypackage')
 
-    See more at: https://doc.pytest.org/en/latest/explanation/fixtures.html
-    """
-    # import requests
-    # return requests.get('https://github.com/audreyr/cookiecutter-pypackage')
 
-
-def test_content(response):
-    """Sample pytest test function with the pytest fixture as an argument."""
-    # from bs4 import BeautifulSoup
-    # assert 'GitHub' in BeautifulSoup(response.content).title.string
+# def test_content(response):
+#     """Sample pytest test function with the pytest fixture as an argument."""
+#     # from bs4 import BeautifulSoup
+#     # assert 'GitHub' in BeautifulSoup(response.content).title.string
 {%- if cookiecutter.command_line_interface|lower == 'click' %}
 
 
