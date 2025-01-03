@@ -65,6 +65,10 @@ repos:
     rev: v2.13
     hooks:
       - id: vulture
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.14.1
+    hooks:
+      - id: mypy
   {%- if cookiecutter.use_black == 'y' %}
   - repo: https://github.com/keewis/blackdoc
     rev: v0.3.9

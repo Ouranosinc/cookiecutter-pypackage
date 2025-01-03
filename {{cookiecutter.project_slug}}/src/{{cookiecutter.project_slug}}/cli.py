@@ -10,7 +10,7 @@ def main():
     parser.add_argument('_', nargs='*')
     args = parser.parse_args()
 
-    print("Arguments: " + str(args._))
+    print(f"Arguments: {args._}")
     print("Replace this message by putting your code into {{cookiecutter.project_slug}}.cli.main")
     return 0
 
@@ -25,7 +25,7 @@ import click
 
 
 @click.command()
-def main(args=None):
+def main(args=None) -> int:
     """Console script for {{cookiecutter.project_slug}}."""
     click.echo(
         "Replace this message by putting your code into {{cookiecutter.project_slug}}.cli.main",
@@ -43,8 +43,8 @@ app = typer.Typer()
 console = Console()
 
 
-@app.command()
-def main():
+@app.command()  # type: ignore[misc]
+def main() -> None:
     """Console script for {{cookiecutter.project_slug}}."""
     console.print(
         "Replace this message by putting your code into {{cookiecutter.project_slug}}.cli.main",

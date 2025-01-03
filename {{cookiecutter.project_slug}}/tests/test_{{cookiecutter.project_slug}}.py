@@ -73,9 +73,13 @@ class Test{{ cookiecutter.project_slug|title }}(unittest.TestCase):
 
 def test_package_metadata():
     """Test the package metadata."""
-    project = find_spec("{{ cookiecutter.project_slug }}").submodule_search_locations[0]
+    project = find_spec("{{ cookiecutter.project_slug }}")
 
-    metadata = pathlib.Path(project).resolve().joinpath("__init__.py")
+    assert project is not None
+    assert project.submodule_search_locations is not None
+    location = project.submodule_search_locations[0]
+
+    metadata = pathlib.Path(location).resolve().joinpath("__init__.py")
 
     with metadata.open() as f:
         contents = f.read()
