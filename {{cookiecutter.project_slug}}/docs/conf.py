@@ -19,6 +19,7 @@
 #
 import os
 import sys
+from typing import Any
 
 sys.path.insert(0, os.path.abspath('..'))
 
@@ -138,7 +139,7 @@ htmlhelp_basename = '{{ cookiecutter.project_slug }}doc'
 
 # -- Options for LaTeX output ------------------------------------------
 
-latex_elements = {
+latex_elements: dict[str, Any] = {
     # The paper size ('letterpaper' or 'a4paper').
     #
     # 'papersize': 'letterpaper',
