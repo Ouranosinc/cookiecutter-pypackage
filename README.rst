@@ -2,7 +2,7 @@
 Cookiecutter PyPackage
 ======================
 
-|build|
+|build| |black| |isort| |ruff|
 
 Cookiecutter_ template for a Python package.
 
@@ -20,7 +20,7 @@ Features
 * `Conda`_ environment file: Optionally use ``conda env create -f environment-dev.yml`` to create a new environment with the correct Python version.
 * Tox_ testing: Setup to easily test for Python 3.8, 3.9, 3.10, 3.11, 3.12, 3.13, and PyPy3.
 * Sphinx_ docs: Documentation ready for generation with, for example, `Read the Docs`_
-* pre-commit_ hook: Run your tests and linting (e.g. `black`, `flake8`, `pylint`, etc.) before you commit your code!
+* pre-commit_ hook: Run your tests and linting (e.g. `black`, `flake8`, `ruff`, `pylint`, etc.) before you commit your code!
 * `pre-commit.ci`_: Automate `pre-commit` checks and corrections in your Pull Requests.
 * bump-my-version_: Pre-configured `SemVer-2.0-compliant`_ version bumping with a single command.
 * dependabot_ for automated dependency updates of both project dependencies and GitHub Actions.
@@ -194,6 +194,18 @@ I also accept pull requests on this, if they're small, atomic, and if they make 
 .. |build| image:: https://github.com/Ouranosinc/cookiecutter-pypackage/actions/workflows/main.yml/badge.svg
     :target: https://github.com/Ouranosinc/cookiecutter-pypackage/actions/workflows/main.yml
     :alt: Build Status
+
+.. |black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
+        :target: https://github.com/psf/black
+        :alt: Python Black
+
+.. |isort| image:: https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336
+        :target: https://pycqa.github.io/isort/
+        :alt: Isort
+
+.. |ruff| image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json
+        :target: https://github.com/astral-sh/ruff
+        :alt: Ruff
 
 .. |docs-upstream|  image:: https://readthedocs.org/projects/cookiecutter-pypackage/badge/?version=latest
     :target: https://cookiecutter-pypackage.readthedocs.io/en/latest/?badge=latest

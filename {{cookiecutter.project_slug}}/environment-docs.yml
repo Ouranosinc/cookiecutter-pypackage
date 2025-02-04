@@ -8,18 +8,15 @@ dependencies:
   {%- if cookiecutter.command_line_interface|lower == 'click' %}
   - click >=8.1.7
   {%- endif %}
-  - pandoc
-  - sphinx >=7.0.0
-  - sphinx-autoapi
+  - sphinx >=7.1.0
   {%- if cookiecutter.command_line_interface|lower == 'click' %}
   - sphinx-click
   {%- endif %}
-  - sphinx-codeautolink
+  - sphinx-codeautolink >=0.16.2
   - sphinx-copybutton
   {%- if cookiecutter.add_translations == 'y' %}
   - sphinx-intl
   {%- endif %}
-  - sphinxcontrib-napoleon
   - sphinx-rtd-theme >=1.0
   {%- if cookiecutter.command_line_interface|lower == 'typer' %}
   - typer >=0.12.3
