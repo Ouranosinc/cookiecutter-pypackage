@@ -2,23 +2,25 @@
 Changelog
 =========
 
-`Unreleased <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}>`_ (latest)
-{{ '-' * ('`Unreleased <https://github.com/' + cookiecutter.github_username + '/' + cookiecutter.project_slug + '>`_ (latest)')|length }}
+..
 
-Contributors:
+    `Unreleased <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}>`_ (latest)
+    {{ '-' * ('`Unreleased <https://github.com/' + cookiecutter.github_username + '/' + cookiecutter.project_slug + '>`_ (latest)')|length }}
 
-Changes
-^^^^^^^
-* No change.
+    Contributors:
 
-Fixes
-^^^^^
-* No change.
+    Changes
+    ^^^^^^^
+    * No change.
 
-.. _changes_{{ cookiecutter.version }}:
+    Fixes
+    ^^^^^
+    * No change.
 
-`v{{ cookiecutter.version }} <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/tree/{{ cookiecutter.version }}>`_
-{{ '-' * ('`v' + cookiecutter.version + ' <https://github.com/' + cookiecutter.github_username + '/' + cookiecutter.project_slug + '/tree/' + cookiecutter.version + '>`_')|length }}
+    .. _changes_{{ cookiecutter.version }}:
+
+    `v{{ cookiecutter.version }} <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/tree/{{ cookiecutter.version }}>`_
+    {{ '-' * ('`v' + cookiecutter.version + ' <https://github.com/' + cookiecutter.github_username + '/' + cookiecutter.project_slug + '/tree/' + cookiecutter.version + '>`_')|length }}
 
 Contributors: {{ cookiecutter.full_name }} (:user:`{{ cookiecutter.github_username }}`)
 

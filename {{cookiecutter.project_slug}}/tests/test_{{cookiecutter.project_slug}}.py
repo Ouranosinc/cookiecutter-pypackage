@@ -13,6 +13,7 @@ from click.testing import CliRunner
 from {{ cookiecutter.project_slug }} import {{ cookiecutter.project_slug }}  # noqa: F401
 {%- if cookiecutter.use_pytest == 'y' %}
 
+
 # import pytest
 
 # @pytest.fixture

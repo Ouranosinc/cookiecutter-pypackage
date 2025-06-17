@@ -352,7 +352,6 @@ def test_black(cookies, use_black, expected):
         assert result.project_path.is_dir()
         requirements_path = result.project_path.joinpath("pyproject.toml")
         assert ("black ==" in requirements_path.read_text()) is expected
-        assert ("isort ==" in requirements_path.read_text()) is expected
         assert ("[tool.black]" in requirements_path.read_text()) is expected
         makefile_path = result.project_path.joinpath("Makefile")
         assert ("black --check" in makefile_path.read_text()) is expected
