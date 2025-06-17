@@ -18,20 +18,18 @@ jobs:
     strategy:
       matrix:
         include:
-          - tox-env: py39
-            python-version: "3.9"
-          - tox-env: py310
+          - tox-env: py3.10
             python-version: "3.10"
-          - tox-env: py311
+          - tox-env: py3.11
             python-version: "3.11"
-          - tox-env: py312
+          - tox-env: py3.12
             python-version: "3.12"
-          - tox-env: py313
+          - tox-env: py3.13
             python-version: "3.13"
-          - tox-env: pypy39
-            python-version: "pypy3.9"
-          - tox-env: pypy310
+          - tox-env: pypy3.10
             python-version: "pypy3.10"
+          - tox-env: pypy3.11
+            python-version: "pypy3.11"
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@4d991eb9b905ef189e4c376166672c3f2f230481 # v2.11.0
