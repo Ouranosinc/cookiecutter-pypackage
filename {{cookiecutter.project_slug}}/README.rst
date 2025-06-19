@@ -6,9 +6,9 @@
 {%- if is_open_source %}
 
 +----------------------------+-----------------------------------------------------+
-| Versions                   | |pypi| |versions|                                   |
+| Versions                   | |pypi|                                              |
 +----------------------------+-----------------------------------------------------+
-| Documentation and Support  | |docs|                                              |
+| Documentation and Support  | |docs| |versions|                                   |
 +----------------------------+-----------------------------------------------------+
 {%- if is_open_source %}
 | Open Source                | |license| |ossf-score|                              |
@@ -19,11 +19,6 @@
 | Development Status         | |status| |build| |coveralls|                        |
 +----------------------------+-----------------------------------------------------+
 
-{%- endif %}
-{%- if cookiecutter.add_pyup_badge == 'y' %}
-.. image:: https://pyup.io/repos/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}/shield.svg
-     :target: https://pyup.io/repos/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}/
-     :alt: Updates
 {%- endif %}
 
 {{ cookiecutter.project_short_description }}
@@ -54,6 +49,15 @@ This package was created with Cookiecutter_ and the `Ouranosinc/cookiecutter-pyp
 .. |build| image:: {{ cookiecutter.__gh_slug }}/actions/workflows/main.yml/badge.svg
         :target: {{ cookiecutter.__gh_slug }}/actions
         :alt: Build Status
+
+{%- if cookiecutter.use_conda == 'y' %}
+
+..
+    .. |conda| image:: https://img.shields.io/conda/vn/conda-forge/{{ cookiecutter.project_name | replace(" ", "-") }}.svg
+            :target: https://anaconda.org/conda-forge/{{ cookiecutter.project_name | replace(" ", "-") }}
+            :alt: Conda-forge Build Version
+
+{%- endif %}
 
 .. |coveralls| image:: https://coveralls.io/repos/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}/badge.svg
         :target: https://coveralls.io/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}
