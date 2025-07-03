@@ -40,6 +40,7 @@ jobs:
           allowed-endpoints: >
             api.github.com:443
             cdn.fwupd.org:443
+            downloads.python.org:443
             files.pythonhosted.org:443
             github.com:443
             index.crates.io:443
