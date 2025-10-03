@@ -1,4 +1,4 @@
-{%- set license_classifiers = {
+{%- set license_spdx_codes = {
     'MIT license': 'MIT',
     'BSD license': 'BSD-3-Clause',
     'ISC license': 'ISC',
@@ -20,8 +20,8 @@ maintainers = [
 readme = {file = "README.rst", content-type = "text/x-rst"}
 requires-python = ">=3.10.0"
 keywords = ["{{ cookiecutter.project_name }}"]
-{%- if cookiecutter.open_source_license in license_classifiers %}
-license = "{{ license_classifiers[cookiecutter.open_source_license] }}"
+{%- if cookiecutter.open_source_license in license_spdx_codes %}
+license = "{{ license_spdx_codes[cookiecutter.open_source_license] }}"
 license-files = ["LICENSE"]
 {%- endif %}
 classifiers = [
@@ -41,7 +41,7 @@ classifiers = [
 dynamic = ["description", "version"]
 dependencies = [
   {%- if cookiecutter.command_line_interface|lower == 'click' %}
-  "click >=8.2.0"
+  "click >=8.3.0"
   {% elif cookiecutter.command_line_interface|lower == 'typer' %}
   "typer >=0.16.0"
   {%- endif %}
@@ -54,21 +54,23 @@ dev = [
   "black ==25.9.0",
   "blackdoc ==0.4.3",
   {%- endif %}
-  "bump-my-version >=1.2.0",
+  "bump-my-version >=1.2.3",
   "coverage >=7.5.0",
-  "flake8 >=7.2.0",
-  "flake8-rst-docstrings >=0.3.0",
+  "deptry >=0.23.1",
+  "flake8 >=7.3.0",
+  "flake8-rst-docstrings >=0.3.1",
   "flit >=3.12.0,<4.0",
-  "mypy >=1.14.1",
-  "numpydoc >=1.8.0",
-  "pip >=25.1.1",
+  "mypy >=1.18.2",
+  "numpydoc >=1.9.0",
+  "pip >=25.2",
   "pre-commit >=3.5.0",
   {%- if cookiecutter.use_pytest == 'y' %}
   "pytest >=8.3.2",
   "pytest-cov >=5.0.0",
   {%- endif %}
-  "ruff >=0.12.0",
+  "ruff >=0.13.3",
   "tox >=4.30.3",
+  "vulture >=2.14",
   "watchdog >=4.0.0"
 ]
 {%- if cookiecutter.make_docs == 'y' %}
@@ -204,9 +206,13 @@ omit = ["tests/*.py"]
 relative_files = true
 source = ["{{ cookiecutter.project_slug }}"]
 
+[tool.deptry]
+extend_exclude = ["docs"]
+pep621_dev_dependency_groups = ["all", "dev", "docs"]
+
 [tool.flit.sdist]
 include = [
-  {%- if cookiecutter.open_source_license in license_classifiers %}
+  {%- if cookiecutter.open_source_license in license_spdx_codes %}
   ".zenodo.json",
   {%- endif %}
   {%- if cookiecutter.create_author_file == 'y' %}
@@ -214,7 +220,7 @@ include = [
   {% endif -%}
   "CHANGELOG.rst",
   "CONTRIBUTING.rst",
-  {%- if cookiecutter.open_source_license in license_classifiers %}
+  {%- if cookiecutter.open_source_license in license_spdx_codes %}
   "LICENSE",
   {%- endif %}
   "Makefile",
