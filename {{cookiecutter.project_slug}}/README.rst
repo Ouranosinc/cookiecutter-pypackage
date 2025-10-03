@@ -6,24 +6,19 @@
 {%- if is_open_source %}
 
 +----------------------------+-----------------------------------------------------+
-| Versions                   | |pypi| |versions|                                   |
+| Versions                   | |pypi|                                              |
 +----------------------------+-----------------------------------------------------+
-| Documentation and Support  | |docs|                                              |
+| Documentation and Support  | |docs| |versions|                                   |
 +----------------------------+-----------------------------------------------------+
 {%- if is_open_source %}
-| Open Source                | |license| |ossf|                                    |
+| Open Source                | |license| |ossf-score|                              |
 +----------------------------+-----------------------------------------------------+
 {%- endif %}
-| Coding Standards           | |black| |ruff| |pre-commit|                         |
+| Coding Standards           | |black| |isort| |ruff| |pre-commit|                 |
 +----------------------------+-----------------------------------------------------+
 | Development Status         | |status| |build| |coveralls|                        |
 +----------------------------+-----------------------------------------------------+
 
-{%- endif %}
-{%- if cookiecutter.add_pyup_badge == 'y' %}
-.. image:: https://pyup.io/repos/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}/shield.svg
-     :target: https://pyup.io/repos/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}/
-     :alt: Updates
 {%- endif %}
 
 {{ cookiecutter.project_short_description }}
@@ -47,7 +42,6 @@ This package was created with Cookiecutter_ and the `Ouranosinc/cookiecutter-pyp
 .. _Cookiecutter: https://github.com/cookiecutter/cookiecutter
 .. _`Ouranosinc/cookiecutter-pypackage`: https://github.com/Ouranosinc/cookiecutter-pypackage
 
-
 .. |black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
         :target: https://github.com/psf/black
         :alt: Python Black
@@ -55,6 +49,15 @@ This package was created with Cookiecutter_ and the `Ouranosinc/cookiecutter-pyp
 .. |build| image:: {{ cookiecutter.__gh_slug }}/actions/workflows/main.yml/badge.svg
         :target: {{ cookiecutter.__gh_slug }}/actions
         :alt: Build Status
+
+{%- if cookiecutter.use_conda == 'y' %}
+
+..
+    .. |conda| image:: https://img.shields.io/conda/vn/conda-forge/{{ cookiecutter.project_name | replace(" ", "-") }}.svg
+            :target: https://anaconda.org/conda-forge/{{ cookiecutter.project_name | replace(" ", "-") }}
+            :alt: Conda-forge Build Version
+
+{%- endif %}
 
 .. |coveralls| image:: https://coveralls.io/repos/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}/badge.svg
         :target: https://coveralls.io/github/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}
@@ -64,13 +67,22 @@ This package was created with Cookiecutter_ and the `Ouranosinc/cookiecutter-pyp
         :target: https://{{ cookiecutter.project_name | replace(" ", "-") }}.readthedocs.io/en/latest/?version=latest
         :alt: Documentation Status
 
+.. |isort| image:: https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336
+        :target: https://pycqa.github.io/isort/
+        :alt: Isort
+
 {%- if is_open_source %}
 
 .. |license| image:: https://img.shields.io/github/license/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}.svg
         :target: {{ cookiecutter.__gh_slug }}/blob/main/LICENSE
         :alt: License
 
-.. |ossf| image:: https://api.securityscorecards.dev/projects/github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}/badge
+..
+    .. |ossf-bp| image:: https://bestpractices.coreinfrastructure.org/projects/9945/badge
+            :target: https://bestpractices.coreinfrastructure.org/projects/9945
+            :alt: Open Source Security Foundation Best Practices
+
+.. |ossf-score| image:: https://api.securityscorecards.dev/projects/github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}/badge
         :target: https://securityscorecards.dev/viewer/?uri=github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}
         :alt: OpenSSF Scorecard
 

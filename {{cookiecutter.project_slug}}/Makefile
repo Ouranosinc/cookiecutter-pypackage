@@ -72,7 +72,6 @@ lint/flake8: ## check style with flake8
 lint/black: ## check style with black
 	python -m black --check src/{{ cookiecutter.project_slug }} tests
 	python -m blackdoc --check src/{{ cookiecutter.project_slug }} docs
-	python -m isort --check src/{{ cookiecutter.project_slug }} tests
 
 {% endif -%}
 lint: lint/flake8{%- if cookiecutter.use_black == 'y' %} lint/black{%- endif %} ## check style

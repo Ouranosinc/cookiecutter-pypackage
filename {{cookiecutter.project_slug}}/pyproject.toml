@@ -6,7 +6,7 @@
     'GNU General Public License v3': 'License :: OSI Approved :: GNU General Public License v3 (GPLv3)'
 } -%}
 [build-system]
-requires = ["flit_core >=3.9,<4"]
+requires = ["flit_core >=3.12.0,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
@@ -18,7 +18,7 @@ maintainers = [
   {name = "{{ cookiecutter.full_name.replace('\"', '\\\"') }}", email = "{{ cookiecutter.email }}"}
 ]
 readme = {file = "README.rst", content-type = "text/x-rst"}
-requires-python = ">=3.9.0"
+requires-python = ">=3.10.0"
 keywords = ["{{ cookiecutter.project_name }}"]
 {%- if cookiecutter.open_source_license in license_classifiers %}
 license = {file = "LICENSE"}
@@ -33,19 +33,19 @@ classifiers = [
   "Operating System :: OS Independent",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
-  "Programming Language :: Python :: Implementation :: CPython"
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Typing :: Typed"
 ]
 dynamic = ["description", "version"]
 dependencies = [
   {%- if cookiecutter.command_line_interface|lower == 'click' %}
-  "click >=8.1.7"
+  "click >=8.2.0"
   {% elif cookiecutter.command_line_interface|lower == 'typer' %}
-  "typer >=0.12.3"
+  "typer >=0.16.0"
   {%- endif %}
 ]
 
@@ -53,28 +53,24 @@ dependencies = [
 dev = [
   # Dev tools and testing
   {%- if cookiecutter.use_black == 'y' %}
-  "black ==24.10.0",
+  "black ==25.1.0",
   "blackdoc ==0.3.9",
   {%- endif %}
-  "bump-my-version >=0.28.0",
+  "bump-my-version >=1.2.0",
   "coverage >=7.5.0",
-  "coveralls >=4.0.1",
-  "flake8 >=7.1.1",
+  "flake8 >=7.2.0",
   "flake8-rst-docstrings >=0.3.0",
-  "flit >=3.9.0,<4.0",
-  {%- if cookiecutter.use_black == 'y' %}
-  "isort ==5.13.2",
-  {%- endif %}
-  "mypy",
+  "flit >=3.12.0,<4.0",
+  "mypy >=1.14.1",
   "numpydoc >=1.8.0",
-  "pip >=24.3.1",
+  "pip >=25.1.1",
   "pre-commit >=3.5.0",
   {%- if cookiecutter.use_pytest == 'y' %}
   "pytest >=8.3.2",
   "pytest-cov >=5.0.0",
   {%- endif %}
-  "ruff >=0.8.2",
-  "tox >=4.23.2",
+  "ruff >=0.12.0",
+  "tox >=4.26.0",
   "watchdog >=4.0.0"
 ]
 {%- if cookiecutter.make_docs == 'y' %}
@@ -83,12 +79,12 @@ docs = [
   "ipykernel",
   "ipython",
   "jupyter_client",
-  "nbsphinx",
-  "sphinx >=7.0.0",
+  "nbsphinx >=0.9.5",
+  "sphinx >=7.1.0",
   {%- if cookiecutter.command_line_interface|lower == 'click' %}
   "sphinx-click",
   {%- endif %}
-  "sphinx-codeautolink",
+  "sphinx-codeautolink >=0.16.2",
   "sphinx-copybutton",
   {%- if cookiecutter.add_translations == 'y' %}
   "sphinx-intl",
@@ -99,10 +95,12 @@ all = ["{{ cookiecutter.project_name | replace(" ", "-") }}[dev]", "{{ cookiecut
 {%- else %}
 all = ["{{ cookiecutter.project_name | replace(" ", "-") }}[dev]"]
 {%- endif %}
+
 {%- if cookiecutter.command_line_interface != "No command-line interface" %}
 
 [project.scripts]
 {{ cookiecutter.project_slug }} = "{{ cookiecutter.project_slug }}.cli:app"
+
 {%- endif %}
 
 [project.urls]
@@ -113,16 +111,17 @@ all = ["{{ cookiecutter.project_name | replace(" ", "-") }}[dev]"]
 "Source" = "{{ cookiecutter.__gh_slug }}"
 
 [tool]
+
 {%- if cookiecutter.use_black == 'y' %}
 
 [tool.black]
 target-version = [
-  "py39",
   "py310",
   "py311",
   "py312",
   "py313"
 ]
+
 {%- endif %}
 
 [tool.bumpversion]
@@ -146,23 +145,24 @@ search = """\
 {{ '-' * ('`Unreleased <https://github.com/' + cookiecutter.github_username + '/' + cookiecutter.project_slug + '>`_ (latest)')|length }}
 """
 replace = """\
-`Unreleased <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}>`_ (latest)
-{{ '-' * ('`Unreleased <https://github.com/' + cookiecutter.github_username + '/' + cookiecutter.project_slug + '>`_ (latest)')|length }}
+..
+    `Unreleased <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}>`_ (latest)
+    {{ '-' * ('`Unreleased <https://github.com/' + cookiecutter.github_username + '/' + cookiecutter.project_slug + '>`_ (latest)')|length }}
 
-Contributors:
+    Contributors:
 
-Changes
-^^^^^^^
-* No change.
+    Changes
+    ^^^^^^^
+    * No change.
 
-Fixes
-^^^^^
-* No change.
+    Fixes
+    ^^^^^
+    * No change.
 
 .. _changes_{new_version}:
 
-`v{new_version} <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/tree/{new_version}>`_
-{{ '-' * ('`v' + cookiecutter.version + ' <https://github.com/' + cookiecutter.github_username + '/' + cookiecutter.project_slug + '/tree/' + cookiecutter.version + '>`_')|length }}
+`v{new_version} <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/tree/{new_version}>`_ ({now:%Y-%m-%d})
+{{ '-' * ('`v' + cookiecutter.version + ' <https://github.com/' + cookiecutter.github_username + '/' + cookiecutter.project_slug + '/tree/' + cookiecutter.version + '>`_ ' + '({now:%Y-%m-%d})' )|length }}
 """
 
 [[tool.bumpversion.files]]
@@ -191,6 +191,9 @@ values = [
   "dev",
   "release"
 ]
+
+[tool.codespell]
+ignore-words-list = "astroid,socio-economic"
 
 [tool.coverage.paths]
 source = ["src/{{ cookiecutter.project_slug }}/", "*/site-packages/{{ cookiecutter.project_slug }}/"]
@@ -246,7 +249,8 @@ exclude = [
   {%- if cookiecutter.make_docs == 'y' %}
   ".readthedocs.yml",
   {% endif -%}
-  ".yamllint.yaml"
+  ".yamllint.yaml",
+  ".zizmor.yml"
   {%- if cookiecutter.make_docs == 'y' -%}
   ,
   "docs/_*",
@@ -258,16 +262,18 @@ exclude = [
   {%- endif %}
   {%- endif %}
 ]
+
 {%- if cookiecutter.use_black == 'y' %}
 
 [tool.isort]
 profile = "black"
-py_version = 39
+py_version = 310
+
 {%- endif %}
 
 [tool.mypy]
 files = "."
-python_version = 3.9
+python_version = "3.10"
 show_error_codes = true
 strict = true
 warn_no_return = true
@@ -283,6 +289,7 @@ module = [
 allow_untyped_defs = true
 disable_error_code = "attr-defined"
 ignore_missing_imports = true
+
 {%- if cookiecutter.use_pytest == 'y' %}
 
 [tool.numpydoc_validation]
@@ -307,11 +314,14 @@ override_SS05 = [
 
 [tool.pytest.ini_options]
 addopts = [
-  "--verbose",
-  "--color=yes"
+  "-ra",
+  "--color=yes",
+  "--verbose"
 ]
 filterwarnings = ["ignore::UserWarning"]
-testpaths = "tests"
+testpaths = [
+  "tests"
+]
 {%- endif %}
 
 [tool.ruff]
@@ -326,14 +336,17 @@ exclude = [
 
 [tool.ruff.format]
 {%- if cookiecutter.use_black == 'y' %}
-quote-style = "double"
+docstring-code-format = true
+docstring-code-line-length = "dynamic"
 indent-style = "space"
+quote-style = "double"
 skip-magic-trailing-comma = false
 {%- endif %}
 line-ending = "auto"
 
 [tool.ruff.lint]
 extend-select = [
+  "D213", # multi-line-summary-second-line
   "RUF022" # unsorted-dunder-all
 ]
 ignore = [
@@ -344,12 +357,15 @@ ignore = [
 ]
 preview = true
 select = [
+  "B", # bugbear
   "BLE", # blind-except
   "C90", # mccabe-complexity
   "D", # docstrings
   "E", # pycodestyle errors
+  "F", # pyflakes
   "FLY002", # static-join-to-fstring
   "G", # logging-format
+  "I", # imports
   "N", # naming conventions
   "PERF", # iterator performance
   "PTH", # pathlib
@@ -362,7 +378,6 @@ select = [
 
 [tool.ruff.lint.flake8-bandit]
 check-typed-exception = true
-{%- if cookiecutter.use_black == 'y' %}
 
 [tool.ruff.lint.isort]
 known-first-party = ["{{ cookiecutter.project_slug }}"]
@@ -370,7 +385,6 @@ case-sensitive = true
 detect-same-package = false
 lines-after-imports = 2
 no-lines-before = ["future", "standard-library"]
-{%- endif %}
 
 [tool.ruff.lint.mccabe]
 max-complexity = 15
@@ -385,3 +399,11 @@ max-doc-length = 180
 
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
+
+[tool.vulture]
+exclude = []
+ignore_decorators = ["@pytest.fixture"]
+ignore_names = []
+min_confidence = 90
+paths = ["src/{{cookiecutter.project_slug }}", "tests"]
+sort_by_size = true

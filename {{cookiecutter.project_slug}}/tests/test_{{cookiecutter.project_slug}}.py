@@ -5,31 +5,31 @@ import pathlib
 from importlib.util import find_spec
 {% if cookiecutter.use_pytest == 'n' -%}
 import unittest
-{% else %}
-import pytest
 {%- endif %}
 {%- if cookiecutter.command_line_interface|lower == 'click' %}
 from click.testing import CliRunner
 {%- endif %}
-{% if cookiecutter.command_line_interface|lower == 'click' %}import {{ cookiecutter.project_slug }}.cli as cli{%- endif %}
+{%- if cookiecutter.command_line_interface|lower == 'click' %}import {{ cookiecutter.project_slug }}.cli as cli{%- endif %}
 from {{ cookiecutter.project_slug }} import {{ cookiecutter.project_slug }}  # noqa: F401
 {%- if cookiecutter.use_pytest == 'y' %}
 
 
-@pytest.fixture
-def response():
-    """Sample pytest fixture.
+# import pytest
 
-    See more at: https://doc.pytest.org/en/latest/explanation/fixtures.html
-    """
-    # import requests
-    # return requests.get('https://github.com/audreyr/cookiecutter-pypackage')
+# @pytest.fixture
+# def response():
+#     """Sample pytest fixture.
+#
+#     See more at: https://doc.pytest.org/en/latest/explanation/fixtures.html
+#     """
+#     # import requests
+#     # return requests.get('https://github.com/audreyr/cookiecutter-pypackage')
 
 
-def test_content(response):
-    """Sample pytest test function with the pytest fixture as an argument."""
-    # from bs4 import BeautifulSoup
-    # assert 'GitHub' in BeautifulSoup(response.content).title.string
+# def test_content(response):
+#     """Sample pytest test function with the pytest fixture as an argument."""
+#     # from bs4 import BeautifulSoup
+#     # assert 'GitHub' in BeautifulSoup(response.content).title.string
 {%- if cookiecutter.command_line_interface|lower == 'click' %}
 
 
@@ -74,9 +74,13 @@ class Test{{ cookiecutter.project_slug|title }}(unittest.TestCase):
 
 def test_package_metadata():
     """Test the package metadata."""
-    project = find_spec("{{ cookiecutter.project_slug }}").submodule_search_locations[0]
+    project = find_spec("{{ cookiecutter.project_slug }}")
 
-    metadata = pathlib.Path(project).resolve().joinpath("__init__.py")
+    assert project is not None
+    assert project.submodule_search_locations is not None
+    location = project.submodule_search_locations[0]
+
+    metadata = pathlib.Path(location).resolve().joinpath("__init__.py")
 
     with metadata.open() as f:
         contents = f.read()

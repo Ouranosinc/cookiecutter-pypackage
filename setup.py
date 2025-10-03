@@ -1,7 +1,8 @@
 # !/usr/bin/env python
 
-from setuptools import setup
 from pathlib import Path
+
+from setuptools import setup
 
 setup(
     name="cookiecutter-pypackage-ouranos",
@@ -19,7 +20,7 @@ setup(
         "template",
         "package",
     ],
-    python_requires=">=3.8",
+    python_requires=">=3.10",
     classifiers=[
         "Development Status :: 4 - Beta",
         "Environment :: Console",
@@ -27,8 +28,6 @@ setup(
         "Natural Language :: English",
         "License :: OSI Approved :: BSD License",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
@@ -42,17 +41,17 @@ setup(
             "build >=1.2.2",
             "cookiecutter >=2.6.0",
             "coverage >=7.5.1",
-            "flit >=3.9.0,<4.0",
+            "flit >=3.10.1,<4.0",
             "pre-commit >=3.5.0",
             "pytest-cookies >=0.7.0",
             "pytest >=8.2.3",
-            "tox >=4.23.2",
+            "tox >=4.26.0",
             "twine >=5.1.1",
             "watchdog >=4.0.0",
         ],
         "docs": [
             "alabaster >=0.7.13",
-            "sphinx >=7.0.0",
+            "sphinx >=7.1.0",
         ],
     },
 )

@@ -19,7 +19,7 @@ github_username
 
 project_name
     The name of your new Python package project. This is used in documentation, so spaces and any characters are fine here.
-    
+
 project_slug
     The namespace of your Python package. This should be Python import-friendly. Typically, it is the slugified version of project_name. Note: your PyPi project and Travis links will use project_slug, so change those in the README afterwards.
 
@@ -38,19 +38,28 @@ Options
 The following package configuration options set up different features for your project.
 
 use_pytest
-    Whether to use `pytest <https://docs.pytest.org/en/latest/>`_
+    Whether to use `pytest <https://docs.pytest.org/en/latest/>`_.
 
-use_pypi_deployment_with_travis
-    Whether to use PyPI deployment with `Travis <https://travis-ci.org/>`_.
+use_black
+    Whether to enforce `black <https://black.readthedocs.io/en/stable/index.html>`_-like code formatting.
 
-add_pyup_badge
-    Whether to include a `pyup <https://github.com/pyupio/pyup>`_ badge
+use_conda
+    Whether to add configurations and instructions for `conda <https://docs.conda.io/en/latest/>`_ environments for the project.
+
+make_docs
+    Whether to create a `docs/` directory with `Sphinx <https://www.sphinx-doc.org/en/master/>`_ documentation.
+
+add_translations
+    Whether to add support for translations using the `sphinx-intl <https://www.sphinx-doc.org/en/master/usage/advanced/intl.html>`_ extension.
 
 command_line_interface
-    Whether to create a console script using Click. Console script entry point will match the project_slug. Options: ['Click', 'Argparse', 'No command-line interface']
-    
+    Whether to create a console script using Click. Console script entry point will match the project_slug. Options: ['Typer', 'Click', 'Argparse', 'No command-line interface']
+
 create_author_file
-    Whether to create an authors file
-    
+    Whether to create an authors file.
+
 open_source_license
     Choose a `license <https://choosealicense.com/>`_. Options: [1. MIT License, 2. BSD license, 3. ISC license, 4. Apache Software License 2.0, 5. GNU General Public License v3, 6. Not open source]
+
+generated_with_cruft
+    Whether to add a `cruft <https://cruft.github.io/>`_ configuration file to manage updates to the project template.

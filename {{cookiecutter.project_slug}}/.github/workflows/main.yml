@@ -33,19 +33,29 @@ jobs:
           - "3.x"
     steps:
       - name: Harden Runner
-        uses:  step-security/harden-runner@0080882f6c36860b6ba35c610c98ce87d4e2f26f # v2.10.2
+        uses: step-security/harden-runner@0634a2670c59f64b4a01f0f96f84700a4088b9f0 # v2.12.0
         with:
           egress-policy: audit
       - name: Checkout Repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
       - name: Set up Python__PYTHON_VERSION__
-        uses: actions/setup-python@39cd14951b08e74b54015e9e001cdefcf80e669f # v5.1.1
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: __PYTHON_VERSION__
           cache: pip
       - name: Install CI libraries
         run: |
           python -m pip install --require-hashes -r CI/requirements_ci.txt
+      - name: Environment Caching
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
+        with:
+          path: |
+            .tox
+          {% raw -%}
+          key: ${{ hashFiles('pyproject.toml', 'tox.ini') }}-lint
+          {%- endraw %}
       - name: Run linting suite
         run: |
           python -m tox -e lint
@@ -57,21 +67,18 @@ jobs:
     strategy:
       matrix:
         os: [ 'ubuntu-latest' ]
-        python-version:
-          - "3.9"
-          - "3.10"
-          - "3.11"
-          - "3.12"
-          - "3.13"
+        python-version: [ "3.9", "3.10", "3.11", "3.12" ]
     steps:
       - name: Harden Runner
-        uses:  step-security/harden-runner@0080882f6c36860b6ba35c610c98ce87d4e2f26f # v2.10.2
+        uses: step-security/harden-runner@0634a2670c59f64b4a01f0f96f84700a4088b9f0 # v2.12.0
         with:
           egress-policy: audit
       - name: Checkout Repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
       - name: Set up Python__PYTHON_VERSION__
-        uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b # v5.3.0
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: __PYTHON_VERSION__
           cache: pip
@@ -79,7 +86,7 @@ jobs:
         run: |
           python -m pip install --require-hashes -r CI/requirements_ci.txt
       - name: Environment Caching
-        uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4.1.2
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
         with:
           path: .tox
           {%- raw %}
@@ -109,15 +116,18 @@ jobs:
         shell: bash -l {0}
     steps:
       - name: Harden Runner
-        uses:  step-security/harden-runner@0080882f6c36860b6ba35c610c98ce87d4e2f26f # v2.10.2
+        uses: step-security/harden-runner@0634a2670c59f64b4a01f0f96f84700a4088b9f0 # v2.12.0
         with:
           egress-policy: audit
       - name: Checkout Repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
       - name: Setup Conda (Micromamba) with Python__PYTHON_VERSION__
-        uses: mamba-org/setup-micromamba@06375d89d211a1232ef63355742e9e2e564bc7f7 # v2.0.2
+        uses: mamba-org/setup-micromamba@0dea6379afdaffa5d528b3d1dabc45da37f443fc # v2.0.4
         with:
           cache-downloads: true
+          cache-environment: true
           environment-file: environment-dev.yml
           create-args: >-
             python=__PYTHON_VERSION__
@@ -130,15 +140,12 @@ jobs:
           python -m pip check || true
       - name: Test with pytest
         run: |
-          python -m pytest --cov {{ cookiecutter.project_slug }}
+          python -m pytest --cov {{ cookiecutter.project_slug }} --cov-report=lcov
       - name: Report Coverage
-        run: |
-          python -m coveralls
-        env:
-          GITHUB_TOKEN: __GITHUB_TOKEN__
-          COVERALLS_FLAG_NAME: run-Python__PYTHON_VERSION__-conda
-          COVERALLS_PARALLEL: true
-          COVERALLS_SERVICE_NAME: github
+        uses: coverallsapp/github-action@648a8eb78e6d50909eff900e4ec85cab4524a45b # v2.3.6
+        with:
+          flag-name: run-__PYTHON_VERSION__-conda
+          parallel: true
 
 {%- endif %}
 
@@ -151,11 +158,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Harden Runner
-        uses:  step-security/harden-runner@0080882f6c36860b6ba35c610c98ce87d4e2f26f # v2.10.2
+        uses: step-security/harden-runner@0634a2670c59f64b4a01f0f96f84700a4088b9f0 # v2.12.0
         with:
           disable-sudo: true
           egress-policy: audit
       - name: Coveralls Finished
-        uses: coverallsapp/github-action@cfd0633edbd2411b532b808ba7a8b5e04f76d2c8 # v2.3.4
+        uses: coverallsapp/github-action@648a8eb78e6d50909eff900e4ec85cab4524a45b # v2.3.6
         with:
           parallel-finished: true
