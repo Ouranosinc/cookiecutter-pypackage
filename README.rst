@@ -24,9 +24,9 @@ Features
 * `pre-commit.ci`_: Automate `pre-commit` checks and corrections in your Pull Requests.
 * bump-my-version_: Pre-configured `SemVer-2.0-compliant`_ version bumping with a single command.
 * dependabot_ for automated dependency updates of both project dependencies and GitHub Actions.
-* `sphinx-intl`_ for French internationalization (i18n) and localization (l10n) of Sphinx docs (optional)
+* sphinx-intl_ for French internationalization (i18n) and localization (l10n) of Sphinx docs (optional)
 * Auto-release to TestPyPI_ and PyPI_ when you push a new tag to main (optional)
-* Command line interface using Click (optional)
+* Command line interface using Click_ (optional)
 
 Build Status
 -------------
@@ -129,10 +129,7 @@ Similar Cookiecutter Templates
 * `Nekroze/cookiecutter-pypackage`_: A fork of this with a PyTest test runner,
   strict flake8 checking with Travis/Tox, and some docs and ``setup.py`` differences.
 
-* `tony/cookiecutter-pypackage-pythonic`_: Fork with py2.7+3.3 optimizations.
-  Flask/Werkzeug-style test runner, ``_compat`` module and module/doc conventions.
-  See ``README.rst`` or the `GitHub comparison view`_ for an exhaustive list of
-  additions and modifications.
+* `tony/cookiecutter-pypackage-pythonic`_: Fork with py2.7+3.3 optimizations. Flask/Werkzeug-style test runner, ``_compat`` module and module/doc conventions. See ``README.rst`` or the `GitHub comparison view`_ for an exhaustive list of additions and modifications.
 
 * `ardydedase/cookiecutter-pypackage`_: A fork with separate requirements files rather than a requirements list in the ``setup.py`` file.
 
@@ -142,12 +139,11 @@ Similar Cookiecutter Templates
 
 * `veit/cookiecutter-namespace-template`_: A cookiecutter template for python modules with a namespace
 
-* `zillionare/cookiecutter-pypackage`_: A template containing Poetry_, Mkdocs_, Github CI and many more. It's a template and a package also (can be installed with `pip`)
+* `zillionare/cookiecutter-pypackage`_: A template containing Poetry_, Mkdocs_, Github CI and many more. It's a template and a package also (can be installed with pip_)
 
 * `waynerv/cookiecutter-pypackage`_: A fork using Poetry_, Mkdocs_, Pre-commit_, Black_ and Mypy_. Run test, staging and release workflows with GitHub Actions, automatically generate release notes from CHANGELOG.
 
-* Also see the `network`_ and `family tree`_ for this repo. (If you find
-  anything that should be listed here, please add it and send a pull request!)
+* Also see the `network`_ and `family tree`_ for this repo. (If you find anything that should be listed here, please add it and send a pull request!)
 
 Fork This / Create Your Own
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -165,6 +161,7 @@ I also accept pull requests on this, if they're small, atomic, and if they make 
 
 
 .. _Black: https://black.readthedocs.io/en/stable/
+.. _Click: https://click.palletsprojects.com/en/stable/
 .. _Conda: https://docs.conda.io/en/latest/
 .. _Cookiecutter: https://github.com/cookiecutter/cookiecutter
 .. _GitHub Actions: https://docs.github.com/en/actions
@@ -181,6 +178,7 @@ I also accept pull requests on this, if they're small, atomic, and if they make 
 .. _cookiecutter-pypackage tutorial: https://cookiecutter-pypackage.readthedocs.io/en/latest/tutorial.html
 .. _dependabot: https://docs.github.com/en/code-security/dependabot/dependabot-version-updates
 .. _flit: https://flit.pypa.io/en/stable/
+.. _pip: https://pip.pypa.io/en/stable/
 .. _pre-commit.ci: https://pre-commit.ci/
 .. _pre-commit: https://pre-commit.com/
 .. _pypi: https://pypi.org/
