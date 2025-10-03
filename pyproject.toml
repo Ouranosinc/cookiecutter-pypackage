@@ -1,0 +1,104 @@
+[build-system]
+requires = ["flit_core >=3.11.0,<4.0"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "cookiecutter-pypackage-ouranos"
+description = "Cookiecutter template for a Python package"
+readme = {file = "README.rst", content-type = "text/x-rst"}
+license = "BSD-3-Clause"
+license-files = ["LICENSE"]
+authors = [
+  {name = "Trevor James Smith", email = "smith.trevorj@ouranos.ca"}
+]
+requires-python = ">=3.10"
+keywords = ["cookiecutter", "template", "package"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Natural Language :: English",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+  "Topic :: Software Development"
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+dev = [
+  "build >=1.3.0",
+  "cookiecutter >=2.6.0",
+  "coverage >=7.5.1",
+  "flit >=3.11.0,<4.0",
+  "pre-commit >=3.5.0",
+  "pytest-cookies >=0.7.0",
+  "pytest >=8.3.2",
+  "ruff >=0.13.3",
+  "tox >=4.30.3",
+  "twine >=5.1.1",
+  "watchdog >=4.0.0"
+]
+docs = [
+  "alabaster >=1.0.0",
+  "sphinx >=7.1.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/Ouranosinc/cookiecutter-pypackage"
+
+[tool]
+
+[tool.flit.external-data]
+directory = "{{cookiecutter.project_slug}}"
+
+[tool.flit.module]
+name = "cookiecutter-pypackage-ouranos"
+
+[tool.flit.sdist]
+include = ["CONTRIBUTING.rst", "LICENSE", "Makefile", "README.rst", "cookiecutter.json", "docs/", "hooks/", "tests/"]
+exclude = [".*", "*.pyc", "__pycache__"]
+
+[tool.pytest.ini_options]
+addopts = "--verbose"
+markers = [
+  "precommit: mark tests that can only be run with precommit present"
+]
+testpaths = [
+  "tests"
+]
+
+[tool.ruff]
+exclude = [
+  "*cookiecutter.project_slug*"
+]
+
+[tool.tox]
+requires = ["tox >=4.30.3"]
+env_list = ["py{3.10,3.11,3.12,3.13}", "pypy{3.10,3.11}", "docs"]
+
+[tool.tox.env.docs]
+changedir = "docs"
+extras = ["docs"]
+commands = [
+  ["sphinx-build", "-b", "html", "-d", "{envtmpdir}/doctrees", ".", "{envtmpdir}/html"]
+]
+
+[tool.tox.env.pypy3]
+commands = [
+  ["pytest", "-m", "\"not requires_precommit\""]
+]
+
+[tool.tox.env_run_base]
+set_env = {PYTEST_ADDOPTS = "--color=yes", PYTHONPATH = "{toxinidir}", TOX = "1"}
+extras = ["dev"]
+download = true
+commands_pre = [
+  ["pip", "list"],
+  ["-", "pip", "check"]
+]
+commands = [["pytest", "{posargs}", "tests"]]

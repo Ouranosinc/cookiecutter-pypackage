@@ -22,7 +22,7 @@ updates:
     groups:
       python:
         patterns:
-          - "setup.py"
+          - "pyproject.toml"
       ci:
         patterns:
           - "CI/*"

@@ -20,4 +20,4 @@ dependencies:
   - sphinx-rtd-theme >=1.0
   {%- if cookiecutter.command_line_interface|lower == 'typer' %}
   - typer >=0.16.0
-{% endif -%}
+  {%- endif %}
