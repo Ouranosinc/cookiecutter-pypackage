@@ -15,16 +15,16 @@ message: >-
   metadata from this file.
 type: "software"
 authors:
-  - given-names: '{{ cookiecutter.full_name.split(" ")[:-1] | join(" ") }}'
-    family-names: '{{ cookiecutter.full_name.split(" ")[-1] }}'
-    email: "{{ cookiecutter.email }}"
+  - given-names: '{{ cookiecutter.full_name.split(" ")[:-1] | join(" ") if " " in cookiecutter.full_name else cookiecutter.full_name }}'
+    family-names: '{{ cookiecutter.full_name.split(" ")[-1] if " " in cookiecutter.full_name else "" }}'
+    email: '{{ cookiecutter.email }}'
     {%- if cookiecutter.orcid_id != 'N/A' %}
     orcid: "https://orcid.org/{{ cookiecutter.orcid_id }}"
     {%- endif %}
 contact:
-  - given-names: '{{ cookiecutter.full_name.split(" ")[:-1] | join(" ") }}'
-    family-names: '{{ cookiecutter.full_name.split(" ")[-1] }}'
-    email: "{{ cookiecutter.email }}"
+  - given-names: '{{ cookiecutter.full_name.split(" ")[:-1] | join(" ") if " " in cookiecutter.full_name else cookiecutter.full_name }}'
+    family-names: '{{ cookiecutter.full_name.split(" ")[-1] if " " in cookiecutter.full_name else "" }}'
+    email: '{{ cookiecutter.email }}'
     {%- if cookiecutter.orcid_id != 'N/A' %}
     orcid: "https://orcid.org/{{ cookiecutter.orcid_id }}"
     {%- endif %}
