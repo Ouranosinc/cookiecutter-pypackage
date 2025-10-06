@@ -2,7 +2,7 @@
 Cookiecutter PyPackage
 ======================
 
-|build| |black| |ruff|
+|build| |ruff|
 
 Cookiecutter_ template for a Python package.
 
@@ -14,13 +14,13 @@ Cookiecutter_ template for a Python package.
 Features
 --------
 
-* Testing setup with ``unittest`` with ``coverage run`` or ``pytest``
+* Testing setup with `unittest` with ``coverage run`` or ``pytest`` (optional).
 * `pyproject.toml`_ with the flit_ backend for PEP 517/621-compliant packaging.
 * `GitHub Actions`_: Ready for GitHub Actions Continuous Integration testing and Deployment.
 * `Conda`_ environment file: Optionally use ``conda env create -f environment-dev.yml`` to create a new environment with the correct Python version.
 * Tox_ testing: Setup to easily test for Python 3.10, 3.11, 3.12, 3.13, and PyPy3.
 * Sphinx_ docs: Documentation ready for generation with, for example, `Read the Docs`_
-* pre-commit_ hook: Run your tests and linting (e.g. `black`, `flake8`, `ruff`, `pylint`, etc.) before you commit your code!
+* pre-commit_ hook: Run your tests and linting (e.g. `flake8`, `ruff`, `pylint`, etc.) before you commit your code!
 * `pre-commit.ci`_: Automate `pre-commit` checks and corrections in your Pull Requests.
 * bump-my-version_: Pre-configured `SemVer-2.0-compliant`_ version bumping with a single command.
 * dependabot_ for automated dependency updates of both project dependencies and GitHub Actions.
@@ -203,13 +203,9 @@ I also accept pull requests on this, if they're small, atomic, and if they make 
     :target: https://github.com/Ouranosinc/cookiecutter-pypackage/actions/workflows/main.yml
     :alt: Build Status
 
-.. |black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
-        :target: https://github.com/psf/black
-        :alt: Python Black
-
 .. |ruff| image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json
-        :target: https://github.com/astral-sh/ruff
-        :alt: Ruff
+    :target: https://github.com/astral-sh/ruff
+    :alt: Ruff
 
 .. |docs-upstream|  image:: https://readthedocs.org/projects/cookiecutter-pypackage/badge/?version=latest
     :target: https://cookiecutter-pypackage.readthedocs.io/en/latest/?badge=latest

@@ -50,10 +50,6 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
   # Dev tools and testing
-  {%- if cookiecutter.use_black == 'y' %}
-  "black ==25.9.0",
-  "blackdoc ==0.4.3",
-  {%- endif %}
   "bump-my-version >=1.2.3",
   "coverage >=7.5.0",
   "deptry >=0.23.1",
@@ -111,18 +107,6 @@ all = ["{{ cookiecutter.project_name | replace(" ", "-") }}[dev]"]
 "Source" = "{{ cookiecutter.__gh_slug }}"
 
 [tool]
-
-{%- if cookiecutter.use_black == 'y' %}
-
-[tool.black]
-target-version = [
-  "py310",
-  "py311",
-  "py312",
-  "py313"
-]
-
-{%- endif %}
 
 [tool.bumpversion]
 current_version = "{{ cookiecutter.version }}"
@@ -267,14 +251,6 @@ exclude = [
   {%- endif %}
 ]
 
-{%- if cookiecutter.use_black == 'y' %}
-
-[tool.isort]
-profile = "black"
-py_version = 310
-
-{%- endif %}
-
 [tool.mypy]
 files = "."
 python_version = "3.10"
@@ -339,13 +315,11 @@ exclude = [
 ]
 
 [tool.ruff.format]
-{%- if cookiecutter.use_black == 'y' %}
 docstring-code-format = true
 docstring-code-line-length = "dynamic"
 indent-style = "space"
 quote-style = "double"
 skip-magic-trailing-comma = false
-{%- endif %}
 line-ending = "auto"
 
 [tool.ruff.lint]

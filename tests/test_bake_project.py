@@ -346,12 +346,11 @@ def test_bake_with_console_options_script_click(cookies):
     assert "Show this message" in help_result.output
 
 
-@pytest.mark.parametrize("use_black,expected", [("y", True), ("n", False)])
-def test_black(cookies, use_black, expected):
-    with bake_in_temp_dir(cookies, extra_context={"use_black": use_black}) as result:
+@pytest.mark.parametrize("orcid,expected", [("N/A", False), ("1234-5678-9abc", True)])
+def test_orcid(cookies, orcid, expected):
+    with bake_in_temp_dir(cookies, extra_context={"orcid_id": orcid}) as result:
         assert result.project_path.is_dir()
-        requirements_path = result.project_path.joinpath("pyproject.toml")
-        assert ("black ==" in requirements_path.read_text()) is expected
-        assert ("[tool.black]" in requirements_path.read_text()) is expected
-        makefile_path = result.project_path.joinpath("Makefile")
-        assert ("black --check" in makefile_path.read_text()) is expected
+        cff_path = result.project_path.joinpath("CITATION.cff")
+        assert (f"orcid: \"https://orcid.org/{orcid}\"" in cff_path.read_text()) is expected
+        zenodo_path = result.project_path.joinpath(".zenodo.json")
+        assert (f"\"orcid\": \"{orcid}\"" in zenodo_path.read_text()) is expected
