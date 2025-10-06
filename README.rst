@@ -19,14 +19,14 @@ Features
 * `GitHub Actions`_: Ready for GitHub Actions Continuous Integration testing and Deployment.
 * `Conda`_ environment file: Optionally use ``conda env create -f environment-dev.yml`` to create a new environment with the correct Python version.
 * Tox_ testing: Setup to easily test for Python 3.10, 3.11, 3.12, 3.13, and PyPy3.
-* Sphinx_ docs: Documentation ready for generation with, for example, `Read the Docs`_
+* Sphinx_ docs: Documentation ready for generation with, for example, `Read the Docs`_.
 * pre-commit_ hook: Run your tests and linting (e.g. `flake8`, `ruff`, `pylint`, etc.) before you commit your code!
 * `pre-commit.ci`_: Automate `pre-commit` checks and corrections in your Pull Requests.
 * bump-my-version_: Pre-configured `SemVer-2.0-compliant`_ version bumping with a single command.
 * dependabot_ for automated dependency updates of both project dependencies and GitHub Actions.
-* sphinx-intl_ for French internationalization (i18n) and localization (l10n) of Sphinx docs (optional)
-* Auto-release to TestPyPI_ and PyPI_ when you push a new tag to main (optional)
-* Command line interface using Click_ (optional)
+* sphinx-intl_ for French internationalization (i18n) and localization (l10n) of Sphinx docs (optional).
+* Auto-release to TestPyPI_ and PyPI_ when you push a new tag to main (optional).
+* Command line interface using Typer_, Click_, or Argparse_ (optional).
 
 Build Status
 -------------
@@ -159,7 +159,7 @@ Or Submit a Pull Request
 
 I also accept pull requests on this, if they're small, atomic, and if they make my own packaging experience better.
 
-
+.. _Argparse: https://docs.python.org/3/library/argparse.html
 .. _Black: https://black.readthedocs.io/en/stable/
 .. _Click: https://click.palletsprojects.com/en/stable/
 .. _Conda: https://docs.conda.io/en/latest/
@@ -173,6 +173,7 @@ I also accept pull requests on this, if they're small, atomic, and if they make 
 .. _SemVer-2.0-compliant: https://semver.org/spec/v2.0.0.html
 .. _Sphinx: http://sphinx-doc.org/
 .. _Tox: http://testrun.org/tox/
+.. _Typer: https://typer.tiangolo.com/
 .. _bump-my-version: https://github.com/callowayproject/bump-my-version
 .. _bump2version: https://github.com/c4urself/bump2version
 .. _cookiecutter-pypackage tutorial: https://cookiecutter-pypackage.readthedocs.io/en/latest/tutorial.html
