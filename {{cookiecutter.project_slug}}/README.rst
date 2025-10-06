@@ -14,7 +14,7 @@
 | Open Source                | |license| |ossf-score|                              |
 +----------------------------+-----------------------------------------------------+
 {%- endif %}
-| Coding Standards           | |black| |isort| |ruff| |pre-commit|                 |
+| Coding Standards           | |ruff| |pre-commit|                                 |
 +----------------------------+-----------------------------------------------------+
 | Development Status         | |status| |build| |coveralls|                        |
 +----------------------------+-----------------------------------------------------+
@@ -42,10 +42,6 @@ This package was created with Cookiecutter_ and the `Ouranosinc/cookiecutter-pyp
 .. _Cookiecutter: https://github.com/cookiecutter/cookiecutter
 .. _`Ouranosinc/cookiecutter-pypackage`: https://github.com/Ouranosinc/cookiecutter-pypackage
 
-.. |black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
-        :target: https://github.com/psf/black
-        :alt: Python Black
-
 .. |build| image:: {{ cookiecutter.__gh_slug }}/actions/workflows/main.yml/badge.svg
         :target: {{ cookiecutter.__gh_slug }}/actions
         :alt: Build Status
@@ -66,10 +62,6 @@ This package was created with Cookiecutter_ and the `Ouranosinc/cookiecutter-pyp
 .. |docs| image:: https://readthedocs.org/projects/{{ cookiecutter.project_name | replace(" ", "-") }}/badge/?version=latest
         :target: https://{{ cookiecutter.project_name | replace(" ", "-") }}.readthedocs.io/en/latest/?version=latest
         :alt: Documentation Status
-
-.. |isort| image:: https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336
-        :target: https://pycqa.github.io/isort/
-        :alt: Isort
 
 {%- if is_open_source %}
 
