@@ -19,6 +19,9 @@
   "creators": [
     {
       "name": "{{ cookiecutter.full_name.split()[-1] }}, {{ ' '.join(cookiecutter.full_name.split()[:-1]) }}"
+      {%- if cookiecutter.orcid_id != 'N/A' %},
+      "orcid": "{ cookiecutter.orcid_id }}"
+      {%- endif %}
     }
   ],
   "keywords": [
