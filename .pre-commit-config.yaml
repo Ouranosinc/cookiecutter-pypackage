@@ -6,7 +6,7 @@ repos:
     rev: v6.0.0
     hooks:
       - id: check-toml
-        exclude: '{{cookiecutter.project_slug}}/pyproject.toml'
+        exclude: '{{cookiecutter.project_slug}}/(pyproject|tox)?.toml'
       - id: end-of-file-fixer
         exclude: '{{cookiecutter.project_slug}}'
       - id: trailing-whitespace
@@ -15,7 +15,7 @@ repos:
     rev: v0.24.2
     hooks:
       - id: toml-sort-fix
-        exclude: '{{cookiecutter.project_slug}}/pyproject.toml'
+        exclude: '{{cookiecutter.project_slug}}/(pyproject|tox)?.toml'
   - repo: https://github.com/pre-commit/pygrep-hooks
     rev: v1.10.0
     hooks:

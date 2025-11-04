@@ -1,4 +1,4 @@
-name: cookiecutter-pypackage
+name: cookiecutter-pypackage testing
 
 on:
   push:
@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   tests:
-    name: Test with Python${{ matrix.python-version }}
+    name: Python${{ matrix.python-version }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
