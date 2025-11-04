@@ -3,7 +3,6 @@ Changelog
 =========
 
 ..
-
     `Unreleased <https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}>`_ (latest)
     {{ '-' * ('`Unreleased <https://github.com/' + cookiecutter.github_username + '/' + cookiecutter.project_slug + '>`_ (latest)')|length }}
 

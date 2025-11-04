@@ -40,7 +40,7 @@ on:
       {%- endif %}
       - pyproject.toml
       - tests/**.py
-      - tox.ini
+      - tox.toml
       - src/{{ cookiecutter.project_slug }}/__init__.py
   workflow_dispatch:
 

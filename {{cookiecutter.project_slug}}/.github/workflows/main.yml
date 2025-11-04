@@ -52,7 +52,7 @@ jobs:
         with:
           path: |
             .tox
-          key: {% raw -%} ${{ hashFiles('pyproject.toml', 'tox.ini') }}-lint {%- endraw %}
+          key: {% raw -%} ${{ hashFiles('pyproject.toml', 'tox.toml') }}-lint {%- endraw %}
       - name: Run linting suite
         run: |
           python -m tox -e lint
@@ -87,7 +87,7 @@ jobs:
         with:
           path: .tox
           {%- raw %}
-          key: ${{ matrix.os }}-Python${{ matrix.python-version }}-${{ hashFiles('pyproject.toml', 'tox.ini') }}
+          key: ${{ matrix.os }}-Python${{ matrix.python-version }}-${{ hashFiles('pyproject.toml', 'tox.toml') }}
           {%- endraw %}
       - name: Test with tox
         run: |

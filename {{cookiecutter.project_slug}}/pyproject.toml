@@ -232,7 +232,7 @@ include = [
   {%- endif %}
   "src/{{ cookiecutter.project_slug }}",
   "tests/*.py",
-  "tox.ini"
+  "tox.toml"
 ]
 exclude = [
   "*.py[co]",
