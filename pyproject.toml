@@ -79,18 +79,13 @@ exclude = [
 
 [tool.tox]
 requires = ["tox >=4.30.3"]
-env_list = ["py{3.10,3.11,3.12,3.13}", "pypy{3.10,3.11}", "docs"]
+env_list = ["py3.{10,11,12,13,14}", "pypy3.{11}", "docs"]
 
 [tool.tox.env.docs]
 changedir = "docs"
 extras = ["docs"]
 commands = [
   ["sphinx-build", "-b", "html", "-d", "{envtmpdir}/doctrees", ".", "{envtmpdir}/html"]
-]
-
-[tool.tox.env.pypy3]
-commands = [
-  ["pytest", "-m", "\"not requires_precommit\""]
 ]
 
 [tool.tox.env_run_base]

@@ -1,4 +1,4 @@
-name: cookiecutter-pypackage
+name: cookiecutter-pypackage testing
 
 on:
   push:
@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   tests:
-    name: Test with Python${{ matrix.python-version }}
+    name: Python${{ matrix.python-version }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -26,8 +26,8 @@ jobs:
             python-version: "3.12"
           - tox-env: py3.13
             python-version: "3.13"
-          - tox-env: pypy3.10
-            python-version: "pypy3.10"
+          - tox-env: py3.14
+            python-version: "3.14"
           - tox-env: pypy3.11
             python-version: "pypy3.11"
     steps:

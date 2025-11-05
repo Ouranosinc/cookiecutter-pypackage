@@ -93,7 +93,7 @@ def test_bake_with_defaults(cookies):
             in next(result.project_path.joinpath("src").iterdir()).name
         )
         assert "tests" in found_toplevel_files
-        assert "tox.ini" in found_toplevel_files
+        assert "tox.toml" in found_toplevel_files
 
 
 def test_bake_and_run_unittests(cookies):
