@@ -8,7 +8,7 @@ dependencies:
   {%- if cookiecutter.command_line_interface|lower == 'click' %}
   - click >=8.1.7
   {%- endif %}
-  - sphinx >=7.1.0
+  - sphinx >=7.1.0,<8.2
   {%- if cookiecutter.command_line_interface|lower == 'click' %}
   - sphinx-click
   {%- endif %}

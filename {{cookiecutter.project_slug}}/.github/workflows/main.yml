@@ -92,11 +92,11 @@ jobs:
       - name: Test with tox
         run: |
           python -m tox
-        env:
-          GITHUB_TOKEN: __GITHUB_TOKEN__
-          COVERALLS_FLAG_NAME: run-__PYTHON_VERSION__
-          COVERALLS_PARALLEL: true
-          COVERALLS_SERVICE_NAME: github
+      - name: Report Coverage
+        uses: coverallsapp/github-action@648a8eb78e6d50909eff900e4ec85cab4524a45b # v2.3.6
+        with:
+          flag-name: run-__PYTHON_VERSION__-pypi
+          parallel: true
 
 {%- if cookiecutter.use_conda == "y" %}
 
