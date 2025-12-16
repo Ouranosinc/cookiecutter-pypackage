@@ -17,6 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
+        posargs: [""]
         include:
           - tox-env: py3.10
             python-version: "3.10"

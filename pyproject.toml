@@ -96,4 +96,4 @@ commands_pre = [
   ["pip", "list"],
   ["-", "pip", "check"]
 ]
-commands = [["pytest", "{posargs}", "tests"]]
+commands = [["pytest", "{toxinidir}/tests/test_bake_project.py", "{posargs}"]]

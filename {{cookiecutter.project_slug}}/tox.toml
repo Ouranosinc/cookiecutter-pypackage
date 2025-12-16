@@ -36,7 +36,7 @@ commands_post = []
 allowlist_externals = ["make"]
 
 [env_run_base]
-setenv = {PYTEST_ADDOPTS = "--color=yes", PYTHONPATH = "{toxinidir}"}
+setenv = {PYTEST_ADDOPTS = "--color=yes --cov={{ cookiecutter.project_slug }}", PYTHONPATH = "{toxinidir}"}
 passenv = ["COVERALLS_*", "GITHUB_*"]
 extras = ["dev"]
 download = true
@@ -44,7 +44,7 @@ install_command = ["python", "-m", "pip", "install", "--no-user", "{opts}", "{pa
 commands_pre = [["pip", "list"], ["pip", "check"]]
 commands = [
   {% if cookiecutter.use_pytest == 'y' -%}
-  ["pytest", "--cov"]
+  ["pytest", "{posargs}"]
   {%- else -%}
   ["coverage", "run"]
   {%- endif %}
