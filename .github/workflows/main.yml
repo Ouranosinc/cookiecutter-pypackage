@@ -17,20 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        posargs: [""]
-        include:
-          - tox-env: py3.10
-            python-version: "3.10"
-          - tox-env: py3.11
-            python-version: "3.11"
-          - tox-env: py3.12
-            python-version: "3.12"
-          - tox-env: py3.13
-            python-version: "3.13"
-          - tox-env: py3.14
-            python-version: "3.14"
-          - tox-env: pypy3.11
-            python-version: "pypy3.11"
+        python-version: [ "3.10", "3.11", "3.12", "3.13", "3.14", "pypy3.11" ]
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@f4a75cfd619ee5ce8d5b864b0d183aff3c69b55a # v2.13.1
@@ -67,7 +54,9 @@ jobs:
           key: ${{ matrix.tox-env }}-${{ hashFiles('pyproject.toml') }}
       - name: Run bake test suite
         run:
-            python -m tox -e ${{ matrix.tox-env }} -- ${{ matrix.posargs }}
+          python -m tox
+        with:
+          TOX_GH_MAJOR_MINOR: ${{ matrix.python-version }}
       # - name: Archive package
       #   if: ${{ matrix.tox-env == 'py39' }}
       #   uses: actions/upload-artifact@v4

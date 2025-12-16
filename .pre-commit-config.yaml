@@ -25,3 +25,12 @@ repos:
         exclude: '{{cookiecutter.project_slug}}'
       - id: text-unicode-replacement-char
         exclude: '{{cookiecutter.project_slug}}'
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.34.0
+    hooks:
+      - id: check-github-workflows
+      - id: check-readthedocs
+  - repo: meta
+    hooks:
+      - id: check-hooks-apply
+      - id: check-useless-excludes
