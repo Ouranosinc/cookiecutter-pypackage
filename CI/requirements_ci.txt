@@ -96,12 +96,12 @@ tox==4.32.0 \
     --hash=sha256:1ad476b5f4d3679455b89a992849ffc3367560bbc7e9495ee8a3963542e7c8ff \
     --hash=sha256:451e81dc02ba8d1ed20efd52ee409641ae4b5d5830e008af10fe8823ef1bd551
     # via
-    #   -r requirements_ci.in
+    #   -r CI/requirements_ci.in
     #   tox-gh
-tox-gh==1.5.0 \
-    --hash=sha256:bd4c56d1ebcde4ca2450fed347610a739614a7225945bdc89a67c8395eac9d63 \
-    --hash=sha256:fd7e8c826f4576a02af4737fd4b738817660b63898c161d6ee8f658c885f7fa1
-    # via -r requirements_ci.in
+tox-gh==1.6.1 \
+    --hash=sha256:070b69bf50821393e1ff0237006bb61b33347e2060eaec415fbfdefa48131aa7 \
+    --hash=sha256:b43240f689430b33a1877ab8794afe922e3b57a61b56c1f47daf1925367ea289
+    # via -r CI/requirements_ci.in
 typing-extensions==4.15.0 \
     --hash=sha256:0cea48d173cc12fa28ecabc3b837ea3cf6f38c6d1136f85cbaaf598984861466 \
     --hash=sha256:f0fa19c6845758ab08074a0cfa8b7aecb71c999ca73d62883bc25cc018c4e548
