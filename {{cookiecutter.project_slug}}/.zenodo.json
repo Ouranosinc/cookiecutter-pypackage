@@ -18,7 +18,15 @@
   "title": "{{ cookiecutter.project_name }}",
   "creators": [
     {
-      "name": "{{ cookiecutter.full_name.split()[-1] }}, {{ ' '.join(cookiecutter.full_name.split()[:-1]) }}"
+      {% set parts = cookiecutter.full_name.split() -%}
+      {%- if parts|length > 1 -%}
+      "name": "{{ parts[-1] }}, {{ ' '.join(parts[:-1]) }}"
+      {%- else -%}
+      "name": "{{ cookiecutter.full_name }}"
+      {%- endif -%}
+      {%- if cookiecutter.orcid_id != 'N/A' %},
+      "orcid": "{{ cookiecutter.orcid_id }}"
+      {%- endif %}
     }
   ],
   "keywords": [

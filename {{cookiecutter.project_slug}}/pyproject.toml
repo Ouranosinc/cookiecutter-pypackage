@@ -1,12 +1,12 @@
-{%- set license_classifiers = {
-    'MIT license': 'License :: OSI Approved :: MIT License',
-    'BSD license': 'License :: OSI Approved :: BSD License',
-    'ISC license': 'License :: OSI Approved :: ISC License (ISCL)',
-    'Apache Software License 2.0': 'License :: OSI Approved :: Apache Software License',
-    'GNU General Public License v3': 'License :: OSI Approved :: GNU General Public License v3 (GPLv3)'
+{%- set license_spdx_codes = {
+    'MIT license': 'MIT',
+    'BSD license': 'BSD-3-Clause',
+    'ISC license': 'ISC',
+    'Apache Software License 2.0': 'Apache-2.0',
+    'GNU General Public License v3': 'GPL-3.0-or-later'
 } -%}
 [build-system]
-requires = ["flit_core >=3.12.0,<4"]
+requires = ["flit_core >=3.11.0,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
@@ -20,15 +20,13 @@ maintainers = [
 readme = {file = "README.rst", content-type = "text/x-rst"}
 requires-python = ">=3.10.0"
 keywords = ["{{ cookiecutter.project_name }}"]
-{%- if cookiecutter.open_source_license in license_classifiers %}
-license = {file = "LICENSE"}
+{%- if cookiecutter.open_source_license in license_spdx_codes %}
+license = "{{ license_spdx_codes[cookiecutter.open_source_license] }}"
+license-files = ["LICENSE"]
 {%- endif %}
 classifiers = [
   "Development Status :: 2 - Pre-Alpha",
   "Intended Audience :: Developers",
-{%- if cookiecutter.open_source_license in license_classifiers %}
-  "{{ license_classifiers[cookiecutter.open_source_license] }}",
-{%- endif %}
   "Natural Language :: English",
   "Operating System :: OS Independent",
   "Programming Language :: Python :: 3",
@@ -37,13 +35,14 @@ classifiers = [
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
   "Programming Language :: Python :: Implementation :: CPython",
   "Typing :: Typed"
 ]
 dynamic = ["description", "version"]
 dependencies = [
   {%- if cookiecutter.command_line_interface|lower == 'click' %}
-  "click >=8.2.0"
+  "click >=8.3.0"
   {% elif cookiecutter.command_line_interface|lower == 'typer' %}
   "typer >=0.16.0"
   {%- endif %}
@@ -52,25 +51,23 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
   # Dev tools and testing
-  {%- if cookiecutter.use_black == 'y' %}
-  "black ==25.1.0",
-  "blackdoc ==0.3.9",
-  {%- endif %}
-  "bump-my-version >=1.2.0",
+  "bump-my-version >=1.2.3",
   "coverage >=7.5.0",
-  "flake8 >=7.2.0",
-  "flake8-rst-docstrings >=0.3.0",
-  "flit >=3.12.0,<4.0",
-  "mypy >=1.14.1",
-  "numpydoc >=1.8.0",
-  "pip >=25.1.1",
+  "deptry >=0.23.1",
+  "flake8 >=7.3.0",
+  "flake8-rst-docstrings >=0.4.0",
+  "flit >=3.11.0,<4.0",
+  "mypy >=1.18.2",
+  "numpydoc >=1.9.0",
+  "pip >=25.2",
   "pre-commit >=3.5.0",
   {%- if cookiecutter.use_pytest == 'y' %}
   "pytest >=8.3.2",
   "pytest-cov >=5.0.0",
   {%- endif %}
-  "ruff >=0.12.0",
-  "tox >=4.26.0",
+  "ruff >=0.14.3",
+  "tox >=4.30.3",
+  "vulture >=2.14",
   "watchdog >=4.0.0"
 ]
 {%- if cookiecutter.make_docs == 'y' %}
@@ -80,7 +77,7 @@ docs = [
   "ipython",
   "jupyter_client",
   "nbsphinx >=0.9.5",
-  "sphinx >=7.1.0",
+  "sphinx >=7.1.0,<8.2",
   {%- if cookiecutter.command_line_interface|lower == 'click' %}
   "sphinx-click",
   {%- endif %}
@@ -111,18 +108,6 @@ all = ["{{ cookiecutter.project_name | replace(" ", "-") }}[dev]"]
 "Source" = "{{ cookiecutter.__gh_slug }}"
 
 [tool]
-
-{%- if cookiecutter.use_black == 'y' %}
-
-[tool.black]
-target-version = [
-  "py310",
-  "py311",
-  "py312",
-  "py313"
-]
-
-{%- endif %}
 
 [tool.bumpversion]
 current_version = "{{ cookiecutter.version }}"
@@ -166,6 +151,13 @@ replace = """\
 """
 
 [[tool.bumpversion.files]]
+filename = "CITATION.cff"
+include_bumps = ["release"]
+search = "^version: \"[0-9]+\\.[0-9]+\\.[0-9]\""
+regex = true
+replace = "version: \"{new_version}\""
+
+[[tool.bumpversion.files]]
 filename = "src/{{ cookiecutter.project_slug }}/__init__.py"
 search = "__version__ = \"{current_version}\""
 replace = "__version__ = \"{new_version}\""
@@ -206,9 +198,13 @@ omit = ["tests/*.py"]
 relative_files = true
 source = ["{{ cookiecutter.project_slug }}"]
 
+[tool.deptry]
+extend_exclude = ["docs"]
+pep621_dev_dependency_groups = ["all", "dev", "docs"]
+
 [tool.flit.sdist]
 include = [
-  {%- if cookiecutter.open_source_license in license_classifiers %}
+  {%- if cookiecutter.open_source_license in license_spdx_codes %}
   ".zenodo.json",
   {%- endif %}
   {%- if cookiecutter.create_author_file == 'y' %}
@@ -216,7 +212,7 @@ include = [
   {% endif -%}
   "CHANGELOG.rst",
   "CONTRIBUTING.rst",
-  {%- if cookiecutter.open_source_license in license_classifiers %}
+  {%- if cookiecutter.open_source_license in license_spdx_codes %}
   "LICENSE",
   {%- endif %}
   "Makefile",
@@ -236,7 +232,7 @@ include = [
   {%- endif %}
   "src/{{ cookiecutter.project_slug }}",
   "tests/*.py",
-  "tox.ini"
+  "tox.toml"
 ]
 exclude = [
   "*.py[co]",
@@ -262,14 +258,6 @@ exclude = [
   {%- endif %}
   {%- endif %}
 ]
-
-{%- if cookiecutter.use_black == 'y' %}
-
-[tool.isort]
-profile = "black"
-py_version = 310
-
-{%- endif %}
 
 [tool.mypy]
 files = "."
@@ -335,13 +323,11 @@ exclude = [
 ]
 
 [tool.ruff.format]
-{%- if cookiecutter.use_black == 'y' %}
 docstring-code-format = true
 docstring-code-line-length = "dynamic"
 indent-style = "space"
 quote-style = "double"
 skip-magic-trailing-comma = false
-{%- endif %}
 line-ending = "auto"
 
 [tool.ruff.lint]

@@ -1,0 +1,36 @@
+{%- set license_spdx_codes = {
+    'MIT license': 'MIT',
+    'BSD license': 'BSD-3-Clause',
+    'ISC license': 'ISC',
+    'Apache Software License 2.0': 'Apache-2.0',
+    'GNU General Public License v3': 'GPL-3.0-or-later'
+} -%}
+# This CITATION.cff file was generated with cffinit and templated with cookiecutter.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: "1.2.0"
+title: "{{ cookiecutter.project_name }}"
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: "software"
+authors:
+  - given-names: '{{ cookiecutter.full_name.split(" ")[:-1] | join(" ") if " " in cookiecutter.full_name else cookiecutter.full_name }}'
+    family-names: '{{ cookiecutter.full_name.split(" ")[-1] if " " in cookiecutter.full_name else "" }}'
+    email: '{{ cookiecutter.email }}'
+    {%- if cookiecutter.orcid_id != 'N/A' %}
+    orcid: "https://orcid.org/{{ cookiecutter.orcid_id }}"
+    {%- endif %}
+contact:
+  - given-names: '{{ cookiecutter.full_name.split(" ")[:-1] | join(" ") if " " in cookiecutter.full_name else cookiecutter.full_name }}'
+    family-names: '{{ cookiecutter.full_name.split(" ")[-1] if " " in cookiecutter.full_name else "" }}'
+    email: '{{ cookiecutter.email }}'
+    {%- if cookiecutter.orcid_id != 'N/A' %}
+    orcid: "https://orcid.org/{{ cookiecutter.orcid_id }}"
+    {%- endif %}
+repository-code: "{{ cookiecutter.__gh_slug }}"
+abstract: "{{ cookiecutter.project_short_description }}"
+{%- if cookiecutter.open_source_license != 'Not open source' %}
+license: "{{ license_spdx_codes.get(cookiecutter.open_source_license) }}"
+{%- endif %}
+version: "{{ cookiecutter.version }}"

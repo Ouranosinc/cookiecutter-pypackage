@@ -116,7 +116,7 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_name }}`` fo
 
     This installs ``{{ cookiecutter.project_slug }}`` in an "editable" state, meaning that changes to the code are immediately seen by the environment. To ensure a consistent coding style, `make dev` also installs the ``pre-commit`` hooks to your local clone.
 
-    On commit, ``pre-commit`` will check that{% if cookiecutter.use_black == 'y' %} ``black``, ``blackdoc``, ``isort``,{% endif %} ``flake8``, and ``ruff`` checks are passing, perform automatic fixes if possible, and warn of violations that require intervention. If your commit fails the checks initially, simply fix the errors, re-add the files, and re-commit.
+    On commit, ``pre-commit`` will check that ``flake8``, and ``ruff`` checks are passing, perform automatic fixes if possible, and warn of violations that require intervention. If your commit fails the checks initially, simply fix the errors, re-add the files, and re-commit.
 
     You can also run the hooks manually with:
 
@@ -250,13 +250,11 @@ To run specific code style checks:
 
 .. code-block:: console
 
-    python -m black --check src/{{ cookiecutter.project_slug }} tests
-    python -m blackdoc --check src/{{ cookiecutter.project_slug }} docs
     python -m ruff check src/{{ cookiecutter.project_slug }} tests
     python -m flake8 src/{{ cookiecutter.project_slug }} tests
     validate-docstrings src/{{ cookiecutter.project_slug }}/**.py
 
-To get ``black``, ``blackdoc``, ``ruff``, ``flake8`` (with the ``flake8-rst-docstrings`` plugin), and ``numpydoc`` (for ``validate-docstrings``), simply install them with ``pip`` {% if cookiecutter.use_conda == 'y' %}(or ``conda``) {% endif %}into your environment.
+To get ``ruff``, ``flake8`` (with the ``flake8-rst-docstrings`` plugin), and ``numpydoc`` (for ``validate-docstrings``), simply install them with ``pip`` {% if cookiecutter.use_conda == 'y' %}(or ``conda``) {% endif %}into your environment.
 
 Translations
 ------------

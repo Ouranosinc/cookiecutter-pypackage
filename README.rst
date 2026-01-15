@@ -2,7 +2,7 @@
 Cookiecutter PyPackage
 ======================
 
-|build| |black| |ruff|
+|build| |ruff|
 
 Cookiecutter_ template for a Python package.
 
@@ -19,15 +19,16 @@ Features
 * `GitHub Actions`_: Ready for GitHub Actions Continuous Integration testing and Deployment.
 * Conda_ environment file: Optionally use ``conda env create -f environment-dev.yml`` to create a new environment with the correct Python version.
 * Tox_ testing: Setup to easily test for Python 3.10, 3.11, 3.12, 3.13, and PyPy3.
-* Sphinx_ docs: Documentation ready for generation with, for example, `Read the Docs`_
-* pre-commit_ hook: Run your tests and linting (e.g. `black`, `flake8`, `ruff`, `pylint`, etc.) before you commit your code!
+* Sphinx_ docs: Documentation ready for generation with, for example, `Read the Docs`_.
+* pre-commit_ hook: Run your tests and linting (e.g. `flake8`, `ruff`, `pylint`, etc.) before you commit your code!
 * pre-commit.ci_: Automate `pre-commit` checks and corrections in your Pull Requests.
 * bump-my-version_: Pre-configured `SemVer-2.0-compliant`_ version bumping with a single command.
-* dependabot_ for automated dependency updates of both project dependencies and GitHub Actions.
+* dependabot: Automated dependency updates of both project dependencies and GitHub Actions.
 * `Developer Certificate of Origin`_ (DCO) enforcement support using `DCO App`_.
 * sphinx-intl_ for French internationalization (i18n) and localization (l10n) of Sphinx docs (optional).
 * Auto-release to TestPyPI_ and PyPI_ when you push a new tag to main (optional).
-* Command line interface using Click (optional).
+* Command line interface using Typer_, Click_, or Argparse_ (optional).
+
 
 Build Status
 -------------
@@ -130,10 +131,7 @@ Similar Cookiecutter Templates
 * `Nekroze/cookiecutter-pypackage`_: A fork of this with a PyTest test runner,
   strict flake8 checking with Travis/Tox, and some docs and ``setup.py`` differences.
 
-* `tony/cookiecutter-pypackage-pythonic`_: Fork with py2.7+3.3 optimizations.
-  Flask/Werkzeug-style test runner, ``_compat`` module and module/doc conventions.
-  See ``README.rst`` or the `GitHub comparison view`_ for an exhaustive list of
-  additions and modifications.
+* `tony/cookiecutter-pypackage-pythonic`_: Fork with py2.7+3.3 optimizations. Flask/Werkzeug-style test runner, ``_compat`` module and module/doc conventions. See ``README.rst`` or the `GitHub comparison view`_ for an exhaustive list of additions and modifications.
 
 * `ardydedase/cookiecutter-pypackage`_: A fork with separate requirements files rather than a requirements list in the ``setup.py`` file.
 
@@ -143,12 +141,11 @@ Similar Cookiecutter Templates
 
 * `veit/cookiecutter-namespace-template`_: A cookiecutter template for python modules with a namespace
 
-* `zillionare/cookiecutter-pypackage`_: A template containing Poetry_, Mkdocs_, Github CI and many more. It's a template and a package also (can be installed with `pip`)
+* `zillionare/cookiecutter-pypackage`_: A template containing Poetry_, Mkdocs_, Github CI and many more. It's a template and a package also (can be installed with pip_)
 
 * `waynerv/cookiecutter-pypackage`_: A fork using Poetry_, Mkdocs_, Pre-commit_, Black_ and Mypy_. Run test, staging and release workflows with GitHub Actions, automatically generate release notes from CHANGELOG.
 
-* Also see the `network`_ and `family tree`_ for this repo. (If you find
-  anything that should be listed here, please add it and send a pull request!)
+* Also see the `network`_ and `family tree`_ for this repo. (If you find anything that should be listed here, please add it and send a pull request!)
 
 Fork This / Create Your Own
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -164,8 +161,9 @@ Or Submit a Pull Request
 
 I also accept pull requests on this, if they're small, atomic, and if they make my own packaging experience better.
 
-
+.. _Argparse: https://docs.python.org/3/library/argparse.html
 .. _Black: https://black.readthedocs.io/en/stable/
+.. _Click: https://click.palletsprojects.com/en/stable/
 .. _Conda: https://docs.conda.io/en/latest/
 .. _Cookiecutter: https://github.com/cookiecutter/cookiecutter
 .. _Coveralls: https://coveralls.io/
@@ -180,11 +178,13 @@ I also accept pull requests on this, if they're small, atomic, and if they make 
 .. _SemVer-2.0-compliant: https://semver.org/spec/v2.0.0.html
 .. _Sphinx: http://sphinx-doc.org/
 .. _Tox: http://testrun.org/tox/
+.. _Typer: https://typer.tiangolo.com/
 .. _bump-my-version: https://github.com/callowayproject/bump-my-version
 .. _bump2version: https://github.com/c4urself/bump2version
 .. _`cookiecutter-pypackage tutorial`: https://cookiecutter-pypackage.readthedocs.io/en/latest/tutorial.html
 .. _dependabot: https://docs.github.com/en/code-security/dependabot/dependabot-version-updates
 .. _flit: https://flit.pypa.io/en/stable/
+.. _pip: https://pip.pypa.io/en/stable/
 .. _pre-commit.ci: https://pre-commit.ci/
 .. _pre-commit: https://pre-commit.com/
 .. _pypi: https://pypi.org/
@@ -209,13 +209,9 @@ I also accept pull requests on this, if they're small, atomic, and if they make 
         :target: https://github.com/Ouranosinc/cookiecutter-pypackage/actions/workflows/main.yml
         :alt: Build Status
 
-.. |black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
-        :target: https://github.com/psf/black
-        :alt: Python Black
-
 .. |ruff| image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json
-        :target: https://github.com/astral-sh/ruff
-        :alt: Ruff
+    :target: https://github.com/astral-sh/ruff
+    :alt: Ruff
 
 .. |docs-upstream|  image:: https://readthedocs.org/projects/cookiecutter-pypackage/badge/?version=latest
         :target: https://cookiecutter-pypackage.readthedocs.io/en/latest/?badge=latest

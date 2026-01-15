@@ -1,0 +1,36 @@
+default_language_version:
+  python: python3
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-toml
+        exclude: '{{cookiecutter.project_slug}}/(pyproject|tox)?.toml'
+      - id: end-of-file-fixer
+        exclude: '{{cookiecutter.project_slug}}'
+      - id: trailing-whitespace
+        exclude: '{{cookiecutter.project_slug}}'
+  - repo: https://github.com/pappasam/toml-sort
+    rev: v0.24.2
+    hooks:
+      - id: toml-sort-fix
+        exclude: '{{cookiecutter.project_slug}}/(pyproject|tox)?.toml'
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.10.0
+    hooks:
+      - id: rst-directive-colons
+        exclude: '{{cookiecutter.project_slug}}'
+      - id: rst-inline-touching-normal
+        exclude: '{{cookiecutter.project_slug}}'
+      - id: text-unicode-replacement-char
+        exclude: '{{cookiecutter.project_slug}}'
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.34.0
+    hooks:
+      - id: check-github-workflows
+      - id: check-readthedocs
+  - repo: meta
+    hooks:
+      - id: check-hooks-apply
+      - id: check-useless-excludes

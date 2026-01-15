@@ -22,7 +22,7 @@
 {%- if cookiecutter.make_docs == 'y' %}
 #      - 'docs/Makefile'
 {%- endif %}
-#      - 'tox.ini'
+#      - 'tox.toml'
 #      - 'CI/**/*'
 #      - 'Makefile'
 

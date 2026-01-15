@@ -93,7 +93,7 @@ def test_bake_with_defaults(cookies):
             in next(result.project_path.joinpath("src").iterdir()).name
         )
         assert "tests" in found_toplevel_files
-        assert "tox.ini" in found_toplevel_files
+        assert "tox.toml" in found_toplevel_files
 
 
 def test_bake_and_run_unittests(cookies):
@@ -207,19 +207,19 @@ def test_make_help(cookies):
 
 def test_bake_selecting_license(cookies):
     license_strings = {
-        "MIT license": ("MIT", "License :: OSI Approved :: MIT License"),
+        "MIT license": ("MIT", "MIT"),
         "BSD license": (
             "Redistributions of source code must retain the above copyright notice, this",
-            "License :: OSI Approved :: BSD License",
+            "BSD-3-Clause",
         ),
-        "ISC license": ("ISC License", "License :: OSI Approved :: ISC License"),
+        "ISC license": ("ISC License", "ISC"),
         "Apache Software License 2.0": (
             "Licensed under the Apache License, Version 2.0",
-            "License :: OSI Approved :: Apache Software License",
+            "Apache-2.0",
         ),
         "GNU General Public License v3": (
             "GNU GENERAL PUBLIC LICENSE",
-            "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+            "GPL-3.0-or-later",
         ),
     }
     for license_code, target_strings in license_strings.items():
@@ -346,12 +346,11 @@ def test_bake_with_console_options_script_click(cookies):
     assert "Show this message" in help_result.output
 
 
-@pytest.mark.parametrize("use_black,expected", [("y", True), ("n", False)])
-def test_black(cookies, use_black, expected):
-    with bake_in_temp_dir(cookies, extra_context={"use_black": use_black}) as result:
+@pytest.mark.parametrize("orcid,expected", [("N/A", False), ("1234-5678-9abc", True)])
+def test_orcid(cookies, orcid, expected):
+    with bake_in_temp_dir(cookies, extra_context={"orcid_id": orcid}) as result:
         assert result.project_path.is_dir()
-        requirements_path = result.project_path.joinpath("pyproject.toml")
-        assert ("black ==" in requirements_path.read_text()) is expected
-        assert ("[tool.black]" in requirements_path.read_text()) is expected
-        makefile_path = result.project_path.joinpath("Makefile")
-        assert ("black --check" in makefile_path.read_text()) is expected
+        cff_path = result.project_path.joinpath("CITATION.cff")
+        assert (f"orcid: \"https://orcid.org/{orcid}\"" in cff_path.read_text()) is expected
+        zenodo_path = result.project_path.joinpath(".zenodo.json")
+        assert (f"\"orcid\": \"{orcid}\"" in zenodo_path.read_text()) is expected
