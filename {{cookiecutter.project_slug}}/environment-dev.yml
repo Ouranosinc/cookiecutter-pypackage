@@ -1,6 +1,7 @@
 name: {{ cookiecutter.project_slug }}
 channels:
   - conda-forge
+  - nodefaults
 dependencies:
   - python >=3.10,<3.14
   # Dev tools and testing
@@ -18,7 +19,7 @@ dependencies:
   - numpydoc >=1.9.0
   - pre-commit >=3.5.0
   {%- if cookiecutter.use_pytest == 'y' %}
-  - pytest >=8.3.2
+  - pytest >=9.0.0
   - pytest-cov >=5.0.0
   {%- endif %}
   - ruff >=0.13.3
