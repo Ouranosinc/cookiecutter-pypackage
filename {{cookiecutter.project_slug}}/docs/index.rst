@@ -23,6 +23,11 @@
 
    apidoc/modules
 
+.. toctree::
+   :caption: GitHub Repository
+
+   {{ cookiecutter.github_username }}/{{ cookiecutter.project_name.replace(' ', '-') }} <{{ cookiecutter.__gh_slug }}>
+
 Indices and tables
 ==================
 * :ref:`genindex`
