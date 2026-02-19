@@ -6,8 +6,67 @@
     'GNU General Public License v3': 'GPL-3.0-or-later'
 } -%}
 [build-system]
-requires = ["flit_core >=3.11.0,<4"]
+requires = ["flit_core >=3.12.0,<4"]
 build-backend = "flit_core.buildapi"
+
+[dependency-groups]
+lint = [
+  # Linting tools
+  "codespell >=2.4.1",
+  "deptry >=0.24.0",
+  "flake8 >=7.3.0",
+  "flake8-rst-docstrings >=0.4.0",
+  "mypy >=1.19.1",
+  "numpydoc >=1.10.0",
+  "pylint >=4.0.4",
+  "ruff >=0.15.0",
+  "vulture >=2.14",
+  "yamllint >=1.38.0"
+]
+test = [
+  # Base testing support
+  "coverage[toml] >=7.13.4",
+  {%- if cookiecutter.use_pytest == 'y' %}
+  "pytest >=9.0.2",
+  "pytest-cov >=7.0.0",
+  {%- endif %}
+]
+{%- if cookiecutter.make_docs == 'y' %}
+docs = [
+  # Documentation and example support
+  "ipykernel",
+  "ipython >=8.10.0",
+  "jupyter_client",
+  "nbsphinx >=0.9.8",
+  "sphinx >=8.0.0",
+  {%- if cookiecutter.command_line_interface|lower == 'click' %}
+  "sphinx-click",
+  {%- endif %}
+  "sphinx-codeautolink >=0.16.2",
+  "sphinx-copybutton >=0.5.2",
+  {%- if cookiecutter.add_translations == 'y' %}
+  "sphinx-intl",
+  {%- endif %}
+  "sphinx-rtd-theme >=1.0"
+]
+{% endif -%}
+tox = [
+  "tox >=4.41.0",
+  "tox-gh >=1.6.1"
+]
+dev = [
+  # Development and testing tools
+  "bump-my-version >=1.2.6",
+  "pip >=26.0.1",
+  "prek >=0.3.0",
+  "watchdog >=6.0.0",
+  {%- if cookiecutter.make_docs == 'y' %}
+  {include-group = "docs"},
+  {% endif -%}
+  {include-group = "lint"}
+  {include-group = "test"}
+  {include-group = "tox"}
+]
 
 [project]
 name = "{{ cookiecutter.project_slug }}"
@@ -42,56 +101,14 @@ classifiers = [
 dynamic = ["description", "version"]
 dependencies = [
   {%- if cookiecutter.command_line_interface|lower == 'click' %}
-  "click >=8.3.0"
+  "click >=8.3.1"
   {% elif cookiecutter.command_line_interface|lower == 'typer' %}
-  "typer >=0.16.0"
+  "typer >=0.22.0"
   {%- endif %}
 ]
 
 [project.optional-dependencies]
-dev = [
-  # Dev tools and testing
-  "bump-my-version >=1.2.3",
-  "coverage >=7.5.0",
-  "deptry >=0.23.1",
-  "flake8 >=7.3.0",
-  "flake8-rst-docstrings >=0.4.0",
-  "flit >=3.11.0,<4.0",
-  "mypy >=1.18.2",
-  "numpydoc >=1.9.0",
-  "pip >=25.2",
-  "pre-commit >=3.5.0",
-  {%- if cookiecutter.use_pytest == 'y' %}
-  "pytest >=8.3.2",
-  "pytest-cov >=5.0.0",
-  {%- endif %}
-  "ruff >=0.14.3",
-  "tox >=4.30.3",
-  "vulture >=2.14",
-  "watchdog >=4.0.0"
-]
-{%- if cookiecutter.make_docs == 'y' %}
-docs = [
-  # Documentation and examples
-  "ipykernel",
-  "ipython",
-  "jupyter_client",
-  "nbsphinx >=0.9.5",
-  "sphinx >=7.1.0,<8.2",
-  {%- if cookiecutter.command_line_interface|lower == 'click' %}
-  "sphinx-click",
-  {%- endif %}
-  "sphinx-codeautolink >=0.16.2",
-  "sphinx-copybutton",
-  {%- if cookiecutter.add_translations == 'y' %}
-  "sphinx-intl",
-  {%- endif %}
-  "sphinx-rtd-theme >=1.0"
-]
-all = ["{{ cookiecutter.project_name | replace(" ", "-") }}[dev]", "{{ cookiecutter.project_name | replace(" ", "-") }}[docs]"]
-{%- else %}
-all = ["{{ cookiecutter.project_name | replace(" ", "-") }}[dev]"]
-{%- endif %}
+extras = []
 
 {%- if cookiecutter.command_line_interface != "No command-line interface" %}
 
@@ -101,8 +118,8 @@ all = ["{{ cookiecutter.project_name | replace(" ", "-") }}[dev]"]
 {%- endif %}
 
 [project.urls]
-# "Homepage" = "https://{{ cookiecutter.project_name }}.readthedocs.io/"
-# "Changelog" = "https://{{ cookiecutter.project_name }}.readthedocs.io/en/stable/changelog.html"
+# "Homepage" = "https://{{ cookiecutter.project_name | replace(" ", "-") }}.readthedocs.io/"
+# "Changelog" = "https://{{ cookiecutter.project_name | replace(" ", "-") }}.readthedocs.io/en/stable/changelog.html"
 # "About Ouranos" = "https://ouranos.ca/en/"
 "Issue tracker" = "{{ cookiecutter.__gh_slug }}/issues"
 "Source" = "{{ cookiecutter.__gh_slug }}"
@@ -199,8 +216,8 @@ relative_files = true
 source = ["{{ cookiecutter.project_slug }}"]
 
 [tool.deptry]
-extend_exclude = ["docs"]
-pep621_dev_dependency_groups = ["all", "dev", "docs"]
+extend_exclude = ["extras"]
+pep621_dev_dependency_groups = ["extras"]
 
 [tool.flit.sdist]
 include = [
@@ -252,8 +269,7 @@ exclude = [
   "docs/_*",
   "docs/apidoc/modules.rst",
   "docs/apidoc/{{ cookiecutter.project_slug }}*.rst"
-  {%- if cookiecutter.add_translations == 'y' -%}
-  ,
+  {%- if cookiecutter.add_translations == 'y' -%},
   "docs/locales"
   {%- endif %}
   {%- endif %}
@@ -278,8 +294,6 @@ allow_untyped_defs = true
 disable_error_code = "attr-defined"
 ignore_missing_imports = true
 
-{%- if cookiecutter.use_pytest == 'y' %}
-
 [tool.numpydoc_validation]
 checks = [
   "all", # report on all checks, except the below
@@ -299,6 +313,8 @@ override_SS05 = [
   '^Assess ',
   '^Access '
 ]
+
+{%- if cookiecutter.use_pytest == 'y' %}
 
 [tool.pytest.ini_options]
 addopts = [
