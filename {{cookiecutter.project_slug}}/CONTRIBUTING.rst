@@ -149,7 +149,7 @@ Ready to contribute? Here's how to set up ``{{ cookiecutter.project_name }}`` fo
     .. code-block:: console
 
         git add .
-        git commit -m "Your detailed description of your changes."
+        git commit -s -m "Your detailed description of your changes."
         git push origin name-of-your-bugfix-or-feature
 
     If ``pre-commit`` hooks fail, try fixing the issues, re-staging the files to be committed, and re-committing your changes (or, if need be, you can skip them with `--no-verify` flag).
@@ -209,6 +209,14 @@ Before you submit a pull request, check that it meets these guidelines:
 #. If the pull request adds functionality, either update the documentation or create a new notebook that demonstrates the feature. Library-defining features should also be listed in ``README.rst``.
 
 #. The pull request should work for all currently supported Python versions. Check the `pyproject.toml` or `tox.ini` files for the list of supported versions.
+
+#. If you haven't already, ensure that you have read and agreed to the `Developer Certificate of Origin (DCO) <https://developercertificate.org/>`_, and that you have signed your commits using:
+
+    .. code-block:: bash
+
+          git commit -s/--signoff
+
+    This will add a `Signed-off-by:` line to your commit message, which indicates that you agree to the DCO.
 
 Tips
 ----

@@ -202,7 +202,7 @@ values = [
 ]
 
 [tool.codespell]
-ignore-words-list = "astroid,socio-economic"
+ignore-words-list = "astroid,socio-economic,thirdparty"
 
 [tool.coverage.paths]
 source = ["src/{{ cookiecutter.project_slug }}/", "*/site-packages/{{ cookiecutter.project_slug }}/"]

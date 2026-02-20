@@ -2,7 +2,7 @@
 Cookiecutter PyPackage
 ======================
 
-|build| |ruff|
+|build| |ruff| |status|
 
 Cookiecutter_ template for a Python package.
 
@@ -14,19 +14,21 @@ Cookiecutter_ template for a Python package.
 Features
 --------
 
-* Testing setup with `unittest` with ``coverage run`` or ``pytest`` (optional).
+* Testing setup with ``unittest`` or ``pytest`` (with support for code coverage via `Coveralls`_).
 * `pyproject.toml`_ with the flit_ backend for PEP 517/621-compliant packaging.
 * `GitHub Actions`_: Ready for GitHub Actions Continuous Integration testing and Deployment.
-* `Conda`_ environment file: Optionally use ``conda env create -f environment-dev.yml`` to create a new environment with the correct Python version.
+* Conda_ environment file: Optionally use ``conda env create -f environment-dev.yml`` to create a new environment with the correct Python version.
 * Tox_ testing: Setup to easily test for Python 3.10, 3.11, 3.12, 3.13, and PyPy3.
 * Sphinx_ docs: Documentation ready for generation with, for example, `Read the Docs`_.
 * pre-commit_ hook: Run your tests and linting (e.g. `flake8`, `ruff`, `pylint`, etc.) with prek_ before you commit your code!
 * `pre-commit.ci`_: Automate `pre-commit` checks and corrections in your Pull Requests.
 * bump-my-version_: Pre-configured `SemVer-2.0-compliant`_ version bumping with a single command.
-* dependabot_ for automated dependency updates of both project dependencies and GitHub Actions.
+* dependabot: Automated dependency updates of both project dependencies and GitHub Actions.
+* `Developer Certificate of Origin`_ (DCO) enforcement support using `DCO App`_.
 * sphinx-intl_ for French internationalization (i18n) and localization (l10n) of Sphinx docs (optional).
 * Auto-release to TestPyPI_ and PyPI_ when you push a new tag to main (optional).
 * Command line interface using Typer_, Click_, or Argparse_ (optional).
+
 
 Build Status
 -------------
@@ -61,7 +63,8 @@ Then:
 
 .. code-block:: console
 
-    $ pip install -e ".[dev]"
+    $ python -m pip install --group dev
+    $ pip install --no-user --editable .
 
 Or, if using Conda:
 
@@ -164,19 +167,22 @@ I also accept pull requests on this, if they're small, atomic, and if they make 
 .. _Click: https://click.palletsprojects.com/en/stable/
 .. _Conda: https://docs.conda.io/en/latest/
 .. _Cookiecutter: https://github.com/cookiecutter/cookiecutter
-.. _GitHub Actions: https://docs.github.com/en/actions
+.. _Coveralls: https://coveralls.io/
+.. _`DCO App`: https://probot.github.io/apps/dco/
+.. _`Developer Certificate of Origin`: https://developercertificate.org/
+.. _`GitHub Actions`: https://docs.github.com/en/actions
 .. _Mkdocs: https://pypi.org/project/mkdocs/
 .. _Mypy: https://mypy.readthedocs.io/en/stable/
 .. _Poetry: https://python-poetry.org/
 .. _Punch: https://github.com/lgiordani/punch
-.. _Read the Docs: https://readthedocs.io/
+.. _`Read the Docs`: https://readthedocs.io/
 .. _SemVer-2.0-compliant: https://semver.org/spec/v2.0.0.html
 .. _Sphinx: http://sphinx-doc.org/
 .. _Tox: http://testrun.org/tox/
 .. _Typer: https://typer.tiangolo.com/
 .. _bump-my-version: https://github.com/callowayproject/bump-my-version
 .. _bump2version: https://github.com/c4urself/bump2version
-.. _cookiecutter-pypackage tutorial: https://cookiecutter-pypackage.readthedocs.io/en/latest/tutorial.html
+.. _`cookiecutter-pypackage tutorial`: https://cookiecutter-pypackage.readthedocs.io/en/latest/tutorial.html
 .. _dependabot: https://docs.github.com/en/code-security/dependabot/dependabot-version-updates
 .. _flit: https://flit.pypa.io/en/stable/
 .. _pip: https://pip.pypa.io/en/stable/
@@ -189,11 +195,11 @@ I also accept pull requests on this, if they're small, atomic, and if they make 
 .. _sphinx-intl: https://sphinx-intl.readthedocs.io/en/master/
 .. _testpypi: https://test.pypi.org/
 
-.. _GitHub comparison view: https://github.com/tony/cookiecutter-pypackage-pythonic/compare/audreyr:master...master
+.. _`GitHub comparison view`: https://github.com/tony/cookiecutter-pypackage-pythonic/compare/audreyr:master...main
 .. _Nekroze/cookiecutter-pypackage: https://github.com/Nekroze/cookiecutter-pypackage
 .. _ardydedase/cookiecutter-pypackage: https://github.com/ardydedase/cookiecutter-pypackage
 .. _briggySmalls/cookiecutter-pypackage: https://github.com/briggySmalls/cookiecutter-pypackage
-.. _family tree: https://github.com/audreyr/cookiecutter-pypackage/network/members
+.. _`family tree`: https://github.com/audreyr/cookiecutter-pypackage/network/members
 .. _lgiordani/cookiecutter-pypackage: https://github.com/lgiordani/cookiecutter-pypackage
 .. _network: https://github.com/audreyr/cookiecutter-pypackage/network
 .. _tony/cookiecutter-pypackage-pythonic: https://github.com/tony/cookiecutter-pypackage-pythonic
@@ -202,17 +208,21 @@ I also accept pull requests on this, if they're small, atomic, and if they make 
 .. _zillionare/cookiecutter-pypackage: https://zillionare.github.io/cookiecutter-pypackage/
 
 .. |build| image:: https://github.com/Ouranosinc/cookiecutter-pypackage/actions/workflows/main.yml/badge.svg
-    :target: https://github.com/Ouranosinc/cookiecutter-pypackage/actions/workflows/main.yml
-    :alt: Build Status
+        :target: https://github.com/Ouranosinc/cookiecutter-pypackage/actions/workflows/main.yml
+        :alt: Build Status
 
 .. |ruff| image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json
-    :target: https://github.com/astral-sh/ruff
-    :alt: Ruff
+        :target: https://github.com/astral-sh/ruff
+        :alt: Ruff
 
 .. |docs-upstream|  image:: https://readthedocs.org/projects/cookiecutter-pypackage/badge/?version=latest
-    :target: https://cookiecutter-pypackage.readthedocs.io/en/latest/?badge=latest
-    :alt: Documentation Status
+        :target: https://cookiecutter-pypackage.readthedocs.io/en/latest/?badge=latest
+        :alt: Documentation Status
 
 .. |pyup-upstream| image:: https://pyup.io/repos/github/audreyfeldroy/cookiecutter-pypackage/shield.svg
-    :target: https://pyup.io/repos/github/audreyfeldroy/cookiecutter-pypackage/
-    :alt: Updates
+        :target: https://pyup.io/repos/github/audreyfeldroy/cookiecutter-pypackage/
+        :alt: Updates
+
+.. |status| image:: https://www.repostatus.org/badges/latest/active.svg
+        :target: https://www.repostatus.org/#active
+        :alt: Project Status: Active - The project has reached a stable, usable state and is being actively developed.
