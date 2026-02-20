@@ -20,8 +20,8 @@ Features
 * Conda_ environment file: Optionally use ``conda env create -f environment-dev.yml`` to create a new environment with the correct Python version.
 * Tox_ testing: Setup to easily test for Python 3.10, 3.11, 3.12, 3.13, and PyPy3.
 * Sphinx_ docs: Documentation ready for generation with, for example, `Read the Docs`_.
-* pre-commit_ hook: Run your tests and linting (e.g. `flake8`, `ruff`, `pylint`, etc.) before you commit your code!
-* pre-commit.ci_: Automate `pre-commit` checks and corrections in your Pull Requests.
+* pre-commit_ hook: Run your tests and linting (e.g. `flake8`, `ruff`, `pylint`, etc.) with prek_ before you commit your code!
+* `pre-commit.ci`_: Automate `pre-commit` checks and corrections in your Pull Requests.
 * bump-my-version_: Pre-configured `SemVer-2.0-compliant`_ version bumping with a single command.
 * dependabot: Automated dependency updates of both project dependencies and GitHub Actions.
 * `Developer Certificate of Origin`_ (DCO) enforcement support using `DCO App`_.
@@ -187,6 +187,7 @@ I also accept pull requests on this, if they're small, atomic, and if they make 
 .. _pip: https://pip.pypa.io/en/stable/
 .. _pre-commit.ci: https://pre-commit.ci/
 .. _pre-commit: https://pre-commit.com/
+.. _prek: https://prek.j178.dev/
 .. _pypi: https://pypi.org/
 .. _pyproject.toml: https://www.python.org/dev/peps/pep-0518/
 .. _pyup.io: https://pyup.io/

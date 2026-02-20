@@ -57,9 +57,3 @@ jobs:
           python -m tox
         env:
           TOX_GH_MAJOR_MINOR: ${{ matrix.python-version }}
-      # - name: Archive package
-      #   if: ${{ matrix.tox-env == 'py39' }}
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: cookie-cutter
-      #     path: src/dist
