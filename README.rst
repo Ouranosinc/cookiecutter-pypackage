@@ -2,7 +2,7 @@
 Cookiecutter PyPackage
 ======================
 
-|build| |ruff|
+|build| |ruff| |status|
 
 Cookiecutter_ template for a Python package.
 
@@ -63,7 +63,8 @@ Then:
 
 .. code-block:: console
 
-    $ pip install -e ".[dev]"
+    $ python -m pip install --group dev
+    $ pip install --no-user --editable .
 
 Or, if using Conda:
 
@@ -211,8 +212,8 @@ I also accept pull requests on this, if they're small, atomic, and if they make 
         :alt: Build Status
 
 .. |ruff| image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json
-    :target: https://github.com/astral-sh/ruff
-    :alt: Ruff
+        :target: https://github.com/astral-sh/ruff
+        :alt: Ruff
 
 .. |docs-upstream|  image:: https://readthedocs.org/projects/cookiecutter-pypackage/badge/?version=latest
         :target: https://cookiecutter-pypackage.readthedocs.io/en/latest/?badge=latest
@@ -221,3 +222,7 @@ I also accept pull requests on this, if they're small, atomic, and if they make 
 .. |pyup-upstream| image:: https://pyup.io/repos/github/audreyfeldroy/cookiecutter-pypackage/shield.svg
         :target: https://pyup.io/repos/github/audreyfeldroy/cookiecutter-pypackage/
         :alt: Updates
+
+.. |status| image:: https://www.repostatus.org/badges/latest/active.svg
+        :target: https://www.repostatus.org/#active
+        :alt: Project Status: Active - The project has reached a stable, usable state and is being actively developed.
