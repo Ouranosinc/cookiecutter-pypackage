@@ -71,7 +71,7 @@ install-docs: ## install dependencies needed for building the docs
 install-test: ## install dependencies needed for standard testing
 	python -m pip install --quiet --group test
 
-install-tox: ## install base dependencies needed for running tox 
+install-tox: ## install base dependencies needed for running tox
 	python -m pip install --quiet --group tox
 
 lint: install-lint ## check style
@@ -155,4 +155,4 @@ install: clean ## install the package to the active Python's site-packages
 development: clean ## install the package to the active Python's site-packages
 	python -m pip install --group dev
 	python -m pip install --no-user --editable .[all]
-	pre-commit install
+	prek install

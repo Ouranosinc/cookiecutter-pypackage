@@ -6,18 +6,18 @@ dependencies:
   - python >=3.12,<3.13
   # Docs
   {%- if cookiecutter.command_line_interface|lower == 'click' %}
-  - click >=8.1.7
+  - click >=8.3.1
   {%- endif %}
   - sphinx >=8.2
   {%- if cookiecutter.command_line_interface|lower == 'click' %}
   - sphinx-click
   {%- endif %}
   - sphinx-codeautolink >=0.16.2
-  - sphinx-copybutton
+  - sphinx-copybutton >=0.5.2
   {%- if cookiecutter.add_translations == 'y' %}
   - sphinx-intl
   {%- endif %}
   - sphinx-rtd-theme >=1.0
   {%- if cookiecutter.command_line_interface|lower == 'typer' %}
-  - typer >=0.16.0
+  - typer >=0.22.0
   {%- endif %}
