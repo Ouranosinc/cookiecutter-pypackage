@@ -1,4 +1,4 @@
-.PHONY: clean clean-build clean-pyc clean-test coverage dist docs help install lint
+.PHONY: clean clean-build clean-pyc clean-test coverage development dist docs help install lint release test
 .DEFAULT_GOAL := help
 
 define BROWSER_PYSCRIPT
@@ -93,7 +93,7 @@ test: install-test ## run tests quickly with the default Python
 test-all: install-tox ## run tests on every Python version with tox
 	python -m tox
 
-coverage: ## check code coverage quickly with the default Python
+coverage: install-test ## check code coverage quickly with the default Python
 {%- if cookiecutter.use_pytest == 'y' %}
 	python -m coverage run --source src/{{ cookiecutter.project_slug }} -m pytest
 {%- else %}
@@ -154,5 +154,5 @@ install: clean ## install the package to the active Python's site-packages
 
 development: clean ## install the package to the active Python's site-packages
 	python -m pip install --group dev
-	python -m pip install --no-user --editable .[all]
+	python -m pip install --no-user --editable .[extras]
 	prek install
