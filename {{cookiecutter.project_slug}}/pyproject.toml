@@ -51,8 +51,8 @@ docs = [
 ]
 {%- endif %}
 tox = [
-  "tox >=4.41.0",
-  "tox-gh >=1.6.1"
+  "tox >=4.49.1",
+  "tox-gh >=1.7.1"
 ]
 dev = [
   # Development and testing tools

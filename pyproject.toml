@@ -4,7 +4,7 @@ build-backend = "flit_core.buildapi"
 
 [dependency-groups]
 tox = [
-  "tox >=4.41.0",
+  "tox >=4.49.1",
   "tox-gh >=1.6.1"
 ]
 docs = [
@@ -89,7 +89,11 @@ exclude = [
 ]
 
 [tool.tox]
-env_list = ["py3.{10,11,12,13,14}", "pypy3.{11}", "docs"]
+env_list = [
+  { product = [ { prefix = "py3.", start = 10, stop = 14 } ]},
+  "pypy3.11",
+  "docs"
+]
 skip_missing_interpreters = true
 
 [tool.tox.env.docs]

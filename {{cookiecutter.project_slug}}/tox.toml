@@ -1,6 +1,6 @@
 envlist = [
   "lint",
-  "py3.{10-14}"
+  {product = [{prefix = "py3.", start = 10, stop = 14}]}
   {%- if cookiecutter.make_docs == 'y' %},
   "docs"
   {%- endif %}
