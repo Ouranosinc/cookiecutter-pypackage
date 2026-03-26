@@ -137,7 +137,7 @@ deptry==0.24.0 \
     --hash=sha256:a575880146bab671a62babb9825b85b4f1bda8aeaade4fcb59f9262caf91d6c7 \
     --hash=sha256:dd22fa2dbbdf4b38061ca9504f2a6ce41ec14fa5c9fe9b0b763ccc1275efebd5 \
     --hash=sha256:ea58709e5f3aa77c0737d8fb76166b7703201cf368fbbb14072ccda968b6703a
-    # via -r CI/requirements_ci.in
+    # via -r requirements_ci.in
 dill==0.3.9 \
     --hash=sha256:468dff3b89520b474c0397703366b7b95eebe6303f108adf9b19da1f702be87a \
     --hash=sha256:81aa267dddf68cbfe8029c42ca9ec6a4ab3b22371d1c450abc54422577b4512c
@@ -153,7 +153,7 @@ docutils==0.20.1 \
 exceptiongroup==1.3.1 \
     --hash=sha256:8b412432c6055b0b7d14c310000ae93352ed6754f70fa8f7c34141f91c4e3219 \
     --hash=sha256:a7a39a3bd276781e98394987d3a5701d0c4edffb633bb7a5144577f82c773598
-    # via -r CI/requirements_ci.in
+    # via -r requirements_ci.in
 filelock==3.25.2 \
     --hash=sha256:b64ece2b38f4ca29dd3e810287aa8c48182bbecd1ae6e9ae126c9b35f1382694 \
     --hash=sha256:ca8afb0da15f229774c9ad1b455ed96e85a81373065fb10446672f64444ddf70
@@ -164,7 +164,7 @@ filelock==3.25.2 \
 flit==3.12.0 \
     --hash=sha256:1c80f34dd96992e7758b40423d2809f48f640ca285d0b7821825e50745ec3740 \
     --hash=sha256:2b4e7171dc22881fa6adc2dbf083e5ecc72520be3cd7587d2a803da94d6ef431
-    # via -r CI/requirements_ci.in
+    # via -r requirements_ci.in
 flit-core==3.12.0 \
     --hash=sha256:18f63100d6f94385c6ed57a72073443e1a71a4acb4339491615d0f16d6ff01b2 \
     --hash=sha256:e7a0304069ea895172e3c7bb703292e992c5d1555dd1233ab7b5621b5b69e62c
@@ -204,7 +204,7 @@ pluggy==1.6.0 \
 pydantic==2.12.5 \
     --hash=sha256:4d351024c75c0f085a9febbb665ce8c0c6ec5d30e903bdb6394b7ede26aebb49 \
     --hash=sha256:e561593fccf61e8a20fc46dfc2dfe075b8be7d0188df33f221ad1f0139180f9d
-    # via -r CI/requirements_ci.in
+    # via -r requirements_ci.in
 pydantic-core==2.41.5 \
     --hash=sha256:0177272f88ab8312479336e1d777f6b124537d47f2123f89cb37e0accea97f90 \
     --hash=sha256:01a3d0ab748ee531f4ea6c3e48ad9dac84ddba4b0d82291f87248f2f9de8d740 \
@@ -331,7 +331,7 @@ pydantic-core==2.41.5 \
 pylint==4.0.1 \
     --hash=sha256:06db6a1fda3cedbd7aee58f09d241e40e5f14b382fd035ed97be320f11728a84 \
     --hash=sha256:6077ac21d01b7361eae6ed0f38d9024c02732fdc635d9e154d4fe6063af8ac56
-    # via -r CI/requirements_ci.in
+    # via -r requirements_ci.in
 pyproject-api==1.10.0 \
     --hash=sha256:40c6f2d82eebdc4afee61c773ed208c04c19db4c4a60d97f8d7be3ebc0bbb330 \
     --hash=sha256:8757c41a79c0f4ab71b99abed52b97ecf66bd20b04fa59da43b5840bac105a09
@@ -340,9 +340,9 @@ python-discovery==1.1.3 \
     --hash=sha256:7acca36e818cd88e9b2ba03e045ad7e93e1713e29c6bbfba5d90202310b7baa5 \
     --hash=sha256:90e795f0121bc84572e737c9aa9966311b9fde44ffb88a5953b3ec9b31c6945e
     # via virtualenv
-requests==2.32.4 \
-    --hash=sha256:27babd3cda2a6d50b30443204ee89830707d396671944c998b5975b031ac2b2c \
-    --hash=sha256:27d0316682c8a29834d3264820024b62a36942083d52caf2f14c0591336d3422
+requests==2.33.0 \
+    --hash=sha256:3324635456fa185245e24865e810cecec7b4caf933d7eb133dcde67d48cee69b \
+    --hash=sha256:c7ebc5e8b0f21837386ad0e1c8fe8b829fa5f544d8df3b2253bff14ef29d7652
     # via flit
 requirements-parser==0.11.0 \
     --hash=sha256:35f36dc969d14830bf459803da84f314dc3d17c802592e9e970f63d0359e5920 \
@@ -415,12 +415,12 @@ tox==4.49.1 \
     --hash=sha256:4130d02e1d53648d7107d121ed79f69a27b717817c5e9da521d50319dd261212 \
     --hash=sha256:6dd2d7d4e4fd5895ce4ea20e258fce0d4b81e914b697d116a5ab0365f8303bad
     # via
-    #   -r CI/requirements_ci.in
+    #   -r requirements_ci.in
     #   tox-gh
 tox-gh==1.7.1 \
     --hash=sha256:4f4871ee4091b41464f2df9ab1fcedb14a48accdecbb60d53297301a9d8984c6 \
     --hash=sha256:a82285b16a597516f9a24f20326b124ddc7924a8b70cb05a9192e1c53d7f701d
-    # via -r CI/requirements_ci.in
+    # via -r requirements_ci.in
 types-setuptools==75.8.0.20250110 \
     --hash=sha256:96f7ec8bbd6e0a54ea180d66ad68ad7a1d7954e7281a710ea2de75e355545271 \
     --hash=sha256:a9f12980bbf9bcdc23ecd80755789085bad6bfce4060c2275bc2b4ca9f2bc480
