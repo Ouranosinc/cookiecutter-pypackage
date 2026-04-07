@@ -32,15 +32,14 @@ jobs:
           persist-credentials: false
 
       - name: Create Release
-        uses: softprops/action-gh-release@da05d552573ad5aba039eaac05058a918a7bf631 # 2.2.2
         env:
-          # This token is provided by Actions, you do not need to create your own token
           GITHUB_TOKEN: __GITHUB_TOKEN__
-        with:
-          tag_name: __GITHUB_REF_NAME__
-          name: __GITHUB_REF_NAME__
-          draft: true
-          prerelease: false
+          REF_NAME: __GITHUB_REF_NAME__
+        run: |
+          gh release create "$REF_NAME" \
+            --title "$REF_NAME" \
+            --draft \
+            --notes ""
 
   deploy-testpypi:
     name: Build and publish Python 🐍 distributions 📦 to TestPyPI
