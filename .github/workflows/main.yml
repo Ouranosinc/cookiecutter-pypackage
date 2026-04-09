@@ -11,6 +11,9 @@ concurrency:
   group: "${{ github.workflow }}-${{ github.ref }}"
   cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
+permissions:
+  contents: read
+
 jobs:
   tests:
     name: Python${{ matrix.python-version }}
@@ -28,9 +31,11 @@ jobs:
           allowed-endpoints: >
             api.github.com:443
             cdn.fwupd.org:443
+            dl.google.com:443
             downloads.python.org:443
             files.pythonhosted.org:443
             github.com:443
+            go.dev:443
             index.crates.io:443
             objects.githubusercontent.com:443
             proxy.golang.org:443
