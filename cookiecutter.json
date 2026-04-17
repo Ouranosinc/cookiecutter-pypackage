@@ -46,5 +46,16 @@
     "create_author_file": "Do you want to create an AUTHORS.rst file?",
     "open_source_license": "Which open-source license do you want to use?",
     "generated_with_cruft": "Was this project generated with Cruft? (Add a '.cruft.json' file)"
-  }
+  },
+  "_copy_without_render": [
+    ".github/workflows/auto-accept-ci-changes.yml",
+    ".github/workflows/cache-cleaner.yml",
+    ".github/workflows/codeql.yml",
+    ".github/workflows/dependency-review.yml",
+    ".github/workflows/label.yml",
+    ".github/workflows/publish-pypi.yml",
+    ".github/workflows/scorecard.yml",
+    ".github/workflows/tag-testpypi.yml",
+    ".github/workflows/workflow-warning.yml"
+  ]
 }

@@ -15,7 +15,6 @@ on:
 permissions:
   contents: read
 
-{% raw -%}
 jobs:
   comment-concerning-workflow-changes:
     name: Comment Concerning Workflow Changes
@@ -90,4 +89,3 @@ jobs:
               gh pr comment "$PR_NUMBER" --body "$BODY"
             fi
           fi
-{%- endraw %}
