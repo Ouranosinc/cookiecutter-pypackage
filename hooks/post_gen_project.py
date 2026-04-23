@@ -24,14 +24,9 @@ def remove_folder(folder_path):
 def replace_contents(filepath):
     replacements = {
         "__BUMP_VERSION_TOKEN__": "secrets.BUMP_VERSION_TOKEN",
-        "__GITHUB_PULL_REQUEST_URL__": "github.event.pull_request.html_url",
-        "__GITHUB_REF__": "github.ref",
-        "__GITHUB_REF_NAME__": "github.ref_name",
-        "__GITHUB_TOKEN__": "secrets.GITHUB_TOKEN",
         "__OS__": "matrix.os",
         "__PYTHON_VERSION__": "matrix.python-version",
         "__TOX_ENV__": "matrix.tox-env",
-        "__OPENSSF_SCORECARD_TOKEN__": "secrets.OPENSSF_SCORECARD_TOKEN",
     }
 
     lines = []

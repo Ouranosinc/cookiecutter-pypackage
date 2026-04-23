@@ -17,7 +17,6 @@ on:
 permissions:
   contents: read
 
-{% raw -%}
 jobs:
   analyze:
     name: Analyze (${{ matrix.language }})
@@ -98,4 +97,3 @@ jobs:
         uses: github/codeql-action/analyze@fca7ace96b7d713c7035871441bd52efbe39e27e # v3.28.19
         with:
           category: "/language:${{matrix.language}}"
-{%- endraw %}
