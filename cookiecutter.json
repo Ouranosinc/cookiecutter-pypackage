@@ -27,6 +27,11 @@
     "GNU General Public License v3",
     "Not open source"
   ],
+  "ai_tools_policy": [
+    "Standard",
+    "Strict",
+    "No AI tools policy"
+  ],
   "generated_with_cruft": "y",
   "__gh_slug": "https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name.replace(' ', '-') }}",
   "__prompts__": {
@@ -45,6 +50,7 @@
     "command_line_interface": "Which command-line interface do you want to use?",
     "create_author_file": "Do you want to create an AUTHORS.rst file?",
     "open_source_license": "Which open-source license do you want to use?",
+    "ai_tools_policy": "Do you want to add guidance files for AI tool usage?",
     "generated_with_cruft": "Was this project generated with Cruft? (Add a '.cruft.json' file)"
   }
 }

@@ -74,5 +74,9 @@ if __name__ == "__main__":
         remove_file("LICENSE")
         remove_file(".zenodo.json")
 
+    if "No AI tools policy" == "{{ cookiecutter.ai_tools_policy }}":
+        remove_file("AI_POLICY.md")
+        remove_file("AGENTS.md")
+
     for f in Path(".github/workflows").glob("*.yml"):
         replace_contents(f)
