@@ -26,7 +26,6 @@ dev = [
   {include-group = "tox"}
 ]
 
-
 [project]
 name = "cookiecutter-pypackage-ouranos"
 description = "Cookiecutter template for a Python package"
@@ -90,7 +89,7 @@ exclude = [
 
 [tool.tox]
 env_list = [
-  { product = [ { prefix = "py3.", start = 10, stop = 14 } ]},
+  {product = [{prefix = "py3.", start = 10, stop = 14}]},
   "pypy3.11",
   "docs"
 ]

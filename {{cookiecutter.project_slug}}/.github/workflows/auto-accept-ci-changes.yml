@@ -32,7 +32,7 @@ jobs:
         id: dependabot-metadata
         uses: dependabot/fetch-metadata@21025c705c08248db411dc16f3619e6b5f9ea21a # v2.5.0
         with:
-          github-token: __GITHUB_TOKEN__
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Stop workflow if not minor update or patch update
         id: skip-condition
@@ -47,7 +47,7 @@ jobs:
         if: steps.skip-condition.outputs.skip != 'true'
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
-          token: __GITHUB_TOKEN__
+          token: ${{ secrets.GITHUB_TOKEN }}
           persist-credentials: false
 
       - name: Approve Changes
@@ -60,13 +60,13 @@ jobs:
             echo "PR already approved: skipping approval."
           fi
         env:
-          GH_TOKEN: __GITHUB_TOKEN__
-          PR_URL: __GITHUB_PULL_REQUEST_URL__
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
 
       - name: Enable auto-merge on Pull Request
         if: steps.skip-condition.outputs.skip != 'true'
         run: |
           gh pr merge --auto --merge "$PR_URL"
         env:
-          GH_TOKEN: __GITHUB_TOKEN__
-          PR_URL: __GITHUB_PULL_REQUEST_URL__
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}

@@ -214,6 +214,11 @@ command_line = "-m unittest discover -s tests/"
 omit = ["tests/*.py"]
 relative_files = true
 source = ["{{ cookiecutter.project_slug }}"]
+{%- if cookiecutter.generated_with_cruft == 'y' %}
+
+[tool.cruft]
+skip = []
+{%- endif %}
 
 [tool.deptry]
 extend_exclude = ["extras"]

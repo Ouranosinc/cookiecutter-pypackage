@@ -49,6 +49,7 @@ on:
 permissions:
   contents: read
 
+{% raw -%}
 jobs:
   bump_patch_version:
     name: Bump build/patch version
@@ -77,10 +78,10 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
-      - name: Set up Python3
+      - name: Set up Python${{ matrix.python-version }}
         uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
-          python-version: __PYTHON_VERSION__
+          python-version: ${{ matrix.python-version }}
 
       - name: Config Commit Bot
         run: |
@@ -93,7 +94,6 @@ jobs:
 
       - name: Conditional Bump Version
         run: |
-          {%- raw %}
           CURRENT_VERSION=$(bump-my-version show current_version)
           if [[ ${CURRENT_VERSION} =~ -dev(\.\d+)? ]]; then
             echo "Development version (ends in 'dev(\.\d+)?'), bumping 'build' version"
@@ -103,11 +103,11 @@ jobs:
             bump-my-version bump patch
           fi
           echo "new_version=$(bump-my-version show current_version)"
-          {%- endraw %}
 
       - name: Push Changes
         uses: ad-m/github-push-action@d91a481090679876dfc4178fef17f286781251df # v0.8.0
         with:
           force: false
-          github_token: __BUMP_VERSION_TOKEN__
-          branch: __GITHUB_REF__
+          github_token: ${{ secrets.BUMP_VERSION_TOKEN }}
+          branch: ${{ github.ref }}
+{%- endraw %}
