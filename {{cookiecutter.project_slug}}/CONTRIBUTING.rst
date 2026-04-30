@@ -276,7 +276,15 @@ We ask that contributors are forthcoming with this information so that the effor
 Code Review
 ~~~~~~~~~~~
 
+{%- if cookiecutter.ai_tools_policy == 'Standard' %}
+
+**TBD**
+
+{%- elif cookiecutter.ai_tools_policy == 'Strict' %}
+
 All AI-assisted code contributions must be reviewed by both the human contributor prior to opening the Pull Request as well as by a human reviewer prior to approval and merging to the `main` branch.
+
+{%- endif %}
 
 Low Effort Contributions
 ~~~~~~~~~~~~~~~~~~~~~~~~
