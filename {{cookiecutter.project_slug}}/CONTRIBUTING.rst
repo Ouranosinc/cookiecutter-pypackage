@@ -249,7 +249,6 @@ Some example disclosures:
 
     ### Other information:
 
-
     * This PR was primarily written using a combination of OpenClaw (Kimi K2.5) and ChatGPT (GPT-o4-mini). After using these tools, I reviewed the content.
 
     <!-- or -->
@@ -278,11 +277,12 @@ Code Review
 
 {%- if cookiecutter.ai_tools_policy == 'Standard' %}
 
-**TBD**
+All AI-assisted code contributions should be reviewed by the contributor before opening a Pull Request, except for minor or marginal changes, which may not require that step.
+All contributions should still be reviewed by at least one human reviewer before approval and merging into the `main` branch.
 
 {%- elif cookiecutter.ai_tools_policy == 'Strict' %}
 
-All AI-assisted code contributions must be reviewed by both the human contributor prior to opening the Pull Request as well as by a human reviewer prior to approval and merging to the `main` branch.
+All AI-assisted code contributions must be reviewed by the contributor before opening a Pull Request, and by at least one human reviewer before approval and merging into the `main`` branch.
 
 {%- endif %}
 
