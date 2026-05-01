@@ -205,6 +205,25 @@ def test_make_help(cookies):
             assert b"check code coverage quickly with the default Python" in output
 
 
+def test_ai_tools_policies(cookies):
+    ai_policies = {
+        "Standard": "AI tools are permitted. Standard review process applies to all contributions.",
+        "Strict": "AI tool usage is restricted. Get maintainer approval before using AI tools on contributions.",
+        "No AI tools policy": ""
+    }
+    for policy, target_string in ai_policies.items():
+        with bake_in_temp_dir(
+            cookies, extra_context={"ai_tools_policy": policy}
+        ) as result:
+            if policy == "No AI tools policy":
+                assert not result.project_path.joinpath("AGENTS.md").exists()
+                assert not result.project_path.joinpath("AI_POLICY.md").exists()
+            else:
+                assert (
+                    target_string in result.project_path.joinpath("AI_POLICY.md").read_text()
+                )
+
+
 def test_bake_selecting_license(cookies):
     license_strings = {
         "MIT license": ("MIT", "MIT"),
