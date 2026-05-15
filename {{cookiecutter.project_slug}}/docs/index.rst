@@ -3,9 +3,20 @@
 {% set underline = '=' * line|length -%}
 {{ underline }}
 
+**{{ cookiecutter.project_name }}**: {{ cookiecutter.project_short_description }}
+
+Need help?
+^^^^^^^^^^
+
+* If you encounter any errors or problems with `{{ cookiecutter.project_name }}`, please let us know! Open an issue at the `GitHub main repository <{{ cookiecutter.__gh_slug }}>`_.
+* To be aware of changes in `{{ cookiecutter.project_name }}`, feel free to “watch” the GitHub repository. You can customize the watch function to notify you of new releases or more.
+
+Navigation
+==========
+
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Table of Contents
 
    readme
    installation

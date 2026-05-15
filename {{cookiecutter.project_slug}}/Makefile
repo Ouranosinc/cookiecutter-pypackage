@@ -139,7 +139,7 @@ endif
 {%- endif %}
 
 servedocs: autodoc ## compile the docs while watching for changes
-	watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
+	$(MAKE) -C docs livehtml
 
 {% endif -%}
 dist: clean ## builds source and wheel package

@@ -9,6 +9,7 @@ dependencies:
   - click >=8.3.1
   {%- endif %}
   - sphinx >=8.2
+  - sphinx-autobuild >=2024.4.16
   {%- if cookiecutter.command_line_interface|lower == 'click' %}
   - sphinx-click
   {%- endif %}

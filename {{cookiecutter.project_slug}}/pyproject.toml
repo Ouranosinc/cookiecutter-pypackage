@@ -39,6 +39,7 @@ docs = [
   "jupyter_client",
   "nbsphinx >=0.9.8",
   "sphinx >=8.2.0",
+  "sphinx-autobuild >=2024.4.16",
   {%- if cookiecutter.command_line_interface|lower == 'click' %}
   "sphinx-click",
   {%- endif %}
