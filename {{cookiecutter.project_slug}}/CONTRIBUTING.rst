@@ -210,7 +210,7 @@ Before you submit a pull request, check that it meets these guidelines:
 
 #. The pull request should work for all currently supported Python versions. Check the `pyproject.toml` or `tox.ini` files for the list of supported versions.
 
-#. If you haven't already, ensure that you have read and agreed to the `Developer Certificate of Origin (DCO) <https://developercertificate.org/>`_, and that you have signed your commits using:
+#. If you haven't already, ensure that you have read and agreed to the `Developer Certificate of Origin (DCO) <https://developercertificate.org/>`_, and that you have signed off on your commits using:
 
     .. code-block:: bash
 
