@@ -234,6 +234,8 @@ include = [
   "AUTHORS.rst",
   {% endif -%}
   "CHANGELOG.rst",
+  "CITATION.cff",
+  "CODE_OF_CONDUCT.md",
   "CONTRIBUTING.rst",
   {%- if cookiecutter.open_source_license in license_spdx_codes %}
   "LICENSE",
@@ -245,14 +247,13 @@ include = [
   {%- endif %}
   {%- if cookiecutter.make_docs == 'y' %}
   "environment-docs.yml",
-  "docs/_static/_images/*.gif",
-  "docs/_static/_images/*.jpg",
-  "docs/_static/_images/*.png",
-  "docs/_static/_images/*.rst",
-  "docs/Makefile",
+  "docs/_static/*",
+  "docs/*.rst",
   "docs/conf.py",
   "docs/make.bat",
+  "docs/Makefile",
   {%- endif %}
+  "pyproject.toml",
   "src/{{ cookiecutter.project_slug }}",
   "tests/*.py",
   "tox.toml"
@@ -260,16 +261,17 @@ include = [
 exclude = [
   "*.py[co]",
   "__pycache__",
-  ".coveralls.yml",
   ".editorconfig",
   ".flake8",
+  ".github",
   ".gitignore",
   ".pre-commit-config.yaml",
   {%- if cookiecutter.make_docs == 'y' %}
   ".readthedocs.yml",
   {% endif -%}
   ".yamllint.yaml",
-  ".zizmor.yml"
+  ".zizmor.yml",
+  "CI/requirements_ci.*"
   {%- if cookiecutter.make_docs == 'y' -%}
   ,
   "docs/_*",
