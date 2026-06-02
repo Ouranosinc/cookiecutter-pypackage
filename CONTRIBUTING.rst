@@ -180,6 +180,6 @@ To write and run your new test, follow these steps:
 
 #. Rerun your test and confirm that your test passes. If it passes, congratulations!
 
-.. cookiecutter: https://github.com/audreyr/cookiecutter-pypackage
-.. virtualenv: https://virtualenv.pypa.io/en/stable/installation
-.. git: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+.. _cookiecutter: https://github.com/audreyr/cookiecutter-pypackage
+.. _virtualenv: https://virtualenv.pypa.io/en/stable/installation
+.. _git: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git

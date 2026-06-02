@@ -56,7 +56,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: automation
     permissions:
-      actions: read
       contents: write
     strategy:
       matrix:
