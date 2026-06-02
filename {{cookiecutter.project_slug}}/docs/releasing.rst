@@ -33,7 +33,7 @@ For creating tags and releases, we **strongly recommend** enabling the "release 
 
     .. code-block:: console
 
-        git tag -S/--gpg-sign "v0.2.0" -m "Release v0.2.0"
+        git tag -s/--sign "v0.2.0" -m "Release v0.2.0"
         git push --tags
 
    This will trigger a GitHub workflow to build the package and upload it to TestPyPI. At the same time, the GitHub workflow will create a draft release on GitHub. Assuming that the workflow passes, the final release can then be published on GitHub by finalizing the draft release.
