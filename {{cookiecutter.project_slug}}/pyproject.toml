@@ -9,6 +9,62 @@
 requires = ["flit_core >=3.12.0,<4"]
 build-backend = "flit_core.buildapi"
 
+[project]
+name = "{{ cookiecutter.project_slug }}"
+authors = [
+  {name = "{{ cookiecutter.full_name.replace('\"', '\\\"') }}", email = "{{ cookiecutter.email }}"}
+]
+maintainers = [
+  {name = "{{ cookiecutter.full_name.replace('\"', '\\\"') }}", email = "{{ cookiecutter.email }}"}
+]
+readme = {file = "README.rst", content-type = "text/x-rst"}
+requires-python = ">=3.10.0"
+keywords = ["{{ cookiecutter.project_name }}"]
+{%- if cookiecutter.open_source_license in license_spdx_codes %}
+license = "{{ license_spdx_codes[cookiecutter.open_source_license] }}"
+license-files = ["LICENSE"]
+{%- endif %}
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Intended Audience :: Developers",
+  "Natural Language :: English",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Typing :: Typed"
+]
+dynamic = ["description", "version"]
+dependencies = [
+  {%- if cookiecutter.command_line_interface|lower == 'click' %}
+  "click >=8.3.1"
+  {% elif cookiecutter.command_line_interface|lower == 'typer' %}
+  "typer >=0.24.1"
+  {%- endif %}
+]
+
+[project.optional-dependencies]
+extras = []
+
+{% if cookiecutter.command_line_interface != "No command-line interface" -%}
+
+[project.scripts]
+{{ cookiecutter.project_slug }} = "{{ cookiecutter.project_slug }}.cli:app"
+
+{%- endif %}
+
+[project.urls]
+# "Homepage" = "https://{{ cookiecutter.project_name | replace(" ", "-") }}.readthedocs.io/"
+# "Changelog" = "https://{{ cookiecutter.project_name | replace(" ", "-") }}.readthedocs.io/en/stable/changelog.html"
+# "About Ouranos" = "https://ouranos.ca/en/"
+"Issue tracker" = "{{ cookiecutter.__gh_slug }}/issues"
+"Source" = "{{ cookiecutter.__gh_slug }}"
+
 [dependency-groups]
 lint = [
   # Linting tools
@@ -68,62 +124,6 @@ dev = [
   {include-group = "test"},
   {include-group = "tox"}
 ]
-
-[project]
-name = "{{ cookiecutter.project_slug }}"
-authors = [
-  {name = "{{ cookiecutter.full_name.replace('\"', '\\\"') }}", email = "{{ cookiecutter.email }}"}
-]
-maintainers = [
-  {name = "{{ cookiecutter.full_name.replace('\"', '\\\"') }}", email = "{{ cookiecutter.email }}"}
-]
-readme = {file = "README.rst", content-type = "text/x-rst"}
-requires-python = ">=3.10.0"
-keywords = ["{{ cookiecutter.project_name }}"]
-{%- if cookiecutter.open_source_license in license_spdx_codes %}
-license = "{{ license_spdx_codes[cookiecutter.open_source_license] }}"
-license-files = ["LICENSE"]
-{%- endif %}
-classifiers = [
-  "Development Status :: 2 - Pre-Alpha",
-  "Intended Audience :: Developers",
-  "Natural Language :: English",
-  "Operating System :: OS Independent",
-  "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
-  "Programming Language :: Python :: 3.12",
-  "Programming Language :: Python :: 3.13",
-  "Programming Language :: Python :: 3.14",
-  "Programming Language :: Python :: Implementation :: CPython",
-  "Typing :: Typed"
-]
-dynamic = ["description", "version"]
-dependencies = [
-  {%- if cookiecutter.command_line_interface|lower == 'click' %}
-  "click >=8.3.1"
-  {% elif cookiecutter.command_line_interface|lower == 'typer' %}
-  "typer >=0.24.1"
-  {%- endif %}
-]
-
-[project.optional-dependencies]
-extras = []
-
-{% if cookiecutter.command_line_interface != "No command-line interface" -%}
-
-[project.scripts]
-{{ cookiecutter.project_slug }} = "{{ cookiecutter.project_slug }}.cli:app"
-
-{%- endif %}
-
-[project.urls]
-# "Homepage" = "https://{{ cookiecutter.project_name | replace(" ", "-") }}.readthedocs.io/"
-# "Changelog" = "https://{{ cookiecutter.project_name | replace(" ", "-") }}.readthedocs.io/en/stable/changelog.html"
-# "About Ouranos" = "https://ouranos.ca/en/"
-"Issue tracker" = "{{ cookiecutter.__gh_slug }}/issues"
-"Source" = "{{ cookiecutter.__gh_slug }}"
 
 [tool]
 
@@ -409,6 +409,9 @@ max-doc-length = 180
 
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
+
+[tool.tomlsort]
+sort_first = ["build-system", "project"]
 
 [tool.vulture]
 exclude = []
