@@ -30,7 +30,7 @@ Code changes from less sophisticated phrase-completion tools do not require an A
 - Using AI to generate code that circumvents tests or CI checks
 - Feeding reviewer feedback back into AI without understanding it first
 - AI-generated PR descriptions -- describe your own work
-- AI-generated review comments on other contributors' PRs
+- AI-generated review comments
 
 ## AI in CI/CD
 
