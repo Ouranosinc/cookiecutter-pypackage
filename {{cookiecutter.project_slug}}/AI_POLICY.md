@@ -29,8 +29,9 @@ Code changes from less sophisticated phrase-completion tools do not require an A
 - Submitting AI output you have not read and understood
 - Using AI to generate code that circumvents tests or CI checks
 - Feeding reviewer feedback back into AI without understanding it first
+- Using AI to respond to reviewer feedback
 - AI-generated PR descriptions -- describe your own work
-- AI-generated review comments on other contributors' PRs
+- AI-generated reviews on other contributors' PRs
 
 ## AI in CI/CD
 
@@ -82,8 +83,9 @@ Code changes from less sophisticated phrase-completion tools do not require an A
 - Submitting AI output you have not read and understood
 - Using AI to generate code that circumvents tests or CI checks
 - Feeding reviewer feedback back into AI without understanding it first
+- Using AI to respond to reviewer feedback
 - Any AI-generated code contributions
-- AI-generated review comments on other contributors' PRs
+- AI-generated reviews on other contributors' PRs
 
 ## AI in CI/CD
 
