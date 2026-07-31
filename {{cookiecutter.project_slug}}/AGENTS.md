@@ -6,13 +6,13 @@ Rules for AI coding agents working in this repository.
 
 ## General
 
-- Follow existing code conventions and patterns
-- Do not modify files outside the scope of the current task
-- Prefer editing existing files over creating new ones
-- Do not add dependencies without explicit approval
-- Keep changes atomic -- one concern per commit
-- Ask for clarification when requirements are ambiguous
-- Do not generate PR descriptions or review comments on others' code
+- Follow existing code conventions and patterns.
+- Do not modify files outside the scope of the current task.
+- Prefer editing existing files over creating new ones.
+- Do not add dependencies without explicit approval.
+- Keep changes atomic -- one concern per commit.
+- Ask for clarification when requirements are ambiguous.
+- Do not generate PR descriptions or review comments on others' code.
 
 ## Code Style
 
@@ -35,6 +35,7 @@ The package can be installed in developer mode in Python using the `$ make devel
 Do not modify:
 
 - `.*`
+- `LICENSE`
 - `docs`
 - `tox.toml`
 
@@ -42,18 +43,18 @@ Do not modify:
 
 - Changes must be summarized in one or two sentences within the `CHANGELOG.rst` file.
 - New additions must be placed under the section labelled "(unreleased)".
-- Acceptable category types are all previously categories found in `CHANGELOG.rst`
+- Acceptable category types are all previously used categories found in `CHANGELOG.rst`.
 - Entries must end with the issue number and PR number appended to the end: "(:issue:`#`, :pull:`#`)".
 
 ## Commits
 
-- Use clear, descriptive commit messages
-- One logical change per commit
-- Do not bundle unrelated changes
-- Reference relevant issues when applicable
-- Never push directly to main
-- Always use a PR branch and get human approval before merging
-- Include `Assisted-by: <tool name>` trailer on AI-assisted commits
+- Use clear, descriptive commit messages.
+- One logical change per commit.
+- Do not bundle unrelated changes.
+- Reference relevant issues when applicable.
+- Never push directly to main.
+- Always use a PR branch and get human approval before merging.
+- Include `Assisted-by: <tool name>` trailer on AI-assisted commits.
 
 ## Review
 
@@ -65,18 +66,23 @@ Rules for AI coding agents assisting with this repository. AI-generated code is 
 
 ## General
 
-- Follow existing code conventions and patterns
-- Do not modify files outside the scope of the current task
-- Prefer editing existing files over creating new ones
-- Do not add dependencies without explicit approval
-- Keep changes atomic -- one concern per commit
-- Ask for clarification rather than guessing at intent
-- Do not create new files or public APIs without explicit approval
-- Do not generate PR descriptions, review comments, or issue responses
+- Follow existing code conventions and patterns.
+- Do not modify files outside the scope of the current task.
+- Prefer editing existing files over creating new ones.
+- Do not add dependencies without explicit approval.
+- Keep changes atomic -- one concern per commit.
+- Ask for clarification rather than guessing at intent.
+- Do not create new files or public APIs without explicit approval.
+- Do not generate PR descriptions, review comments, or issue responses.
+
+## Code Style
+
+- Follow the linting patterns provided via `$ make lint` in the `Makefile` alongside the configurations found in the top-level `pyproject.toml` and `.pre-commit-config.yaml` files.
+- All functions should be typed and new functions must have `numpydoc`-like docstrings.
 
 ## Setup
 
-> Add your project's setup commands here (npm install, go build, make, etc.)
+The package can be installed in developer mode in Python using the `$ make develop` recipe.
 
 ## Testing
 
@@ -84,10 +90,13 @@ Tests are required. Run the full test suite before submitting. PRs without adequ
 
 ## Commits
 
-- Use clear, descriptive commit messages
-- One logical change per commit
-- Reference relevant issues when applicable
-- Include `Assisted-by: <tool name>` trailer on AI-assisted commits
+- Use clear, descriptive commit messages.
+- One logical change per commit.
+- Do not bundle unrelated changes.
+- Reference relevant issues when applicable.
+- Never push directly to `main`.
+- Always use a PR branch and get human approval before merging.
+- Include `Assisted-by: <tool name>` trailer on AI-assisted commits.
 
 ## Review
 
