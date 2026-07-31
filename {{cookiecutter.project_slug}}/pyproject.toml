@@ -270,8 +270,7 @@ exclude = [
   ".readthedocs.yml",
   {% endif -%}
   ".yamllint.yaml",
-  ".zizmor.yml",
-  "CI/requirements_ci.*"
+  ".zizmor.yml"
   {%- if cookiecutter.make_docs == 'y' -%}
   ,
   "docs/_*",

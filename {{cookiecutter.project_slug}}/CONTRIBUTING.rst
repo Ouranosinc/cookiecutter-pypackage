@@ -208,15 +208,15 @@ Before you submit a pull request, check that it meets these guidelines:
 
 #. If the pull request adds functionality, either update the documentation or create a new notebook that demonstrates the feature. Library-defining features should also be listed in ``README.rst``.
 
-#. The pull request should work for all currently supported Python versions. Check the `pyproject.toml` or `tox.ini` files for the list of supported versions.
+#. The pull request should work for all currently supported Python versions. Check the `pyproject.toml` or `tox.toml` files for the list of supported versions.
 
 #. If you haven't already, ensure that you have read and agreed to the `Developer Certificate of Origin (DCO) <https://developercertificate.org/>`_, and that you have signed off on your commits using:
 
-    .. code-block:: bash
+.. code-block:: bash
 
-          git commit -s/--signoff
+        git commit -s/--signoff
 
-    This will add a `Signed-off-by:` line to your commit message, which indicates that you agree to the DCO.
+This will add a `Signed-off-by:` line to your commit message, which indicates that you agree to the DCO.
 
 {%- if cookiecutter.ai_tools_policy != 'No AI tools policy' %}
 
@@ -343,9 +343,9 @@ Translations
 
 If you would like to contribute to the French translation of the documentation, you can do so by running the following command:
 
-    .. code-block:: console
+.. code-block:: console
 
-        make initialize-translations
+    make initialize-translations
 
 This will create or update the French translation files in the `docs/locales/fr/LC_MESSAGES` directory. You can then edit the `.po` files in this directory to provide translations for the documentation.
 

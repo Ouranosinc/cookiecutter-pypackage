@@ -23,7 +23,8 @@
 #      - 'docs/Makefile'
 {%- endif %}
 #      - 'tox.toml'
-#      - 'CI/**/*'
+#      - '.github/*.in'
+#      - '.github/*.txt'
 #      - 'Makefile'
 
 {%- if cookiecutter.make_docs == 'y' %}

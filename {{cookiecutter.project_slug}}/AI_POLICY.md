@@ -4,6 +4,12 @@
 
 You are responsible for every line of code you submit, regardless of how it was produced. If you use AI tools, review and verify all output before committing.
 
+## Pull Requests
+
+- Pull Requests descriptions must be drafted by a human and adhere to the template selected on creation.
+- Summaries of changes posted by AI are not accepted in Pull Requests.
+- AI-generated responses to reviewer comments are not accepted in Pull Requests.
+
 {%- if cookiecutter.ai_tools_policy == 'Standard' %}
 
 ## AI Tool Usage
@@ -51,14 +57,10 @@ AI-generated contributions must be compatible with this project's license. Contr
 
 ## Enforcement
 
-Maintainers may close AI-generated PRs that do not meet these standards without detailed feedback.
+- Maintainers may close AI-generated PRs that do not meet these standards at their sole discretion without detailed feedback.
+- Repeated low-quality AI submissions may result in the contributor being asked to stop using AI tools.
 
 {%- elif cookiecutter.ai_tools_policy == 'Strict' %}
-
-## Pull Requests
-
-Pull Requests descriptions must be drafted by a human and adhere to the template selected on creation.
-Summaries of changes posted by AI are not accepted in Pull Requests.
 
 ## AI Tool Usage
 
@@ -101,7 +103,9 @@ AI-generated low-effort contributions are unacceptable; Human contributors must 
 
 ## Enforcement
 
-Maintainers may close AI-generated PRs without detailed feedback. Repeated low-quality AI submissions may result in the contributor being asked to stop using AI tools for contributions.
+- Maintainers may close suspected AI-generated PRs at their sole discretion without detailed feedback.
+- Repeated low-quality AI submissions may result in the contributor being asked to stop using AI tools for contributions or to stop contributing the project altogether.
+- Failure to comply may result in future contributions being closed without review.
 
 {%- endif %}
 
