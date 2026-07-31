@@ -4,6 +4,11 @@
 
 You are responsible for every line of code you submit, regardless of how it was produced. If you use AI tools, review and verify all output before committing.
 
+## Pull Requests
+
+Pull Requests descriptions must be drafted by a human and adhere to the template selected on creation.
+Summaries of changes posted by AI are not accepted in Pull Requests.
+
 {%- if cookiecutter.ai_tools_policy == 'Standard' %}
 
 ## AI Tool Usage

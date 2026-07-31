@@ -14,19 +14,45 @@ Rules for AI coding agents working in this repository.
 - Ask for clarification when requirements are ambiguous
 - Do not generate PR descriptions or review comments on others' code
 
+## Code Style
+
+- Follow the linting patterns provided via `$ make lint` in the `Makefile` alongside the configurations found in the top-level `pyproject.toml` and `.pre-commit-config.yaml` files.
+- All functions should be typed and new functions must have `numpydoc`-like docstrings.
+
 ## Setup
 
-> Add your project's setup commands here (npm install, go build, make, etc.)
+The package can be installed in developer mode in Python using the `$ make develop` recipe.
 
 ## Testing
 
-Write tests for new functionality. Run the full suite before submitting.
+- Write tests for new functionality.
+- Any `pytest` fixtures common to tests across multiple `test_*.py` files should be found within `conftest.py`.
+- Run the full suite before submitting.
+- Test coverage must not significantly drop between PRs and main.
+
+## Restricted Paths
+
+Do not modify:
+
+- `.*`
+- `docs`
+- `tox.toml`
+
+## Changelog
+
+- Changes must be summarized in one or two sentences within the `CHANGELOG.rst` file.
+- New additions must be placed under the section labelled "(unreleased)".
+- Acceptable category types are all previously categories found in `CHANGELOG.rst`
+- Entries must end with the issue number and PR number appended to the end: "(:issue:`#`, :pull:`#`)".
 
 ## Commits
 
 - Use clear, descriptive commit messages
 - One logical change per commit
+- Do not bundle unrelated changes
 - Reference relevant issues when applicable
+- Never push directly to main
+- Always use a PR branch and get human approval before merging
 - Include `Assisted-by: <tool name>` trailer on AI-assisted commits
 
 ## Review
