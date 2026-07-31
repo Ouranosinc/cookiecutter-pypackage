@@ -14,6 +14,8 @@ on:
       - .cruft.json
       - .editorconfig
       - .github/**.yml
+      - .github/*.txt
+      - .github/.in
       - .gitignore
       - .pre-commit-config.yaml
       - .yamllint.yaml
@@ -24,9 +26,6 @@ on:
       - AUTHORS.rst
       {%- endif %}
       - CHANGELOG.rst
-      - CI/**/*.in
-      - CI/**/*.py
-      - CI/**/*.txt
       - CITATION.cff
       - CODE_OF_CONDUCT.md
       - CONTRIBUTING.rst
