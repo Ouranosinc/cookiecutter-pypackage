@@ -121,7 +121,7 @@ def test_bake_and_run_prek(cookies):
         assert run_inside_dir("git checkout -b feature", str(result.project_path)) == 0
         assert run_inside_dir("git add *", str(result.project_path)) == 0
         assert run_inside_dir("prek install", str(result.project_path)) == 0
-        if platform.python_implementation == "PyPy":
+        if platform.python_implementation() == "PyPy":
             prek_call = "prek run --all-files --show-diff-on-failure --skip mypy"
         else:
             prek_call = "prek run --all-files --show-diff-on-failure"
