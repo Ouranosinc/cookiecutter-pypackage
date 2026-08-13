@@ -60,7 +60,7 @@ def check_output_inside_dir(command, dirpath):
 def test_year_compute_in_license_file(cookies):
     with bake_in_temp_dir(cookies) as result:
         license_file_path = result.project_path.joinpath("LICENSE")
-        now = datetime.datetime.now()
+        now = datetime.datetime.now(tz=datetime.timezone.utc)
         assert str(now.year) in license_file_path.read_text()
 
 
@@ -265,7 +265,7 @@ def test_bake_not_open_source(cookies):
 
 
 def _running_tox():
-    return os.getenv("TOX", False)
+    return os.getenv("TOX")
 
 
 @pytest.mark.skipif("not _running_tox()", reason="Not running on tox")
@@ -293,32 +293,12 @@ def test_not_using_pytest(cookies):
         assert "import pytest" not in text
 
 
-# def test_project_with_hyphen_in_module_name(cookies):
-#     result = cookies.bake(extra_context={"project_name": "something-with-a-dash"})
-#     assert result.project is not None
-#     project_path = str(result.project)
-#
-#     # when:
-#     travis_setup_cmd = (
-#         "python travis_pypi_setup.py"
-#         " --repo audreyr/cookiecutter-pypackage"
-#         " --password invalidpass"
-#     )
-#     run_inside_dir(travis_setup_cmd, project_path)
-#
-#     # then:
-#     result_travis_config = yaml.load(open(os.path.join(project_path, ".travis.yml")))
-#     assert (
-#         "secure" in result_travis_config["deploy"]["password"]
-#     ), "missing password config in .travis.yml"
-
-
 def test_bake_with_no_console_script(cookies):
     context = {"command_line_interface": "No command-line interface"}
     result = cookies.bake(
         extra_context=context, template=Path(__file__).parents[1].as_posix()
     )
-    project_path, project_slug, project_dir = project_info(result)
+    project_path, _project_slug, project_dir = project_info(result)
     found_project_files = os.listdir(project_dir)
     assert "cli.py" not in found_project_files
 
@@ -333,7 +313,7 @@ def test_bake_with_console_options_script_files(cookies, option):
     result = cookies.bake(
         extra_context=context, template=Path(__file__).parents[1].as_posix()
     )
-    project_path, project_slug, project_dir = project_info(result)
+    project_path, _project_slug, project_dir = project_info(result)
     found_project_files = os.listdir(project_dir)
     assert "cli.py" in found_project_files
 
@@ -347,18 +327,16 @@ def test_bake_with_console_options_script_click(cookies):
     result = cookies.bake(
         extra_context=context, template=Path(__file__).parents[1].as_posix()
     )
-    project_path, project_slug, project_dir = project_info(result)
+    _project_path, project_slug, project_dir = project_info(result)
     module_path = os.path.join(project_dir, "cli.py")
-    module_name = ".".join([project_slug, "cli"])
+    module_name = f"{project_slug}.cli"
     spec = importlib.util.spec_from_file_location(module_name, module_path)
     cli = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(cli)
     runner = CliRunner()
     noarg_result = runner.invoke(cli.main)
     assert noarg_result.exit_code == 0
-    noarg_output = " ".join(
-        ["Replace this message by putting your code into", project_slug]
-    )
+    noarg_output = f"Replace this message by putting your code into {project_slug}"
     assert noarg_output in noarg_result.output
     help_result = runner.invoke(cli.main, ["--help"])
     assert help_result.exit_code == 0
