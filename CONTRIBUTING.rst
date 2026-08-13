@@ -57,57 +57,57 @@ Please note this documentation assumes you already have `virtualenv` and `Git` i
 
 #. Clone your fork locally:
 
-   .. code-block:: bash
+   .. code-block:: console
 
-    cd path_for_the_repo
-    git clone git@github.com:YOUR_NAME/cookiecutter-pypackage.git
+        $ cd path_for_the_repo
+        $ git clone git@github.com:YOUR_NAME/cookiecutter-pypackage.git
 
 #. Assuming you have virtualenv installed (If you have Python 3.8+ this should already be there), you can create a new environment for your local development by typing:
 
-   .. code-block:: bash
+   .. code-block:: console
 
-        virtualenv cookiecutter-pypackage-env
-        source cookiecutter-pypackage-env/bin/activate
+        $ virtualenv cookiecutter-pypackage-env
+        $ source cookiecutter-pypackage-env/bin/activate
 
    This should change the shell to look something like:
 
-   .. code-block:: bash
+   .. code-block:: console
 
-        (cookiecutter-pypackage-env) $
+        (cookiecutter-pypackage-env) $ <...>
 
 #. Create a branch for local development:
 
-   .. code-block:: bash
+   .. code-block:: console
 
-        git checkout -b name-of-your-bugfix-or-feature
+        $ git checkout -b name-of-your-bugfix-or-feature
 
    Now you can make your changes locally.
 
 #. When you're done making changes, check that your changes pass `flake8`. Since, this package contains mostly templates the flake should be run for tests directory:
 
-   .. code-block:: bash
+   .. code-block:: console
 
-        flake8 ./tests
+        $ flake8 ./tests
 
 #. The next step would be to run the test cases. `cookiecutter-pypackage` testing uses the `pytest` framework. Before you run `pytest` you should ensure all dependencies are installed:
 
-   .. code-block:: bash
+   .. code-block:: console
 
-        pip install -r requirements_dev.txt
-        pytest ./tests
+        $ pip install --group dev
+        $ pytest ./tests
 
    If you get any errors while installing cryptography package (something like `#include <openssl/aes.h>`). Please update your pip version and try again:
 
-   .. code-block:: bash
+   .. code-block:: console
 
         # Update pip
-        pip install --upgrade pip
+        $ pip install --upgrade pip
 
 #. Before raising a pull request you should also run `tox`. This will run the tests across different versions of Python:
 
-   .. code-block:: bash
+   .. code-block:: console
 
-        tox
+        $ tox
 
    If you are missing `flake8`, `pytest` and/or `tox`, just `pip install` them into your virtualenv.
 
@@ -115,11 +115,11 @@ Please note this documentation assumes you already have `virtualenv` and `Git` i
 
 #. Commit your changes and push your branch to GitHub:
 
-   .. code-block:: bash
+   .. code-block:: console
 
-        git add .
-        git commit -s -m "Your detailed description of your changes."
-        git push origin name-of-your-bugfix-or-feature
+        $ git add .
+        $ git commit -s -m "Your detailed description of your changes."
+        $ git push origin name-of-your-bugfix-or-feature
 
 #. Submit a pull request through the GitHub website.
 
@@ -137,11 +137,11 @@ Before you submit a pull request, check that it meets these guidelines:
 
 #. If you haven't already, ensure that you have read and agreed to the `Developer Certificate of Origin (DCO) <https://developercertificate.org/>`_, and that you have signed your commits using:
 
-    .. code-block:: bash
+.. code-block:: console
 
-          git commit --signoff/-s
+     $ git commit --signoff/-s
 
-    This will add a `Signed-off-by:` line to your commit message, which indicates that you agree to the DCO.
+This will add a `Signed-off-by:` line to your commit message, which indicates that you agree to the DCO.
 
 Add a New Test
 --------------
@@ -154,29 +154,29 @@ To write and run your new test, follow these steps:
 
 #. If you have already made changes to the code, stash your changes and confirm all your changes were stashed:
 
-   .. code-block:: bash
+.. code-block:: console
 
-        git stash
-        git stash list
+     $ git stash
+     $ git stash list
 
 #. Run your test and confirm that your test fails. If your test does not fail, rewrite the test until it fails on the original code:
 
-   .. code-block:: bash
+.. code-block:: console
 
-        pytest ./tests
+     $ pytest ./tests
 
 #. (Optional) Run the tests with tox to ensure that the code changes work with different Python versions:
 
-   .. code-block:: bash
+.. code-block:: console
 
-        tox
+     $ tox
 
 #. Proceed work on your bug fix or new feature or restore your changes. To restore your stashed changes and confirm their restoration:
 
-   .. code-block:: bash
+.. code-block:: console
 
-        git stash pop
-        git stash list
+     $ git stash pop
+     $ git stash list
 
 #. Rerun your test and confirm that your test passes. If it passes, congratulations!
 
