@@ -2,12 +2,19 @@ default_language_version:
   python: python3
 
 repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v6.0.0
+  - repo: builtin
     hooks:
+      - id: check-case-conflict
+        exclude: '{{cookiecutter.project_slug}}'
       - id: check-toml
         exclude: '{{cookiecutter.project_slug}}/(pyproject|tox)?.toml'
+      - id: check-yaml
+        exclude: '{{cookiecutter.project_slug}}'
+      - id: detect-private-key
+        exclude: '{{cookiecutter.project_slug}}'
       - id: end-of-file-fixer
+        exclude: '{{cookiecutter.project_slug}}'
+      - id: mixed-line-ending
         exclude: '{{cookiecutter.project_slug}}'
       - id: trailing-whitespace
         exclude: '{{cookiecutter.project_slug}}'
