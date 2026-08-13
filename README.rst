@@ -2,7 +2,7 @@
 Cookiecutter PyPackage
 ======================
 
-|build| |ruff| |status|
+|build| |license| |prek| |ruff| |status| |zizmor|
 
 Cookiecutter_ template for a Python package.
 
@@ -191,7 +191,6 @@ I also accept pull requests on this, if they're small, atomic, and if they make 
 .. _prek: https://prek.j178.dev/
 .. _pypi: https://pypi.org/
 .. _pyproject.toml: https://www.python.org/dev/peps/pep-0518/
-.. _pyup.io: https://pyup.io/
 .. _sphinx-intl: https://sphinx-intl.readthedocs.io/en/master/
 .. _testpypi: https://test.pypi.org/
 
@@ -211,18 +210,26 @@ I also accept pull requests on this, if they're small, atomic, and if they make 
         :target: https://github.com/Ouranosinc/cookiecutter-pypackage/actions/workflows/main.yml
         :alt: Build Status
 
-.. |ruff| image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json
-        :target: https://github.com/astral-sh/ruff
-        :alt: Ruff
-
 .. |docs-upstream|  image:: https://readthedocs.org/projects/cookiecutter-pypackage/badge/?version=latest
         :target: https://cookiecutter-pypackage.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 
-.. |pyup-upstream| image:: https://pyup.io/repos/github/audreyfeldroy/cookiecutter-pypackage/shield.svg
-        :target: https://pyup.io/repos/github/audreyfeldroy/cookiecutter-pypackage/
-        :alt: Updates
+.. |license| image:: https://img.shields.io/github/license/Ouranosinc/cookiecutter-pypackage.svg
+        :target: https://github.com/Ouranosinc/cookiecutter-pypackage/blob/master/LICENSE
+        :alt: License
+
+.. |prek| image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/j178/prek/master/docs/assets/badge-v0.json
+        :target: https://github.com/j178/prek
+        :alt: prek
+
+.. |ruff| image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json
+        :target: https://github.com/astral-sh/ruff
+        :alt: Ruff
 
 .. |status| image:: https://www.repostatus.org/badges/latest/active.svg
         :target: https://www.repostatus.org/#active
         :alt: Project Status: Active - The project has reached a stable, usable state and is being actively developed.
+
+.. |zizmor| image:: https://img.shields.io/badge/%F0%9F%8C%88-zizmor-white?labelColor=white
+        :target: https://zizmor.sh/
+        :alt: zizmor
