@@ -1,15 +1,14 @@
-======================
-Cookiecutter PyPackage
-======================
+==============================
+cookiecutter-pypackage-ouranos
+==============================
 
 |build| |license| |prek| |ruff| |status| |zizmor|
 
 Cookiecutter_ template for a Python package.
 
-* GitHub repo (fork): https://github.com/Ouranosinc/cookiecutter-pypackage/
-* Documentation (upstream): https://cookiecutter-pypackage.readthedocs.io/
+* GitHub Repository: https://github.com/Ouranosinc/cookiecutter-pypackage/
+* Documentation: https://cookiecutter-pypackage-ouranos.readthedocs.io/
 * Free software: BSD license
-* Discord: https://discord.gg/PWXJr3upUE
 
 Features
 --------
@@ -28,12 +27,6 @@ Features
 * sphinx-intl_ for French internationalization (i18n) and localization (l10n) of Sphinx docs (optional).
 * Auto-release to TestPyPI_ and PyPI_ when you push a new tag to main (optional).
 * Command line interface using Typer_, Click_, or Argparse_ (optional).
-
-
-Build Status
--------------
-
-Upstream (audreyfeldroy/cookiecutter-pypackage): |docs-upstream|
 
 Quickstart
 ----------
@@ -129,8 +122,7 @@ Don't worry, you have options:
 Similar Cookiecutter Templates
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* `Nekroze/cookiecutter-pypackage`_: A fork of this with a PyTest test runner,
-  strict flake8 checking with Travis/Tox, and some docs and ``setup.py`` differences.
+* `Nekroze/cookiecutter-pypackage`_: A fork of this with a PyTest test runner, strict flake8 checking with Travis/Tox, and some docs and ``setup.py`` differences.
 
 * `tony/cookiecutter-pypackage-pythonic`_: Fork with py2.7+3.3 optimizations. Flask/Werkzeug-style test runner, ``_compat`` module and module/doc conventions. See ``README.rst`` or the `GitHub comparison view`_ for an exhaustive list of additions and modifications.
 
