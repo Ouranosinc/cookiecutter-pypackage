@@ -43,6 +43,7 @@ dependencies = [
   {%- if cookiecutter.command_line_interface|lower == 'click' %}
   "click >=8.3.1"
   {% elif cookiecutter.command_line_interface|lower == 'typer' %}
+  "rich >=0.14.3",
   "typer >=0.24.1"
   {%- endif %}
 ]
@@ -205,6 +206,7 @@ values = [
 
 [tool.codespell]
 ignore-words-list = "astroid,socio-economic,thirdparty"
+skip = "docs/_build"
 
 [tool.coverage.paths]
 source = ["src/{{ cookiecutter.project_slug }}/", "*/site-packages/{{ cookiecutter.project_slug }}/"]
