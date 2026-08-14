@@ -42,8 +42,8 @@ tox = [
   "tox-gh >=1.7.1"
 ]
 docs = [
-  "alabaster >=1.0.0",
-  "sphinx >=8.0.0"
+  "shibuya >=2026.1.9",
+  "sphinx >=9.0.0"
 ]
 dev = [
   "build >=1.4.2",
