@@ -18,7 +18,7 @@ Features
 * `pyproject.toml`_ with the flit_ backend for PEP 517/621-compliant packaging.
 * `GitHub Actions`_: Ready for GitHub Actions Continuous Integration testing and Deployment.
 * Conda_ environment file: Optionally use ``conda env create -f environment-dev.yml`` to create a new environment with the correct Python version.
-* Tox_ testing: Setup to easily test for Python 3.10, 3.11, 3.12, 3.13, and PyPy3.
+* Tox_ testing: Setup to easily test for Python 3.11, 3.12, 3.13, 3.14, and PyPy3.
 * Sphinx_ docs: Documentation ready for generation with, for example, `Read the Docs`_.
 * pre-commit_ hooks (with prek_): Run your tests and linting (e.g. `flake8`, `ruff`, `pylint`, etc.) before you commit your code!
 * `pre-commit.ci`_: Automate `pre-commit` checks and corrections in your Pull Requests (optional).

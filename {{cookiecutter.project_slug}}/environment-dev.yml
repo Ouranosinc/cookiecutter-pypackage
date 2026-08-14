@@ -3,7 +3,7 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
-  - python >=3.10,<3.15
+  - python >=3.11,<3.15
   # Dev tools and testing
   - pip >=26.0.1
   - bump-my-version >=1.5.1
