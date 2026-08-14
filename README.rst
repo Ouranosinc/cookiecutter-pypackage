@@ -13,19 +13,20 @@ Cookiecutter_ template for a Python package.
 Features
 --------
 
+* Clean documentation theming (with furo_).
 * Testing setup with ``unittest`` or ``pytest`` (with support for code coverage via `Coveralls`_).
 * `pyproject.toml`_ with the flit_ backend for PEP 517/621-compliant packaging.
 * `GitHub Actions`_: Ready for GitHub Actions Continuous Integration testing and Deployment.
 * Conda_ environment file: Optionally use ``conda env create -f environment-dev.yml`` to create a new environment with the correct Python version.
 * Tox_ testing: Setup to easily test for Python 3.10, 3.11, 3.12, 3.13, and PyPy3.
 * Sphinx_ docs: Documentation ready for generation with, for example, `Read the Docs`_.
-* pre-commit_ hook: Run your tests and linting (e.g. `flake8`, `ruff`, `pylint`, etc.) with prek_ before you commit your code!
-* `pre-commit.ci`_: Automate `pre-commit` checks and corrections in your Pull Requests.
+* pre-commit_ hooks (with prek_): Run your tests and linting (e.g. `flake8`, `ruff`, `pylint`, etc.) before you commit your code!
+* `pre-commit.ci`_: Automate `pre-commit` checks and corrections in your Pull Requests (optional).
 * bump-my-version_: Pre-configured `SemVer-2.0-compliant`_ version bumping with a single command.
-* dependabot: Automated dependency updates of both project dependencies and GitHub Actions.
+* Dependabot_: Automated dependency updates of both project dependencies and GitHub Actions.
 * `Developer Certificate of Origin`_ (DCO) enforcement support using `DCO App`_.
 * sphinx-intl_ for French internationalization (i18n) and localization (l10n) of Sphinx docs (optional).
-* Auto-release to TestPyPI_ and PyPI_ when you push a new tag to main (optional).
+* `Trusted Publisher`_: Auto-release to TestPyPI_ and PyPI_ when you push a new tag to main (optional).
 * Command line interface using Typer_, Click_, or Argparse_ (optional).
 
 Quickstart
@@ -81,7 +82,11 @@ For more details, see the `cookiecutter-pypackage tutorial`_.
 GitHub Actions
 ~~~~~~~~~~~~~~
 
-In order to use GitHub Actions, you will need to enable them in your repo. To do so, go to the `Actions` tab of your repo and click the green button to enable them. Afterwards, you will need to ~generate a few Personal Access Tokens (PATs) <https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens>`_ to allow the workflows to run. To do so, go to the `Settings` tab of your repo and click on `Secrets` in the left sidebar. Then, click on the `New repository secret` button and add the following secrets:
+In order to use GitHub Actions, you will need to enable them in your repo.
+To do so, go to the `Actions` tab of your repo and click the green button to enable them.
+Afterwards, you will need to ~generate a few `Personal Access Tokens (PATs) <https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens>`_ to allow the workflows to run. 
+To do so, go to the `Settings` tab of your repo and click on `Secrets` in the left sidebar.
+Then, click on the `New repository secret` button and add the following secrets:
 
 * `BUMP_VERSION_TOKEN` with the following privileges:
     - Contents: Read and Write
@@ -96,12 +101,16 @@ In order to use GitHub Actions, you will need to enable them in your repo. To do
 Trusted Publishing
 ~~~~~~~~~~~~~~~~~~
 
-For Trusted Publishing with PyPI_ and TestPyPI_, you will need to create deployment environments in your repo. To do so, go to the `Settings` tab of your repo and click on `Environments` in the left sidebar. Then, click on the `New environment` button and add the following environments:
+For Trusted Publishing with PyPI_ and TestPyPI_, you will need to create deployment environments in your repo.
+To do so, go to the `Settings` tab of your repo and click on `Environments` in the left sidebar.
+Then, click on the `New environment` button and add the following environments:
 
 * `staging`
 * `production`
 
-Afterwards, you will need to configure your project on both PyPI_ and TestPyPI_ to accept uploads from GitHub Actions. To do so, go to the `Manage` tab of your project on PyPI and click on `Publishing` in the left sidebar. Then, click on the `Add a new publisher` button and fill in the following information:
+Afterwards, you will need to configure your project on both PyPI_ and TestPyPI_ to accept uploads from GitHub Actions.
+To do so, go to the `Manage` tab of your project on PyPI and click on `Publishing` in the left sidebar.
+Then, click on the `Add a new publisher` button and fill in the following information:
 
 * Owner: `my_username`
 * Repository name: `my_project`
@@ -112,7 +121,8 @@ Afterwards, you will need to configure your project on both PyPI_ and TestPyPI_ 
     * For TestPyPI: `staging`
     * For PyPI: `production`
 
-Once this is configured, all you need to do is push a new tag to the `main` branch and your package will be automatically published to TestPyPI_, while performing a release on GitHub will then trigger an upload to PyPI_.
+Once this is configured, all you need to do is push a new tag to the `main` branch and your package will be
+automatically published to TestPyPI_, while performing a release on GitHub will then trigger an upload to PyPI_.
 
 Not Exactly What You Want?
 --------------------------
@@ -124,7 +134,8 @@ Similar Cookiecutter Templates
 
 * `Nekroze/cookiecutter-pypackage`_: A fork of this with a PyTest test runner, strict flake8 checking with Travis/Tox, and some docs and ``setup.py`` differences.
 
-* `tony/cookiecutter-pypackage-pythonic`_: Fork with py2.7+3.3 optimizations. Flask/Werkzeug-style test runner, ``_compat`` module and module/doc conventions. See ``README.rst`` or the `GitHub comparison view`_ for an exhaustive list of additions and modifications.
+* `tony/cookiecutter-pypackage-pythonic`_: Fork with py2.7+3.3 optimizations. Flask/Werkzeug-style test runner, ``_compat`` module and module/doc conventions.
+  See ``README.rst`` or the `GitHub comparison view`_ for an exhaustive list of additions and modifications.
 
 * `ardydedase/cookiecutter-pypackage`_: A fork with separate requirements files rather than a requirements list in the ``setup.py`` file.
 
@@ -161,6 +172,7 @@ I also accept pull requests on this, if they're small, atomic, and if they make 
 .. _Cookiecutter: https://github.com/cookiecutter/cookiecutter
 .. _Coveralls: https://coveralls.io/
 .. _`DCO App`: https://probot.github.io/apps/dco/
+.. _Dependabot: https://docs.github.com/en/code-security/tutorials/secure-your-dependencies/dependabot-quickstart
 .. _`Developer Certificate of Origin`: https://developercertificate.org/
 .. _`GitHub Actions`: https://docs.github.com/en/actions
 .. _Mkdocs: https://pypi.org/project/mkdocs/
@@ -171,12 +183,14 @@ I also accept pull requests on this, if they're small, atomic, and if they make 
 .. _SemVer-2.0-compliant: https://semver.org/spec/v2.0.0.html
 .. _Sphinx: http://sphinx-doc.org/
 .. _Tox: http://testrun.org/tox/
+.. _`Trusted Publisher`: https://docs.pypi.org/trusted-publishers/
 .. _Typer: https://typer.tiangolo.com/
 .. _bump-my-version: https://github.com/callowayproject/bump-my-version
 .. _bump2version: https://github.com/c4urself/bump2version
-.. _`cookiecutter-pypackage tutorial`: https://cookiecutter-pypackage.readthedocs.io/en/latest/tutorial.html
+.. _`cookiecutter-pypackage tutorial`: https://cookiecutter-pypackage-ouranos.readthedocs.io/en/latest/tutorial.html
 .. _dependabot: https://docs.github.com/en/code-security/dependabot/dependabot-version-updates
 .. _flit: https://flit.pypa.io/en/stable/
+.. _furo: https://pradyunsg.me/furo/
 .. _pip: https://pip.pypa.io/en/stable/
 .. _pre-commit.ci: https://pre-commit.ci/
 .. _pre-commit: https://pre-commit.com/
