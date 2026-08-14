@@ -52,6 +52,8 @@ If you wish to use `cruft`_ for ensuring that packages are kept up to date, you 
 
     $ pip install cruft
 
+.. _cruft: https://cruft.github.io/cruft/
+
 Step 2: Generate Your Package
 -----------------------------
 
