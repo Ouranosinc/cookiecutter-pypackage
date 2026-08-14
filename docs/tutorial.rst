@@ -18,17 +18,17 @@ Step 1: Install Cookiecutter
 
 First, you need to create and activate a virtualenv for the package project. Use your favorite method, or create a virtualenv for your new package like this:
 
-.. code-block:: bash
+.. code-block:: console
 
-    virtualenv ~/.virtualenvs/mypackage
+    $ virtualenv ~/.virtualenvs/mypackage
 
 Here, ``mypackage`` is the name of the package that you'll create.
 
 Activate your environment:
 
-.. code-block:: bash
+.. code-block:: console
 
-    source bin/activate
+    $ source bin/activate
 
 On Windows, activate it like this. You may find that using a Command Prompt window works better than gitbash.
 
@@ -42,10 +42,15 @@ On Windows, activate it like this. You may find that using a Command Prompt wind
 
 Install cookiecutter:
 
-.. code-block:: bash
+.. code-block:: console
 
-    pip install cookiecutter
+    $ pip install cookiecutter
 
+If you wish to use `cruft`_ for ensuring that packages are kept up to date, you can install it with the following:
+
+.. code-block:: console
+
+    $ pip install cruft
 
 Step 2: Generate Your Package
 -----------------------------
@@ -54,13 +59,12 @@ Now it's time to generate your Python package.
 
 Use cookiecutter, pointing it at the cookiecutter-pypackage repo:
 
-.. code-block:: bash
+.. code-block:: console
 
-    cookiecutter https://github.com/audreyfeldroy/cookiecutter-pypackage.git
+    $ cookiecutter https://github.com/audreyfeldroy/cookiecutter-pypackage.git
 
 You'll be asked to enter various values to set the package up.
 If you don't know what to enter, press Enter to stick with the defaults.
-
 
 Step 3: Create a GitHub Repo
 ----------------------------
@@ -69,14 +73,14 @@ Go to your GitHub account and create a new repo named ``mypackage``, where ``myp
 
 You will find one folder named after the ``[project_slug]``. Move into this folder, and then setup git to use your GitHub repo and upload the code:
 
-.. code-block:: bash
+.. code-block:: console
 
-    cd mypackage
-    git init .
-    git add .
-    git commit -m "Initial skeleton."
-    git remote add origin git@github.com:myusername/mypackage.git
-    git push -u origin main
+    $ cd mypackage
+    $ git init .
+    $ git add .
+    $ git commit -m "Initial skeleton."
+    $ git remote add origin git@github.com:myusername/mypackage.git
+    $ git push -u origin main
 
 Where ``myusername`` and ``mypackage`` are adjusted for your username and package name.
 
@@ -85,21 +89,23 @@ You'll need a ssh key to push the repo. You can `Generate`_ a key or `Add`_ an e
 .. _`Generate`: https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
 .. _`Add`: https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
 
-
 Step 4: Install Dev Requirements
 --------------------------------
 
-You should still be in the folder containing the ``requirements_dev.txt`` file.
+You should still be in the folder containing the ``pyproject.toml`` file.
 
 Your virtualenv should still be activated. If it isn't, activate it now. Install the new project's local development requirements:
 
-.. code-block:: bash
+.. code-block:: console
 
-    pip install -r requirements_dev.txt
+    $ pip install --group dev
 
+Step 5: Set Up GitHub Workflows CI
+----------------------------------
 
-Step 5: Set Up Travis CI
-------------------------
+.. TODO:: 
+
+    Rewrite this section to remove obsolete Travis CI information
 
 `Travis CI com`_ is a continuous integration tool used to prevent integration problems. Every commit to the master branch will trigger automated builds of the application.
 
@@ -109,7 +115,7 @@ Add the public repo to your Travis CI account by clicking the ``X`` to switch it
 
 In your terminal, your virtualenv should still be activated. If it isn't, activate it now. Run the Travis CLI tool to do your Travis CI setup:
 
-.. code-block:: bash
+.. code-block:: console
 
     travis encrypt --add deploy.password
 
@@ -120,7 +126,6 @@ This will:
 
 .. _`Travis CI com`: https://travis-ci.com/
 
-
 Step 6: Set Up Read the Docs
 ----------------------------
 
@@ -128,31 +133,26 @@ Step 6: Set Up Read the Docs
 
 Log into your account at `Read the Docs`_ . If you don't have one, create one and log into it.
 
-If you are not at your dashboard, choose the pull-down next to your username in the upper right, and select "My Projects". Choose the button to Import the repository and follow the directions.
+If you are not at your dashboard, choose the pull-down next to your username in the upper right, and select "My Projects".
+Choose the button to Import the repository and follow the directions.
 
 Now your documentation will get rebuilt when you make documentation changes to your package.
 
 .. _`Read the Docs`: https://readthedocs.org/
 
-Step 7: Set Up pyup.io
-----------------------
+Step 7: Set Up OpenSSF Scorecard
+--------------------------------
 
-`pyup.io`_ is a service that helps you to keep your requirements files up to date. It sends you automated
-pull requests whenever there's a new release for one of your dependencies.
+.. TODO::
 
-To use it, create a new account at `pyup.io`_ or log into your existing account.
+    Detail how to set up OpenSSF Scorecard.
 
-Click on the green ``Add Repo`` button in the top left corner and select the repo you created in Step 3. A popup will
-ask you whether you want to pin your dependencies. Click on ``Pin`` to add the repo.
-
-Once your repo is set up correctly, the pyup.io badge will show your current update status.
-
-.. _`pyup.io`: https://pyup.io/
 
 Step 8: Release on PyPI
 -----------------------
 
-The Python Package Index or `PyPI`_ is the official third-party software repository for the Python programming language. Python developers intend it to be a comprehensive catalog of all open source Python packages.
+The Python Package Index or `PyPI`_ is the official third-party software repository for the Python programming language.
+Python developers intend it to be a comprehensive catalog of all open source Python packages.
 
 When you are ready, release your package the standard Python way.
 
@@ -161,7 +161,6 @@ See `PyPI Help`_ for more information about submitting a package.
 Here's a release checklist you can use: https://github.com/audreyfeldroy/cookiecutter-pypackage/blob/master/docs/pypi_release_checklist.rst
 
 .. _`PyPI Help`: https://pypi.org/help/#publishing
-
 
 Having problems?
 ----------------

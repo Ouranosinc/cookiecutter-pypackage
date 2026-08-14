@@ -52,7 +52,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'cookiecutter-pypackage-ouranos'
-copyright = f'2020-{datetime.datetime.now().year}, Trevor James Smith'
+copyright = f'2020-{datetime.datetime.now().astimezone().year}, Trevor James Smith'
 author = 'Trevor James Smith'
 
 # The version info for the project you're documenting, acts as replacement for

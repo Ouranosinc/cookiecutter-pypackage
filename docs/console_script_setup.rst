@@ -15,10 +15,10 @@ Usage
 -----
 To use the console script in development:
 
-.. code-block:: bash
+.. code-block:: console
 
-    cd projectdir
-    flit install --symlink
+    $ cd projectdir
+    $ flit install --symlink
 
 'projectdir' should be the top level project directory with the `pyproject.toml` file
 
@@ -31,16 +31,16 @@ Known Issues
 ------------
 Using `flit`, installing the project from sources in a development environment using:
 
-.. code-block:: bash
+.. code-block:: console
 
-    python -m pip install --editable projectdir
+    $ python -m pip install --editable projectdir
 
 will not necessarily create an editable install. This is a known issue with `flit`. The following will work as expected:
 
-.. code-block:: bash
+.. code-block:: console
 
-    cd projectdir
-    flit install --symlink
+    $ cd projectdir
+    $ flit install --symlink
 
 More Details
 ------------
