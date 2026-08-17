@@ -54,6 +54,7 @@ dev = [
   "pytest-cookies >=0.7.0",
   "pytest >=9.0.2",
   "ruff >=0.16.3",
+  "sphinx-autobuild >=2025.8.25",
   "twine >=6.2.0",
   "watchdog >=6.0.0",
   {include-group = "docs"},
