@@ -13,7 +13,7 @@ Cookiecutter_ template for a Python package.
 Features
 --------
 
-* Clean documentation theming (with furo_).
+* Clean documentation theming (with sphinx-rtd-theme_).
 * Testing setup with ``unittest`` or ``pytest`` (with support for code coverage via `Coveralls`_).
 * `pyproject.toml`_ with the flit_ backend for PEP 517/621-compliant packaging.
 * `GitHub Actions`_: Ready for GitHub Actions Continuous Integration testing and Deployment.
@@ -65,7 +65,7 @@ Or, if using Conda:
 .. code-block:: console
 
     $ conda env create -f environment-dev.yml
-    $ pip install -e . --no-deps
+    $ pip install --no-user --editable --no-deps .
 
 * `Register your project with PyPI <https://packaging.python.org/tutorials/packaging-projects/#uploading-the-distribution-archives>`_.
 * Enable GitHub Actions and Workflows (see below).
@@ -75,7 +75,7 @@ Or, if using Conda:
 * Update the `dependencies` field of your `pyproject.toml` file that specifies the packages you will need for
   your project and their versions. For more info see the `pip docs for requirements files <https://pip.pypa.io/en/stable/user_guide/#requirements-files>`_.
 * Register your project with `pre-commit.ci`_.
-* Activate `dependabot`_ for your project.
+* Activate `Dependabot`_ for your project.
 
 For more details, see the `cookiecutter-pypackage tutorial`_.
 
@@ -188,9 +188,7 @@ I also accept pull requests on this, if they're small, atomic, and if they make 
 .. _bump-my-version: https://github.com/callowayproject/bump-my-version
 .. _bump2version: https://github.com/c4urself/bump2version
 .. _`cookiecutter-pypackage tutorial`: https://cookiecutter-pypackage-ouranos.readthedocs.io/en/latest/tutorial.html
-.. _dependabot: https://docs.github.com/en/code-security/dependabot/dependabot-version-updates
 .. _flit: https://flit.pypa.io/en/stable/
-.. _furo: https://pradyunsg.me/furo/
 .. _pip: https://pip.pypa.io/en/stable/
 .. _pre-commit.ci: https://pre-commit.ci/
 .. _pre-commit: https://pre-commit.com/
@@ -198,6 +196,7 @@ I also accept pull requests on this, if they're small, atomic, and if they make 
 .. _pypi: https://pypi.org/
 .. _pyproject.toml: https://www.python.org/dev/peps/pep-0518/
 .. _sphinx-intl: https://sphinx-intl.readthedocs.io/en/master/
+.. _sphinx-rtd-theme: https://sphinx-rtd-theme.readthedocs.io/en/stable/
 .. _testpypi: https://test.pypi.org/
 
 .. _`GitHub comparison view`: https://github.com/tony/cookiecutter-pypackage-pythonic/compare/audreyr:master...main
