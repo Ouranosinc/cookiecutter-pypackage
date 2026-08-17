@@ -79,51 +79,6 @@ Or, if using Conda:
 
 For more details, see the `cookiecutter-pypackage tutorial`_.
 
-GitHub Actions
-~~~~~~~~~~~~~~
-
-In order to use GitHub Actions, you will need to enable them in your repo.
-To do so, go to the `Actions` tab of your repo and click the green button to enable them.
-Afterwards, you will need to ~generate a few `Personal Access Tokens (PATs) <https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens>`_ to allow the workflows to run. 
-To do so, go to the `Settings` tab of your repo and click on `Secrets` in the left sidebar.
-Then, click on the `New repository secret` button and add the following secrets:
-
-* `BUMP_VERSION_TOKEN` with the following privileges:
-    - Contents: Read and Write
-    - Metadata: Read-Only
-    - Pull Requests: Read and Write
-
-* `OPENSSF_SCORECARD_TOKEN` with the following privileges:
-    - Administration: Read-Only
-    - Metadata: Read-Only
-    - Webhooks: Read-Only
-
-Trusted Publishing
-~~~~~~~~~~~~~~~~~~
-
-For Trusted Publishing with PyPI_ and TestPyPI_, you will need to create deployment environments in your repo.
-To do so, go to the `Settings` tab of your repo and click on `Environments` in the left sidebar.
-Then, click on the `New environment` button and add the following environments:
-
-* `staging`
-* `production`
-
-Afterwards, you will need to configure your project on both PyPI_ and TestPyPI_ to accept uploads from GitHub Actions.
-To do so, go to the `Manage` tab of your project on PyPI and click on `Publishing` in the left sidebar.
-Then, click on the `Add a new publisher` button and fill in the following information:
-
-* Owner: `my_username`
-* Repository name: `my_project`
-* Workflow name:
-    * For TestPyPI: `tag-testpypi.yml`
-    * For PyPI: `publish-pypi.yml`
-* Environment name:
-    * For TestPyPI: `staging`
-    * For PyPI: `production`
-
-Once this is configured, all you need to do is push a new tag to the `main` branch and your package will be
-automatically published to TestPyPI_, while performing a release on GitHub will then trigger an upload to PyPI_.
-
 Not Exactly What You Want?
 --------------------------
 
@@ -163,7 +118,7 @@ If you have differences in your preferred setup, I encourage you to fork this to
 Or Submit a Pull Request
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-I also accept pull requests on this, if they're small, atomic, and if they make my own packaging experience better.
+We also accept pull requests on this, if they are reasonable, atomic, and if they make the packaging experience better.
 
 .. _Argparse: https://docs.python.org/3/library/argparse.html
 .. _Black: https://black.readthedocs.io/en/stable/

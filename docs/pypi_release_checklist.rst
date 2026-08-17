@@ -1,6 +1,12 @@
 PyPI Release Checklist
 ======================
 
+.. note::
+
+   See the `PyPI Common questions`_ for more information about package submission and management.
+
+.. _`PyPI Common questions`: https://pypi.org/help/
+
 Before Your First Release
 -------------------------
 
@@ -14,6 +20,11 @@ Before Your First Release
 
 #. Create accounts at both `testpypi.org` and `pypi.org` if you don't have them.
 
+Trusted Publishing
+------------------
+
+`Trusted Publisher`_ is an automated and secure method for deploying new versions tagged on GitHub directly to PyPI (and TestPyPI).
+
 #. On both TestPyPI and PyPI accounts go to: Publishing > Add a new pending publisher.
 
 #. Fill in the form:
@@ -26,7 +37,18 @@ Before Your First Release
         * PyPI: "production"
 
 #. Go to Settings > Environments > New environment and create both a "staging" and "production" environments.
-   Optionally add required reviewers and restrict deployments to ``v*`` tags.
+   
+.. note:: 
+
+   Optionally, you can add required reviewers for specific deployments and restrict deployments to ``v*`` tags.
+   This will prevent badly-named tags or accidental pushes from creating new versions automatically.
+
+Once this is configured, all you need to do is push a new tag to the `main` branch and your package will be
+automatically published to TestPyPI_, while performing a release on GitHub will then trigger an upload to PyPI_.
+
+.. _`Trusted Publisher`: https://docs.pypi.org/trusted-publishers/
+.. _`PyPI`: https://pypi.org/
+.. _`TestPyPI`: https://test.pypi.org/
 
 For Every Release
 -----------------

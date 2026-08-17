@@ -1,22 +1,33 @@
 Tutorial
 ========
 
-.. note:: Did you find any of these instructions confusing? `Edit this file`_
-          and submit a pull request with your improvements!
+.. note:: Did you find any of these instructions confusing? `Edit this file`_ and submit a pull request with your improvements!
 
-.. _`Edit this file`: https://github.com/audreyfeldroy/cookiecutter-pypackage/blob/master/docs/tutorial.rst
+.. _`Edit this file`: https://github.com/Ouranosinc/cookiecutter-pypackage/blob/main/docs/tutorial.rst
 
-To start with, you will need a `GitHub account`_ and an account on `PyPI`_. Create these before you get started on this tutorial. If you are new to Git and GitHub, you should probably spend a few minutes on some of the tutorials at the top of the page at `GitHub Help`_.
+Prerequisites
+-------------
 
-.. _`GitHub account`: https://github.com/
-.. _`PyPI`: https://pypi.python.org/pypi
+* Python or PyPy 3.11 or higher
+* ``git``
+* ``make``
+* Accounts with the following services:
+    * `GitHub`_
+    * `PyPI`_
+    * `TestPyPI`_
+
+If you are new to Git and GitHub, you should probably spend a few minutes on some of the tutorials at the top of the page at `GitHub Help`_.
+
 .. _`GitHub Help`: https://help.github.com/
+.. _`GitHub`: https://github.com/
+.. _`PyPI`: https://pypi.org/
+.. _`TestPyPI`: https://test.pypi.org/
 
+Step 1: Install Cookiecutter and/or Cruft
+-----------------------------------------
 
-Step 1: Install Cookiecutter
-----------------------------
-
-First, you need to create and activate a virtualenv for the package project. Use your favorite method, or create a virtualenv for your new package like this:
+First, you need to create and activate a virtualenv for the package project.
+Use your favorite method, or create a virtualenv for your new package like this:
 
 .. code-block:: console
 
@@ -59,11 +70,17 @@ Step 2: Generate Your Package
 
 Now it's time to generate your Python package.
 
-Use cookiecutter, pointing it at the cookiecutter-pypackage repo:
+* If using cookiecutter, call it while pointing at the cookiecutter-pypackage repo:
 
-.. code-block:: console
+  .. code-block:: console
 
-    $ cookiecutter https://github.com/audreyfeldroy/cookiecutter-pypackage.git
+      $ cookiecutter https://github.com/Ouranosinc/cookiecutter-pypackage.git
+
+* If using cruft, similarly call it with the cookiecutter-pypackage repo:
+
+  .. code-block:: console
+
+      $ cruft https://github.com/Ouranosinc/cookiecutter-pypackage.git
 
 You'll be asked to enter various values to set the package up.
 If you don't know what to enter, press Enter to stick with the defaults.
@@ -71,7 +88,7 @@ If you don't know what to enter, press Enter to stick with the defaults.
 Step 3: Create a GitHub Repo
 ----------------------------
 
-Go to your GitHub account and create a new repo named ``mypackage``, where ``mypackage`` matches the ``[project_slug]`` from your answers to running cookiecutter. This is so that Travis CI and pyup.io can find it when we get to Step 5.
+Go to your GitHub account and create a new repo named ``mypackage``, where ``mypackage`` matches the ``[project_name]`` from your answers to running cookiecutter/cruft.
 
 You will find one folder named after the ``[project_slug]``. Move into this folder, and then setup git to use your GitHub repo and upload the code:
 
@@ -84,7 +101,7 @@ You will find one folder named after the ``[project_slug]``. Move into this fold
     $ git remote add origin git@github.com:myusername/mypackage.git
     $ git push -u origin main
 
-Where ``myusername`` and ``mypackage`` are adjusted for your username and package name.
+Where ``myusername`` and ``mypackage`` are adjusted for your GitHub username and package name.
 
 You'll need a ssh key to push the repo. You can `Generate`_ a key or `Add`_ an existing one.
 
@@ -94,7 +111,7 @@ You'll need a ssh key to push the repo. You can `Generate`_ a key or `Add`_ an e
 Step 4: Install Dev Requirements
 --------------------------------
 
-You should still be in the folder containing the ``pyproject.toml`` file.
+You should still be in the top-level folder containing the ``pyproject.toml`` file.
 
 Your virtualenv should still be activated. If it isn't, activate it now. Install the new project's local development requirements:
 
@@ -102,67 +119,116 @@ Your virtualenv should still be activated. If it isn't, activate it now. Install
 
     $ pip install --group dev
 
-Step 5: Set Up GitHub Workflows CI
-----------------------------------
-
-.. TODO:: 
-
-    Rewrite this section to remove obsolete Travis CI information
-
-`Travis CI com`_ is a continuous integration tool used to prevent integration problems. Every commit to the master branch will trigger automated builds of the application.
-
-Login using your Github credentials. It may take a few minutes for Travis CI to load up a list of all your GitHub repos. They will be listed with boxes to the left of the repo name, where the boxes have an ``X`` in them, meaning it is not connected to Travis CI.
-
-Add the public repo to your Travis CI account by clicking the ``X`` to switch it "on" in the box next to the ``mypackage`` repo. Do not try to follow the other instructions, that will be taken care of next.
-
-In your terminal, your virtualenv should still be activated. If it isn't, activate it now. Run the Travis CLI tool to do your Travis CI setup:
+In order to build the documentation, the project must also be installed:
 
 .. code-block:: console
 
-    travis encrypt --add deploy.password
+    $ pip install --editable .
 
-This will:
+Step 5: Set Up GitHub Workflows CI
+----------------------------------
 
-* Encrypt your PyPI password in your Travis config.
-* Activate automated deployment on PyPI when you push a new tag to master branch.
+In order to use GitHub Actions, you will need to enable them in your repo.
+To do so, go to the `Actions` tab of your repo and click the green button to enable them.
 
-.. _`Travis CI com`: https://travis-ci.com/
+Afterwards, you will need to generate a few `Personal Access Tokens (PATs)`_ to allow the workflows to run.
+Personal access tokens are generated by users and tied to their accounts, so any commits made with them will seem as though they were made by the user.
 
-Step 6: Set Up Read the Docs
+In order to generate a token:
+
+* On GitHub, click on your profile picture > "Settings" > "Developer Settings" > "Personal access tokens" > "Fine-grained tokens"
+* Click on "Generate new token" in the top-right.
+* Enter the desired token name, a description, an expiration:
+    * If the project will be housed under a GitHub organization, select that organization as the resource owner.
+    * These token can be arbitrarily named, but will need to be exposed to GitHub Secrets using the following names:
+        * `BUMP_VERSION_TOKEN`
+        * `OPENSSF_SCORECARD_TOKEN`
+* For "Repository access", specify "Only select repositories" and select the project(s) that you wish to create tokens for.
+* From the "Add permissions" drop-down menu, select the following:
+    * `BUMP_VERSION_TOKEN` with privileges:
+        - Contents: Read and Write
+        - Metadata: Read-Only
+        - Pull Requests: Read and Write
+    * `OPENSSF_SCORECARD_TOKEN` with privileges:
+        - Administration: Read-Only
+        - Metadata: Read-Only
+        - Webhooks: Read-Only
+
+.. warning::
+
+    When creating tokens, the string representation of the token will only be shown *once*!
+    Be sure to copy this to the appropriate project setting before navigating from the page.
+
+In a new tab, navigate to the `Settings` tab of your repository and click on `Secrets` in the left sidebar.
+Then, click on the `New repository secret` button and add the token name and associated secret for each token mentioned above.
+
+.. _`Personal Access Tokens (PATs)`: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
+
+Step 6: Set Up Trusted Publishing
+----------------------------------
+
+See the page specifically about setting publishing and deployments: :doc:`pypi_release_checklist`.
+
+Step 7: Set Up Read the Docs
 ----------------------------
 
-`Read the Docs`_ hosts documentation for the open source community. Think of it as Continuous Documentation.
+`Read the Docs`_ hosts documentation for the open source community. Think of it as "Continuous Documentation".
 
-Log into your account at `Read the Docs`_ . If you don't have one, create one and log into it.
+* Log into your account at `Read the Docs`_ . If you don't have one, create one and log into it.
+* If you are not at your dashboard, choose the pull-down next to your username in the upper right, and select "Projects".
+* Choose the button to "Add project" and follow the directions.
 
-If you are not at your dashboard, choose the pull-down next to your username in the upper right, and select "My Projects".
-Choose the button to Import the repository and follow the directions.
+Some additional nice-to-have settings:
 
-Now your documentation will get rebuilt when you make documentation changes to your package.
+    * "Programming Language" > "Python"
+    * "Building" > "Pull request builds" > "Build pull requests for this project": Continuous Integration checks for documentation.
+
+.. note::
+
+    If you are publishing your documentation in multiple languages, be sure to set the "URL versioning scheme" to "Multiple versions with translations"
+
+Now your documentation will be rebuilt and redeployed automatically when you make any documentation changes to your package.
 
 .. _`Read the Docs`: https://readthedocs.org/
 
-Step 7: Set Up OpenSSF Scorecard
---------------------------------
+Step 8: Set Up Coveralls.io
+---------------------------
 
-.. TODO::
+Coveralls is a free-for-Open-Source `Code Coverage`_ reporting service for GitHub and other hosted code repository services.
+In addition to providing an easy-to-navigate interface for examining line "hits" and "misses", it also can provide Continuous Integration checks based on coverage percentages.
 
-    Detail how to set up OpenSSF Scorecard.
+* Log into your account at `coveralls.io`_ . If you don't have one, create one and log into it.
+  You can use your GitHub account to make one with access to your existing GitHub-hosted projects.
+* On the "Add Repos" page, type the name of the project you wish to add and set the project to "On".
+* Click on "Details" > "Settings" and modify the following settings:
+    * "Include branch coverage": Enabled
+    * "Send Status Updates": Enabled
+    * "Limit status updates to overall build": Enabled
+    * "Use (pull request) context for pull request builds": Enabled
 
+Optionally, you can set a both:
 
-Step 8: Release on PyPI
------------------------
+* Coverage Threshold for failure: Total coverage percentage required for passing CI.
+* Coverage Decrease Threshold for failure: Maximum allowed decrease in coverage percentage beyond which a CI build is failed.
 
-The Python Package Index or `PyPI`_ is the official third-party software repository for the Python programming language.
-Python developers intend it to be a comprehensive catalog of all open source Python packages.
+.. _`Code Coverage`: https://en.wikipedia.org/wiki/Code_coverage
+.. _`coveralls.io`: https://coveralls.io
 
-When you are ready, release your package the standard Python way.
+Step 9: Set Up Labelling (optional)
+-----------------------------------
 
-See `PyPI Help`_ for more information about submitting a package.
+The `label.yml` workflow allows for automated Pull Request labelling based on proposed modifications for specific files.
+This is not enabled by default, but the configuration file can be found at: ``.github`` > ``labeler.yml``.
 
-Here's a release checklist you can use: https://github.com/audreyfeldroy/cookiecutter-pypackage/blob/master/docs/pypi_release_checklist.rst
+Presets for "CI" and "Docs" can be uncommented, but anything can be set based on any set of arbitrary changes to files.
 
-.. _`PyPI Help`: https://pypi.org/help/#publishing
+For more information on the usage syntax, check the official documentation: https://github.com/actions/labeler/
+
+Step 10: Create a Release
+------------------------
+
+After following the :doc:`pypi_release_checklist`, you should now ready to release your package!
+
 
 Having problems?
 ----------------
