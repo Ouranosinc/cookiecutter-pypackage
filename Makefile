@@ -17,7 +17,7 @@ watch: bake  ## Generate project using defaults while watching for changes
 docs: ## generate Sphinx HTML documentation
 	$(MAKE) -C docs html
 
-servedocs: ## generate Sphinx HTML documentatio and watch for changes
+servedocs: ## generate Sphinx HTML documentation and watch for changes
 	$(MAKE) -C docs livehtml
 
 replay: BAKE_OPTIONS=--replay

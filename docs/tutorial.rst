@@ -80,7 +80,7 @@ Now it's time to generate your Python package.
 
   .. code-block:: console
 
-      $ cruft https://github.com/Ouranosinc/cookiecutter-pypackage.git
+      $ cruft create https://github.com/Ouranosinc/cookiecutter-pypackage.git
 
 You'll be asked to enter various values to set the package up.
 If you don't know what to enter, press Enter to stick with the defaults.
@@ -140,7 +140,7 @@ In order to generate a token:
 * Click on "Generate new token" in the top-right.
 * Enter the desired token name, a description, an expiration:
     * If the project will be housed under a GitHub organization, select that organization as the resource owner.
-    * These token can be arbitrarily named, but will need to be exposed to GitHub Secrets using the following names:
+    * These tokens can be arbitrarily named, but will need to be exposed to GitHub Secrets using the following names:
         * `BUMP_VERSION_TOKEN`
         * `OPENSSF_SCORECARD_TOKEN`
 * For "Repository access", specify "Only select repositories" and select the project(s) that you wish to create tokens for.

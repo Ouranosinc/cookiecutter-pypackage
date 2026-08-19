@@ -175,7 +175,7 @@ We also accept pull requests on this, if they are reasonable, atomic, and if the
         :alt: Documentation Status
 
 .. |license| image:: https://img.shields.io/github/license/Ouranosinc/cookiecutter-pypackage.svg
-        :target: https://github.com/Ouranosinc/cookiecutter-pypackage/blob/master/LICENSE
+        :target: https://github.com/Ouranosinc/cookiecutter-pypackage/blob/main/LICENSE
         :alt: License
 
 .. |prek| image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/j178/prek/master/docs/assets/badge-v0.json

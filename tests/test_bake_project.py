@@ -116,8 +116,7 @@ def test_bake_and_build_package(cookies):
 def test_bake_and_run_prek(cookies):
     with bake_in_temp_dir(cookies) as result:
         assert result.project_path.is_dir()
-        assert run_inside_dir("git config --global init.defaultBranch main", str(result.project_path)) == 0
-        assert run_inside_dir("git init", str(result.project_path)) == 0
+        assert run_inside_dir("git init -b main", str(result.project_path)) == 0
         assert run_inside_dir("git checkout -b feature", str(result.project_path)) == 0
         assert run_inside_dir("git add *", str(result.project_path)) == 0
         assert run_inside_dir("prek install", str(result.project_path)) == 0

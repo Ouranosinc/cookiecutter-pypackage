@@ -30,12 +30,12 @@ The script will be generated with output for no arguments and --help.
 
 .. code-block:: console
 
-    $ project_slug --help 
-                                                                                                                                                                                                
-    Usage: project_slug [OPTIONS]                                                                                                                                                            
-                                                                                                                                                                                                    
-    Console script for project_slug.                                                                                                                                                         
-                                                                                                                                                                                                    
+    $ project_slug --help
+
+    Usage: project_slug [OPTIONS]
+
+    Console script for project_slug.
+
     ╭─ Options ─────────────────────────────────────────────────────────────────────────────────────────────────────────╮
     │ --install-completion          Install completion for the current shell.                                           │
     │ --show-completion             Show completion for the current shell, to copy it or customize the installation.    │

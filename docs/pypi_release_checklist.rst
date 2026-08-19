@@ -31,8 +31,10 @@ Trusted Publishing
     * TestPyPI/PyPI Project Name: Your package name (e.g., my-package)
     * Owner: Your GitHub username or organization
     * Repository name: Your repo name
-    * Workflow name: publish.yml
-    * Environment name: 
+    * Workflow name:
+        * TestPyPI: tag-testpypi.yml
+        * PyPI: publish-pypi.yml
+    * Environment name:
         * TestPyPI: "staging"
         * PyPI: "production"
 
@@ -98,10 +100,9 @@ In a new branch based off the latest commit of `main` open a Pull Request (PR):
            $ python -m build --sdist --wheel
            $ python -m twine check dist/*
 
-#. If corrections are required, update `main` from a new Pull Request, merge and push updates to the affected tag.
+#. If corrections are required, merge them to `main`, bump to a new version, and create a new tag; published PyPI artifacts cannot be overwritten.
 
-#. Prepare the release on GitHub, pointing to the tagged version (e.g. https://github.com/audreyr/cookiecutter/releases).
-   Paste the release notes into the release's release page. If you're feeling it, come up with a title for the release!
+#. Prepare a release in your project's GitHub repository, pointing to the tagged version. Paste the release notes into the release page and optionally add a title.
 
 .. note::
 
