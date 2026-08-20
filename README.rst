@@ -1,39 +1,33 @@
-======================
-Cookiecutter PyPackage
-======================
+==============================
+cookiecutter-pypackage-ouranos
+==============================
 
-|build| |ruff| |status|
+|build| |license| |prek| |ruff| |status| |zizmor|
 
 Cookiecutter_ template for a Python package.
 
-* GitHub repo (fork): https://github.com/Ouranosinc/cookiecutter-pypackage/
-* Documentation (upstream): https://cookiecutter-pypackage.readthedocs.io/
+* GitHub Repository: https://github.com/Ouranosinc/cookiecutter-pypackage/
+* Documentation: https://cookiecutter-pypackage-ouranos.readthedocs.io/
 * Free software: BSD license
-* Discord: https://discord.gg/PWXJr3upUE
 
 Features
 --------
 
+* Clean documentation theming (with sphinx-rtd-theme_).
 * Testing setup with ``unittest`` or ``pytest`` (with support for code coverage via `Coveralls`_).
 * `pyproject.toml`_ with the flit_ backend for PEP 517/621-compliant packaging.
 * `GitHub Actions`_: Ready for GitHub Actions Continuous Integration testing and Deployment.
 * Conda_ environment file: Optionally use ``conda env create -f environment-dev.yml`` to create a new environment with the correct Python version.
-* Tox_ testing: Setup to easily test for Python 3.10, 3.11, 3.12, 3.13, and PyPy3.
+* Tox_ testing: Setup to easily test for Python 3.11, 3.12, 3.13, 3.14, and PyPy3.
 * Sphinx_ docs: Documentation ready for generation with, for example, `Read the Docs`_.
-* pre-commit_ hook: Run your tests and linting (e.g. `flake8`, `ruff`, `pylint`, etc.) with prek_ before you commit your code!
-* `pre-commit.ci`_: Automate `pre-commit` checks and corrections in your Pull Requests.
+* pre-commit_ hooks (with prek_): Run your tests and linting (e.g. `flake8`, `ruff`, `pylint`, etc.) before you commit your code!
+* `pre-commit.ci`_: Automate `pre-commit` checks and corrections in your Pull Requests (optional).
 * bump-my-version_: Pre-configured `SemVer-2.0-compliant`_ version bumping with a single command.
-* dependabot: Automated dependency updates of both project dependencies and GitHub Actions.
+* Dependabot_: Automated dependency updates of both project dependencies and GitHub Actions.
 * `Developer Certificate of Origin`_ (DCO) enforcement support using `DCO App`_.
 * sphinx-intl_ for French internationalization (i18n) and localization (l10n) of Sphinx docs (optional).
-* Auto-release to TestPyPI_ and PyPI_ when you push a new tag to main (optional).
+* `Trusted Publisher`_: Auto-release to TestPyPI_ and PyPI_ when you push a new tag to main (optional).
 * Command line interface using Typer_, Click_, or Argparse_ (optional).
-
-
-Build Status
--------------
-
-Upstream (audreyfeldroy/cookiecutter-pypackage): |docs-upstream|
 
 Quickstart
 ----------
@@ -71,7 +65,7 @@ Or, if using Conda:
 .. code-block:: console
 
     $ conda env create -f environment-dev.yml
-    $ pip install -e . --no-deps
+    $ pip install --no-user --editable --no-deps .
 
 * `Register your project with PyPI <https://packaging.python.org/tutorials/packaging-projects/#uploading-the-distribution-archives>`_.
 * Enable GitHub Actions and Workflows (see below).
@@ -81,45 +75,9 @@ Or, if using Conda:
 * Update the `dependencies` field of your `pyproject.toml` file that specifies the packages you will need for
   your project and their versions. For more info see the `pip docs for requirements files <https://pip.pypa.io/en/stable/user_guide/#requirements-files>`_.
 * Register your project with `pre-commit.ci`_.
-* Activate `dependabot`_ for your project.
+* Activate `Dependabot`_ for your project.
 
 For more details, see the `cookiecutter-pypackage tutorial`_.
-
-GitHub Actions
-~~~~~~~~~~~~~~
-
-In order to use GitHub Actions, you will need to enable them in your repo. To do so, go to the `Actions` tab of your repo and click the green button to enable them. Afterwards, you will need to ~generate a few Personal Access Tokens (PATs) <https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens>`_ to allow the workflows to run. To do so, go to the `Settings` tab of your repo and click on `Secrets` in the left sidebar. Then, click on the `New repository secret` button and add the following secrets:
-
-* `BUMP_VERSION_TOKEN` with the following privileges:
-    - Contents: Read and Write
-    - Metadata: Read-Only
-    - Pull Requests: Read and Write
-
-* `OPENSSF_SCORECARD_TOKEN` with the following privileges:
-    - Administration: Read-Only
-    - Metadata: Read-Only
-    - Webhooks: Read-Only
-
-Trusted Publishing
-~~~~~~~~~~~~~~~~~~
-
-For Trusted Publishing with PyPI_ and TestPyPI_, you will need to create deployment environments in your repo. To do so, go to the `Settings` tab of your repo and click on `Environments` in the left sidebar. Then, click on the `New environment` button and add the following environments:
-
-* `staging`
-* `production`
-
-Afterwards, you will need to configure your project on both PyPI_ and TestPyPI_ to accept uploads from GitHub Actions. To do so, go to the `Manage` tab of your project on PyPI and click on `Publishing` in the left sidebar. Then, click on the `Add a new publisher` button and fill in the following information:
-
-* Owner: `my_username`
-* Repository name: `my_project`
-* Workflow name:
-    * For TestPyPI: `tag-testpypi.yml`
-    * For PyPI: `publish-pypi.yml`
-* Environment name:
-    * For TestPyPI: `staging`
-    * For PyPI: `production`
-
-Once this is configured, all you need to do is push a new tag to the `main` branch and your package will be automatically published to TestPyPI_, while performing a release on GitHub will then trigger an upload to PyPI_.
 
 Not Exactly What You Want?
 --------------------------
@@ -129,10 +87,10 @@ Don't worry, you have options:
 Similar Cookiecutter Templates
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* `Nekroze/cookiecutter-pypackage`_: A fork of this with a PyTest test runner,
-  strict flake8 checking with Travis/Tox, and some docs and ``setup.py`` differences.
+* `Nekroze/cookiecutter-pypackage`_: A fork of this with a PyTest test runner, strict flake8 checking with Travis/Tox, and some docs and ``setup.py`` differences.
 
-* `tony/cookiecutter-pypackage-pythonic`_: Fork with py2.7+3.3 optimizations. Flask/Werkzeug-style test runner, ``_compat`` module and module/doc conventions. See ``README.rst`` or the `GitHub comparison view`_ for an exhaustive list of additions and modifications.
+* `tony/cookiecutter-pypackage-pythonic`_: Fork with py2.7+3.3 optimizations. Flask/Werkzeug-style test runner, ``_compat`` module and module/doc conventions.
+  See ``README.rst`` or the `GitHub comparison view`_ for an exhaustive list of additions and modifications.
 
 * `ardydedase/cookiecutter-pypackage`_: A fork with separate requirements files rather than a requirements list in the ``setup.py`` file.
 
@@ -160,7 +118,7 @@ If you have differences in your preferred setup, I encourage you to fork this to
 Or Submit a Pull Request
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-I also accept pull requests on this, if they're small, atomic, and if they make my own packaging experience better.
+We also accept pull requests on this, if they are reasonable, atomic, and if they make the packaging experience better.
 
 .. _Argparse: https://docs.python.org/3/library/argparse.html
 .. _Black: https://black.readthedocs.io/en/stable/
@@ -169,6 +127,7 @@ I also accept pull requests on this, if they're small, atomic, and if they make 
 .. _Cookiecutter: https://github.com/cookiecutter/cookiecutter
 .. _Coveralls: https://coveralls.io/
 .. _`DCO App`: https://probot.github.io/apps/dco/
+.. _Dependabot: https://docs.github.com/en/code-security/tutorials/secure-your-dependencies/dependabot-quickstart
 .. _`Developer Certificate of Origin`: https://developercertificate.org/
 .. _`GitHub Actions`: https://docs.github.com/en/actions
 .. _Mkdocs: https://pypi.org/project/mkdocs/
@@ -179,11 +138,11 @@ I also accept pull requests on this, if they're small, atomic, and if they make 
 .. _SemVer-2.0-compliant: https://semver.org/spec/v2.0.0.html
 .. _Sphinx: http://sphinx-doc.org/
 .. _Tox: http://testrun.org/tox/
+.. _`Trusted Publisher`: https://docs.pypi.org/trusted-publishers/
 .. _Typer: https://typer.tiangolo.com/
 .. _bump-my-version: https://github.com/callowayproject/bump-my-version
 .. _bump2version: https://github.com/c4urself/bump2version
-.. _`cookiecutter-pypackage tutorial`: https://cookiecutter-pypackage.readthedocs.io/en/latest/tutorial.html
-.. _dependabot: https://docs.github.com/en/code-security/dependabot/dependabot-version-updates
+.. _`cookiecutter-pypackage tutorial`: https://cookiecutter-pypackage-ouranos.readthedocs.io/en/latest/tutorial.html
 .. _flit: https://flit.pypa.io/en/stable/
 .. _pip: https://pip.pypa.io/en/stable/
 .. _pre-commit.ci: https://pre-commit.ci/
@@ -191,8 +150,8 @@ I also accept pull requests on this, if they're small, atomic, and if they make 
 .. _prek: https://prek.j178.dev/
 .. _pypi: https://pypi.org/
 .. _pyproject.toml: https://www.python.org/dev/peps/pep-0518/
-.. _pyup.io: https://pyup.io/
 .. _sphinx-intl: https://sphinx-intl.readthedocs.io/en/master/
+.. _sphinx-rtd-theme: https://sphinx-rtd-theme.readthedocs.io/en/stable/
 .. _testpypi: https://test.pypi.org/
 
 .. _`GitHub comparison view`: https://github.com/tony/cookiecutter-pypackage-pythonic/compare/audreyr:master...main
@@ -211,18 +170,26 @@ I also accept pull requests on this, if they're small, atomic, and if they make 
         :target: https://github.com/Ouranosinc/cookiecutter-pypackage/actions/workflows/main.yml
         :alt: Build Status
 
-.. |ruff| image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json
-        :target: https://github.com/astral-sh/ruff
-        :alt: Ruff
-
 .. |docs-upstream|  image:: https://readthedocs.org/projects/cookiecutter-pypackage/badge/?version=latest
         :target: https://cookiecutter-pypackage.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 
-.. |pyup-upstream| image:: https://pyup.io/repos/github/audreyfeldroy/cookiecutter-pypackage/shield.svg
-        :target: https://pyup.io/repos/github/audreyfeldroy/cookiecutter-pypackage/
-        :alt: Updates
+.. |license| image:: https://img.shields.io/github/license/Ouranosinc/cookiecutter-pypackage.svg
+        :target: https://github.com/Ouranosinc/cookiecutter-pypackage/blob/main/LICENSE
+        :alt: License
+
+.. |prek| image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/j178/prek/master/docs/assets/badge-v0.json
+        :target: https://github.com/j178/prek
+        :alt: prek
+
+.. |ruff| image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json
+        :target: https://github.com/astral-sh/ruff
+        :alt: Ruff
 
 .. |status| image:: https://www.repostatus.org/badges/latest/active.svg
         :target: https://www.repostatus.org/#active
         :alt: Project Status: Active - The project has reached a stable, usable state and is being actively developed.
+
+.. |zizmor| image:: https://img.shields.io/badge/%F0%9F%8C%88-zizmor-white?labelColor=white
+        :target: https://zizmor.sh/
+        :alt: zizmor

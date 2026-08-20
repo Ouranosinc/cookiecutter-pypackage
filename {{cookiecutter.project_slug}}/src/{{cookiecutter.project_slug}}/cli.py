@@ -44,7 +44,7 @@ app = typer.Typer()
 console = Console()
 
 
-@app.command()  # type: ignore[misc]
+@app.command()  # type: ignore[untyped-decorator]
 def main() -> None:
     """Console script for {{cookiecutter.project_slug}}."""
     console.print(

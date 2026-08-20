@@ -11,7 +11,7 @@ license-files = ["LICENSE"]
 authors = [
   {name = "Trevor James Smith", email = "smith.trevorj@ouranos.ca"}
 ]
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 keywords = ["cookiecutter", "template", "package", "ouranos"]
 classifiers = [
   "Development Status :: 4 - Beta",
@@ -19,7 +19,6 @@ classifiers = [
   "Intended Audience :: Developers",
   "Natural Language :: English",
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
@@ -42,18 +41,20 @@ tox = [
   "tox-gh >=1.7.1"
 ]
 docs = [
-  "alabaster >=1.0.0",
-  "sphinx >=8.0.0"
+  "shibuya >=2026.1.9",
+  "sphinx >=9.0.0"
 ]
 dev = [
-  "build >=1.4.2",
+  "build >=1.5.0",
   "cookiecutter >=2.7.1",
   "coverage >=7.13.0",
   "flit >=3.12.0,<4.0",
-  "prek >=0.3.0",
+  "flit_core >=3.12.0,<4.0",
+  "prek >=0.4.0",
   "pytest-cookies >=0.7.0",
   "pytest >=9.0.2",
-  "ruff >=0.15.0",
+  "ruff >=0.16.3",
+  "sphinx-autobuild >=2025.8.25",
   "twine >=6.2.0",
   "watchdog >=6.0.0",
   {include-group = "docs"},
@@ -92,7 +93,7 @@ sort_first = ["build-system", "project"]
 
 [tool.tox]
 env_list = [
-  {product = [{prefix = "py3.", start = 10, stop = 14}]},
+  {product = [{prefix = "py3.", start = 11, stop = 14}]},
   "pypy3.11",
   "docs"
 ]
@@ -116,7 +117,6 @@ commands_pre = [
 commands = [["pytest", "{toxinidir}/tests/test_bake_project.py"]]
 
 [tool.tox.gh.python]
-"3.10" = ["py3.10"]
 "3.11" = ["py3.11"]
 "3.12" = ["py3.12"]
 "3.13" = ["py3.13"]

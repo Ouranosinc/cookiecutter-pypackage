@@ -80,7 +80,7 @@ lint: install-lint ## check style
 	python -m numpydoc lint src/{{ cookiecutter.project_slug }}/**.py
 	python -m vulture src/{{ cookiecutter.project_slug }} tests
 	codespell src/{{ cookiecutter.project_slug }} tests {%- if cookiecutter.make_docs == 'y' %} docs{%- endif %}
-	python -m deptry src
+	python -m deptry src/{{ cookiecutter.project_slug }}
 	python -m yamllint --config-file=.yamllint.yaml src/{{ cookiecutter.project_slug }}
 
 test: install-test ## run tests quickly with the default Python

@@ -11,8 +11,14 @@ help:
 bake:  # Generate project using defaults
 	cookiecutter $(BAKE_OPTIONS) . --overwrite-if-exists $(NO_CRUFT)
 
-watch: bake
+watch: bake  ## Generate project using defaults while watching for changes
 	watchmedo shell-command -p '*.*' -c 'make bake -e BAKE_OPTIONS=$(BAKE_OPTIONS)' -W -R -D \{{cookiecutter.project_slug}}/ $(NO_CRUFT)
+
+docs: ## generate Sphinx HTML documentation
+	$(MAKE) -C docs html
+
+servedocs: ## generate Sphinx HTML documentation and watch for changes
+	$(MAKE) -C docs livehtml
 
 replay: BAKE_OPTIONS=--replay
 replay: watch
