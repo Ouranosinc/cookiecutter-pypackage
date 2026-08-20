@@ -139,7 +139,7 @@ Before you submit a pull request, check that it meets these guidelines:
 
 .. code-block:: console
 
-     $ git commit s/--signoff
+     $ git commit -s/--signoff
 
 This will add a `Signed-off-by:` line to your commit message, which indicates that you agree to the DCO.
 
