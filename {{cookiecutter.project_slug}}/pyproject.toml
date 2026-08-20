@@ -5,6 +5,7 @@
     'Apache Software License 2.0': 'Apache-2.0',
     'GNU General Public License v3': 'GPL-3.0-or-later'
 } -%}
+{%- set cli = cookiecutter.command_line_interface|lower %}
 [build-system]
 requires = ["flit_core >=3.12.0,<4"]
 build-backend = "flit_core.buildapi"
@@ -40,21 +41,22 @@ classifiers = [
 ]
 dynamic = ["description", "version"]
 dependencies = [
-  {%- if cookiecutter.command_line_interface|lower == 'click' %}
+{%- if cli == 'click' %}
   "click >=8.3.1"
-  {% elif cookiecutter.command_line_interface|lower == 'typer' %}
+{%- elif cli == 'typer' %}
   "rich >=0.14.3",
   "typer >=0.24.1"
-  {%- endif %}
+{%- endif %}
 ]
 
 [project.optional-dependencies]
 extras = []
 
-{% if cookiecutter.command_line_interface != "No command-line interface" -%}
+{% if cli != "no command-line interface" -%}
 
 [project.scripts]
-{{ cookiecutter.project_slug }} = "{{ cookiecutter.project_slug }}.cli:app"
+{{ cookiecutter.project_slug }} = "{{ cookiecutter.project_slug }}.cli:
+{%- if cli in ['click', 'argparse'] %}main{% elif cli == 'typer' %}app{% endif %}"
 
 {%- endif %}
 
@@ -96,7 +98,7 @@ docs = [
   "nbsphinx >=0.9.8",
   "sphinx >=8.2.0",
   "sphinx-autobuild >=2024.4.16",
-  {%- if cookiecutter.command_line_interface|lower == 'click' %}
+  {%- if cli == 'click' %}
   "sphinx-click",
   {%- endif %}
   "sphinx-codeautolink >=0.16.2",

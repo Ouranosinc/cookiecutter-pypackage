@@ -12,13 +12,9 @@ Before Your First Release
 
 #. Update any `[project.urls]` in ``pyproject.toml`` to match the documentation, homepage, and any other external URLs.
 
-#. Ensure that the name you have chosen has not already been registered on PyPI. This can be performed by checking the PyPI Index (https://pypi.python.org/) or by using the following command:
+#. Ensure that the name you have chosen has not already been registered on PyPI. This can be performed by checking the PyPI Index (https://pypi.python.org/).
 
-   .. code-block:: console
-
-       $ pip search <package name>
-
-#. Create accounts at both `testpypi.org` and `pypi.org` if you don't have them.
+#. Create accounts at both `testpypi.org` and `pypi.org` if you don't already have them.
 
 Trusted Publishing
 ------------------
