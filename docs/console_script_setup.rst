@@ -9,7 +9,7 @@ Optionally, your package can include a console script using Click.
 How It Works
 ------------
 
-If the 'command_line_interface' option is set to anything other than ['No command-line interface'] during setup, `cookiecutter` or `cruft` will add a file 'cli.py' in the _project_slug_ subdirectory.
+If the 'command_line_interface' option is set to anything other than ['No command-line interface'] during setup, `cookiecutter` or `cruft` will add a file ``cli.py`` in the `src/_project_slug_` subdirectory.
 An entry point is added to the ``pyproject.toml`` that points to the main function in ``cli.py``.
 
 Usage
