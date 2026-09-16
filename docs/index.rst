@@ -69,3 +69,9 @@ The :doc:`tutorial <tutorial>` is the best place to start.
    console_script_setup
    pypi_release_checklist
    troubleshooting
+
+.. toctree::
+   :caption: GitHub Repository
+   :hidden:
+
+   Ouranosinc/cookiecutter-pypackage <https://github.com/Ouranosinc/cookiecutter-pypackage>
