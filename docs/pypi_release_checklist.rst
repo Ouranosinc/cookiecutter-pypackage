@@ -35,8 +35,8 @@ Trusted Publishing
         * PyPI: "production"
 
 #. Go to Settings > Environments > New environment and create both a "staging" and "production" environments.
-   
-.. note:: 
+
+.. note::
 
    Optionally, you can add required reviewers for specific deployments and restrict deployments to ``v*`` tags.
    This will prevent badly-named tags or accidental pushes from creating new versions automatically.
@@ -103,7 +103,7 @@ In a new branch based off the latest commit of `main` open a Pull Request (PR):
 .. note::
 
     For security purposes, we recommend clicking the `Enable release immutability` checkbox in your project settings page.
-    
+
     This prevents maintainers and administrators from modifying a tagged version once it has been formally released.
     TestPyPI and PyPI already enable this level of security by default, so any bugged/broken versions can only be removed ("yanked"), never overwritten.
 
