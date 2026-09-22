@@ -14,7 +14,7 @@
 | Open Source                | |license| |ossf-score|                              |
 +----------------------------+-----------------------------------------------------+
 {%- endif %}
-| Coding Standards           | |ruff| |prek| |pre-commit-ci| |zizmor|              |
+| Coding Standards           | |ruff| |prek| |mypy| |pre-commit-ci| |zizmor|       |
 +----------------------------+-----------------------------------------------------+
 | Development Status         | |status| |build| |coveralls|                        |
 +----------------------------+-----------------------------------------------------+
@@ -73,6 +73,10 @@ This package was created with Cookiecutter_ and the `Ouranosinc/cookiecutter-pyp
     .. |ossf-bp| image:: https://bestpractices.coreinfrastructure.org/projects/9945/badge
             :target: https://bestpractices.coreinfrastructure.org/projects/9945
             :alt: Open Source Security Foundation Best Practices
+
+.. |mypy| image:: https://www.mypy-lang.org/static/mypy_badge.svg
+        :target: https://mypy-lang.org/
+        :alt: mypy
 
 .. |ossf-score| image:: https://api.securityscorecards.dev/projects/github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}/badge
         :target: https://securityscorecards.dev/viewer/?uri=github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_name | replace(" ", "-") }}
