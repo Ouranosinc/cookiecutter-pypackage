@@ -69,7 +69,7 @@ Or, if using Conda:
 
 * `Register your project with PyPI <https://packaging.python.org/tutorials/packaging-projects/#uploading-the-distribution-archives>`_.
 * Enable GitHub Actions and Workflows (see below).
-* Activate automated deployment with `Trusted Publishing`_ to PyPI when you push a new tag to the `main` branch.
+* Activate automated deployment with `Trusted Publisher`_ to TestPyPI/PyPI when you push a new tag to the `main` branch.
 * Add the repo to your `Read the Docs`_ account and turn on the ReadTheDocs service hook.
 * Release your package by pushing a new tag to `main`.
 * Update the `dependencies` field of your `pyproject.toml` file that specifies the packages you will need for
