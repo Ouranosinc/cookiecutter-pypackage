@@ -225,7 +225,7 @@ Presets for "CI" and "Docs" can be uncommented, but anything can be set based on
 For more information on the usage syntax, check the official documentation: https://github.com/actions/labeler/
 
 Step 10: Create a Release
-------------------------
+-------------------------
 
 After following the :doc:`pypi_release_checklist`, you should now ready to release your package!
 
