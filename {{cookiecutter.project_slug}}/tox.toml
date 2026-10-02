@@ -1,6 +1,6 @@
 envlist = [
   "lint",
-  {product = [{prefix = "py3.", start = 10, stop = 14}]}
+  {product = [{prefix = "py3.", start = 11, stop = 14}]}
   {%- if cookiecutter.make_docs == 'y' %},
   "docs"
   {%- endif %}
@@ -43,7 +43,10 @@ passenv = ["COVERALLS_*", "GITHUB_*"]
 download = true
 dependency_groups = ["test"]
 install_command = ["python", "-m", "pip", "install", "--no-user", "{opts}", "{packages}"]
-commands_pre = [["pip", "list"], ["pip", "check"]]
+commands_pre = [
+  ["pip", "list"],
+  ["pip", "check"]
+]
 commands = [
   {% if cookiecutter.use_pytest == 'y' -%}
   ["pytest", "{posargs}"]
